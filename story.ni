@@ -139,43 +139,85 @@ before going:
 
 volume up face
 
+book u00
+
 u00 is a corner privately-named room in up face. descdir is southwest.
+
+book u10
 
 u10 is an edge privately-named room in up face. it is north of u00. descdir is south.
 
+book u20
+
 u20 is a corner privately-named room in up face. it is north of u10. descdir is southeast.
+
+book u01
 
 u01 is an edge privately-named room in up face. it is east of u00.
 
+book u11
+
 u11 is a centered privately-named room in up face. it is north of u01. it is east of u10. the player is in u11.
+
+book u21
 
 u21 is an edge privately-named room in up face. it is north of u11. it is east of u20.
 
+book u02
+
 u02 is a corner privately-named room in up face. it is east of u01. descdir is northwest.
 
+book u12
+
 u12 is an edge privately-named room in up face. it is north of u02. it is east of u11.
+
+book u22
 
 u22 is a corner privately-named room in up face. it is north of u12. it is east of u21. descdir is northeast.
 
 volume west face
 
+book w00
+
 w00 is a corner privately-named room in west face. descdir is downsouth.
 
-w10 is an edge privately-named room in west face. it is up of w00. descdir is south.
+book w10
 
-w20 is a corner privately-named room in west face. it is up of w10. descdir is upsouth.
+w10 is an edge privately-named room in west face. it is north of w00. descdir is south.
 
-w01 is an edge privately-named room in west face. it is north of w00. descdir is down.
+book w20
 
-w11 is a centered privately-named room in west face. it is up of w01. it is north of w10. descdir is inside.
+w20 is a corner privately-named room in west face. it is north of w10. descdir is upsouth.
 
-w21 is an edge privately-named room in west face. it is up of w11. it is north of w20. descdir is up.
+book w01
 
-w02 is a corner privately-named room in west face. it is north of w01. descdir is downnorth.
+w01 is an edge privately-named room in west face. it is up of w00. descdir is down.
 
-w12 is an edge privately-named room in west face. it is up of w02. it is north of w11. descdir is north.
+book w11
 
-w22 is a corner privately-named room in west face. it is up of w12. it is north of w21. descdir is upnorth.
+w11 is a centered privately-named room in west face. it is north of w01. it is up of w10. descdir is inside.
+
+book w21
+
+w21 is an edge privately-named room in west face. it is north of w11. it is up of w20. descdir is up.
+
+book w02
+
+w02 is a corner privately-named room in west face. it is up of w01. descdir is downnorth.
+
+w02 is west of u00. east of w02 is nothing. u00 is up of w02. down of u00 is nothing.
+
+book w12
+
+w12 is an edge privately-named room in west face. it is north of w02. it is up of w11. descdir is north.
+
+w12 is west of u01. east of w12 is nothing. u01 is up of w12. down of u01 is nothing.
+
+book w22
+
+w22 is a corner privately-named room in west face. it is north of w12. it is up of w21. descdir is upnorth.
+
+w22 is west of u02. east of w22 is nothing. u02 is up of w22. down of u02 is nothing.
 
 volume east face
 
