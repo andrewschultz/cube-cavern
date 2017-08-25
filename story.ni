@@ -381,37 +381,61 @@ book d00
 
 d00 is a corner privately-named room in down face. descdir is southwest.
 
+s00 is south of d00. north of s00 is nothing. d00 is down of s00. up of d00 is nothing.
+
+w00 is west of d00. east of w00 is nothing. d00 is down of w00. up of d00 is nothing.
+
 book d10
 
-d10 is an edge privately-named room in down face. it is north of d00. descdir is south.
+d10 is an edge privately-named room in down face. it is east of d00. descdir is south.
+
+s01 is south of d10. north of s01 is nothing. d10 is down of s01. up of d10 is nothing.
 
 book d20
 
-d20 is a corner privately-named room in down face. it is north of d10. descdir is southeast.
+d20 is a corner privately-named room in down face. it is east of d10. descdir is southeast.
+
+s02 is south of d20. north of s02 is nothing. d20 is down of s02. up of d20 is nothing.
+
+e00 is east of d20. west of e00 is nothing. d20 is down of e00. up of d20 is nothing.
 
 book d01
 
-d01 is an edge privately-named room in down face. it is east of d00. descdir is west.
+d01 is an edge privately-named room in down face. it is north of d00. descdir is west.
+
+w10 is west of d01. east of w10 is nothing. d01 is down of w10. up of d01 is nothing.
 
 book d11
 
-d11 is a centered privately-named room in down face. it is north of d01. it is east of d10.
+d11 is a centered privately-named room in down face. it is east of d01. it is north of d10.
 
 book d21
 
-d21 is an edge privately-named room in down face. it is north of d11. it is east of d20. descdir is east.
+d21 is an edge privately-named room in down face. it is east of d11. it is north of d20. descdir is east.
+
+e01 is east of d21. west of e01 is nothing. d21 is down of e01. up of d21 is nothing.
 
 book d02
 
-d02 is a corner privately-named room in down face. it is east of d01. descdir is northwest.
+d02 is a corner privately-named room in down face. it is north of d01. descdir is northwest.
+
+n00 is north of d02. [?? south of n00 is nothing.] d02 is down of n00. up of d02 is nothing.
+
+w20 is west of d02. [?? east of w20 is nothing.] d02 is down of w20. up of d02 is nothing.
 
 book d12
 
-d12 is an edge privately-named room in down face. it is north of d02. it is east of d11. descdir is north.
+d12 is an edge privately-named room in down face. it is east of d02. it is north of d11. descdir is north.
+
+n10 is north of d12. south of n10 is nothing. d12 is down of n10. up of d12 is nothing.
 
 book d22
 
-d22 is a corner privately-named room in down face. it is north of d12. it is east of d21. descdir is northeast.
+d22 is a corner privately-named room in down face. it is east of d12. it is north of d21. descdir is northeast.
+
+e02 is east of d22. west of e02 is nothing. d22 is down of e02. up of d22 is nothing.
+
+n20 is north of d22. south of n20 is nothing. d22 is down of n20. up of d22 is nothing.
 
 volume stock room descriptions
 
@@ -443,3 +467,14 @@ understand "s00" as s00.
 understand "w00" as w00.
 understand "e00" as e00.
 understand "u00" as u00.
+
+book tests
+
+test nloop with "n/n/d/d/d/s/s/s/u/u/u/n".
+test sloop with "s/s/d/d/d/n/n/n/u/u/u/s".
+
+test wloop with "w/w/d/d/d/e/e/e/u/u/u/w".
+test eloop with "e/e/d/d/d/w/w/w/u/u/u/e".
+
+test w2loop with "w/w/n/n/n/e/e/e/s/s/s/w".
+test e2loop with "e/e/n/n/n/w/w/w/s/s/s/e".
