@@ -132,7 +132,7 @@ definition: a direction (called d) is ubercromulent:
 book wrong way rejects
 
 before going:
-	if location of player is corner and noun is descdir:
+	if location of player is corner and noun is descdir of location of player:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
 		say "You can only go [list of ubercromulent directions], or any non-opposite pair, on the [mrlp]." instead;
@@ -217,7 +217,7 @@ book w22
 
 w22 is a corner privately-named room in west face. it is north of w12. it is up of w21. descdir is upnorth.
 
-w22 is west of u02. east of w22 is nothing. u02 is up of w22. down of u02 is nothing.
+w22 is west of u02. [?? east of w22 is nothing]. u02 is up of w22. down of u02 is nothing.
 
 volume east face
 
@@ -269,6 +269,8 @@ book n00
 
 n00 is a corner privately-named room in north face. descdir is downwest.
 
+w20 is south of n00. north of w20 is nothing. n00 is east of w20. west of w20 is nothing.
+
 book n10
 
 n10 is an edge privately-named room in north face. it is east of n00. descdir is down.
@@ -277,9 +279,13 @@ book n20
 
 n20 is a corner privately-named room in north face. it is east of n10. descdir is downeast.
 
+e20 is east of n20. west of e20 is nothing. n20 is north of e20. south of n20 is nothing.
+
 book n01
 
 n01 is an edge privately-named room in north face. it is up of n00. descdir is west.
+
+w21 is south of n01. north of w21 is nothing. n01 is east of w21. west of w21 is nothing.
 
 book n11
 
@@ -289,11 +295,15 @@ book n21
 
 n21 is an edge privately-named room in north face. it is east of n11. it is up of n20. descdir is east.
 
+e21 is east of n21. west of e21 is nothing. n21 is north of e21. south of n21 is nothing.
+
 book n02
 
 n02 is a corner privately-named room in north face. it is up of n01. descdir is upwest.
 
-u02 is up of n02. down of u02 is nothing. n02 is north of u02. south of n02 is nothing.
+u02 is up of n02. down of u02 is nothing. n02 is north of u02. [?? what is going on south of n02 is nothing.]
+
+w22 is south of n02. north of w22 is nothing. n02 is east of w22. west of w22 is nothing.
 
 book n12
 
@@ -307,11 +317,15 @@ n22 is a corner privately-named room in north face. it is east of n12. it is up 
 
 u22 is up of n22. down of u22 is nothing. n22 is north of u22. south of n22 is nothing.
 
+e22 is east of n22. west of e22 is nothing. u22 is up of n22. down of u22 is nothing.
+
 volume south face
 
 book s00
 
 s00 is a corner privately-named room in south face. descdir is downwest.
+
+west of s00 is w00. south of w00 is s00. east of w00 is nothing. north of s00 is nothing.
 
 book s10
 
@@ -321,9 +335,13 @@ book s20
 
 s20 is a corner privately-named room in south face. it is east of s10. descdir is downeast.
 
+e00 is east of s20. west of e00 is nothing. s20 is south of e00. north of s20 is nothing.
+
 book s01
 
 s01 is an edge privately-named room in south face. it is up of s00. descdir is west.
+
+west of s01 is w01. south of w01 is s01. east of w01 is nothing. north of s01 is nothing.
 
 book s11
 
@@ -333,9 +351,13 @@ book s21
 
 s21 is an edge privately-named room in south face. it is east of s11. it is up of s20. descdir is east.
 
+e01 is east of s21. west of e01 is nothing. s21 is south of e01. north of s21 is nothing.
+
 book s02
 
 s02 is a corner privately-named room in south face. it is up of s01. descdir is upwest.
+
+west of s02 is w02. south of w02 is s02. east of w02 is nothing. north of s02 is nothing.
 
 south of u00 is s02. up of s02 is u00. north of s02 is nowhere. down of u00 is nowhere.
 
@@ -345,11 +367,13 @@ s12 is an edge privately-named room in south face. it is east of s02. it is up o
 
 south of u10 is s12. up of s12 is u10. north of s12 is nowhere. down of u10 is nowhere.
 
-book s12
+book s22
 
 s22 is a corner privately-named room in south face. it is east of s12. it is up of s21. descdir is upeast.
 
 south of u20 is s22. up of s22 is u20. north of s22 is nowhere. down of u20 is nowhere.
+
+e02 is east of s22. west of e02 is nothing. s22 is south of e02. north of s22 is nothing.
 
 volume down face
 
