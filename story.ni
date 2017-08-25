@@ -317,7 +317,7 @@ n22 is a corner privately-named room in north face. it is east of n12. it is up 
 
 u22 is up of n22. down of u22 is nothing. n22 is north of u22. south of n22 is nothing.
 
-e22 is east of n22. west of e22 is nothing. u22 is up of n22. down of u22 is nothing.
+e22 is east of n22. west of e22 is nothing. north of e22 is n22. south of n22 is nothing
 
 volume south face
 
@@ -459,7 +459,46 @@ to say room-desc:
 
 volume debug tests and such - not for release
 
-section for debug purposes
+chapter waysing
+
+waysing is an action applying to nothing.
+
+understand the command "ways" as something new.
+
+understand "ways" as waysing.
+
+a direction can be tagged.
+
+carry out waysing:
+	now all directions are not tagged;
+	repeat with d1 running through ubercromulent directions:
+		repeat with d2 running through ubercromulent directions:
+			if d2 is d1, next;
+			if d2 is opposite of d1, next;
+			if d2 is tagged, next;
+			let Q1 be the room d2 of location of player;
+			let P1 be the room d1 of Q1;
+			let Q2 be the room d1 of location of player;
+			let P2 be the room d2 of Q2;
+			say "[if P2 is P1][p1] is [combodir of d1 and d2] of [location of player][else][bracket]Uh oh [p2] [p1] are [d1]/[d2] and reverse of [location of player][close bracket][end if]. ";
+		now d1 is tagged;
+	the rule succeeds;
+
+chapter allwaying
+
+allwaying is an action applying to nothing.
+
+understand the command "allway" as something new.
+
+understand "allway" as allwaying.
+
+carry out allwaying:
+	repeat with X running through rooms:
+		move player to X;
+		try waysing;
+	the rule succeeds;
+
+chapter for debug purposes
 
 understand "d00" as d00.
 understand "n00" as n00.
