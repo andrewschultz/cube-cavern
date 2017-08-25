@@ -145,35 +145,35 @@ u00 is a corner privately-named room in up face. descdir is southwest.
 
 book u10
 
-u10 is an edge privately-named room in up face. it is north of u00. descdir is south.
+u10 is an edge privately-named room in up face. it is east of u00. descdir is south.
 
 book u20
 
-u20 is a corner privately-named room in up face. it is north of u10. descdir is southeast.
+u20 is a corner privately-named room in up face. it is east of u10. descdir is southeast.
 
 book u01
 
-u01 is an edge privately-named room in up face. it is east of u00.
+u01 is an edge privately-named room in up face. it is north of u00.
 
 book u11
 
-u11 is a centered privately-named room in up face. it is north of u01. it is east of u10. the player is in u11.
+u11 is a centered privately-named room in up face. it is east of u01. it is north of u10. the player is in u11.
 
 book u21
 
-u21 is an edge privately-named room in up face. it is north of u11. it is east of u20.
+u21 is an edge privately-named room in up face. it is east of u11. it is north of u20.
 
 book u02
 
-u02 is a corner privately-named room in up face. it is east of u01. descdir is northwest.
+u02 is a corner privately-named room in up face. it is north of u01. descdir is northwest.
 
 book u12
 
-u12 is an edge privately-named room in up face. it is north of u02. it is east of u11.
+u12 is an edge privately-named room in up face. it is east of u02. it is north of u11.
 
 book u22
 
-u22 is a corner privately-named room in up face. it is north of u12. it is east of u21. descdir is northeast.
+u22 is a corner privately-named room in up face. it is east of u12. it is north of u21. descdir is northeast.
 
 volume west face
 
@@ -227,35 +227,41 @@ e00 is a corner privately-named room in east face. descdir is downsouth.
 
 book e10
 
-e10 is an edge privately-named room in east face. it is up of e00. descdir is south.
+e10 is an edge privately-named room in east face. it is north of e00. descdir is south.
 
 book e20
 
-e20 is a corner privately-named room in east face. it is up of e10. descdir is upsouth.
+e20 is a corner privately-named room in east face. it is north of e10. descdir is upsouth.
 
 book e01
 
-e01 is an edge privately-named room in east face. it is north of e00. descdir is down.
+e01 is an edge privately-named room in east face. it is up of e00. descdir is down.
 
 book e11
 
-e11 is a centered privately-named room in east face. it is up of e01. it is north of e10. descdir is inside.
+e11 is a centered privately-named room in east face. it is north of e01. it is up of e10. descdir is inside.
 
 book e21
 
-e21 is an edge privately-named room in east face. it is up of e11. it is north of e20. descdir is up.
+e21 is an edge privately-named room in east face. it is north of e11. it is up of e20. descdir is up.
 
 book e02
 
-e02 is a corner privately-named room in east face. it is north of e01. descdir is downnorth.
+e02 is a corner privately-named room in east face. it is up of e01. descdir is downnorth.
+
+e02 is east of u20. west of e02 is nothing. u20 is up of e02. down of u20 is nothing.
 
 book e12
 
-e12 is an edge privately-named room in east face. it is up of e02. it is north of e11. descdir is north.
+e12 is an edge privately-named room in east face. it is north of e02. it is up of e11. descdir is north.
+
+e12 is east of u21. west of e12 is nothing. u21 is up of e12. down of u21 is nothing.
 
 book e22
 
-e22 is a corner privately-named room in east face. it is up of e12. it is north of e21. descdir is upnorth.
+e22 is a corner privately-named room in east face. it is north of e12. it is up of e21. descdir is upnorth.
+
+e22 is east of u22. west of e22 is nothing. u22 is up of e22. down of u22 is nothing.
 
 volume north face
 
@@ -287,13 +293,19 @@ book n02
 
 n02 is a corner privately-named room in north face. it is up of n01.
 
+u02 is up of n02. down of u02 is nothing. n02 is north of u02. south of n02 is nothing.
+
 book n12
 
 n12 is an edge privately-named room in north face. it is east of n02. it is up of n11.
 
+u12 is up of n12. down of u12 is nothing. n12 is north of u12. south of n12 is nothing.
+
 book n22
 
 n22 is a corner privately-named room in north face. it is east of n12. it is up of n21.
+
+u22 is up of n22. down of u22 is nothing. n22 is north of u22. south of n22 is nothing.
 
 volume south face
 
@@ -395,7 +407,7 @@ to say room-desc:
 	else if location of player is centered:
 		say "You are at the center of the [map region of location of player]. You can go pretty much any direction: [list of goable directions]";
 	else if location of player is edge:
-		say "You are at the center of the [descdir] edge of the [map region of location of player]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to somewhere new[else]each to a different plane[end if]"
+		say "You are at the center of the [descdir] edge of the [map region of location of player]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
 
 volume debug tests and such - not for release
 
