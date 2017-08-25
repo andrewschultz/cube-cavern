@@ -47,7 +47,11 @@ downsouth is a direction. opposite of downsouth is upnorth.
 
 book complexity
 
-a direction can be complex or simple. a direction is usually simple.
+a direction can be complex, simple or irrelevant. a direction is usually simple.
+
+inside is irrelevant.
+
+outside is irrelevant.
 
 upwest is complex. upeast is complex. upsouth is complex. upnorth is complex.
 
@@ -437,6 +441,94 @@ e20 is east of d22. west of e20 is nothing. d22 is down of e20. up of d22 is not
 
 n20 is north of d22. south of n20 is nothing. d22 is down of n20. up of d22 is nothing.
 
+volume complex/diagonal connections
+
+u11 is northeast of u00. w12 is northwest of u00. s12 is southeast of u00.
+
+u21 is northeast of u10. u01 is northwest of u10. s22 is southeast of u10. s02 is southwest of u10.
+
+e12 is northeast of u20. u11 is northwest of u20. s12 is southwest of u20.
+
+u12 is northeast of u01. w22 is northwest of u01. w02 is southwest of u01.
+
+u22 is northeast of u11. u02 is northwest of u11.
+
+e22 is northeast of u21. u12 is northwest of u21. e02 is southeast of u21.
+
+n12 is northeast of u02. w12 is southwest of u02.
+
+n22 is northeast of u12. n02 is northwest of u12.
+
+n12 is northwest of u22. e12 is southeast of u22.
+
+w11 is upnorth of w00. d01 is downnorth of w00. s01 is upsouth of w00.
+
+w21 is upnorth of w10. d02 is downnorth of w10. w01 is upsouth of w10. d00 is downsouth of w10.
+
+w11 is upsouth of w20. d01 is downsouth of w20. n01 is upeast of w20.
+
+w12 is upnorth of w01. s02 is upsouth of w01. s00 is downsouth of w01.
+
+w22 is upnorth of w11. w02 is upsouth of w11.
+
+w12 is upsouth of w21. n02 is upeast of w21. n00 is downeast of w21.
+
+s01 is downsouth of w02.
+
+n01 is downeast of w22.
+
+e11 is upnorth of e00. d21 is downnorth of e00. s21 is upsouth of e00.
+
+e21 is upnorth of e10. d22 is downnorth of e10. e01 is upsouth of e10. d20 is downsouth of e10.
+
+n21 is upnorth of e20. e11 is upsouth of e20. d21 is downsouth of e20.
+
+e12 is upnorth of e01. s22 is upsouth of e01. s20 is downsouth of e01.
+
+e22 is upnorth of e11. e02 is upsouth of e11.
+
+n22 is upnorth of e21. n20 is downnorth of e21. e12 is upsouth of e21.
+
+s21 is downsouth of e02.
+
+n21 is downnorth of e22.
+
+n11 is upeast of n00. d12 is downeast of n00.
+
+n21 is upeast of n10. d22 is downeast of n10. n01 is upwest of n10. d02 is downwest of n10.
+
+n11 is upwest of n20. d12 is downwest of n20.
+
+n12 is upeast of n01.
+
+n22 is upeast of n11. n02 is upwest of n11.
+
+n12 is upwest of n21.
+
+s11 is upeast of s00. d10 is downeast of s00.
+
+s21 is upeast of s10. d20 is downeast of s10. s01 is upwest of s10. d00 is downwest of s10.
+
+s11 is upwest of s20. d10 is downwest of s20.
+
+s12 is upeast of s01.
+
+s22 is upeast of s11. s02 is upwest of s11.
+
+s12 is upwest of s21.
+
+d11 is northeast of d00.
+
+d21 is northeast of d10. d01 is northwest of d10.
+
+d11 is northwest of d20.
+
+d12 is northeast of d01.
+
+d22 is northeast of d11. d02 is northwest of d11.
+
+d12 is northwest of d21.
+
 volume stock room descriptions
 
 the description of a room is usually "[room-desc].".
@@ -469,18 +561,26 @@ understand "ways" as waysing.
 
 a direction can be tagged.
 
+Bordering relates rooms to each other. The verb to border (he borders, they border, it is bordered) implies the bordering relation.
+
 carry out waysing:
 	now all directions are not tagged;
-	repeat with d1 running through ubercromulent directions:
-		repeat with d2 running through ubercromulent directions:
+	repeat with d1 running through simple directions:
+		repeat with d2 running through simple directions:
 			if d2 is d1, next;
 			if d2 is opposite of d1, next;
 			if d2 is tagged, next;
 			let Q1 be the room d2 of location of player;
+			if Q1 is nothing, next;
 			let P1 be the room d1 of Q1;
 			let Q2 be the room d1 of location of player;
+			if Q2 is nothing, next;
 			let P2 be the room d2 of Q2;
-			say "[if P2 is P1][p1] is [combodir of d1 and d2] of [location of player][else][bracket]Uh oh [p2] [p1] are [d1]/[d2] and reverse of [location of player][close bracket][end if]. ";
+			if P2 is P1:
+				if P1 borders location of player, next;
+				now P1 borders location of player;
+				say "[p1] is [combodir of d1 and d2] of [location of player]. ";
+[			say "[if P2 is P1][p1] is [combodir of d1 and d2] of [location of player][else][bracket]Uh oh [p2] [p1] are [d1]/[d2] and reverse of [location of player][close bracket][end if]. ";]
 		now d1 is tagged;
 	the rule succeeds;
 
@@ -493,6 +593,9 @@ understand the command "allway" as something new.
 understand "allway" as allwaying.
 
 carry out allwaying:
+	repeat with Q running through rooms:
+		repeat with Q2 running through all rooms:
+			now Q does not border Q2;
 	repeat with X running through rooms:
 		move player to X;
 		try waysing;
