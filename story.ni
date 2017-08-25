@@ -183,15 +183,15 @@ w00 is a corner privately-named room in west face. descdir is downsouth.
 
 book w10
 
-w10 is an edge privately-named room in west face. it is north of w00. descdir is south.
+w10 is an edge privately-named room in west face. it is north of w00. descdir is down.
 
 book w20
 
-w20 is a corner privately-named room in west face. it is north of w10. descdir is upsouth.
+w20 is a corner privately-named room in west face. it is north of w10. descdir is downnorth.
 
 book w01
 
-w01 is an edge privately-named room in west face. it is up of w00. descdir is down.
+w01 is an edge privately-named room in west face. it is up of w00. descdir is south.
 
 book w11
 
@@ -199,17 +199,17 @@ w11 is a centered privately-named room in west face. it is north of w01. it is u
 
 book w21
 
-w21 is an edge privately-named room in west face. it is north of w11. it is up of w20. descdir is up.
+w21 is an edge privately-named room in west face. it is north of w11. it is up of w20. descdir is north.
 
 book w02
 
-w02 is a corner privately-named room in west face. it is up of w01. descdir is downnorth.
+w02 is a corner privately-named room in west face. it is up of w01. descdir is upsouth.
 
 w02 is west of u00. east of w02 is nothing. u00 is up of w02. down of u00 is nothing.
 
 book w12
 
-w12 is an edge privately-named room in west face. it is north of w02. it is up of w11. descdir is north.
+w12 is an edge privately-named room in west face. it is north of w02. it is up of w11. descdir is up.
 
 w12 is west of u01. east of w12 is nothing. u01 is up of w12. down of u01 is nothing.
 
@@ -227,15 +227,15 @@ e00 is a corner privately-named room in east face. descdir is downsouth.
 
 book e10
 
-e10 is an edge privately-named room in east face. it is north of e00. descdir is south.
+e10 is an edge privately-named room in east face. it is north of e00. descdir is down.
 
 book e20
 
-e20 is a corner privately-named room in east face. it is north of e10. descdir is upsouth.
+e20 is a corner privately-named room in east face. it is north of e10. descdir is downnorth.
 
 book e01
 
-e01 is an edge privately-named room in east face. it is up of e00. descdir is down.
+e01 is an edge privately-named room in east face. it is up of e00. descdir is south.
 
 book e11
 
@@ -243,17 +243,17 @@ e11 is a centered privately-named room in east face. it is north of e01. it is u
 
 book e21
 
-e21 is an edge privately-named room in east face. it is north of e11. it is up of e20. descdir is up.
+e21 is an edge privately-named room in east face. it is north of e11. it is up of e20. descdir is north.
 
 book e02
 
-e02 is a corner privately-named room in east face. it is up of e01. descdir is downnorth.
+e02 is a corner privately-named room in east face. it is up of e01. descdir is upsouth.
 
 e02 is east of u20. west of e02 is nothing. u20 is up of e02. down of u20 is nothing.
 
 book e12
 
-e12 is an edge privately-named room in east face. it is north of e02. it is up of e11. descdir is north.
+e12 is an edge privately-named room in east face. it is north of e02. it is up of e11. descdir is up.
 
 e12 is east of u21. west of e12 is nothing. u21 is up of e12. down of u21 is nothing.
 
@@ -267,19 +267,19 @@ volume north face
 
 book n00
 
-n00 is a corner privately-named room in north face.
+n00 is a corner privately-named room in north face. descdir is downwest.
 
 book n10
 
-n10 is an edge privately-named room in north face. it is east of n00.
+n10 is an edge privately-named room in north face. it is east of n00. descdir is down.
 
 book n20
 
-n20 is a corner privately-named room in north face. it is east of n10.
+n20 is a corner privately-named room in north face. it is east of n10. descdir is downeast.
 
 book n01
 
-n01 is an edge privately-named room in north face. it is up of n00.
+n01 is an edge privately-named room in north face. it is up of n00. descdir is west.
 
 book n11
 
@@ -287,23 +287,23 @@ n11 is a centered privately-named room in north face. it is east of n01. it is u
 
 book n21
 
-n21 is an edge privately-named room in north face. it is east of n11. it is up of n20.
+n21 is an edge privately-named room in north face. it is east of n11. it is up of n20. descdir is east.
 
 book n02
 
-n02 is a corner privately-named room in north face. it is up of n01.
+n02 is a corner privately-named room in north face. it is up of n01. descdir is upwest.
 
 u02 is up of n02. down of u02 is nothing. n02 is north of u02. south of n02 is nothing.
 
 book n12
 
-n12 is an edge privately-named room in north face. it is east of n02. it is up of n11.
+n12 is an edge privately-named room in north face. it is east of n02. it is up of n11. descdir is up.
 
 u12 is up of n12. down of u12 is nothing. n12 is north of u12. south of n12 is nothing.
 
 book n22
 
-n22 is a corner privately-named room in north face. it is east of n12. it is up of n21.
+n22 is a corner privately-named room in north face. it is east of n12. it is up of n21. descdir is upeast.
 
 u22 is up of n22. down of u22 is nothing. n22 is north of u22. south of n22 is nothing.
 
@@ -355,19 +355,19 @@ volume down face
 
 book d00
 
-d00 is a corner privately-named room in down face.
+d00 is a corner privately-named room in down face. descdir is southwest.
 
 book d10
 
-d10 is an edge privately-named room in down face. it is north of d00.
+d10 is an edge privately-named room in down face. it is north of d00. descdir is south.
 
 book d20
 
-d20 is a corner privately-named room in down face. it is north of d10.
+d20 is a corner privately-named room in down face. it is north of d10. descdir is southeast.
 
 book d01
 
-d01 is an edge privately-named room in down face. it is east of d00.
+d01 is an edge privately-named room in down face. it is east of d00. descdir is west.
 
 book d11
 
@@ -375,25 +375,25 @@ d11 is a centered privately-named room in down face. it is north of d01. it is e
 
 book d21
 
-d21 is an edge privately-named room in down face. it is north of d11. it is east of d20.
+d21 is an edge privately-named room in down face. it is north of d11. it is east of d20. descdir is east.
 
 book d02
 
-d02 is a corner privately-named room in down face. it is east of d01.
+d02 is a corner privately-named room in down face. it is east of d01. descdir is northwest.
 
 book d12
 
-d12 is an edge privately-named room in down face. it is north of d02. it is east of d11.
+d12 is an edge privately-named room in down face. it is north of d02. it is east of d11. descdir is north.
 
 book d22
 
-d22 is a corner privately-named room in down face. it is north of d12. it is east of d21.
+d22 is a corner privately-named room in down face. it is north of d12. it is east of d21. descdir is northeast.
 
 volume stock room descriptions
 
 the description of a room is usually "[room-desc].".
 
-the printed name of a room is usually "[mrtc], [if descdir of location of player is inside]center[else][descdir of location of player]".
+the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
 
 to say mrtc:
 	let Q be "[map region of location of player]";
