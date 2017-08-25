@@ -459,7 +459,7 @@
 			<dock index="0" id="73" port="n" />
 			<point index="1" x="-1056" y="-640" />
 		</line>
-		<line id="159" name="" description="" startText="up" endText="down">
+		<line id="159" name="" description="" startText="u22">
 			<dock index="0" id="74" port="n" />
 			<dock index="1" id="74" port="n" />
 		</line>
@@ -471,11 +471,11 @@
 			<dock index="0" id="67" port="e" />
 			<point index="1" x="-864" y="-320" />
 		</line>
-		<line id="163" name="" description="" startText="e02">
+		<line id="163" name="" description="" startText="e20">
 			<dock index="0" id="29" port="e" />
 			<point index="1" x="-928" y="-160" />
 		</line>
-		<line id="164" name="" description="" startText="e01">
+		<line id="164" name="" description="" startText="e10">
 			<dock index="0" id="30" port="e" />
 			<point index="1" x="-1056" y="-32" />
 		</line>
@@ -483,11 +483,11 @@
 			<dock index="0" id="28" port="e" />
 			<point index="1" x="-1184" y="96" />
 		</line>
-		<line id="166" name="" description="" startText="s02">
+		<line id="166" name="" description="" startText="s20">
 			<dock index="0" id="28" port="sw" />
 			<point index="1" x="-1312" y="160" />
 		</line>
-		<line id="167" name="" description="" startText="s01">
+		<line id="167" name="" description="" startText="s10">
 			<dock index="0" id="25" port="sw" />
 			<dock index="1" id="25" port="sw" />
 		</line>

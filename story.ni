@@ -389,13 +389,13 @@ book d10
 
 d10 is an edge privately-named room in down face. it is east of d00. descdir is south.
 
-s01 is south of d10. north of s01 is nothing. d10 is down of s01. up of d10 is nothing.
+s10 is south of d10. north of s10 is nothing. d10 is down of s10. up of d10 is nothing.
 
 book d20
 
 d20 is a corner privately-named room in down face. it is east of d10. descdir is southeast.
 
-s02 is south of d20. north of s02 is nothing. d20 is down of s02. up of d20 is nothing.
+s20 is south of d20. north of s20 is nothing. d20 is down of s20. up of d20 is nothing.
 
 e00 is east of d20. west of e00 is nothing. d20 is down of e00. up of d20 is nothing.
 
@@ -413,7 +413,7 @@ book d21
 
 d21 is an edge privately-named room in down face. it is east of d11. it is north of d20. descdir is east.
 
-e01 is east of d21. west of e01 is nothing. d21 is down of e01. up of d21 is nothing.
+e10 is east of d21. west of e10 is nothing. d21 is down of e10. up of d21 is nothing.
 
 book d02
 
@@ -433,7 +433,7 @@ book d22
 
 d22 is a corner privately-named room in down face. it is east of d12. it is north of d21. descdir is northeast.
 
-e02 is east of d22. west of e02 is nothing. d22 is down of e02. up of d22 is nothing.
+e20 is east of d22. west of e20 is nothing. d22 is down of e20. up of d22 is nothing.
 
 n20 is north of d22. south of n20 is nothing. d22 is down of n20. up of d22 is nothing.
 
@@ -441,7 +441,7 @@ volume stock room descriptions
 
 the description of a room is usually "[room-desc].".
 
-the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
+[the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".]
 
 to say mrtc:
 	let Q be "[map region of location of player]";
@@ -478,3 +478,5 @@ test eloop with "e/e/d/d/d/w/w/w/u/u/u/e".
 
 test w2loop with "w/w/n/n/n/e/e/e/s/s/s/w".
 test e2loop with "e/e/n/n/n/w/w/w/s/s/s/e".
+
+test all-loop with "test nloop/test sloop/w/test nloop/test sloop/e/e/test nloop/test sloop/w/test wloop/test eloop/n/test wloop/test eloop/s/s/test wloop/test eloop/s/test w2loop/test e2loop/s/test w2loop/test e2loop/s/test w2loop/test e2loop"
