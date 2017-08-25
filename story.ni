@@ -88,37 +88,67 @@ e22 is a corner privately-named room in east face. it is up of e12. it is north 
 volume north face
 
 n00 is a corner privately-named room in north face.
-n10 is an edge privately-named room in north face. it is north of n00.
-n20 is a corner privately-named room in north face. it is north of n10.
-n01 is an edge privately-named room in north face. it is east of n00.
-n11 is a central privately-named room in north face. it is north of n01. it is east of n10.
-n21 is an edge privately-named room in north face. it is north of n11. it is east of n20.
-n02 is a corner privately-named room in north face. it is east of n01.
-n12 is an edge privately-named room in north face. it is north of n02. it is east of n11.
-n22 is a corner privately-named room in north face. it is north of n12. it is east of n21.
+
+n10 is an edge privately-named room in north face. it is east of n00.
+
+n20 is a corner privately-named room in north face. it is east of n10.
+
+n01 is an edge privately-named room in north face. it is up of n00.
+
+n11 is a central privately-named room in north face. it is east of n01. it is up of n10.
+
+n21 is an edge privately-named room in north face. it is east of n11. it is up of n20.
+
+n02 is a corner privately-named room in north face. it is up of n01.
+
+n12 is an edge privately-named room in north face. it is east of n02. it is up of n11.
+
+n22 is a corner privately-named room in north face. it is east of n12. it is up of n21.
 
 volume south face
 
-s00 is a corner privately-named room in south face.
-s10 is an edge privately-named room in south face. it is north of s00.
-s20 is a corner privately-named room in south face. it is north of s10.
-s01 is an edge privately-named room in south face. it is east of s00.
-s11 is a central privately-named room in south face. it is north of s01. it is east of s10.
-s21 is an edge privately-named room in south face. it is north of s11. it is east of s20.
-s02 is a corner privately-named room in south face. it is east of s01.
-s12 is an edge privately-named room in south face. it is north of s02. it is east of s11.
-s22 is a corner privately-named room in south face. it is north of s12. it is east of s21.
+s00 is a corner privately-named room in south face. descdir is downwest.
+
+s10 is an edge privately-named room in south face. it is east of s00. descdir is down.
+
+s20 is a corner privately-named room in south face. it is east of s10. descdir is downeast.
+
+s01 is an edge privately-named room in south face. it is up of s00. descdir is west.
+
+s11 is a central privately-named room in south face. it is east of s01. it is up of s10. descdir is inside.
+
+s21 is an edge privately-named room in south face. it is east of s11. it is up of s20. descdir is east.
+
+s02 is a corner privately-named room in south face. it is up of s01. descdir is upwest.
+
+south of u00 is s02. up of s02 is u00.
+
+s12 is an edge privately-named room in south face. it is east of s02. it is up of s11. descdir is up.
+
+south of u10 is s12. up of s12 is u10.
+
+s22 is a corner privately-named room in south face. it is east of s12. it is up of s21. descdir is upeast.
+
+south of u20 is s02. up of s22 is u00.
 
 volume down face
 
 d00 is a corner privately-named room in down face.
+
 d10 is an edge privately-named room in down face. it is north of d00.
+
 d20 is a corner privately-named room in down face. it is north of d10.
+
 d01 is an edge privately-named room in down face. it is east of d00.
+
 d11 is a central privately-named room in down face. it is north of d01. it is east of d10.
+
 d21 is an edge privately-named room in down face. it is north of d11. it is east of d20.
+
 d02 is a corner privately-named room in down face. it is east of d01.
+
 d12 is an edge privately-named room in down face. it is north of d02. it is east of d11.
+
 d22 is a corner privately-named room in down face. it is north of d12. it is east of d21.
 
 volume stock room descriptions
