@@ -533,7 +533,7 @@ volume stock room descriptions
 
 the description of a room is usually "[room-desc].".
 
-[the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".]
+the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
 
 to say mrtc:
 	let Q be "[map region of location of player]";
@@ -551,55 +551,9 @@ to say room-desc:
 
 volume debug tests and such - not for release
 
-chapter waysing
+[uncomment below to unlock weird tests]
 
-waysing is an action applying to nothing.
-
-understand the command "ways" as something new.
-
-understand "ways" as waysing.
-
-a direction can be tagged.
-
-Bordering relates rooms to each other. The verb to border (he borders, they border, it is bordered) implies the bordering relation.
-
-carry out waysing:
-	now all directions are not tagged;
-	repeat with d1 running through simple directions:
-		repeat with d2 running through simple directions:
-			if d2 is d1, next;
-			if d2 is opposite of d1, next;
-			if d2 is tagged, next;
-			let Q1 be the room d2 of location of player;
-			if Q1 is nothing, next;
-			let P1 be the room d1 of Q1;
-			let Q2 be the room d1 of location of player;
-			if Q2 is nothing, next;
-			let P2 be the room d2 of Q2;
-			if P2 is P1:
-				if P1 borders location of player, next;
-				now P1 borders location of player;
-				say "[p1] is [combodir of d1 and d2] of [location of player]. ";
-[			say "[if P2 is P1][p1] is [combodir of d1 and d2] of [location of player][else][bracket]Uh oh [p2] [p1] are [d1]/[d2] and reverse of [location of player][close bracket][end if]. ";]
-		now d1 is tagged;
-	the rule succeeds;
-
-chapter allwaying
-
-allwaying is an action applying to nothing.
-
-understand the command "allway" as something new.
-
-understand "allway" as allwaying.
-
-carry out allwaying:
-	repeat with Q running through rooms:
-		repeat with Q2 running through all rooms:
-			now Q does not border Q2;
-	repeat with X running through rooms:
-		move player to X;
-		try waysing;
-	the rule succeeds;
+include Rube Cube Testing by Andrew Schultz.
 
 chapter for debug purposes
 
