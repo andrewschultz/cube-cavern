@@ -36,6 +36,11 @@ to decide what region is mrlp: [I'd include this in a header but it complains if
 	if map region of location of player is nothing, decide on mtr;
 	decide on map region of location of player.
 
+volume when play begins
+
+when play begins:
+	say "You landed on an oddly cubic asteroid. Your ship's sensors indicated something odd in the center. But how to get there?";
+
 volume direction definitions
 
 upwest is a direction. opposite of upwest is downeast.
@@ -156,8 +161,10 @@ to say can-want:
 
 before going:
 	say "[noun].";
-	if noun is inside and location of player is centered:
-		try going indir of mrlp instead;
+	if noun is inside:
+		if location of player is centered:
+			try going indir of mrlp instead;
+		say "You're not at the center, so you wouldn't really be going [indir of mrlp][if open-center is true], and you haven't found a way, yet, anyway[end if]." instead;
 	if location of player is corner and noun is descdir of location of player:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
@@ -198,15 +205,17 @@ u20 is a corner privately-named room in up face. it is east of u10. descdir is s
 
 book u01
 
-u01 is an edge privately-named room in up face. it is north of u00.
+u01 is an edge privately-named room in up face. it is north of u00. descdir is west.
 
 book u11
 
-u11 is a centered privately-named room in up face. it is east of u01. it is north of u10. the player is in u11.
+u11 is a centered privately-named room in up face. it is east of u01. it is north of u10. descdir is inside.
+
+the player is in u11.
 
 book u21
 
-u21 is an edge privately-named room in up face. it is east of u11. it is north of u20.
+u21 is an edge privately-named room in up face. it is east of u11. it is north of u20. descdir is east.
 
 book u02
 
@@ -214,7 +223,7 @@ u02 is a corner privately-named room in up face. it is north of u01. descdir is 
 
 book u12
 
-u12 is an edge privately-named room in up face. it is east of u02. it is north of u11.
+u12 is an edge privately-named room in up face. it is east of u02. it is north of u11. descdir is north.
 
 book u22
 
@@ -334,7 +343,7 @@ w21 is south of n01. north of w21 is nothing. n01 is east of w21. west of w21 is
 
 book n11
 
-n11 is a centered privately-named room in north face. it is east of n01. it is up of n10.
+n11 is a centered privately-named room in north face. it is east of n01. it is up of n10. descdir is inside.
 
 book n21
 
@@ -452,7 +461,7 @@ w10 is west of d01. east of w10 is nothing. d01 is down of w10. up of d01 is not
 
 book d11
 
-d11 is a centered privately-named room in down face. it is east of d01. it is north of d10.
+d11 is a centered privately-named room in down face. it is east of d01. it is north of d10. descdir is inside.
 
 book d21
 
@@ -562,7 +571,7 @@ volume stock room descriptions
 
 the description of a room is usually "[room-desc].".
 
-[the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".]
+the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
 
 to say mrtc:
 	let Q be "[map region of location of player]";

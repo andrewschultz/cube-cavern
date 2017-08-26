@@ -2,7 +2,7 @@ Version 1/170825 of Rube Cube Testing by Andrew Schultz begins here.
 
 chapter waysing
 
-waysing is an action applying to nothing.
+waysing is an action out of world.
 
 understand the command "ways" as something new.
 
@@ -30,7 +30,7 @@ carry out waysing:
 
 chapter allwaying
 
-allwaying is an action applying to nothing.
+allwaying is an action out of world.
 
 understand the command "allway" as something new.
 
@@ -43,6 +43,19 @@ carry out allwaying:
 	repeat with X running through rooms:
 		move player to X;
 		try waysing;
+	the rule succeeds;
+
+chapter rmnameing
+
+rmnameing is an action out of world.
+
+understand the command "rmname" as something new.
+
+understand "rmname" as rmnameing.
+
+carry out rmnameing:
+	repeat with X running through regions:
+		say "[X]: [list of rooms in X].";
 	the rule succeeds;
 
 
