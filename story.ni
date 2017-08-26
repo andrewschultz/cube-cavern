@@ -19,6 +19,15 @@ east face is a region.
 south face is a region.
 north face is a region.
 
+a region has a direction called indir.
+
+indir of up face is down.
+indir of down face is up.
+indir of north face is south.
+indir of south face is north.
+indir of west face is east.
+indir of east face is west.
+
 mtr is a region.
 
 a room can be centered, edge, corner or nonfacial.
@@ -142,11 +151,17 @@ definition: a direction (called d) is ubercromulent:
 
 book wrong way rejects
 
+to say can-want:
+	say "[if open-center is true]can[else]want to[end if]"
+
 before going:
+	say "[noun].";
+	if noun is inside and location of player is centered:
+		try going indir of mrlp instead;
 	if location of player is corner and noun is descdir of location of player:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
-		say "You can only go [list of ubercromulent directions], or any non-opposite pair, on the [mrlp]." instead;
+		say "You can only go [list of ubercromulent directions], or any non-opposite pair, on the [mrlp][if location of player is centered]. You also [can-want] go inside here in the center[end if]." instead;
 	let X be room noun of location of player;
 	if noun is not simple:
 		repeat through table of dirmerge:
@@ -466,6 +481,16 @@ d22 is a corner privately-named room in down face. it is east of d12. it is nort
 e20 is east of d22. west of e20 is nothing. d22 is down of e20. up of d22 is nothing.
 
 n20 is north of d22. south of n20 is nothing. d22 is down of n20. up of d22 is nothing.
+
+book very center
+
+open-center is a truth state that varies.
+
+the very center is a room. it is below u11. it is above d11. it is west of e11. it is east of w11. it is north of s11. it is south of n11.
+
+before going to very center:
+	if open-center is false:
+		say "You're at the right place to go in, but you don't have a way through, yet." instead;
 
 volume out of world verbs
 
