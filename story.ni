@@ -467,93 +467,71 @@ e20 is east of d22. west of e20 is nothing. d22 is down of e20. up of d22 is not
 
 n20 is north of d22. south of n20 is nothing. d22 is down of n20. up of d22 is nothing.
 
-volume complex/diagonal connections
+volume out of world verbs
 
-[u11 is northeast of u00. w12 is northwest of u00. s12 is southeast of u00.
+chapter abouting
 
-u21 is northeast of u10. u01 is northwest of u10. s22 is southeast of u10. s02 is southwest of u10.
+abouting is an action out of world.
 
-e12 is northeast of u20. u11 is northwest of u20. s12 is southwest of u20.
+understand the command "about" as something new.
 
-u12 is northeast of u01. w22 is northwest of u01. w02 is southwest of u01.
+understand "about" as abouting.
 
-u22 is northeast of u11. u02 is northwest of u11.
+carry out abouting:
+	say "I'd thought about a game on a cube for a while, but I didn't seriously consider and plan it until 2017 when a wordplay game fell through. A cube being an unscientific place to walk on, I figured, what else would fit in? That's when I got in with scientific hoaxes and disproven theories. I hope you find this fun.";
+	the rule succeeds;
 
-e22 is northeast of u21. u12 is northwest of u21. e02 is southeast of u21.
+chapter creditsing
 
-n12 is northeast of u02. w12 is southwest of u02.
+creditsing is an action out of world.
 
-n22 is northeast of u12. n02 is northwest of u12.
+understand the command "credit" as something new.
+understand the command "credits" as something new.
 
-n12 is northwest of u22. e12 is southeast of u22.
+understand "credit" as creditsing.
+understand "credits" as creditsing.
 
-w11 is upnorth of w00. d01 is downnorth of w00. s01 is upsouth of w00.
+carry out creditsing:
+	the rule succeeds;
 
-w21 is upnorth of w10. d02 is downnorth of w10. w01 is upsouth of w10. d00 is downsouth of w10.
+chapter helping
 
-w11 is upsouth of w20. d01 is downsouth of w20. n01 is upeast of w20.
+helping is an action out of world.
 
-w12 is upnorth of w01. s02 is upsouth of w01. s00 is downsouth of w01.
+understand the command "help" as something new.
 
-w22 is upnorth of w11. w02 is upsouth of w11.
+understand "help" as helping.
 
-w12 is upsouth of w21. n02 is upeast of w21. n00 is downeast of w21.
+carry out helping:
+	the rule succeeds;
 
-s01 is downsouth of w02.
+chapter verbing
 
-n01 is downeast of w22.
+verbing is an action out of world.
 
-e11 is upnorth of e00. d21 is downnorth of e00. s21 is upsouth of e00.
+understand the command "verb" as something new.
 
-e21 is upnorth of e10. d22 is downnorth of e10. e01 is upsouth of e10. d20 is downsouth of e10.
+understand "verb" as verbing.
 
-n21 is upnorth of e20. e11 is upsouth of e20. d21 is downsouth of e20.
+carry out verbing:
+	the rule succeeds;
 
-e12 is upnorth of e01. s22 is upsouth of e01. s20 is downsouth of e01.
+volume parser errors
 
-e22 is upnorth of e11. e02 is upsouth of e11.
+Rule for printing a parser error when the latest parser error is the i beg your pardon error:
+	say "You stare around. Wow. It's pretty crazy, on the cube, here."
 
-n22 is upnorth of e21. n20 is downnorth of e21. e12 is upsouth of e21.
+Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error:
+	say "You tried to access something not currently in the world. Maybe that's a result of a typo, or it's minor scenery I forgot to implement and should've, or a bad synonym. But it's not critical to the game."
 
-s21 is downsouth of e02.
+rule for printing a parser error when the latest parser error is the only understood as far as error:
+	say "The first word was okay, and you don't need any extra ones."
 
-n21 is downnorth of e22.
+rule for printing a parser error when the latest parser error is the can't see any such thing error:
+	say "I (you) can't see anything here like that."
 
-n11 is upeast of n00. d12 is downeast of n00.
-
-n21 is upeast of n10. d22 is downeast of n10. n01 is upwest of n10. d02 is downwest of n10.
-
-n11 is upwest of n20. d12 is downwest of n20.
-
-n12 is upeast of n01.
-
-n22 is upeast of n11. n02 is upwest of n11.
-
-n12 is upwest of n21.
-
-s11 is upeast of s00. d10 is downeast of s00.
-
-s21 is upeast of s10. d20 is downeast of s10. s01 is upwest of s10. d00 is downwest of s10.
-
-s11 is upwest of s20. d10 is downwest of s20.
-
-s12 is upeast of s01.
-
-s22 is upeast of s11. s02 is upwest of s11.
-
-s12 is upwest of s21.
-
-d11 is northeast of d00.
-
-d21 is northeast of d10. d01 is northwest of d10.
-
-d11 is northwest of d20.
-
-d12 is northeast of d01.
-
-d22 is northeast of d11. d02 is northwest of d11.
-
-d12 is northwest of d21.]
+rule for printing a parser error when the latest parser error is the didn't understand error:
+	say "I didn't recognize that verb. For a list of common/useful verbs, type V or VERB or VERBS.";
 
 volume stock room descriptions
 
