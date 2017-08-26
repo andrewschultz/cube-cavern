@@ -57,6 +57,8 @@ upwest is complex. upeast is complex. upsouth is complex. upnorth is complex.
 
 downwest is complex. downeast is complex. downsouth is complex. downnorth is complex.
 
+northwest is complex. northeast is complex. southeast is complex. southwest is complex.
+
 understand "uw" as upwest. understand "dw" as downwest.
 understand "wu" as upwest. understand "wd" as downwest.
 
@@ -68,6 +70,11 @@ understand "eu" as upeast. understand "ed" as downeast.
 
 understand "un" as upnorth. understand "dn" as downnorth.
 understand "nu" as upnorth. understand "nd" as downnorth.
+
+understand "wn" as northwest.
+understand "ws" as southwest.
+understand "en" as northeast.
+understand "es" as southeast.
 
 to decide which direction is combodir of (da - a  direction) and (db - a direction):
 	repeat through table of dirmerge:
@@ -140,6 +147,25 @@ before going:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
 		say "You can only go [list of ubercromulent directions], or any non-opposite pair, on the [mrlp]." instead;
+	let X be room noun of location of player;
+	if noun is not simple:
+		repeat through table of dirmerge:
+			if d3 entry is noun:
+				let R1 be the room d1 entry of location of player;
+				if R1 is nothing, break;
+				let R2 be the room d2 entry of R1;
+				if R2 is nothing, break;
+				let R3 be the room d1 entry of location of player;
+				if R3 is nothing, break;
+				let R4 be the room d2 entry of R3;
+				if R4 is nothing, break;
+				if R4 is R2:
+					if mrlp is not map region of R2:
+						say "[if noun is complex]It feels weird shimmying over at a diagonal angle, but there you are[else]Fwoop. You flip over to the [map region of x][end if].";
+						move player to R2;
+						the rule succeeds;
+				say "You can't quite go that way. Maybe you should, but you can't." instead;
+			say "That would be wandering off into nothing." instead;
 
 volume up face
 
@@ -443,7 +469,7 @@ n20 is north of d22. south of n20 is nothing. d22 is down of n20. up of d22 is n
 
 volume complex/diagonal connections
 
-u11 is northeast of u00. w12 is northwest of u00. s12 is southeast of u00.
+[u11 is northeast of u00. w12 is northwest of u00. s12 is southeast of u00.
 
 u21 is northeast of u10. u01 is northwest of u10. s22 is southeast of u10. s02 is southwest of u10.
 
@@ -527,13 +553,13 @@ d12 is northeast of d01.
 
 d22 is northeast of d11. d02 is northwest of d11.
 
-d12 is northwest of d21.
+d12 is northwest of d21.]
 
 volume stock room descriptions
 
 the description of a room is usually "[room-desc].".
 
-the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
+[the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".]
 
 to say mrtc:
 	let Q be "[map region of location of player]";
@@ -555,7 +581,9 @@ volume debug tests and such - not for release
 
 include Rube Cube Testing by Andrew Schultz.
 
-chapter for debug purposes
+[more standard inform stuff below]
+
+book for debug purposes
 
 understand "d00" as d00.
 understand "n00" as n00.
