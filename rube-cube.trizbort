@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <trizbort version="1.6.0.0">
-	<info />
+	<info>
+		<title>The Rube on the Cube</title>
+		<author>Andrew Schultz</author>
+		<description>IFComp 2017 game</description>
+		<history>Started August 2017.</history>
+	</info>
 	<map>
 		<room id="1" name="u00" subtitle="" x="-704" y="-352" w="64" h="64" region="up" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" />
 		<room id="2" name="u01" subtitle="" x="-576" y="-480" w="64" h="64" region="up" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" />
@@ -561,17 +566,42 @@
 			<point index="1" x="-864" y="-448" />
 		</line>
 		<room id="181" name="Compass" subtitle="" x="-704" y="-608" w="64" h="64" region="NoRegion" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" />
-		<line id="182" name="" description="" midText="north">
+		<line id="182" name="" description="" endText="north">
 			<dock index="0" id="181" port="ne" />
 			<point index="1" x="-576" y="-672" />
 		</line>
-		<line id="183" name="" description="" midText="down">
+		<line id="183" name="" description="" endText="down">
 			<dock index="0" id="181" port="s" />
 			<point index="1" x="-672" y="-480" />
 		</line>
-		<line id="184" name="" description="" startText="west">
+		<line id="184" name="" description="" endText="west">
 			<dock index="0" id="181" port="w" />
 			<point index="1" x="-768" y="-576" />
+		</line>
+		<room id="185" name="The Very Center" subtitle="" x="-1024" y="64" w="64" h="64" region="CENTER" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" />
+		<line id="187" name="" description="" endText="n11">
+			<dock index="0" id="185" port="ne" />
+			<point index="1" x="-896" y="0" />
+		</line>
+		<line id="188" name="" description="" endText="s11">
+			<point index="0" x="-1088" y="192" />
+			<dock index="1" id="185" port="sw" />
+		</line>
+		<line id="189" name="" description="" endText="w11">
+			<dock index="0" id="185" port="w" />
+			<point index="1" x="-1088" y="96" />
+		</line>
+		<line id="190" name="" description="" endText="e11">
+			<dock index="0" id="185" port="e" />
+			<point index="1" x="-896" y="96" />
+		</line>
+		<line id="191" name="" description="" startText="d11">
+			<dock index="0" id="185" port="s" />
+			<point index="1" x="-992" y="192" />
+		</line>
+		<line id="186" name="" description="" endText="u11">
+			<dock index="0" id="185" port="n" />
+			<point index="1" x="-992" y="0" />
 		</line>
 	</map>
 	<settings>
@@ -589,13 +619,14 @@
 			<endRoom>Red</endRoom>
 		</colors>
 		<regions>
-			<down Name="down" TextColor="Black">Yellow</down>
-			<east Name="east" TextColor="Black">Aqua</east>
+			<CENTER Name="CENTER" TextColor="Black">#C08040</CENTER>
+			<down Name="down" TextColor="Black">#FFFF20</down>
+			<east Name="east" TextColor="Black">#00E0E0</east>
 			<NoRegion Name="NoRegion" TextColor="Black">White</NoRegion>
-			<north Name="north" TextColor="MidnightBlue">Red</north>
-			<south Name="south" TextColor="Black">Red</south>
-			<up Name="up" TextColor="MidnightBlue">Yellow</up>
-			<west Name="west" TextColor="Black">Aqua</west>
+			<north Name="north" TextColor="Black">#FF2020</north>
+			<south Name="south" TextColor="Black">#E00000</south>
+			<up Name="up" TextColor="MidnightBlue">#E0E000</up>
+			<west Name="west" TextColor="Black">#20FFFF</west>
 		</regions>
 		<fonts>
 			<room size="12">Arial</room>

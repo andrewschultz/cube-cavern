@@ -8,7 +8,7 @@ volume includes
 
 include Trivial Niceties by Andrew Schultz.
 
-include Basic Screen Effects by Emily Short. [ watch out! center is defined here, so centered/center can cause runtime errrors]
+include Basic Screen Effects by Emily Short. [ watch out! center/central are defined here, so centered/center can cause runtime errrors]
 
 volume region and room definitions
 
@@ -30,7 +30,7 @@ indir of east face is west.
 
 mtr is a region.
 
-a room can be centered, edge, corner or nonfacial.
+a room can be facecenter, edge, corner or nonfacial.
 
 to decide what region is mrlp: [I'd include this in a header but it complains if you don't use regions]
 	if map region of location of player is nothing, decide on mtr;
@@ -162,13 +162,13 @@ to say can-want:
 before going:
 	say "[noun].";
 	if noun is inside:
-		if location of player is centered:
+		if location of player is facecenter:
 			try going indir of mrlp instead;
 		say "You're not at the center, so you wouldn't really be going [indir of mrlp][if open-center is true], and you haven't found a way, yet, anyway[end if]." instead;
 	if location of player is corner and noun is descdir of location of player:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
-		say "You can only go [list of ubercromulent directions], or any non-opposite pair, on the [mrlp][if location of player is centered]. You also [can-want] go inside here in the center[end if]." instead;
+		say "You can only go [list of ubercromulent directions], or any non-opposite pair, on the [mrlp][if location of player is facecenter]. You also [can-want] go inside here in the center[end if]." instead;
 	let X be room noun of location of player;
 	if noun is not simple:
 		repeat through table of dirmerge:
@@ -209,7 +209,7 @@ u01 is an edge privately-named room in up face. it is north of u00. descdir is w
 
 book u11
 
-u11 is a centered privately-named room in up face. it is east of u01. it is north of u10. descdir is inside.
+u11 is a facecenter privately-named room in up face. it is east of u01. it is north of u10. descdir is inside.
 
 the player is in u11.
 
@@ -249,7 +249,7 @@ w01 is an edge privately-named room in west face. it is up of w00. descdir is so
 
 book w11
 
-w11 is a centered privately-named room in west face. it is north of w01. it is up of w10. descdir is inside.
+w11 is a facecenter privately-named room in west face. it is north of w01. it is up of w10. descdir is inside.
 
 book w21
 
@@ -293,7 +293,7 @@ e01 is an edge privately-named room in east face. it is up of e00. descdir is so
 
 book e11
 
-e11 is a centered privately-named room in east face. it is north of e01. it is up of e10. descdir is inside.
+e11 is a facecenter privately-named room in east face. it is north of e01. it is up of e10. descdir is inside.
 
 book e21
 
@@ -343,7 +343,7 @@ w21 is south of n01. north of w21 is nothing. n01 is east of w21. west of w21 is
 
 book n11
 
-n11 is a centered privately-named room in north face. it is east of n01. it is up of n10. descdir is inside.
+n11 is a facecenter privately-named room in north face. it is east of n01. it is up of n10. descdir is inside.
 
 book n21
 
@@ -399,7 +399,7 @@ west of s01 is w01. south of w01 is s01. east of w01 is nothing. north of s01 is
 
 book s11
 
-s11 is a centered privately-named room in south face. it is east of s01. it is up of s10. descdir is inside.
+s11 is a facecenter privately-named room in south face. it is east of s01. it is up of s10. descdir is inside.
 
 book s21
 
@@ -461,7 +461,7 @@ w10 is west of d01. east of w10 is nothing. d01 is down of w10. up of d01 is not
 
 book d11
 
-d11 is a centered privately-named room in down face. it is east of d01. it is north of d10. descdir is inside.
+d11 is a facecenter privately-named room in down face. it is east of d01. it is north of d10. descdir is inside.
 
 book d21
 
@@ -495,11 +495,19 @@ book very center
 
 open-center is a truth state that varies.
 
-the very center is a room. it is below u11. it is above d11. it is west of e11. it is east of w11. it is north of s11. it is south of n11.
+the very center is a room. it is below u11. it is above d11. it is west of e11. it is east of w11. it is north of s11. it is south of n11. printed name is "The Very Center".
 
 before going to very center:
 	if open-center is false:
 		say "You're at the right place to go in, but you don't have a way through, yet." instead;
+
+before going in very center:
+	if noun is inside:
+		say "You're already inside at the center of the asteroid." instead;
+	if noun is outside:
+		say "There are six ways outside." instead;
+	if noun is complex:
+		say "Only simple directions work here. Each goes to the center of a different face." instead;
 
 volume out of world verbs
 
@@ -571,7 +579,7 @@ volume stock room descriptions
 
 the description of a room is usually "[room-desc].".
 
-the printed name of a room is usually "[mrtc], [if the item described is centered]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
+the printed name of a room is usually "[mrtc], [if the item described is facecenter]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
 
 to say mrtc:
 	let Q be "[map region of location of player]";
@@ -582,7 +590,7 @@ a room has a direction called descdir. descdir is usually inside.
 to say room-desc:
 	if location of player is corner:
 		say "You are at the [descdir] corner of the [map region of location of player]. You can go [list of goable directions] along this face, or [list of warpable directions] somewhere new";
-	else if location of player is centered:
+	else if location of player is facecenter:
 		say "You are at the center of the [map region of location of player]. You can go pretty much any direction: [list of goable directions]";
 	else if location of player is edge:
 		say "You are at the center of the [descdir] edge of the [map region of location of player]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
