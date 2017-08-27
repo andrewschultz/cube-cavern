@@ -534,6 +534,7 @@ understand "credit" as creditsing.
 understand "credits" as creditsing.
 
 carry out creditsing:
+	say "(put testers here).";
 	the rule succeeds;
 
 chapter helping
@@ -556,6 +557,19 @@ understand the command "verb" as something new.
 understand "verb" as verbing.
 
 carry out verbing:
+	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.";
+	the rule succeeds;
+
+chapter xyzzying
+
+xyzzying is an action out of world.
+
+understand the command "xyzzy" as something new.
+
+understand "xyzzy" as xyzzying.
+
+carry out xyzzying:
+	sau "You hone in on your training for three-dimensional reasoning from several different directions. The result is a slight headache.
 	the rule succeeds;
 
 volume parser errors

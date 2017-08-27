@@ -1,0 +1,60 @@
+u00	Up face, SW
+u10	Up face, S
+u20	Up face, SE
+u01	Up face, W
+u11	Up face, Center
+u21	Up face, E
+u02	Up face, NW
+u12	Up face, N
+u22	Up face, NE
+
+d00	down face, SW
+d10	down face, S
+d20	down face, SE
+d01	down face, W
+d11	down face, Center
+d21	down face, E
+d02	down face, NW
+d12	down face, N
+d22	down face, NE
+
+w00	west face, DW
+w10	west face, D
+w20	west face, DE
+w01	west face, W
+w11	west face, Center
+w21	west face, E
+w02	west face, UW
+w12	west face, U
+w22	west face, UE
+
+e00	east face, DW
+e10	east face, D
+e20	east face, DE
+e01	east face, W
+e11	east face, Center
+e21	east face, E
+e02	east face, UW
+e12	east face, U
+e22	east face, UE
+
+n00	north face, DW
+n10	north face, D
+n20	north face, DE
+n01	north face, W
+n11	north face, Center
+n21	north face, E
+n02	north face, UW
+n12	north face, U
+n22	north face, UE
+
+s00	south face, DW
+s10	south face, D
+s20	south face, DE
+s01	south face, W
+s11	south face, Center
+s21	south face, E
+s02	south face, UW
+s12	south face, U
+s22	south face, UE
+
