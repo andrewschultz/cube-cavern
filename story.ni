@@ -39,7 +39,8 @@ to decide what region is mrlp: [I'd include this in a header but it complains if
 volume when play begins
 
 when play begins:
-	say "You landed on an oddly cubic asteroid. Your ship's sensors indicated something odd in the center. But how to get there?";
+	say "It's 2020, and despite all the technological progress--jetpacks, air cars, laser cannons, and so forth--even a time machine prototype--you always felt there was something more. Something out in space. So you joined up with the space program, and you were sent on a mission to an oddly cubic asteroid. The psycho-sensors attached to your ship indicate it may be an even greater well of knowledge and new isotopes than previously thought. Nothing seems to be on the surface, but maybe you can dig into the center...";
+	wfak;
 
 volume direction definitions
 
@@ -419,6 +420,8 @@ book s12
 
 s12 is an edge privately-named room in south face. it is east of s02. it is up of s11. descdir is up.
 
+A homunculus is a person in s12. "A pretty big homunculus is chillin['] here."
+
 south of u10 is s12. up of s12 is u10. north of s12 is nowhere. down of u10 is nowhere.
 
 book s22
@@ -467,6 +470,8 @@ book d21
 
 d21 is an edge privately-named room in down face. it is east of d11. it is north of d20. descdir is east.
 
+a bottle of phlogiston is in d21. description is "No description yet, but it's phlogiston. Trust me."
+
 e10 is east of d21. west of e10 is nothing. d21 is down of e10. up of d21 is nothing.
 
 book d02
@@ -508,6 +513,11 @@ before going in very center:
 		say "There are six ways outside." instead;
 	if noun is complex:
 		say "Only simple directions work here. Each goes to the center of a different face." instead;
+
+volume changed verbs
+
+before waiting:
+	say "You pause, as more voluminous ether wafts by."
 
 volume out of world verbs
 
@@ -569,18 +579,18 @@ understand the command "xyzzy" as something new.
 understand "xyzzy" as xyzzying.
 
 carry out xyzzying:
-	sau "You hone in on your training for three-dimensional reasoning from several different directions. The result is a slight headache.
+	say "You hone in on your training for three-dimensional reasoning from several different directions. The result is a slight headache.";
 	the rule succeeds;
 
 volume parser errors
 
 Rule for printing a parser error when the latest parser error is the i beg your pardon error:
-	say "You stare around. Wow. It's pretty crazy, on the cube, here."
+	say "You stare around. Wow. It's pretty crazy, on the cube, here.";
 
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error:
-	say "You tried to access something not currently in the world. Maybe that's a result of a typo, or it's minor scenery I forgot to implement and should've, or a bad synonym. But it's not critical to the game."
+	say "You tried to access something not currently in the world. Maybe that's a result of a typo, or it's minor scenery I forgot to implement and should've, or a bad synonym. But it's not critical to the game.";
 
-rule for printing a parser error when the latest parser error is the only understood as far as error:
+Rule for printing a parser error when the latest parser error is the only understood as far as error:
 	say "The first word was okay, and you don't need any extra ones."
 
 rule for printing a parser error when the latest parser error is the can't see any such thing error:

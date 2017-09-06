@@ -58,8 +58,6 @@ carry out rmnameing:
 		say "[X]: [list of rooms in X].";
 	the rule succeeds;
 
-
-
 Rube Cube Testing ends here.
 
 ---- DOCUMENTATION ----
