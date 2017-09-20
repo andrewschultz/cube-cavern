@@ -496,6 +496,8 @@ e20 is east of d22. west of e20 is nothing. d22 is down of e20. up of d22 is not
 
 n20 is north of d22. south of n20 is nothing. d22 is down of n20. up of d22 is nothing.
 
+a blank slate is a thing in n20.
+
 book very center
 
 open-center is a truth state that varies.
@@ -513,6 +515,24 @@ before going in very center:
 		say "There are six ways outside." instead;
 	if noun is complex:
 		say "Only simple directions work here. Each goes to the center of a different face." instead;
+
+book beacons
+
+the northdownwest beacon is a backdrop. It is in n00, d02, w20.
+
+the northdowneast beacon is a backdrop. It is in n20, d22, e20.
+
+the northupwest beacon is a backdrop. It is in n02, u02, w22.
+
+the northupeast beacon is a backdrop. It is in n22, u22, e22.
+
+the southdownwest beacon is a backdrop. It is in s00, d00, w00.
+
+the southdowneast beacon is a backdrop. It is in s20, d20, e00.
+
+the southupwest beacon is a backdrop. It is in s02, u00, w02.
+
+the southupeast beacon is a backdrop. It is in s22, u20, e02.
 
 volume changed verbs
 
