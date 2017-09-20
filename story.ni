@@ -518,6 +518,29 @@ before going in very center:
 
 book beacons
 
+color is a kind of value. the colors are red, yellow, blue, white, purple, orange, green, brown.
+
+to decide which color is the mix of (a - a color) and (b - a color):
+	if a is b, decide on a;
+	if a is white, decide on b;
+	if b is white, decide on a;
+	if a is brown, decide on b;
+	if b is brown, decide on a;
+	repeat through table of colormatches:
+		if a is c1 entry and b is c2 entry, decide on c3 entry;
+		if b is c1 entry and a is c2 entry, decide on c3 entry;
+		if a is c2 entry and b is c3 entry, decide on c3 entry;
+		if b is c2 entry and a is c3 entry, decide on c3 entry;
+	decide on brown;
+
+table of colormatches
+c1	c2	c3
+red	yellow	orange
+red	blue	purple
+yellow	blue	green
+
+a beacon is a kind of backdrop.
+
 the northdownwest beacon is a backdrop. It is in n00, d02, w20.
 
 the northdowneast beacon is a backdrop. It is in n20, d22, e20.
