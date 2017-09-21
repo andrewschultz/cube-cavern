@@ -37,6 +37,8 @@ mtr is a region.
 
 a room can be facecenter, edge, corner or nonfacial.
 
+a region can be ever-aligned or never-aligned. a region is usually never-aligned.
+
 to decide what region is mrlp: [I'd include this in a header but it complains if you don't use regions]
 	if map region of location of player is nothing, decide on mtr;
 	decide on map region of location of player.
@@ -243,12 +245,12 @@ book definitions
 
 definition: a direction (called d) is warpable:
 	if the room d of location of player is nowhere, decide no;
-	if map region of the room d of location of player is map region of location of player, decide no;
+	if map region of the room d of location of player is mrlp, decide no;
 	decide yes;
 
 definition: a direction (called d) is goable:
 	if the room d of location of player is nowhere, decide no;
-	if map region of the room d of location of player is map region of location of player, decide yes;
+	if map region of the room d of location of player is mrlp, decide yes;
 	decide no;
 
 definition: a direction (called d) is cromulent:
@@ -278,13 +280,13 @@ definition: a direction (called d) is ubercromulent:
 book wrong way rejects
 
 to say can-want:
-	say "[if open-center is true]can[else]want to[end if]"
+	say "[if number of ever-aligned regions > 0]can[else]want to[end if]"
 
 before going:
 	if noun is inside:
 		if location of player is facecenter:
 			try going indir of mrlp instead;
-		say "You're not at the center, so you wouldn't really be going [indir of mrlp][if open-center is true], and you haven't found a way, yet, anyway[end if]." instead;
+		say "You're not at the center, so you wouldn't really be going [indir of mrlp][if number of ever-aligned regions is 0], and you haven't found a way, yet, anyway[end if]." instead;
 	if location of player is corner and noun is descdir of location of player:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
@@ -619,13 +621,13 @@ a blank slate is a thing in n20.
 
 book very center
 
-open-center is a truth state that varies.
-
 the very center is a room. it is below u11. it is above d11. it is west of e11. it is east of w11. it is north of s11. it is south of n11. printed name is "The Very Center".
 
 before going to very center:
-	if open-center is false:
+	if mrlp is never-aligned:
 		say "You're at the right place to go in, but you don't have a way through, yet." instead;
+	if mrlp is not aligned:
+		say "You're at the right place to go in, but the way through closed." instead;
 
 before going in very center:
 	if noun is inside:
@@ -697,7 +699,9 @@ check touching a conn:
 	let newcolor be raycolor of mrlp;
 	if newcolor is oldcolor, the rule succeeds;
 	if oldcolor is beaccolor of mrlp, say "You hear a whirring that ends on a low note to the ??dir.";
-	if newcolor is beaccolor of mrlp, say "You hear a whirring that ends on a high note to the ??dir.";
+	if newcolor is beaccolor of mrlp:
+		say "You hear a whirring that ends on a high note to the ??dir.";
+		now mrlp is ever-aligned;
 	if debug-state is true:
 		say "[number of aligned regions] regions ([list of aligned regions]) now aligned.";
 	the rule succeeds;
@@ -853,18 +857,18 @@ the description of a room is usually "[room-desc].".
 the printed name of a room is usually "[mrtc], [if the item described is facecenter]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
 
 to say mrtc:
-	let Q be "[map region of location of player]";
+	let Q be "[mrlp]";
 	say "[Q in title case]"
 
 a room has a direction called descdir. descdir is usually inside.
 
 to say room-desc:
 	if location of player is corner:
-		say "You are at the [descdir] corner of the [map region of location of player]. There's a conductor here--your mood ring is slightly attracted to it. You can go [list of goable directions] along this face, or [list of warpable directions] somewhere new";
+		say "You are at the [descdir] corner of the [mrlp]. There's a conductor here--your mood ring is slightly attracted to it. You can go [list of goable directions] along this face, or [list of warpable directions] somewhere new";
 	else if location of player is facecenter:
-		say "You are at the center of the [map region of location of player]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]You can see inside to the center of the cube[else]There's a beacon here, colored [beaccolor of map region of location of player][end if]";
+		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]You can see inside to the center of the cube[else]There's a beacon here, colored [beaccolor of mrlp][end if]";
 	else if location of player is edge:
-		say "You are at the center of the [descdir] edge of the [map region of location of player]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
+		say "You are at the center of the [descdir] edge of the [mrlp]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
 
 volume beta testing - not for release
 
