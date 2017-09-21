@@ -10,6 +10,11 @@ include Trivial Niceties by Andrew Schultz.
 
 include Basic Screen Effects by Emily Short. [ watch out! center/central are defined here, so centered/center can cause runtime errrors. This is specific to my game and the mechanics it has.]
 
+section debug to start - not for release
+
+when play begins:
+	now debug-state is true;
+
 volume region and room definitions
 
 Upface is a region.
@@ -35,6 +40,11 @@ a room can be facecenter, edge, corner or nonfacial.
 to decide what region is mrlp: [I'd include this in a header but it complains if you don't use regions]
 	if map region of location of player is nothing, decide on mtr;
 	decide on map region of location of player.
+
+definition: a region (called x) is aligned:
+	if x is mtr, no;
+	if raycolor of x is beaccolor of x, yes;
+	no;
 
 chapter color definitions
 
@@ -685,9 +695,11 @@ check touching a conn:
 		say "The transponder changes from [conncolor of noun] to [ring-color].";
 	now conncolor of noun is ring-color;
 	let newcolor be raycolor of mrlp;
-	if newcolor is oldcolor, continue the action;
+	if newcolor is oldcolor, the rule succeeds;
 	if oldcolor is beaccolor of mrlp, say "You hear a whirring that ends on a low note to the ??dir.";
 	if newcolor is beaccolor of mrlp, say "You hear a whirring that ends on a high note to the ??dir.";
+	if debug-state is true:
+		say "[number of aligned regions] regions ([list of aligned regions]) now aligned.";
 	the rule succeeds;
 
 table of beacon zaps
@@ -725,10 +737,10 @@ to decide which color is raycolor of (r - a room):
 		if conncolor of b3 entry is not black or conncolor of b4 entry is not black:
 			say "BUG THIS SHOULD NOT HAPPEN";
 			decide on brown;
-	if conncolor of b1 entry is not black or conncolor of b2 entry is black:
+	if conncolor of b1 entry is not black and conncolor of b2 entry is not black:
 		decide on mix of conncolor of b1 entry and conncolor of b2 entry;
-	if conncolor of b3 entry is not black or conncolor of b4 entry is black:
-		decide on mix of conncolor of b1 entry and conncolor of b2 entry;
+	if conncolor of b3 entry is not black and conncolor of b4 entry is not black:
+		decide on mix of conncolor of b3 entry and conncolor of b4 entry;
 	decide on black;
 
 book glowcolir
@@ -850,17 +862,11 @@ to say room-desc:
 	if location of player is corner:
 		say "You are at the [descdir] corner of the [map region of location of player]. There's a conductor here--your mood ring is slightly attracted to it. You can go [list of goable directions] along this face, or [list of warpable directions] somewhere new";
 	else if location of player is facecenter:
-		say "You are at the center of the [map region of location of player]. You can go pretty much any direction: [list of goable directions]. There's a beacon here, colored [beaccolor of map region of location of player].";
+		say "You are at the center of the [map region of location of player]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]You can see inside to the center of the cube[else]There's a beacon here, colored [beaccolor of map region of location of player][end if]";
 	else if location of player is edge:
 		say "You are at the center of the [descdir] edge of the [map region of location of player]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
 
-volume debug tests and such - not for release
-
-[uncomment below to unlock weird tests]
-
-include Rube Cube Testing by Andrew Schultz.
-
-[more standard inform stuff below]
+volume beta testing - not for release
 
 when play begins:
 	say "Thanks for running the debug version! Use [b]BCSOL[r] to see how to solve this game. There are 48 randomly generated possible solutions."
@@ -890,7 +896,41 @@ carry out bcsoling:
 		say "[x]: ray color is [raycolor of x], beacon color is [beaccolor of x].";
 	the rule succeeds;
 
-book for debug purposes
+chapter fixsoling
+
+fixsoling is an action out of world.
+
+understand the command "fixsol" as something new.
+
+understand "fixsol" as fixsoling.
+
+carry out fixsoling:
+	say "Fixing solution so red in UNW, yellow in USE, blue in DNE, white in DSW.";
+	now rightcolor of northupwest is red;
+	now rightcolor of southupeast is yellow;
+	now rightcolor of northdowneast is blue;
+	now rightcolor of southdownwest is white;
+	now rightcolor of northdownwest is black;
+	now rightcolor of southdowneast is black;
+	now rightcolor of northupeast is black;
+	now rightcolor of southupwest is black;
+	now beaccolor of upface is orange;
+	now beaccolor of downface is blue;
+	now beaccolor of eastface is green;
+	now beaccolor of westface is red;
+	now beaccolor of northface is purple;
+	now beaccolor of southface is yellow;
+	the rule succeeds;
+
+volume debug tests and such - not for release
+
+[uncomment below to unlock weird tests]
+
+include Rube Cube Testing by Andrew Schultz.
+
+[more standard inform stuff below]
+
+book definitions for debug purposes
 
 understand "d00" as d00.
 understand "n00" as n00.
@@ -900,6 +940,8 @@ understand "e00" as e00.
 understand "u00" as u00.
 
 book tests
+
+test fix with "fixsol/n/w/review earth/touch/e/e/s/s/review fire/touch/e/d/d/n/n/review water/touch/d/s/s/w/w/review air/touch/bcsol"
 
 test nloop with "n/n/d/d/d/s/s/s/u/u/u/n".
 test sloop with "s/s/d/d/d/n/n/n/u/u/u/s".
