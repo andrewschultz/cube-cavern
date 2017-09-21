@@ -12,21 +12,21 @@ include Basic Screen Effects by Emily Short. [ watch out! center/central are def
 
 volume region and room definitions
 
-up face is a region.
-down face is a region.
-west face is a region.
-east face is a region.
-south face is a region.
-north face is a region.
+Upface is a region.
+Downface is a region.
+Westface is a region.
+Eastface is a region.
+Southface is a region.
+Northface is a region.
 
 a region has a direction called indir.
 
-indir of up face is down.
-indir of down face is up.
-indir of north face is south.
-indir of south face is north.
-indir of west face is east.
-indir of east face is west.
+indir of Upface is down.
+indir of Downface is up.
+indir of Northface is south.
+indir of Southface is north.
+indir of Westface is east.
+indir of Eastface is west.
 
 mtr is a region.
 
@@ -39,6 +39,8 @@ to decide what region is mrlp: [I'd include this in a header but it complains if
 chapter color definitions
 
 color is a kind of value. the colors are black, red, yellow, blue, white, purple, orange, green, brown.
+
+a region has a color called beaccolor.
 
 to decide which color is the mix of (a - a color) and (b - a color):
 	if a is b, decide on a;
@@ -57,7 +59,22 @@ volume when play begins
 
 when play begins:
 	say "It's 2020, and despite all the technological progress--jetpacks, air cars, laser cannons, and so forth--even a time machine prototype--you always felt there was something more. Something out in space. So you joined up with the space program, and you were sent on a mission to an oddly cubic asteroid. The psycho-sensors attached to your ship indicate it may be an even greater well of knowledge and new isotopes than previously thought. Nothing seems to be on the surface, but maybe you can dig into the center...";
+	sort init-list in random order;
+	now beaccolor of Upface is entry 1 of init-list;
+	now beaccolor of Northface is entry 2 of init-list;
+	now beaccolor of Westface is entry 3 of init-list;
+	if a random chance of 1 in 2 succeeds:
+		now beaccolor of Upface is inverse of beaccolor of Upface;
+	if a random chance of 1 in 2 succeeds:
+		now beaccolor of Northface is inverse of beaccolor of Northface;
+	if a random chance of 1 in 2 succeeds:
+		now beaccolor of Westface is inverse of beaccolor of Westface;
+	now beaccolor of Downface is inverse of beaccolor of Upface;
+	now beaccolor of Southface is inverse of beaccolor of Northface;
+	now beaccolor of Eastface is inverse of beaccolor of Westface;
 	wfak;
+
+init-list is a list of colors variable. init-list is { green, purple, orange }.
 
 volume the player
 
@@ -212,20 +229,20 @@ definition: a direction (called d) is cromulent:
 definition: a direction (called d) is semicromulent:
 	if d is inside or d is outside, decide yes;
 	if d is ubercromulent, decide yes;
-	if mrlp is up face or mrlp is down face:
+	if mrlp is Upface or mrlp is Downface:
 		if d is southeast or d is southwest or d is northwest or d is northeast, decide yes;
-	if mrlp is west face or mrlp is east face:
+	if mrlp is Westface or mrlp is Eastface:
 		if d is upsouth or d is downsouth or d is upnorth or d is downnorth, decide yes;
-	if mrlp is north face or mrlp is south face:
+	if mrlp is Northface or mrlp is Southface:
 		if d is upeast or d is upwest or d is downwest or d is downeast, decide yes;
 	decide no;
 
 definition: a direction (called d) is ubercromulent:
-	if mrlp is north face or mrlp is south face:
+	if mrlp is Northface or mrlp is Southface:
 		if d is east or d is up or d is west or d is down, decide yes;
-	if mrlp is west face or mrlp is east face:
+	if mrlp is Westface or mrlp is Eastface:
 		if d is up or d is south or d is down or d is north, decide yes;
-	if mrlp is up face or mrlp is down face:
+	if mrlp is Upface or mrlp is Downface:
 		if d is east or d is south or d is west or d is north, decide yes;
 	decide no;
 
@@ -263,171 +280,171 @@ before going:
 				say "You can't quite go that way. Maybe you should, but you can't." instead;
 			say "That would be wandering off into nothing." instead;
 
-volume up face
+volume Upface
 
 book u00
 
-u00 is a corner privately-named room in up face. descdir is southwest.
+u00 is a corner privately-named room in Upface. descdir is southwest.
 
 book u10
 
-u10 is an edge privately-named room in up face. it is east of u00. descdir is south.
+u10 is an edge privately-named room in Upface. it is east of u00. descdir is south.
 
 book u20
 
-u20 is a corner privately-named room in up face. it is east of u10. descdir is southeast.
+u20 is a corner privately-named room in Upface. it is east of u10. descdir is southeast.
 
 book u01
 
-u01 is an edge privately-named room in up face. it is north of u00. descdir is west.
+u01 is an edge privately-named room in Upface. it is north of u00. descdir is west.
 
 book u11
 
-u11 is a facecenter privately-named room in up face. it is east of u01. it is north of u10. descdir is inside.
+u11 is a facecenter privately-named room in Upface. it is east of u01. it is north of u10. descdir is inside.
 
 the player is in u11.
 
 book u21
 
-u21 is an edge privately-named room in up face. it is east of u11. it is north of u20. descdir is east.
+u21 is an edge privately-named room in Upface. it is east of u11. it is north of u20. descdir is east.
 
 book u02
 
-u02 is a corner privately-named room in up face. it is north of u01. descdir is northwest.
+u02 is a corner privately-named room in Upface. it is north of u01. descdir is northwest.
 
 book u12
 
-u12 is an edge privately-named room in up face. it is east of u02. it is north of u11. descdir is north.
+u12 is an edge privately-named room in Upface. it is east of u02. it is north of u11. descdir is north.
 
 book u22
 
-u22 is a corner privately-named room in up face. it is east of u12. it is north of u21. descdir is northeast.
+u22 is a corner privately-named room in Upface. it is east of u12. it is north of u21. descdir is northeast.
 
-volume west face
+volume Westface
 
 book w00
 
-w00 is a corner privately-named room in west face. descdir is downsouth.
+w00 is a corner privately-named room in Westface. descdir is downsouth.
 
 book w10
 
-w10 is an edge privately-named room in west face. it is north of w00. descdir is down.
+w10 is an edge privately-named room in Westface. it is north of w00. descdir is down.
 
 book w20
 
-w20 is a corner privately-named room in west face. it is north of w10. descdir is downnorth.
+w20 is a corner privately-named room in Westface. it is north of w10. descdir is downnorth.
 
 book w01
 
-w01 is an edge privately-named room in west face. it is up of w00. descdir is south.
+w01 is an edge privately-named room in Westface. it is up of w00. descdir is south.
 
 book w11
 
-w11 is a facecenter privately-named room in west face. it is north of w01. it is up of w10. descdir is inside.
+w11 is a facecenter privately-named room in Westface. it is north of w01. it is up of w10. descdir is inside.
 
 book w21
 
-w21 is an edge privately-named room in west face. it is north of w11. it is up of w20. descdir is north.
+w21 is an edge privately-named room in Westface. it is north of w11. it is up of w20. descdir is north.
 
 book w02
 
-w02 is a corner privately-named room in west face. it is up of w01. descdir is upsouth.
+w02 is a corner privately-named room in Westface. it is up of w01. descdir is upsouth.
 
 w02 is west of u00. east of w02 is nothing. u00 is up of w02. down of u00 is nothing.
 
 book w12
 
-w12 is an edge privately-named room in west face. it is north of w02. it is up of w11. descdir is up.
+w12 is an edge privately-named room in Westface. it is north of w02. it is up of w11. descdir is up.
 
 w12 is west of u01. east of w12 is nothing. u01 is up of w12. down of u01 is nothing.
 
 book w22
 
-w22 is a corner privately-named room in west face. it is north of w12. it is up of w21. descdir is upnorth.
+w22 is a corner privately-named room in Westface. it is north of w12. it is up of w21. descdir is upnorth.
 
 w22 is west of u02. [?? east of w22 is nothing]. u02 is up of w22. down of u02 is nothing.
 
-volume east face
+volume Eastface
 
 book e00
 
-e00 is a corner privately-named room in east face. descdir is downsouth.
+e00 is a corner privately-named room in Eastface. descdir is downsouth.
 
 book e10
 
-e10 is an edge privately-named room in east face. it is north of e00. descdir is down.
+e10 is an edge privately-named room in Eastface. it is north of e00. descdir is down.
 
 book e20
 
-e20 is a corner privately-named room in east face. it is north of e10. descdir is downnorth.
+e20 is a corner privately-named room in Eastface. it is north of e10. descdir is downnorth.
 
 book e01
 
-e01 is an edge privately-named room in east face. it is up of e00. descdir is south.
+e01 is an edge privately-named room in Eastface. it is up of e00. descdir is south.
 
 book e11
 
-e11 is a facecenter privately-named room in east face. it is north of e01. it is up of e10. descdir is inside.
+e11 is a facecenter privately-named room in Eastface. it is north of e01. it is up of e10. descdir is inside.
 
 book e21
 
-e21 is an edge privately-named room in east face. it is north of e11. it is up of e20. descdir is north.
+e21 is an edge privately-named room in Eastface. it is north of e11. it is up of e20. descdir is north.
 
 book e02
 
-e02 is a corner privately-named room in east face. it is up of e01. descdir is upsouth.
+e02 is a corner privately-named room in Eastface. it is up of e01. descdir is upsouth.
 
 e02 is east of u20. west of e02 is nothing. u20 is up of e02. down of u20 is nothing.
 
 book e12
 
-e12 is an edge privately-named room in east face. it is north of e02. it is up of e11. descdir is up.
+e12 is an edge privately-named room in Eastface. it is north of e02. it is up of e11. descdir is up.
 
 e12 is east of u21. west of e12 is nothing. u21 is up of e12. down of u21 is nothing.
 
 book e22
 
-e22 is a corner privately-named room in east face. it is north of e12. it is up of e21. descdir is upnorth.
+e22 is a corner privately-named room in Eastface. it is north of e12. it is up of e21. descdir is upnorth.
 
 e22 is east of u22. west of e22 is nothing. u22 is up of e22. down of u22 is nothing.
 
-volume north face
+volume Northface
 
 book n00
 
-n00 is a corner privately-named room in north face. descdir is downwest.
+n00 is a corner privately-named room in Northface. descdir is downwest.
 
 w20 is south of n00. north of w20 is nothing. n00 is east of w20. west of w20 is nothing.
 
 book n10
 
-n10 is an edge privately-named room in north face. it is east of n00. descdir is down.
+n10 is an edge privately-named room in Northface. it is east of n00. descdir is down.
 
 book n20
 
-n20 is a corner privately-named room in north face. it is east of n10. descdir is downeast.
+n20 is a corner privately-named room in Northface. it is east of n10. descdir is downeast.
 
 e20 is east of n20. west of e20 is nothing. n20 is north of e20. south of n20 is nothing.
 
 book n01
 
-n01 is an edge privately-named room in north face. it is up of n00. descdir is west.
+n01 is an edge privately-named room in Northface. it is up of n00. descdir is west.
 
 w21 is south of n01. north of w21 is nothing. n01 is east of w21. west of w21 is nothing.
 
 book n11
 
-n11 is a facecenter privately-named room in north face. it is east of n01. it is up of n10. descdir is inside.
+n11 is a facecenter privately-named room in Northface. it is east of n01. it is up of n10. descdir is inside.
 
 book n21
 
-n21 is an edge privately-named room in north face. it is east of n11. it is up of n20. descdir is east.
+n21 is an edge privately-named room in Northface. it is east of n11. it is up of n20. descdir is east.
 
 e21 is east of n21. west of e21 is nothing. n21 is north of e21. south of n21 is nothing.
 
 book n02
 
-n02 is a corner privately-named room in north face. it is up of n01. descdir is upwest.
+n02 is a corner privately-named room in Northface. it is up of n01. descdir is upwest.
 
 u02 is up of n02. down of u02 is nothing. n02 is north of u02. [?? what is going on south of n02 is nothing.]
 
@@ -435,55 +452,55 @@ w22 is south of n02. north of w22 is nothing. n02 is east of w22. west of w22 is
 
 book n12
 
-n12 is an edge privately-named room in north face. it is east of n02. it is up of n11. descdir is up.
+n12 is an edge privately-named room in Northface. it is east of n02. it is up of n11. descdir is up.
 
 u12 is up of n12. down of u12 is nothing. n12 is north of u12. south of n12 is nothing.
 
 book n22
 
-n22 is a corner privately-named room in north face. it is east of n12. it is up of n21. descdir is upeast.
+n22 is a corner privately-named room in Northface. it is east of n12. it is up of n21. descdir is upeast.
 
 u22 is up of n22. down of u22 is nothing. n22 is north of u22. south of n22 is nothing.
 
 e22 is east of n22. west of e22 is nothing. north of e22 is n22. south of n22 is nothing
 
-volume south face
+volume Southface
 
 book s00
 
-s00 is a corner privately-named room in south face. descdir is downwest.
+s00 is a corner privately-named room in Southface. descdir is downwest.
 
 west of s00 is w00. south of w00 is s00. east of w00 is nothing. north of s00 is nothing.
 
 book s10
 
-s10 is an edge privately-named room in south face. it is east of s00. descdir is down.
+s10 is an edge privately-named room in Southface. it is east of s00. descdir is down.
 
 book s20
 
-s20 is a corner privately-named room in south face. it is east of s10. descdir is downeast.
+s20 is a corner privately-named room in Southface. it is east of s10. descdir is downeast.
 
 e00 is east of s20. west of e00 is nothing. s20 is south of e00. north of s20 is nothing.
 
 book s01
 
-s01 is an edge privately-named room in south face. it is up of s00. descdir is west.
+s01 is an edge privately-named room in Southface. it is up of s00. descdir is west.
 
 west of s01 is w01. south of w01 is s01. east of w01 is nothing. north of s01 is nothing.
 
 book s11
 
-s11 is a facecenter privately-named room in south face. it is east of s01. it is up of s10. descdir is inside.
+s11 is a facecenter privately-named room in Southface. it is east of s01. it is up of s10. descdir is inside.
 
 book s21
 
-s21 is an edge privately-named room in south face. it is east of s11. it is up of s20. descdir is east.
+s21 is an edge privately-named room in Southface. it is east of s11. it is up of s20. descdir is east.
 
 e01 is east of s21. west of e01 is nothing. s21 is south of e01. north of s21 is nothing.
 
 book s02
 
-s02 is a corner privately-named room in south face. it is up of s01. descdir is upwest.
+s02 is a corner privately-named room in Southface. it is up of s01. descdir is upwest.
 
 west of s02 is w02. south of w02 is s02. east of w02 is nothing. north of s02 is nothing.
 
@@ -491,7 +508,7 @@ south of u00 is s02. up of s02 is u00. north of s02 is nowhere. down of u00 is n
 
 book s12
 
-s12 is an edge privately-named room in south face. it is east of s02. it is up of s11. descdir is up.
+s12 is an edge privately-named room in Southface. it is east of s02. it is up of s11. descdir is up.
 
 A homunculus is a person in s12. "A pretty big homunculus is chillin['] here."
 
@@ -499,17 +516,17 @@ south of u10 is s12. up of s12 is u10. north of s12 is nowhere. down of u10 is n
 
 book s22
 
-s22 is a corner privately-named room in south face. it is east of s12. it is up of s21. descdir is upeast.
+s22 is a corner privately-named room in Southface. it is east of s12. it is up of s21. descdir is upeast.
 
 south of u20 is s22. up of s22 is u20. north of s22 is nowhere. down of u20 is nowhere.
 
 e02 is east of s22. west of e02 is nothing. s22 is south of e02. north of s22 is nothing.
 
-volume down face
+volume Downface
 
 book d00
 
-d00 is a corner privately-named room in down face. descdir is southwest.
+d00 is a corner privately-named room in Downface. descdir is southwest.
 
 s00 is south of d00. north of s00 is nothing. d00 is down of s00. up of d00 is nothing.
 
@@ -517,13 +534,13 @@ w00 is west of d00. east of w00 is nothing. d00 is down of w00. up of d00 is not
 
 book d10
 
-d10 is an edge privately-named room in down face. it is east of d00. descdir is south.
+d10 is an edge privately-named room in Downface. it is east of d00. descdir is south.
 
 s10 is south of d10. north of s10 is nothing. d10 is down of s10. up of d10 is nothing.
 
 book d20
 
-d20 is a corner privately-named room in down face. it is east of d10. descdir is southeast.
+d20 is a corner privately-named room in Downface. it is east of d10. descdir is southeast.
 
 s20 is south of d20. north of s20 is nothing. d20 is down of s20. up of d20 is nothing.
 
@@ -531,17 +548,17 @@ e00 is east of d20. west of e00 is nothing. d20 is down of e00. up of d20 is not
 
 book d01
 
-d01 is an edge privately-named room in down face. it is north of d00. descdir is west.
+d01 is an edge privately-named room in Downface. it is north of d00. descdir is west.
 
 w10 is west of d01. east of w10 is nothing. d01 is down of w10. up of d01 is nothing.
 
 book d11
 
-d11 is a facecenter privately-named room in down face. it is east of d01. it is north of d10. descdir is inside.
+d11 is a facecenter privately-named room in Downface. it is east of d01. it is north of d10. descdir is inside.
 
 book d21
 
-d21 is an edge privately-named room in down face. it is east of d11. it is north of d20. descdir is east.
+d21 is an edge privately-named room in Downface. it is east of d11. it is north of d20. descdir is east.
 
 a bottle of phlogiston is in d21. description is "No description yet, but it's phlogiston. Trust me."
 
@@ -549,7 +566,7 @@ e10 is east of d21. west of e10 is nothing. d21 is down of e10. up of d21 is not
 
 book d02
 
-d02 is a corner privately-named room in down face. it is north of d01. descdir is northwest.
+d02 is a corner privately-named room in Downface. it is north of d01. descdir is northwest.
 
 n00 is north of d02. [?? south of n00 is nothing.] d02 is down of n00. up of d02 is nothing.
 
@@ -557,13 +574,13 @@ w20 is west of d02. [?? east of w20 is nothing.] d02 is down of w20. up of d02 i
 
 book d12
 
-d12 is an edge privately-named room in down face. it is east of d02. it is north of d11. descdir is north.
+d12 is an edge privately-named room in Downface. it is east of d02. it is north of d11. descdir is north.
 
 n10 is north of d12. south of n10 is nothing. d12 is down of n10. up of d12 is nothing.
 
 book d22
 
-d22 is a corner privately-named room in down face. it is east of d12. it is north of d21. descdir is northeast.
+d22 is a corner privately-named room in Downface. it is east of d12. it is north of d21. descdir is northeast.
 
 e20 is east of d22. west of e20 is nothing. d22 is down of e20. up of d22 is nothing.
 
@@ -598,6 +615,16 @@ red	blue	purple
 yellow	blue	green
 
 a conn is a kind of backdrop. a conn has a color called conncolor.
+
+a color has a color called inverse.
+
+inverse of red is green. inverse of green is red.
+
+inverse of purple is yellow. inverse of yellow is purple.
+
+inverse of orange is blue. inverse of blue is orange.
+
+inverse of brown is brown. inverse of black is white. inverse of white is black.
 
 Bbordering relates conns to each other. The verb to bborder (he bborders, they bborder, it is bbordered) implies the bbordering relation.
 
@@ -666,12 +693,12 @@ southupeast	southupwest	downsouth
 
 table of region beacons
 myreg	b1	b2	b3	b4
-up face	northupwest	southupeast	northupeast	southupwest
-down face	northdownwest	southdowneast	northdowneast	southdownwest
-west face	northdownwest	southupwest	northupwest	southdownwest
-east face	northdowneast	southupeast	northupeast	southdowneast
-south face	southdownwest	southupeast	southupwest	southdowneast
-north face	northdownwest	northupeast	northupwest	northdowneast
+Upface	northupwest	southupeast	northupeast	southupwest
+Downface	northdownwest	southdowneast	northdowneast	southdownwest
+Westface	northdownwest	southupwest	northupwest	southdownwest
+Eastface	northdowneast	southupeast	northupeast	southdowneast
+Southface	southdownwest	southupeast	southupwest	southdowneast
+Northface	northdownwest	northupeast	northupwest	northdowneast
 
 to decide which color is beaconcolor of (r - a room):
 	let cr be map region of r;
@@ -742,10 +769,12 @@ understand the command "verb" as something new.
 understand "verb" as verbing.
 
 carry out verbing:
-	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is up face or mrlp is down face]NW/NE/SW/SE[else if mrlp is south face or mrlp is north face]UE/UW/DE/DW[else if mrlp is east face or mrlp is west face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to TOUCH things or REVIEW the four elements: [list of elements]. WAVE to your ship to complete the game.";
+	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is Upface or mrlp is Downface]NW/NE/SW/SE[else if mrlp is Southface or mrlp is Northface]UE/UW/DE/DW[else if mrlp is Eastface or mrlp is Westface]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to TOUCH things or REVIEW the four elements: [list of elements]. WAVE to your ship to complete the game.";
 	the rule succeeds;
 
 chapter waving hands
+
+the codex is a thing.
 
 instead of waving hands:
 	say "You wave to the hoverboard floating in the air. They take you back for evaluation.";
