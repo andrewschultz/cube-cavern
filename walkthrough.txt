@@ -1,0 +1,33 @@
+The solution to The Rube on the Cube is not too bad once you know what to do. The puzzle is randomly generated each time, and there are forty-eight possibilities once you understand what you can put on the transponders.
+
+You may notice that REVIEWing changes your mood ring to different colors. White, red, yellow and blue.
+
+Also you may notice that the beacon colors in the center are red, yellow, blue, orange, green and purple.
+
+You may also notice, by trial and error, that adjacent transponders cannot have colors other than black, so you have at most four transponders.
+
+That should give you an idea. If you can combine colors right, you may be able to match all the transponder colors and combinations with their beacons.
+
+You can probably just pick one color and guess the rest randomly. For instance, if the upper cube is red, then one corner is red, and the other is white. There are four possibilities for this.
+
+But you can be more exact, too. Let's try something here.
+
+Note the initial color. N.D.D gets you to another beacon. W.W.S gets you to another. Note the three colors will all intersect with the color of the northupwest beacon.
+
+If they are, in order, red (up), purple (north), and orange (west), then these colors have an intersection of red, and thus the northupwest transponder will be red.
+
+The northdowneast transponder will then be blue, since red + blue = purple, and the southdownwest is yellow, for orange.
+
+That leaves the southdowneast transponder as white.
+
+But if they are, for instance, yellow, green and blue, then there's no common color to these except white.
+
+That means the upnorthwest beacon should remain black. The north face must be yellow and blue, and the upper is yellow and white. That means the upnortheast transponder is yellow. The northdownwest is blue, and the upwestsouth is white.
+
+That leaves the downsoutheast transponder as red.
+
+Now for the second part. You can enter at any hole where a beacon was. You need to go through all three perpendicular tunnels.
+
+D.D.N.N.U.S.S.E.E.N.W.W.U.U.E.
+
+Now you can WAVE to the ship and you will be pulled away to victory.

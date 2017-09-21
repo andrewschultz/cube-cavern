@@ -676,6 +676,7 @@ check touching a conn:
 	if ring-color is black and conncolor of noun is black, say "It feels like something should happen, but it doesn't." instead;
 	repeat through table of beacon zaps:
 		if con2 entry is noun and conncolor of con1 entry is not black, say "You step back as a strong electric pulse emits from the [mydir entry]. Maybe you can't change this conductor right now." instead;
+	let oldcolor be raycolor of mrlp;
 	if ring-color is black:
 		say "The transponder winks back to black.";
 	else if conncolor of noun is black:
@@ -683,6 +684,10 @@ check touching a conn:
 	else:
 		say "The transponder changes from [conncolor of noun] to [ring-color].";
 	now conncolor of noun is ring-color;
+	let newcolor be raycolor of mrlp;
+	if newcolor is oldcolor, continue the action;
+	if oldcolor is beaccolor of mrlp, say "You hear a whirring that ends on a low note to the ??dir.";
+	if newcolor is beaccolor of mrlp, say "You hear a whirring that ends on a high note to the ??dir.";
 	the rule succeeds;
 
 table of beacon zaps
@@ -845,7 +850,7 @@ to say room-desc:
 	if location of player is corner:
 		say "You are at the [descdir] corner of the [map region of location of player]. There's a conductor here--your mood ring is slightly attracted to it. You can go [list of goable directions] along this face, or [list of warpable directions] somewhere new";
 	else if location of player is facecenter:
-		say "You are at the center of the [map region of location of player]. You can go pretty much any direction: [list of goable directions]";
+		say "You are at the center of the [map region of location of player]. You can go pretty much any direction: [list of goable directions]. There's a beacon here, colored [beaccolor of map region of location of player].";
 	else if location of player is edge:
 		say "You are at the center of the [descdir] edge of the [map region of location of player]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
 
@@ -877,7 +882,7 @@ carry out bcsoling:
 	repeat with x running through conns:
 		if rightcolor of x is not black:
 			say "[x]: is [conncolor of x], should be [rightcolor of x].";
-	say "Unused: [list of unneeded conns].";
+	say "UNUSED: [list of unneeded conns].";
 	say "BEACON COLORS:[line break]";
 	repeat with x running through regions:
 		if x is mtr:
