@@ -8,7 +8,7 @@ volume includes
 
 include Trivial Niceties by Andrew Schultz.
 
-include Basic Screen Effects by Emily Short. [ watch out! center/central are defined here, so centered/center can cause runtime errrors]
+include Basic Screen Effects by Emily Short. [ watch out! center/central are defined here, so centered/center can cause runtime errrors. This is specific to my game and the mechanics it has.]
 
 volume region and room definitions
 
@@ -40,14 +40,23 @@ chapter color definitions
 
 color is a kind of value. the colors are black, red, yellow, blue, white, purple, orange, green, brown.
 
+a color has a color called inverse.
+
+inverse of red is green. inverse of green is red.
+
+inverse of purple is yellow. inverse of yellow is purple.
+
+inverse of orange is blue. inverse of blue is orange.
+
+inverse of brown is brown. inverse of black is white. inverse of white is black.
+
 a region has a color called beaccolor.
 
 to decide which color is the mix of (a - a color) and (b - a color):
 	if a is b, decide on a;
-	if a is white, decide on b;
-	if b is white, decide on a;
-	if a is brown or a is black, decide on a;
-	if b is brown or b is black, decide on b;
+	if a is white or a is black, decide on b;
+	if b is white or b is black, decide on a;
+	if a is brown or b is brown, decide on brown;
 	repeat through table of colormatches:
 		if a is c1 entry and b is c2 entry, decide on c3 entry;
 		if b is c1 entry and a is c2 entry, decide on c3 entry;
@@ -60,21 +69,31 @@ volume when play begins
 when play begins:
 	say "It's 2020, and despite all the technological progress--jetpacks, air cars, laser cannons, and so forth--even a time machine prototype--you always felt there was something more. Something out in space. So you joined up with the space program, and you were sent on a mission to an oddly cubic asteroid. The psycho-sensors attached to your ship indicate it may be an even greater well of knowledge and new isotopes than previously thought. Nothing seems to be on the surface, but maybe you can dig into the center...";
 	sort init-list in random order;
-	now beaccolor of Upface is entry 1 of init-list;
-	now beaccolor of Northface is entry 2 of init-list;
-	now beaccolor of Westface is entry 3 of init-list;
-	if a random chance of 1 in 2 succeeds:
-		now beaccolor of Upface is inverse of beaccolor of Upface;
-	if a random chance of 1 in 2 succeeds:
-		now beaccolor of Northface is inverse of beaccolor of Northface;
-	if a random chance of 1 in 2 succeeds:
-		now beaccolor of Westface is inverse of beaccolor of Westface;
-	now beaccolor of Downface is inverse of beaccolor of Upface;
-	now beaccolor of Southface is inverse of beaccolor of Northface;
-	now beaccolor of Eastface is inverse of beaccolor of Westface;
+	if a random chance of 1 in 2 succeeds: [goodness this looks long and drawn out but the alternative is to get the final solution and then to derive what you need to do, which is fraught with error]
+		now rightcolor of northupwest is entry 1 of init-list;
+		now rightcolor of southupeast is entry 2 of init-list;
+		now rightcolor of northdowneast is entry 3 of init-list;
+		now rightcolor of southdownwest is entry 4 of init-list;
+		now beaccolor of upface is mix of rightcolor of northupwest and rightcolor of southupeast;
+		now beaccolor of downface is mix of rightcolor of northdowneast and rightcolor of southdownwest;
+		now beaccolor of westface is mix of rightcolor of northupwest and rightcolor of southdownwest;
+		now beaccolor of eastface is mix of rightcolor of northdowneast and rightcolor of southupeast;
+		now beaccolor of northface is mix of rightcolor of northupwest and rightcolor of northdowneast;
+		now beaccolor of southface is mix of rightcolor of southupeast and rightcolor of southdownwest;
+	else:
+		now rightcolor of northdownwest is entry 1 of init-list;
+		now rightcolor of southdowneast is entry 2 of init-list;
+		now rightcolor of northupeast is entry 3 of init-list;
+		now rightcolor of southupwest is entry 4 of init-list;
+		now beaccolor of downface is mix of rightcolor of northdownwest and rightcolor of southdowneast;
+		now beaccolor of upface is mix of rightcolor of northupeast and rightcolor of southupwest;
+		now beaccolor of westface is mix of rightcolor of northdownwest and rightcolor of southupwest;
+		now beaccolor of eastface is mix of rightcolor of northupeast and rightcolor of southdowneast;
+		now beaccolor of northface is mix of rightcolor of northdownwest and rightcolor of northupeast;
+		now beaccolor of southface is mix of rightcolor of southdowneast and rightcolor of southupwest;
 	wfak;
 
-init-list is a list of colors variable. init-list is { green, purple, orange }.
+init-list is a list of colors variable. init-list is { white, red, yellow, blue }.
 
 volume the player
 
@@ -106,11 +125,11 @@ an element is a kind of thing. an element has a color called conc-color. an elem
 
 air is an element. conc-color of air is white. blah-txt is "People argued if air should have a color, but of course it has to. It's just really, really white: ultra-white, maybe."
 
-fire is an element. conc-color of fire is yellow. "People argued once that fire should be orange, because fire looks orange when humans make it, but these days you know better. How would you make anything yellow, then?"
+fire is an element. conc-color of fire is yellow. blah-txt is "People argued once that fire should be orange, because fire looks orange when humans make it, but these days you know better. How would you make anything yellow, then?"
 
-earth is an element. conc-color of earth is red. "People thought earth should be brown, but then, it's different colors on different planets. Since most dirt has probably gone through a lot of fire and water, it must be red at its true core."
+earth is an element. conc-color of earth is red. blah-txt is "People thought earth should be brown, but then, it's different colors on different planets. Since most dirt has probably gone through a lot of fire and water, it must be red at its true core."
 
-water is an element. conc-color of water is blue. "There was a big fight over whether water should be blue and air, white, or vice versa. A bunch of wars were fought, but during those wars, all the weapons being created totally spurred science! People learned so much. Nowadays people don't joke about if things were reversed unless they want free room and board at the government's (dis)pleasure."
+water is an element. conc-color of water is blue. blah-txt is "There was a big fight over whether water should be blue and air, white, or vice versa. A bunch of wars were fought, but during those wars, all the weapons being created totally spurred science! People learned so much. Nowadays people don't joke about if things were reversed unless they want free room and board at the government's (dis)pleasure."
 
 chapter reviewing
 
@@ -614,17 +633,7 @@ red	yellow	orange
 red	blue	purple
 yellow	blue	green
 
-a conn is a kind of backdrop. a conn has a color called conncolor.
-
-a color has a color called inverse.
-
-inverse of red is green. inverse of green is red.
-
-inverse of purple is yellow. inverse of yellow is purple.
-
-inverse of orange is blue. inverse of blue is orange.
-
-inverse of brown is brown. inverse of black is white. inverse of white is black.
+a conn is a kind of backdrop. a conn has a color called conncolor. a conn has a color called rightcolor. the rightcolor of a conn is usually black. the conncolor of a conn is usually black.
 
 Bbordering relates conns to each other. The verb to bborder (he bborders, they bborder, it is bbordered) implies the bbordering relation.
 
@@ -700,7 +709,11 @@ Eastface	northdowneast	southupeast	northupeast	southdowneast
 Southface	southdownwest	southupeast	southupwest	southdowneast
 Northface	northdownwest	northupeast	northupwest	northdowneast
 
-to decide which color is beaconcolor of (r - a room):
+to decide which color is raycolor of (re - a region):
+	let r2 be a random facecenter room in re;
+	decide on raycolor of r2;
+
+to decide which color is raycolor of (r - a room):
 	let cr be map region of r;
 	choose row with myreg of cr in table of region beacons;
 	if conncolor of b1 entry is not black or conncolor of b2 entry is not black:
@@ -843,6 +856,25 @@ volume debug tests and such - not for release
 include Rube Cube Testing by Andrew Schultz.
 
 [more standard inform stuff below]
+
+chapter bcsoling
+
+bcsoling is an action out of world.
+
+understand the command "bcsol" as something new.
+
+understand "bcsol" as bcsoling.
+
+carry out bcsoling:
+	say "TRANSMITTER COLORS:[line break]";
+	repeat with x running through conns:
+		say "[x]: is [conncolor of x], should be [rightcolor of x].";
+	say "BEACON COLORS:[line break]";
+	repeat with x running through regions:
+		if x is mtr:
+			next;
+		say "[x]: ray color is [raycolor of x], beacon color is [beaccolor of x].";
+	the rule succeeds;
 
 book for debug purposes
 
