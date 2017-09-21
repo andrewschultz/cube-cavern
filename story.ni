@@ -742,8 +742,15 @@ understand the command "verb" as something new.
 understand "verb" as verbing.
 
 carry out verbing:
-	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is up face or mrlp is down face]NW/NE/SW/Se[else if mrlp is south face or mrlp is north face]UE/UW/DE/DW[else if mrlp is east face or mrlp is west face]UN/US/DN/DS[end if].[paragraph break]You may also want to TOUCH things or REVIEW the four elements: [list of elements].";
+	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is up face or mrlp is down face]NW/NE/SW/SE[else if mrlp is south face or mrlp is north face]UE/UW/DE/DW[else if mrlp is east face or mrlp is west face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to TOUCH things or REVIEW the four elements: [list of elements]. WAVE to your ship to complete the game.";
 	the rule succeeds;
+
+chapter waving hands
+
+instead of waving hands:
+	say "You wave to the hoverboard floating in the air. They take you back for evaluation.";
+	if player has codex, say "You win!" instead;
+	say "You lose!";
 
 chapter xyzzying
 
