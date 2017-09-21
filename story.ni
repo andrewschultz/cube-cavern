@@ -106,7 +106,7 @@ understand the command "review" as something new.
 understand "review [any thing]" as reviewing.
 
 carry out reviewing:
-	if noun is not a concept, say "You can only review concepts. The concepts are: [list of concepts].";
+	if noun is not a concept, say "You can only review concepts. The concepts are: [list of concepts]." instead;
 	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][end if].";
 	if ever-acc of noun is false:
 		say "[line break]SCIENCE TIME: [blah-txt of noun][line break]";
@@ -235,7 +235,6 @@ to say can-want:
 	say "[if open-center is true]can[else]want to[end if]"
 
 before going:
-	say "[noun].";
 	if noun is inside:
 		if location of player is facecenter:
 			try going indir of mrlp instead;
@@ -633,6 +632,38 @@ the northdowneast conductor bborders the southdowneast conductor.
 the northupwest conductor bborders the southupwest conductor.
 the northupeast conductor bborders the southupeast conductor.
 
+does the player mean touching a conn: it is very likely.
+
+description of a conn is usually "It sticks out from the cube at an angle, away from the pointy edge. It's currently colored [conncolor of the item described]."
+
+check touching a conn:
+	if ring-color is black and conncolor of noun is black, say "It feels like something should happen, but it doesn't." instead;
+	repeat through table of beacon zaps:
+		if con2 entry is noun and conncolor of con1 entry is not black, say "You step back as a strong electric pulse emits from the [mydir entry]. Maybe you can't change this conductor right now." instead;
+	if ring-color is black:
+		say "The transponder winks back to black.";
+	else if conncolor of noun is black:
+		say "A flash of light infuses the transponder. It shortly changes to [ring-color].";
+	else:
+		say "The transponder changes from [conncolor of noun] to [ring-color].";
+	now conncolor of noun is ring-color;
+	the rule succeeds;
+
+table of beacon zaps
+con1	con2	mydir
+northdownwest	northupwest	northwest
+southdownwest	southupwest	southwest
+northdowneast	northupeast	northeast
+southdowneast	southupeast	southeast
+northupeast	southupeast	upeast
+northupwest	southupwest	upwest
+northdowneast	southdowneast	downeast
+northdownwest	southdownwest	downwest
+northupeast	northupwest	upnorth
+northdowneast	northdownwest	downnorth
+southupeast	southupwest	upsouth
+southupeast	southupwest	downsouth
+
 table of region beacons
 myreg	b1	b2	b3	b4
 up face	northupwest	southupeast	northupeast	southupwest
@@ -644,7 +675,7 @@ north face	northdownwest	northupeast	northupwest	northdowneast
 
 to decide which color is beaconcolor of (r - a room):
 	let cr be map region of r;
-	choose row with myreg of cr in table of region beacons ;
+	choose row with myreg of cr in table of region beacons;
 	if conncolor of b1 entry is not black or conncolor of b2 entry is not black:
 		if conncolor of b3 entry is not black or conncolor of b4 entry is not black:
 			say "BUG THIS SHOULD NOT HAPPEN";
@@ -660,7 +691,7 @@ book glowcolir
 volume changed verbs
 
 before waiting:
-	say "You pause, as more voluminous ether wafts by."
+	say "You pause, as more voluminous ether wafts by." instead;
 
 volume out of world verbs
 
@@ -725,12 +756,18 @@ carry out xyzzying:
 	say "You hone in on your training for three-dimensional reasoning from several different directions. The result is a slight headache.";
 	the rule succeeds;
 
-volume parser errors
+volume parsing
+
+book after parsing a command
+
+book parser errors
 
 Rule for printing a parser error when the latest parser error is the i beg your pardon error:
 	say "You stare around. Wow. It's pretty crazy, on the cube, here.";
 
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error:
+	if the player's command includes "review":
+		say "It looks like you tried to review something. The only things to review are [list of concepts]." instead;
 	say "You tried to access something not currently in the world. Maybe that's a result of a typo, or it's minor scenery I forgot to implement and should've, or a bad synonym. But it's not critical to the game.";
 
 Rule for printing a parser error when the latest parser error is the only understood as far as error:
@@ -756,7 +793,7 @@ a room has a direction called descdir. descdir is usually inside.
 
 to say room-desc:
 	if location of player is corner:
-		say "You are at the [descdir] corner of the [map region of location of player]. You can go [list of goable directions] along this face, or [list of warpable directions] somewhere new";
+		say "You are at the [descdir] corner of the [map region of location of player]. There's a conductor here--your mood ring is slightly attracted to it. You can go [list of goable directions] along this face, or [list of warpable directions] somewhere new";
 	else if location of player is facecenter:
 		say "You are at the center of the [map region of location of player]. You can go pretty much any direction: [list of goable directions]";
 	else if location of player is edge:
