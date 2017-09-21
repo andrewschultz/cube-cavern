@@ -518,14 +518,14 @@ before going in very center:
 
 book beacons
 
-color is a kind of value. the colors are red, yellow, blue, white, purple, orange, green, brown.
+color is a kind of value. the colors are black, red, yellow, blue, white, purple, orange, green, brown.
 
 to decide which color is the mix of (a - a color) and (b - a color):
 	if a is b, decide on a;
 	if a is white, decide on b;
 	if b is white, decide on a;
-	if a is brown, decide on b;
-	if b is brown, decide on a;
+	if a is brown or a is black, decide on a;
+	if b is brown or b is black, decide on b;
 	repeat through table of colormatches:
 		if a is c1 entry and b is c2 entry, decide on c3 entry;
 		if b is c1 entry and a is c2 entry, decide on c3 entry;
@@ -539,23 +539,64 @@ red	yellow	orange
 red	blue	purple
 yellow	blue	green
 
-a beacon is a kind of backdrop.
+a conn is a kind of backdrop. a conn has a color called conncolor.
 
-the northdownwest beacon is a backdrop. It is in n00, d02, w20.
+Bbordering relates conns to each other. The verb to bborder (he bborders, they bborder, it is bbordered) implies the bbordering relation.
 
-the northdowneast beacon is a backdrop. It is in n20, d22, e20.
+the northdownwest conductor is a conn. It is in n00, d02, w20.
 
-the northupwest beacon is a backdrop. It is in n02, u02, w22.
+the northdowneast conductor is a conn. It is in n20, d22, e20.
 
-the northupeast beacon is a backdrop. It is in n22, u22, e22.
+the northupwest conductor is a conn. It is in n02, u02, w22.
 
-the southdownwest beacon is a backdrop. It is in s00, d00, w00.
+the northupeast conductor is a conn. It is in n22, u22, e22.
 
-the southdowneast beacon is a backdrop. It is in s20, d20, e00.
+the southdownwest conductor is a conn. It is in s00, d00, w00.
 
-the southupwest beacon is a backdrop. It is in s02, u00, w02.
+the southdowneast conductor is a conn. It is in s20, d20, e00.
 
-the southupeast beacon is a backdrop. It is in s22, u20, e02.
+the southupwest conductor is a conn. It is in s02, u00, w02.
+
+the southupeast conductor is a conn. It is in s22, u20, e02.
+
+the northdownwest conductor bborders the northupwest conductor.
+the northupwest conductor bborders the northupeast conductor.
+the northupeast conductor bborders the northdowneast conductor.
+the northdowneast conductor bborders the northdownwest conductor.
+
+the southdownwest conductor bborders the southupwest conductor.
+the southupwest conductor bborders the southupeast conductor.
+the southupeast conductor bborders the southdowneast conductor.
+the southdowneast conductor bborders the southdownwest conductor.
+
+the northdownwest conductor bborders the southdownwest conductor.
+the northdowneast conductor bborders the southdowneast conductor.
+the northupwest conductor bborders the southupwest conductor.
+the northupeast conductor bborders the southupeast conductor.
+
+table of region beacons
+myreg	b1	b2	b3	b4
+up face	northupwest	southupeast	northupeast	southupwest
+down face	northdownwest	southdowneast	northdowneast	southdownwest
+west face	northdownwest	southupwest	northupwest	southdownwest
+east face	northdowneast	southupeast	northupeast	southdowneast
+south face	southdownwest	southupeast	southupwest	southdowneast
+north face	northdownwest	northupeast	northupwest	northdowneast
+
+to decide which color is beaconcolor of (r - a room):
+	let cr be map region of r;
+	choose row with myreg of cr in table of region beacons ;
+	if conncolor of b1 entry is not black or conncolor of b2 entry is not black:
+		if conncolor of b3 entry is not black or conncolor of b4 entry is not black:
+			say "BUG THIS SHOULD NOT HAPPEN";
+			decide on brown;
+	if conncolor of b1 entry is not black or conncolor of b2 entry is black:
+		decide on mix of conncolor of b1 entry and conncolor of b2 entry;
+	if conncolor of b3 entry is not black or conncolor of b4 entry is black:
+		decide on mix of conncolor of b1 entry and conncolor of b2 entry;
+	decide on black;
+
+book glowcolir
 
 volume changed verbs
 
