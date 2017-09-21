@@ -717,7 +717,11 @@ does the player mean touching a conn: it is very likely.
 
 description of a conn is usually "It sticks out from the cube at an angle, away from the pointy edge. It's currently colored [conncolor of the item described]."
 
+fixed-beacons is a truth state that varies.
+
 check touching a conn:
+	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
+	let ia be number of aligned regions;
 	if ring-color is black and conncolor of noun is black, say "It feels like something should happen, but it doesn't." instead;
 	repeat through table of beacon zaps:
 		if con2 entry is noun and conncolor of con1 entry is not black, say "You step back as a strong electric pulse emits from the [mydir entry]. Maybe you can't change this conductor right now." instead;
@@ -731,15 +735,32 @@ check touching a conn:
 	now conncolor of noun is ring-color;
 	let newcolor be raycolor of mrlp;
 	if newcolor is oldcolor, the rule succeeds;
-	if oldcolor is beaccolor of mrlp, say "You hear a whirring that ends on a low note to the ??dir.";
+	let na be number of aligned regions;
+	unless oldcolor is beaccolor of mrlp or newcolor is beaccolor of mrlp, say "Nothing much seems to happen. Well, yet." instead;
+	if oldcolor is beaccolor of mrlp, say "You hear a whirring that ends on a low note to the [centerdir of location of player].";
 	if newcolor is beaccolor of mrlp:
-		say "You hear a whirring that ends on a high note to the ??dir.";
+		say "You hear a whirring that ends on a high note to the [centerdir of location of player].";
 		now mrlp is ever-aligned;
+		if number of aligned regions is 6:
+			say "The cube shakes a bit. It felt like a few tunnels opened at once.";
+			now fixed-beacons is true;
 	move tunnel backdrop to all tunneled rooms;
 	move beacon backdrop to all beaconed rooms;
 	if debug-state is true:
 		say "[number of aligned regions] regions ([list of aligned regions]) now aligned.";
 	the rule succeeds;
+
+to decide which direction is centerdir of (r - a room):
+	let q be u00;
+	repeat with d running through simple directions:
+		if the room d of r is nowhere, next;
+		now q is the room d of r;
+		if q is facecenter, decide on d;
+		repeat with e running through simple directions:
+			if the room e of q is nowhere, next;
+			if the room e of q is facecenter, decide on e;
+	say "**BUG**";
+	decide on inside;
 
 table of beacon zaps
 con1	con2	mydir
