@@ -857,6 +857,9 @@ include Rube Cube Testing by Andrew Schultz.
 
 [more standard inform stuff below]
 
+when play begins:
+	say "Thanks for running the debug version! Use [b]BCSOL[r] to see how to solve this game. There are 48 randomly generated possible solutions."
+
 chapter bcsoling
 
 bcsoling is an action out of world.
@@ -865,10 +868,16 @@ understand the command "bcsol" as something new.
 
 understand "bcsol" as bcsoling.
 
+definition: a conn (called q) is unneeded:
+	if rightcolor of q is black, yes;
+	no;
+
 carry out bcsoling:
 	say "TRANSMITTER COLORS:[line break]";
 	repeat with x running through conns:
-		say "[x]: is [conncolor of x], should be [rightcolor of x].";
+		if rightcolor of x is not black:
+			say "[x]: is [conncolor of x], should be [rightcolor of x].";
+	say "Unused: [list of unneeded conns].";
 	say "BEACON COLORS:[line break]";
 	repeat with x running through regions:
 		if x is mtr:
