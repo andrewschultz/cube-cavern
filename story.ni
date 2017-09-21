@@ -83,21 +83,21 @@ the player carries the coil of space rope.
 check dropping:
 	say "Whatever you drop could get lost forever. Best hang on.";
 
-chapter concepts
+chapter elements
 
-a concept is a kind of thing. a concept has a color called conc-color. a concept has a truth state called ever-acc. a concept has text called blah-txt.
+an element is a kind of thing. an element has a color called conc-color. an element has a truth state called ever-acc. an element has text called blah-txt.
 
-air is a concept. conc-color of air is white. blah-txt is "People argued if air should have a color, but of course it has to. It's just really, really white: ultra-white, maybe."
+air is an element. conc-color of air is white. blah-txt is "People argued if air should have a color, but of course it has to. It's just really, really white: ultra-white, maybe."
 
-fire is a concept. conc-color of fire is yellow. "People argued once that fire should be orange, because fire looks orange when humans make it, but these days you know better. How would you make anything yellow, then?"
+fire is an element. conc-color of fire is yellow. "People argued once that fire should be orange, because fire looks orange when humans make it, but these days you know better. How would you make anything yellow, then?"
 
-earth is a concept. conc-color of earth is red. "People thought earth should be brown, but then, it's different colors on different planets. Since most dirt has probably gone through a lot of fire and water, it must be red at its true core."
+earth is an element. conc-color of earth is red. "People thought earth should be brown, but then, it's different colors on different planets. Since most dirt has probably gone through a lot of fire and water, it must be red at its true core."
 
-water is a concept. conc-color of water is blue. "There was a big fight over whether water should be blue and air, white, or vice versa. A bunch of wars were fought, but during those wars, all the weapons being created totally spurred science! People learned so much. Nowadays people don't joke about if things were reversed unless they want free room and board at the government's (dis)pleasure."
+water is an element. conc-color of water is blue. "There was a big fight over whether water should be blue and air, white, or vice versa. A bunch of wars were fought, but during those wars, all the weapons being created totally spurred science! People learned so much. Nowadays people don't joke about if things were reversed unless they want free room and board at the government's (dis)pleasure."
 
 chapter reviewing
 
-does the player mean reviewing a concept: it is very likely.
+does the player mean reviewing an element: it is very likely.
 
 reviewing is an action applying to one visible thing.
 
@@ -106,7 +106,7 @@ understand the command "review" as something new.
 understand "review [any thing]" as reviewing.
 
 carry out reviewing:
-	if noun is not a concept, say "You can only review concepts. The concepts are: [list of concepts]." instead;
+	if noun is not an element, say "You can only review elements. The elements are: [list of elements]." instead;
 	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][end if].";
 	if ever-acc of noun is false:
 		say "[line break]SCIENCE TIME: [blah-txt of noun][line break]";
@@ -704,7 +704,7 @@ understand the command "about" as something new.
 understand "about" as abouting.
 
 carry out abouting:
-	say "I'd thought about a game on a cube for a while, but I didn't seriously consider and plan it until 2017 when a wordplay game fell through. A cube being an unscientific place to walk on, I figured, what else would fit in? That's when I got in with scientific hoaxes and disproven theories. I hope you find this fun.";
+	say "I'd thought about a game on a cube for a while, but I didn't seriously consider and plan it until 2017 when a wordplay game fell through. A cube being an unscientific place to walk on, I figured, what else would fit in? That's when I got in with bad science and silly myths I hope you find fun.[paragraph break]Maps are included to help visualize things a bit easier.[paragraph break]Bugs or suggestions can go to blurglecruncheon@gmail.com.";
 	the rule succeeds;
 
 chapter creditsing
@@ -718,7 +718,8 @@ understand "credit" as creditsing.
 understand "credits" as creditsing.
 
 carry out creditsing:
-	say "(put testers here).";
+	say "Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, so I could write maps that helped me visualize the game maps.";
+	say "[line break](fill in testers here).";
 	the rule succeeds;
 
 chapter helping
@@ -741,7 +742,7 @@ understand the command "verb" as something new.
 understand "verb" as verbing.
 
 carry out verbing:
-	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.";
+	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is up face or mrlp is down face]NW/NE/SW/Se[else if mrlp is south face or mrlp is north face]UE/UW/DE/DW[else if mrlp is east face or mrlp is west face]UN/US/DN/DS[end if].[paragraph break]You may also want to TOUCH things or REVIEW the four elements: [list of elements].";
 	the rule succeeds;
 
 chapter xyzzying
@@ -767,7 +768,7 @@ Rule for printing a parser error when the latest parser error is the i beg your 
 
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error:
 	if the player's command includes "review":
-		say "It looks like you tried to review something. The only things to review are [list of concepts]." instead;
+		say "It looks like you tried to review something. The only things to review are [list of elements]." instead;
 	say "You tried to access something not currently in the world. Maybe that's a result of a typo, or it's minor scenery I forgot to implement and should've, or a bad synonym. But it's not critical to the game.";
 
 Rule for printing a parser error when the latest parser error is the only understood as far as error:
