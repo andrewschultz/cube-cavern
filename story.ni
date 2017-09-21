@@ -36,11 +36,85 @@ to decide what region is mrlp: [I'd include this in a header but it complains if
 	if map region of location of player is nothing, decide on mtr;
 	decide on map region of location of player.
 
+chapter color definitions
+
+color is a kind of value. the colors are black, red, yellow, blue, white, purple, orange, green, brown.
+
+to decide which color is the mix of (a - a color) and (b - a color):
+	if a is b, decide on a;
+	if a is white, decide on b;
+	if b is white, decide on a;
+	if a is brown or a is black, decide on a;
+	if b is brown or b is black, decide on b;
+	repeat through table of colormatches:
+		if a is c1 entry and b is c2 entry, decide on c3 entry;
+		if b is c1 entry and a is c2 entry, decide on c3 entry;
+		if a is c2 entry and b is c3 entry, decide on c3 entry;
+		if b is c2 entry and a is c3 entry, decide on c3 entry;
+	decide on brown;
+
 volume when play begins
 
 when play begins:
 	say "It's 2020, and despite all the technological progress--jetpacks, air cars, laser cannons, and so forth--even a time machine prototype--you always felt there was something more. Something out in space. So you joined up with the space program, and you were sent on a mission to an oddly cubic asteroid. The psycho-sensors attached to your ship indicate it may be an even greater well of knowledge and new isotopes than previously thought. Nothing seems to be on the surface, but maybe you can dig into the center...";
 	wfak;
+
+volume the player
+
+the player wears the mood ring. description of mood ring is "Your mood ring is currently [ring-color]."
+
+check taking off the mood ring:
+	say "No, it's an important scientific thingamabob that will help you with your mission." instead;
+
+ring-color is a color that varies. ring-color is usually black.
+
+ring-moves is a number that varies.
+
+every turn when ring-color is not black:
+	decrement ring-moves;
+	if ring-moves is 2:
+		say "The mood ring is half faded back to black, now.";
+	else if ring-moves is 0:
+		say "Your mood ring changes back from [ring-color] to black.";
+		now ring-color is black;
+
+the player carries the coil of space rope.
+
+check dropping:
+	say "Whatever you drop could get lost forever. Best hang on.";
+
+chapter concepts
+
+a concept is a kind of thing. a concept has a color called conc-color. a concept has a truth state called ever-acc. a concept has text called blah-txt.
+
+air is a concept. conc-color of air is white. blah-txt is "People argued if air should have a color, but of course it has to. It's just really, really white: ultra-white, maybe."
+
+fire is a concept. conc-color of fire is yellow. "People argued once that fire should be orange, because fire looks orange when humans make it, but these days you know better. How would you make anything yellow, then?"
+
+earth is a concept. conc-color of earth is red. "People thought earth should be brown, but then, it's different colors on different planets. Since most dirt has probably gone through a lot of fire and water, it must be red at its true core."
+
+water is a concept. conc-color of water is blue. "There was a big fight over whether water should be blue and air, white, or vice versa. A bunch of wars were fought, but during those wars, all the weapons being created totally spurred science! People learned so much. Nowadays people don't joke about if things were reversed unless they want free room and board at the government's (dis)pleasure."
+
+chapter reviewing
+
+does the player mean reviewing a concept: it is very likely.
+
+reviewing is an action applying to one visible thing.
+
+understand the command "review" as something new.
+
+understand "review [any thing]" as reviewing.
+
+carry out reviewing:
+	if noun is not a concept, say "You can only review concepts. The concepts are: [list of concepts].";
+	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][end if].";
+	if ever-acc of noun is false:
+		say "[line break]SCIENCE TIME: [blah-txt of noun][line break]";
+		now ever-acc of noun is true;
+	now ring-color is conc-color of noun;
+	now ring-moves is 5;
+	the rule succeeds.
+
 
 volume direction definitions
 
@@ -517,21 +591,6 @@ before going in very center:
 		say "Only simple directions work here. Each goes to the center of a different face." instead;
 
 book beacons
-
-color is a kind of value. the colors are black, red, yellow, blue, white, purple, orange, green, brown.
-
-to decide which color is the mix of (a - a color) and (b - a color):
-	if a is b, decide on a;
-	if a is white, decide on b;
-	if b is white, decide on a;
-	if a is brown or a is black, decide on a;
-	if b is brown or b is black, decide on b;
-	repeat through table of colormatches:
-		if a is c1 entry and b is c2 entry, decide on c3 entry;
-		if b is c1 entry and a is c2 entry, decide on c3 entry;
-		if a is c2 entry and b is c3 entry, decide on c3 entry;
-		if b is c2 entry and a is c3 entry, decide on c3 entry;
-	decide on brown;
 
 table of colormatches
 c1	c2	c3
