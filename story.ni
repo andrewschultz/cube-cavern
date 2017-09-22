@@ -120,9 +120,12 @@ when play begins:
 		now beaccolor of eastern face is mix of rightcolor of northupeast and rightcolor of southdowneast;
 		now beaccolor of northern face is mix of rightcolor of northdownwest and rightcolor of northupeast;
 		now beaccolor of southern face is mix of rightcolor of southdowneast and rightcolor of southupwest;
-	wfak;
+	wfak-d;
 
 init-list is a list of colors variable. init-list is { white, red, yellow, blue }.
+
+to wfak-d:
+	if debug-state is false, wfak;
 
 volume the player
 
@@ -494,7 +497,7 @@ book n00
 
 n00 is a corner privately-named room in northern face. descdir is downwest.
 
-w20 is south of n00. north of w20 is nothing. n00 is east of w20. west of w20 is nothing.
+w20 is west of n00. east of w20 is nothing. n00 is north of w20. south of n00 is nothing.
 
 book n10
 
@@ -510,7 +513,7 @@ book n01
 
 n01 is an edge privately-named room in northern face. it is up of n00. descdir is west.
 
-w21 is south of n01. north of w21 is nothing. n01 is east of w21. west of w21 is nothing.
+w21 is west of n01. east of w21 is nothing. n01 is north of w21. south of n01 is nothing.
 
 book n11
 
@@ -528,7 +531,7 @@ n02 is a corner privately-named room in northern face. it is up of n01. descdir 
 
 u02 is up of n02. down of u02 is nothing. n02 is north of u02. [?? what is going on south of n02 is nothing.]
 
-w22 is south of n02. north of w22 is nothing. n02 is east of w22. west of w22 is nothing.
+w22 is west of n02. east of w22 is nothing. n02 is north of w22. south of n02 is nothing.
 
 book n12
 
@@ -590,8 +593,6 @@ book s12
 
 s12 is an edge privately-named room in southern face. it is east of s02. it is up of s11. descdir is up.
 
-A homunculus is a person in s12. "A pretty big homunculus is chillin['] here."
-
 south of u10 is s12. up of s12 is u10. north of s12 is nowhere. down of u10 is nowhere.
 
 book s22
@@ -639,8 +640,6 @@ d11 is a facecenter privately-named room in bottom face. it is east of d01. it i
 book d21
 
 d21 is an edge privately-named room in bottom face. it is east of d11. it is north of d20. descdir is east.
-
-a bottle of phlogiston is in d21. description is "No description yet, but it's phlogiston. Trust me."
 
 e10 is east of d21. west of e10 is nothing. d21 is down of e10. up of d21 is nothing.
 
@@ -1123,8 +1122,20 @@ test fix with "fixsol/n/w/review earth/touch/e/e/s/s/review fire/touch/e/d/d/n/n
 test fbluef with "test fix/ne/drop rope/u/n/w/w/s/e/u/s/s/d/n/e".
 test fblueb with "test fix/ne/drop rope/u/e/s/s/w/n/u/w/w/d/e/n".
 
-test fredf with "test fix/n/w/u/drop rope/e/u/s/s/d/n/e/d/d/w/u/n".
-test fredb with "test fix/n/w/u/drop rope/e/n/d/d/s/u/e/s/s/w/n/u".
+test forangef with "test fix/ne/u/u/drop rope/d/s/e/e/n/w/d/n/n/u/s/w".
+test forangeb with "test fix/ne/u/u/drop rope/d/w/n/n/e/s/d/e/e/u/w/s".
+
+test fredf with "test fix/nw/u/drop rope/e/u/s/s/d/n/e/d/d/w/u/n".
+test fredb with "test fix/nw/u/drop rope/e/n/d/d/s/u/e/s/s/w/n/u".
+
+test fgreenf with "test fix/ne/u/e/drop rope/w/d/n/n/u/s/w/u/u/e/d/s".
+test fgreenb with "test fix/ne/u/e/drop rope/w/s/u/u/n/d/w/n/n/e/s/d".
+
+test fyelf with "test fix/se/u/drop rope/n/e/d/d/w/u/n/w/w/s/e/u/s/s/d".
+test fyelb with "test fix/se/u/drop rope/n/u/w/w/d/e/n/d/d/s/u/e/s/s/w".
+
+test fpurpf with "test fix/ne/u/n/drop rope/s/w/u/u/e/d/s/e/e/n/w/d/n/n/u".
+test fpurpb with "test fix/ne/u/n/drop rope/s/d/e/e/u/w/s/u/u/n/d/w/n/n/e".
 
 test tun with "fixsol/n/w/review earth/touch/e/e/s/s/review fire/touch/nw/d"
 
