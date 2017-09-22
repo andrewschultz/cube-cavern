@@ -629,7 +629,25 @@ book very center
 
 the very center is a nonfacial room. it is below u11. it is above d11. it is west of e11. it is east of w11. it is north of s11. it is south of n11. printed name is "The Very Center".
 
-description of very center is "Here in the very center you can go [list of centexit directions] back to the surface."
+description of very center is "Here in the very center you can go [list of centexit directions] back to the surface. There's some weird gold object [object-doing][one of]. It must be what gave those weird...readings[or][stopping]."
+
+the gold spherical object is scenery in very center. "It seems to be projecting a small rainbow. You know, the colors red, orange, yellow, green, blue, purple[one of]. You remember in your science history books, reading about a heretic sentenced to death for insisting that purple should be broken down into indigo and violet. Needlessly complex. Where DO some people get their ideas from?[or].[stopping]"
+
+understand "sphere" and "gold sphere" as gold spherical object.
+
+to say object-doing:
+	let al be number of aligned regions;
+	if al is 6:
+		say "floating in the center of the tunnel intersections";
+	else if al is 4:
+		say "hanging in the middle of the two-way intersection, so close yet so far from freedom";
+	else:
+		say "[if al is 3]barely wedged into the tunnel walls[else if al is 2]wedged[else if al is 1]pretty thoroughly wedged[else]hanging around in a buggy way[end if] in to the tunnel walls";
+
+instead of doing something with the gold object:
+	if current action is examining, continue the action;
+	if current action is taking, say "The gold object seems to repel you magnetically." instead;
+	say "The gold object hums mysteriously as you contemplate it. You need to find a way to unlock it, or whatever. Not that it has a lock or anything."
 
 definition: a direction (called di) is centexit:
 	if the room di of very center is tunneled, yes;
