@@ -48,6 +48,8 @@ definition: a region (called x) is aligned:
 	if raycolor of x is beaccolor of x, yes;
 	no;
 
+last-rope-region is a region that varies.
+
 chapter color definitions
 
 color is a kind of value. the colors are black, red, yellow, blue, white, purple, orange, green, brown.
@@ -345,7 +347,8 @@ before going:
 		say "That would be wandering off into nothing." instead;
 
 carry out going when location of player is very center:
-	check-rope-drop beaccolor of room noun of very center;
+	check-rope-tunnel beaccolor of room noun of very center;
+	if the rule failed, the rule succeeds;
 	continue the action;
 
 volume upper face
@@ -697,22 +700,34 @@ before going to very center:
 		say "You're at the right place to go in, but you don't have a way through, yet." instead;
 	if mrlp is not aligned:
 		say "You're at the right place to go in, but the way through closed." instead;
-	check-rope-drop beaccolor of mrlp;
+	check-rope-tunnel beaccolor of mrlp;
+	if continue-tunnel is false, the rule succeeds;
 
-to check-rope-drop (c - a color):
-	say "You glide down a weird [c] tunnel...[paragraph break]";
-	if rope-drop is true:
-		let Q be number of entries in rope-colors;
-		if c is entry Q in rope-colors:
-			remove entry Q from rope-colors;
-		else:
-			add c to rope-colors;
-			endgame-check;
+continue-tunnel is a truth state that varies.
+
+to check-rope-tunnel (c - a color):
+	now continue-tunnel is true;
+	if rope-drop is false:
+		say "You glide down a weird [c] tunnel...[paragraph break]";
+		continue the action;
+	let Q be number of entries in rope-colors;
+	if c is entry Q in rope-colors:
+		remove entry Q from rope-colors;
+		say "You pull back the segment of rope you dropped in the [c] tunnel.";
+		d "[rope-colors].";
+	else:
+		if c is listed in rope-colors:
+			say "You're pulled from entering the tunnel again with your rope. Perhaps you should choose another tunnel[if player is in very center], or retreat[end if].";
+			now continue-tunnel is false;
+			continue the action;
+		add c to rope-colors;
+		endgame-check;
 		d "[rope-colors].";
 
 to endgame-check:
 	if number of entries in rope-colors is 6:
 		if entry 1 in rope-colors is red and entry 2 in rope-colors is orange and entry 3 in rope-colors is yellow and entry 4 in rope-colors is green and entry 5 in rope-colors is blue and entry 6 in rope-colors is purple:
+			now continue-tunnel is false;
 			end the story saying "You win, you made a rainbow!";
 		else:
 			say "Hmm, nothing happens.";
