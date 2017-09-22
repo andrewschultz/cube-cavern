@@ -10,6 +10,10 @@ include Trivial Niceties by Andrew Schultz.
 
 include Basic Screen Effects by Emily Short. [ watch out! center/central are defined here, so centered/center can cause runtime errrors. This is specific to my game and the mechanics it has.]
 
+section big picture definitions
+
+use no scoring.
+
 section debug to start - not for release
 
 when play begins:
@@ -43,6 +47,9 @@ to decide what region is mrlp: [I'd include this in a header but it complains if
 	if map region of location of player is nothing, decide on mtr;
 	decide on map region of location of player.
 
+to decide what direction is outdir of (r - a region):
+	decide on opposite of indir of r;
+
 definition: a region (called x) is aligned:
 	if x is mtr, no;
 	if raycolor of x is beaccolor of x, yes;
@@ -66,13 +73,12 @@ inverse of brown is brown. inverse of black is white. inverse of white is black.
 
 a region has a color called beaccolor.
 
-
 rainbowlinking relates one color to one color. The verb to rainbowlink (he rainbowlinks, they rainbowlink, it rainbowlinks, it is rainbowlinked) implies the rainbowlinking relation.
 
 red rainbowlinks orange. orange rainbowlinks yellow. yellow rainbowlinks green. green rainbowlinks blue. blue rainbowlinks purple. purple rainbowlinks red.
 
 to decide whether (c1 - a color) colorborders (c2 - a color):
-	if c1 colorborders c2 or c2 colorborders c1, decide yes;
+	if c1 rainbowlinks c2 or c2 rainbowlinks c1, decide yes;
 	decide no;
 
 to decide which color is the mix of (a - a color) and (b - a color):
@@ -147,12 +153,14 @@ rope-colors is a list of colors variable. rope-colors is {}.
 
 last-top-room is a room that varies.
 
+does the player mean dropping the wire rope when location of player is facecenter and mrlp is aligned: it is very likely.
+
 check dropping wire rope:
 	if location of player is not facecenter, say "There's no good place to drop it." instead;
 	if beacon is in location of player, say "You don't need to tie the rope to the beacon. It might be too fragile to respond to stress." instead;
 	if rope-drop is true, say "You already dropped the rope to start.";
 	if rope-drop is false:
-		say "You drop the rope.";
+		say "You drop the rope and anchor it.";
 		now last-top-room is location of player;
 		now rope-drop is true;
 		the rule succeeds;
@@ -347,8 +355,9 @@ before going:
 		say "That would be wandering off into nothing." instead;
 
 carry out going when location of player is very center:
-	check-rope-tunnel beaccolor of room noun of very center;
-	if the rule failed, the rule succeeds;
+	if rope-drop is true:
+		check-rope-tunnel beaccolor of map region of room noun of very center;
+	if continue-tunnel is false, the rule succeeds;
 	continue the action;
 
 volume upper face
@@ -666,10 +675,13 @@ the very center is a nonfacial room. it is below u11. it is above d11. it is wes
 the tunnels are scenery in very center. understand "tunnel" as tunnel.
 
 check examining tunnels:
-	say "The tunnel[if number of aligned regions is 1]is[else]s are[end if] colored as follows:[line break]";
+	if number of aligned regions is 1:
+		say "The tunnel back [outdir of random aligned region] is colored [beaccolor of random aligned region]." instead;
+	say "The tunnels are colored as follows:[line break]";
 	repeat with X running through regions:
 		if x is mtr, next;
-		if x is aligned, say "[indir of x]: [beaccolor of x].";
+		if x is aligned, say "[outdir of x]: [beaccolor of x][if beaccolor of x is listed in rope-colors] (with rope through it)[end if].";
+	the rule succeeds
 
 description of very center is "Here in the very center you can go [list of centexit directions] back to the surface through different colored tunnels. There's some weird gold object [object-doing][one of]. It must be what gave those weird...readings[or][stopping]."
 
@@ -696,6 +708,7 @@ definition: a direction (called di) is centexit:
 	no;
 
 before going to very center:
+	d "[raycolor of mrlp] [beaccolor of mrlp].";
 	if mrlp is never-aligned:
 		say "You're at the right place to go in, but you don't have a way through, yet." instead;
 	if mrlp is not aligned:
@@ -708,9 +721,13 @@ continue-tunnel is a truth state that varies.
 to check-rope-tunnel (c - a color):
 	now continue-tunnel is true;
 	if rope-drop is false:
-		say "You glide down a weird [c] tunnel...[paragraph break]";
+		say "You glide along a weird [c] tunnel...[paragraph break]";
 		continue the action;
 	let Q be number of entries in rope-colors;
+	if Q is 0:
+		say "You glide along a weird [c] tunnel, with your rope trailing...[paragraph break]";
+		add c to rope-colors;
+		continue the action;
 	if c is entry Q in rope-colors:
 		remove entry Q from rope-colors;
 		say "You pull back the segment of rope you dropped in the [c] tunnel.";
@@ -720,17 +737,18 @@ to check-rope-tunnel (c - a color):
 			say "You're pulled from entering the tunnel again with your rope. Perhaps you should choose another tunnel[if player is in very center], or retreat[end if].";
 			now continue-tunnel is false;
 			continue the action;
+		say "You pull your rope through the [c] tunnel...[paragraph break]";
 		add c to rope-colors;
 		endgame-check;
 		d "[rope-colors].";
 
 to endgame-check:
 	if number of entries in rope-colors is 6:
-		if entry 1 in rope-colors is red and entry 2 in rope-colors is orange and entry 3 in rope-colors is yellow and entry 4 in rope-colors is green and entry 5 in rope-colors is blue and entry 6 in rope-colors is purple:
-			now continue-tunnel is false;
-			end the story saying "You win, you made a rainbow!";
-		else:
-			say "Hmm, nothing happens.";
+		repeat with Q running from 1 to 5:
+			unless entry Q in rope-colors colorborders entry (Q + 1) in rope-colors:
+				continue the action;
+		end the game saying "YOU WIN!";
+
 
 before going in very center:
 	if noun is inside:
@@ -835,6 +853,7 @@ check touching a conn:
 		if number of aligned regions is 6:
 			say "The cube shakes a bit. It felt like a few tunnels opened at once.";
 			now fixed-beacons is true;
+	now all aligned regions are ever-aligned;
 	move tunnel backdrop to all tunneled rooms;
 	move beacon backdrop to all beaconed rooms;
 	if debug-state is true:
@@ -1096,9 +1115,20 @@ understand "u00" as u00.
 
 book tests
 
+chapter walkthrough
+
 test fix with "fixsol/n/w/review earth/touch/e/e/s/s/review fire/touch/e/d/d/n/n/review water/touch/d/s/s/w/w/review air/touch/bcsol"
 
+[WE = red green NS = purple yellow UD = orange blue]
+test fbluef with "test fix/ne/drop rope/u/n/w/w/s/e/u/s/s/d/n/e".
+test fblueb with "test fix/ne/drop rope/u/e/s/s/w/n/u/w/w/d/e/n".
+
+test fredf with "test fix/n/w/u/drop rope/e/u/s/s/d/n/e/d/d/w/u/n".
+test fredb with "test fix/n/w/u/drop rope/e/n/d/d/s/u/e/s/s/w/n/u".
+
 test tun with "fixsol/n/w/review earth/touch/e/e/s/s/review fire/touch/nw/d"
+
+chapter map testing
 
 test nloop with "n/n/d/d/d/s/s/s/u/u/u/n".
 test sloop with "s/s/d/d/d/n/n/n/u/u/u/s".
