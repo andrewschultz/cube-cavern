@@ -64,6 +64,15 @@ inverse of brown is brown. inverse of black is white. inverse of white is black.
 
 a region has a color called beaccolor.
 
+
+rainbowlinking relates one color to one color. The verb to rainbowlink (he rainbowlinks, they rainbowlink, it rainbowlinks, it is rainbowlinked) implies the rainbowlinking relation.
+
+red rainbowlinks orange. orange rainbowlinks yellow. yellow rainbowlinks green. green rainbowlinks blue. blue rainbowlinks purple. purple rainbowlinks red.
+
+to decide whether (c1 - a color) colorborders (c2 - a color):
+	if c1 colorborders c2 or c2 colorborders c1, decide yes;
+	decide no;
+
 to decide which color is the mix of (a - a color) and (b - a color):
 	if a is b, decide on a;
 	if a is white or a is black, decide on b;
@@ -126,10 +135,28 @@ every turn when ring-color is not black:
 		say "Your mood ring changes back from [ring-color] to black.";
 		now ring-color is black;
 
-the player carries the coil of space rope.
+the player carries the coil of wire rope. "It's rope you will need to pull the cube, or whatever's in it, down to the surfae. You can DROP to tie it at a certain place, then TIE it."
+
+rope-locations is a list of rooms that varies. rope-locations is {}.
+
+rope-drop is a truth state that varies.
+
+rope-colors is a list of colors variable. rope-colors is {}.
+
+last-top-room is a room that varies.
+
+check dropping wire rope:
+	if location of player is not facecenter, say "There's no good place to drop it." instead;
+	if beacon is in location of player, say "You don't need to tie the rope to the beacon. It might be too fragile to respond to stress." instead;
+	if rope-drop is true, say "You already dropped the rope to start.";
+	if rope-drop is false:
+		say "You drop the rope.";
+		now last-top-room is location of player;
+		now rope-drop is true;
+		the rule succeeds;
 
 check dropping:
-	say "Whatever you drop could get lost forever. Best hang on.";
+	say "Whatever you drop could get lost forever. Best hang on." instead;
 
 chapter elements
 
@@ -316,6 +343,10 @@ before going:
 					the rule succeeds;
 				say "You can't quite go that way. Maybe you should, but you can't." instead;
 		say "That would be wandering off into nothing." instead;
+
+carry out going when location of player is very center:
+	check-rope-drop beaccolor of room noun of very center;
+	continue the action;
 
 volume upper face
 
@@ -658,6 +689,25 @@ before going to very center:
 		say "You're at the right place to go in, but you don't have a way through, yet." instead;
 	if mrlp is not aligned:
 		say "You're at the right place to go in, but the way through closed." instead;
+	check-rope-drop beaccolor of mrlp;
+
+to check-rope-drop (c - a color):
+	say "You glide down a weird [c] tunnel...[paragraph break]";
+	if rope-drop is true:
+		let Q be number of entries in rope-colors;
+		if c is entry Q in rope-colors:
+			remove entry Q from rope-colors;
+		else:
+			add c to rope-colors;
+			endgame-check;
+		d "[rope-colors].";
+
+to endgame-check:
+	if number of entries in rope-colors is 6:
+		if entry 1 in rope-colors is red and entry 2 in rope-colors is orange and entry 3 in rope-colors is yellow and entry 4 in rope-colors is green and entry 5 in rope-colors is blue and entry 6 in rope-colors is purple:
+			end the story saying "You win, you made a rainbow!";
+		else:
+			say "Hmm, nothing happens.";
 
 before going in very center:
 	if noun is inside:
