@@ -26,7 +26,9 @@ That means the upnorthwest beacon should remain black. The north face must be ye
 
 That leaves the downsoutheast transponder as red.
 
-Now for the second part. You can enter at any hole where a beacon was. You need to go through all three perpendicular tunnels.
+Now for the second part. You need to DROP ROPE at the start of a tunnel on the surface. You can go from any one.
+
+You can enter at any hole where a beacon was. You need to go through all three perpendicular tunnels. But you need to go through a certain way. You may have noticed the rainbow. You can start with any tunnel, to go in the red-orange-yellow-green-blue-purple order, and you can reverse that order, but you can't go twice into any tunnel. Once you've been through all six, the game will see if you went in a rainbow-ly pattern. I hope this is not too bad. There are twelve different possibilities. Note that you can also NEVER go straight.
 
 D.D.N.N.U.S.S.E.E.N.W.W.U.U.E.
 

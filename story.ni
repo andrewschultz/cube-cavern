@@ -660,7 +660,15 @@ book very center
 
 the very center is a nonfacial room. it is below u11. it is above d11. it is west of e11. it is east of w11. it is north of s11. it is south of n11. printed name is "The Very Center".
 
-description of very center is "Here in the very center you can go [list of centexit directions] back to the surface. There's some weird gold object [object-doing][one of]. It must be what gave those weird...readings[or][stopping]."
+the tunnels are scenery in very center. understand "tunnel" as tunnel.
+
+check examining tunnels:
+	say "The tunnel[if number of aligned regions is 1]is[else]s are[end if] colored as follows:[line break]";
+	repeat with X running through regions:
+		if x is mtr, next;
+		if x is aligned, say "[indir of x]: [beaccolor of x].";
+
+description of very center is "Here in the very center you can go [list of centexit directions] back to the surface through different colored tunnels. There's some weird gold object [object-doing][one of]. It must be what gave those weird...readings[or][stopping]."
 
 the gold spherical object is scenery in very center. "It seems to be projecting a small rainbow. You know, the colors red, orange, yellow, green, blue, purple[one of]. You remember in your science history books, reading about a heretic sentenced to death for insisting that purple should be broken down into indigo and violet. Needlessly complex. Where DO some people get their ideas from?[or].[stopping]"
 
