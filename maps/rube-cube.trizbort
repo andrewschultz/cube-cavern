@@ -565,45 +565,45 @@
 			<dock index="0" id="71" port="e" />
 			<point index="1" x="-864" y="-448" />
 		</line>
-		<room id="181" name="Compass" subtitle="" x="-768" y="-544" w="64" h="64" region="NoRegion" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<line id="182" name="" description="" endText="north">
+		<room id="181" name="Compass" subtitle="" x="-736" y="-544" w="64" h="64" region="NoRegion" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<line id="182" name="" description="" midText="north">
 			<dock index="0" id="181" port="ne" />
-			<point index="1" x="-640" y="-608" />
+			<point index="1" x="-608" y="-608" />
 		</line>
-		<line id="183" name="" description="" endText="down">
+		<line id="183" name="" description="" midText="down">
 			<dock index="0" id="181" port="s" />
-			<point index="1" x="-736" y="-416" />
+			<point index="1" x="-704" y="-416" />
 		</line>
-		<line id="184" name="" description="" endText="west">
+		<line id="184" name="" description="" midText="west">
 			<dock index="0" id="181" port="w" />
 			<point index="1" x="-832" y="-512" />
 		</line>
-		<room id="185" name="The Very Center" subtitle="" x="-960" y="0" w="64" h="64" region="CENTER" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<line id="187" name="" description="" endText="n11">
-			<dock index="0" id="185" port="ne" />
-			<point index="1" x="-832" y="-64" />
-		</line>
-		<line id="189" name="" description="" endText="w11">
-			<dock index="0" id="185" port="w" />
-			<point index="1" x="-1024" y="32" />
-		</line>
-		<line id="190" name="" description="" endText="e11">
-			<dock index="0" id="185" port="e" />
-			<point index="1" x="-832" y="32" />
-		</line>
-		<line id="191" name="" description="" startText="d11">
-			<dock index="0" id="185" port="s" />
-			<point index="1" x="-928" y="128" />
-		</line>
-		<line id="186" name="" description="" endText="u11">
-			<dock index="0" id="185" port="n" />
-			<point index="1" x="-928" y="-64" />
-		</line>
-		<line id="188" name="" description="" endText="s11">
-			<dock index="0" id="185" port="sw" />
-			<point index="1" x="-1024" y="128" />
-		</line>
 		<room id="192" name="Map for The Cube in the Sky" subtitle="NE/SW is north/south in-game, E/W is e/w, N/S is up/down" x="-1440" y="-736" w="1152" h="64" region="NoRegion" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="yes" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="185" name="The Very Center" subtitle="" x="-992" y="32" w="64" h="64" region="CENTER" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<line id="186" name="" description="" midText="n11">
+			<dock index="0" id="185" port="ne" />
+			<point index="1" x="-864" y="-32" />
+		</line>
+		<line id="187" name="" description="" midText="w11">
+			<dock index="0" id="185" port="w" />
+			<point index="1" x="-1088" y="64" />
+		</line>
+		<line id="188" name="" description="" midText="e11">
+			<dock index="0" id="185" port="e" />
+			<point index="1" x="-832" y="64" />
+		</line>
+		<line id="189" name="" description="" midText="d11">
+			<dock index="0" id="185" port="s" />
+			<point index="1" x="-960" y="192" />
+		</line>
+		<line id="190" name="" description="" midText="u11">
+			<dock index="0" id="185" port="n" />
+			<point index="1" x="-960" y="-64" />
+		</line>
+		<line id="191" name="" description="" midText="s11">
+			<point index="0" x="-1056" y="160" />
+			<point index="1" x="-992" y="96" />
+		</line>
 	</map>
 	<settings>
 		<colors>
@@ -650,7 +650,7 @@
 			<objectListOffset>4</objectListOffset>
 			<connectionStalkLength>32</connectionStalkLength>
 			<preferredDistanceBetweenRooms>64</preferredDistanceBetweenRooms>
-			<defaultRoomName>Holder Place</defaultRoomName>
+			<defaultRoomName>Cube square</defaultRoomName>
 		</rooms>
 		<ui>
 			<handleSize>12</handleSize>

@@ -19,7 +19,7 @@
 			<dock index="1" id="4" port="sw" />
 		</line>
 		<room id="6" name="U face, S" subtitle="" x="-576" y="-352" w="64" h="64" region="up" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="7" name="U face, Center" subtitle="" x="-448" y="-480" w="64" h="64" region="up" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="7" name="U face, C" subtitle="" x="-448" y="-480" w="64" h="64" region="up" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="8" name="U face, N" subtitle="" x="-320" y="-608" w="64" h="64" region="up" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<line id="9" name="" description="">
 			<dock index="0" id="6" port="ne" />
@@ -66,7 +66,7 @@
 		</line>
 		<room id="22" name="D face, SW" subtitle="" x="-1536" y="64" w="64" h="64" region="down" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="24" name="D face, NW" subtitle="" x="-1280" y="-192" w="64" h="64" region="down" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="26" name="D face, Center" subtitle="" x="-1280" y="-64" w="64" h="64" region="down" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="26" name="D face, C" subtitle="" x="-1280" y="-64" w="64" h="64" region="down" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="27" name="D face, N" subtitle="" x="-1152" y="-192" w="64" h="64" region="down" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="28" name="D face, SE" subtitle="" x="-1280" y="64" w="64" h="64" region="down" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="29" name="D face, NE" subtitle="" x="-1024" y="-192" w="64" h="64" region="down" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
@@ -142,7 +142,7 @@
 			<dock index="0" id="44" port="ne" />
 			<dock index="1" id="50" port="sw" />
 		</line>
-		<room id="52" name="W face, Center" subtitle="" x="-1504" y="-288" w="64" h="64" region="west" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="52" name="W face, C" subtitle="" x="-1504" y="-288" w="64" h="64" region="west" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<line id="53" name="" description="">
 			<dock index="0" id="44" port="n" />
 			<dock index="1" id="52" port="s" />
@@ -177,7 +177,7 @@
 			<dock index="1" id="67" port="w" />
 		</line>
 		<room id="69" name="N face, W" subtitle="" x="-1216" y="-480" w="64" h="64" region="north" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="70" name="N face, Center" subtitle="" x="-1088" y="-480" w="64" h="64" region="north" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="70" name="N face, C" subtitle="" x="-1088" y="-480" w="64" h="64" region="north" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="72" name="N face, UW" subtitle="" x="-1216" y="-608" w="64" h="64" region="north" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="73" name="N face, U" subtitle="" x="-1088" y="-608" w="64" h="64" region="north" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="74" name="N face, UE" subtitle="" x="-960" y="-608" w="64" h="64" region="north" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
@@ -210,7 +210,7 @@
 		<room id="87" name="E face, W" subtitle="" x="-352" y="-128" w="64" h="64" region="east" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="88" name="E face, UW" subtitle="" x="-352" y="-256" w="64" h="64" region="east" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="89" name="E face, DE" subtitle="" x="-96" y="-256" w="64" h="64" region="east" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="90" name="E face, Center" subtitle="" x="-224" y="-256" w="64" h="64" region="east" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="90" name="E face, C" subtitle="" x="-224" y="-256" w="64" h="64" region="east" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="91" name="E face, U" subtitle="" x="-224" y="-384" w="64" h="64" region="east" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="92" name="E face, E" subtitle="" x="-96" y="-384" w="64" h="64" region="east" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="93" name="E face, UE" subtitle="" x="-96" y="-512" w="64" h="64" region="east" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
@@ -258,7 +258,7 @@
 		<room id="104" name="S face, D" subtitle="" x="-640" y="64" w="64" h="64" region="south" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="105" name="S face, DE" subtitle="" x="-512" y="64" w="64" h="64" region="south" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="106" name="S face, W" subtitle="" x="-768" y="-64" w="64" h="64" region="south" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="107" name="S face, Center" subtitle="" x="-640" y="-64" w="64" h="64" region="south" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="107" name="S face, C" subtitle="" x="-640" y="-64" w="64" h="64" region="south" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="108" name="S face, E" subtitle="" x="-512" y="-64" w="64" h="64" region="south" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="109" name="S face, UW" subtitle="" x="-768" y="-192" w="64" h="64" region="south" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="110" name="S face, U" subtitle="" x="-640" y="-192" w="64" h="64" region="south" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
@@ -319,27 +319,27 @@
 			<dock index="0" id="92" port="s" />
 			<dock index="1" id="89" port="n" />
 		</line>
-		<line id="126" name="" description="" startText="d20">
+		<line id="126" name="" description="" startText="D/SE">
 			<dock index="0" id="105" port="s" />
 			<point index="1" x="-480" y="160" />
 		</line>
-		<line id="127" name="" description="" startText="d10">
+		<line id="127" name="" description="" startText="D/S">
 			<dock index="0" id="104" port="s" />
 			<point index="1" x="-608" y="160" />
 		</line>
-		<line id="128" name="" description="" startText="d00">
+		<line id="128" name="" description="" startText="D/SW">
 			<dock index="0" id="84" port="s" />
 			<dock index="1" id="84" port="s" />
 		</line>
-		<line id="129" name="" description="" startText="w00">
+		<line id="129" name="" description="" startText="W/DW">
 			<dock index="0" id="84" port="w" />
 			<point index="1" x="-800" y="96" />
 		</line>
-		<line id="130" name="" description="" startText="w01">
+		<line id="130" name="" description="" startText="W/W">
 			<dock index="0" id="106" port="w" />
 			<point index="1" x="-800" y="-32" />
 		</line>
-		<line id="131" name="" description="" startText="w02">
+		<line id="131" name="" description="" startText="W/UW">
 			<dock index="0" id="109" port="w" />
 			<point index="1" x="-800" y="-160" />
 		</line>
@@ -432,119 +432,119 @@
 			<dock index="0" id="29" port="ne" />
 			<dock index="1" id="67" port="s" />
 		</line>
-		<line id="151" name="" description="" startText="s01">
+		<line id="151" name="" description="" startText="S/W">
 			<dock index="0" id="46" port="sw" />
 			<dock index="1" id="46" port="sw" />
 		</line>
-		<line id="152" name="" description="" startText="s00">
+		<line id="152" name="" description="" startText="S/DW">
 			<dock index="0" id="43" port="sw" />
 			<dock index="1" id="43" port="sw" />
 		</line>
-		<line id="153" name="" description="" startText="s02">
+		<line id="153" name="" description="" startText="S/UW">
 			<dock index="0" id="48" port="sw" />
 			<dock index="1" id="48" port="sw" />
 		</line>
-		<line id="154" name="" description="" startText="u00">
+		<line id="154" name="" description="" startText="U/SW">
 			<dock index="0" id="48" port="n" />
 			<point index="1" x="-1600" y="-320" />
 		</line>
-		<line id="155" name="" description="" startText="u01">
+		<line id="155" name="" description="" startText="U/W">
 			<dock index="0" id="54" port="n" />
 			<point index="1" x="-1472" y="-448" />
 		</line>
-		<line id="156" name="" description="" startText="u02">
+		<line id="156" name="" description="" startText="U/NW">
 			<dock index="0" id="60" port="n" />
 			<point index="1" x="-1344" y="-576" />
 		</line>
-		<line id="157" name="" description="" startText="u02">
+		<line id="157" name="" description="" startText="U/NW">
 			<dock index="0" id="72" port="n" />
 			<point index="1" x="-1184" y="-640" />
 		</line>
-		<line id="158" name="" description="" startText="u12">
+		<line id="158" name="" description="" startText="U/N">
 			<dock index="0" id="73" port="n" />
 			<point index="1" x="-1056" y="-640" />
 		</line>
-		<line id="159" name="" description="" startText="u22">
+		<line id="159" name="" description="" startText="U/NE">
 			<dock index="0" id="74" port="n" />
 			<dock index="1" id="74" port="n" />
 		</line>
-		<line id="160" name="" description="" startText="e22">
+		<line id="160" name="" description="" startText="E/UE">
 			<dock index="0" id="74" port="e" />
 			<point index="1" x="-864" y="-576" />
 		</line>
-		<line id="162" name="" description="" startText="e20">
+		<line id="162" name="" description="" startText="E/DE">
 			<dock index="0" id="67" port="e" />
 			<point index="1" x="-864" y="-320" />
 		</line>
-		<line id="163" name="" description="" startText="e20">
+		<line id="163" name="" description="" startText="E/DE">
 			<dock index="0" id="29" port="e" />
 			<point index="1" x="-928" y="-160" />
 		</line>
-		<line id="164" name="" description="" startText="e10">
+		<line id="164" name="" description="" startText="E/D">
 			<dock index="0" id="30" port="e" />
 			<point index="1" x="-1056" y="-32" />
 		</line>
-		<line id="165" name="" description="" startText="e00">
+		<line id="165" name="" description="" startText="E/DW">
 			<dock index="0" id="28" port="e" />
 			<point index="1" x="-1184" y="96" />
 		</line>
-		<line id="166" name="" description="" startText="s20">
+		<line id="166" name="" description="" startText="S/DE">
 			<dock index="0" id="28" port="sw" />
 			<point index="1" x="-1312" y="160" />
 		</line>
-		<line id="167" name="" description="" startText="s10">
+		<line id="167" name="" description="" startText="S/D">
 			<dock index="0" id="25" port="sw" />
 			<dock index="1" id="25" port="sw" />
 		</line>
-		<line id="168" name="" description="" startText="s00">
+		<line id="168" name="" description="" startText="S/DW">
 			<dock index="0" id="22" port="sw" />
 			<dock index="1" id="22" port="sw" />
 		</line>
-		<line id="169" name="" description="" startText="d20">
+		<line id="169" name="" description="" startText="D/SE">
 			<dock index="0" id="85" port="s" />
 			<point index="1" x="-320" y="96" />
 		</line>
-		<line id="170" name="" description="" startText="d21">
+		<line id="170" name="" description="" startText="D/E">
 			<dock index="0" id="86" port="s" />
 			<point index="1" x="-192" y="-32" />
 		</line>
-		<line id="171" name="" description="" startText="d22">
+		<line id="171" name="" description="" startText="D/NE">
 			<dock index="0" id="89" port="s" />
 			<point index="1" x="-64" y="-160" />
 		</line>
-		<line id="172" name="" description="" startText="n21">
+		<line id="172" name="" description="" startText="N/E">
 			<dock index="0" id="92" port="ne" />
 			<dock index="1" id="92" port="ne" />
 		</line>
-		<line id="173" name="" description="" startText="n22">
+		<line id="173" name="" description="" startText="N/UE">
 			<dock index="0" id="93" port="ne" />
 			<dock index="1" id="93" port="ne" />
 		</line>
-		<line id="174" name="" description="" startText="n20">
+		<line id="174" name="" description="" startText="N/DE">
 			<dock index="0" id="89" port="ne" />
 			<dock index="1" id="89" port="ne" />
 		</line>
-		<line id="175" name="" description="" startText="n22">
+		<line id="175" name="" description="" startText="N/UE">
 			<dock index="0" id="13" port="ne" />
 			<dock index="1" id="13" port="ne" />
 		</line>
-		<line id="176" name="" description="" startText="n12">
+		<line id="176" name="" description="" startText="N/U">
 			<dock index="0" id="8" port="ne" />
 			<dock index="1" id="8" port="ne" />
 		</line>
-		<line id="177" name="" description="" startText="n02">
+		<line id="177" name="" description="" startText="N/UW">
 			<dock index="0" id="4" port="ne" />
 			<dock index="1" id="4" port="ne" />
 		</line>
-		<line id="178" name="" description="" startText="w22">
+		<line id="178" name="" description="" startText="W/UE">
 			<dock index="0" id="4" port="w" />
 			<point index="1" x="-480" y="-576" />
 		</line>
-		<line id="179" name="" description="" startText="w12">
+		<line id="179" name="" description="" startText="W/U">
 			<dock index="0" id="2" port="w" />
 			<point index="1" x="-608" y="-448" />
 		</line>
-		<line id="180" name="" description="" startText="w02">
+		<line id="180" name="" description="" startText="W/UW">
 			<dock index="0" id="1" port="w" />
 			<point index="1" x="-736" y="-320" />
 		</line>
@@ -561,47 +561,48 @@
 			<dock index="0" id="71" port="n" />
 			<dock index="1" id="74" port="s" />
 		</line>
-		<line id="161" name="" description="" startText="e21">
+		<line id="161" name="" description="" startText="E/E">
 			<dock index="0" id="71" port="e" />
 			<point index="1" x="-864" y="-448" />
 		</line>
-		<room id="181" name="Compass" subtitle="" x="-768" y="-544" w="64" h="64" region="NoRegion" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<line id="182" name="" description="" endText="north">
+		<room id="181" name="Compass" subtitle="" x="-736" y="-544" w="64" h="64" region="NoRegion" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<line id="182" name="" description="" midText="north">
 			<dock index="0" id="181" port="ne" />
-			<point index="1" x="-640" y="-608" />
+			<point index="1" x="-608" y="-608" />
 		</line>
-		<line id="183" name="" description="" endText="down">
+		<line id="183" name="" description="" midText="down">
 			<dock index="0" id="181" port="s" />
-			<point index="1" x="-736" y="-416" />
+			<point index="1" x="-704" y="-416" />
 		</line>
-		<line id="184" name="" description="" endText="west">
+		<line id="184" name="" description="" midText="west">
 			<dock index="0" id="181" port="w" />
 			<point index="1" x="-832" y="-512" />
 		</line>
-		<room id="185" name="The Very Center" subtitle="" x="-960" y="0" w="64" h="64" region="CENTER" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<line id="187" name="" description="" endText="n11">
+		<room id="192" name="Map for The Cube in the Sky" subtitle="NE/SW is north/south in-game, E/W is e/w, N/S is up/down" x="-1440" y="-736" w="1152" h="64" region="NoRegion" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="yes" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="185" name="The Very Center" subtitle="" x="-992" y="32" w="64" h="64" region="CENTER" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<line id="186" name="" description="" midText="N/C">
 			<dock index="0" id="185" port="ne" />
-			<point index="1" x="-832" y="-64" />
+			<point index="1" x="-864" y="-32" />
 		</line>
-		<line id="189" name="" description="" endText="w11">
+		<line id="187" name="" description="" midText="W/C">
 			<dock index="0" id="185" port="w" />
-			<point index="1" x="-1024" y="32" />
+			<point index="1" x="-1088" y="64" />
 		</line>
-		<line id="190" name="" description="" endText="e11">
+		<line id="188" name="" description="" midText="E/C">
 			<dock index="0" id="185" port="e" />
-			<point index="1" x="-832" y="32" />
+			<point index="1" x="-832" y="64" />
 		</line>
-		<line id="191" name="" description="" startText="d11">
+		<line id="189" name="" description="" midText="D/C">
 			<dock index="0" id="185" port="s" />
-			<point index="1" x="-928" y="128" />
+			<point index="1" x="-960" y="192" />
 		</line>
-		<line id="186" name="" description="" endText="u11">
+		<line id="190" name="" description="" midText="U/C">
 			<dock index="0" id="185" port="n" />
-			<point index="1" x="-928" y="-64" />
+			<point index="1" x="-960" y="-64" />
 		</line>
-		<line id="188" name="" description="" endText="s11">
-			<dock index="0" id="185" port="sw" />
-			<point index="1" x="-1024" y="128" />
+		<line id="191" name="" description="" midText="S/C">
+			<point index="0" x="-1056" y="160" />
+			<point index="1" x="-992" y="96" />
 		</line>
 	</map>
 	<settings>
@@ -649,7 +650,7 @@
 			<objectListOffset>4</objectListOffset>
 			<connectionStalkLength>32</connectionStalkLength>
 			<preferredDistanceBetweenRooms>64</preferredDistanceBetweenRooms>
-			<defaultRoomName>Holder Place</defaultRoomName>
+			<defaultRoomName>Cube square</defaultRoomName>
 		</rooms>
 		<ui>
 			<handleSize>12</handleSize>
