@@ -603,6 +603,7 @@
 			<dock index="0" id="185" port="sw" />
 			<point index="1" x="-1024" y="128" />
 		</line>
+		<room id="192" name="Map for The Cube in the Sky" subtitle="NE/SW is north/south in-game, E/W is e/w, N/S is up/down" x="-1440" y="-736" w="1152" h="64" region="NoRegion" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="yes" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 	</map>
 	<settings>
 		<colors>
