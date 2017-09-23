@@ -19,6 +19,15 @@ section debug to start - not for release
 when play begins:
 	now debug-state is true;
 
+volume verb simplification arglebargle
+
+understand the command "kiss" as something new.
+understand the command "wave" as something new.
+understand the command "push" as something new.
+understand the command "pull" as something new.
+understand the command "read" as something new.
+understand the command "sit" as something new.
+
 volume region and room definitions
 
 upper face is a region.
@@ -1238,7 +1247,7 @@ volume debug tests and such - not for release
 
 [uncomment below to unlock weird tests]
 
-include Rube Cube Testing by Andrew Schultz.
+[include Cube Game Testing by Andrew Schultz.]
 
 [more standard inform stuff below]
 
@@ -1251,45 +1260,3 @@ understand "w00" as w00.
 understand "e00" as e00.
 understand "u00" as u00.
 
-book tests
-
-chapter walkthrough
-
-test fix with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/d/s/s/w/w/summon air/touch/bcsol"
-
-test cross with "test fix/ne/drop rope/w/w/u/u/u".
-test cross2 with "test fix/ne/drop rope/w/w/d".
-
-[WE = red green NS = purple yellow UD = orange blue]
-test fbluef with "test fix/ne/drop rope/u/n/w/w/s/e/u/s/s/d/n/e/d/d/w".
-test fblueb with "test fix/ne/drop rope/u/e/s/s/w/n/u/w/w/d/e/n/d/d/s".
-
-test forangef with "test fix/ne/u/u/drop rope/d/s/e/e/n/w/d/n/n/u/s/w".
-test forangeb with "test fix/ne/u/u/drop rope/d/w/n/n/e/s/d/e/e/u/w/s".
-
-test fredf with "test fix/nw/u/drop rope/e/u/s/s/d/n/e/d/d/w/u/n".
-test fredb with "test fix/nw/u/drop rope/e/n/d/d/s/u/e/s/s/w/n/u".
-
-test fgreenf with "test fix/ne/u/e/drop rope/w/d/n/n/u/s/w/u/u/e/d/s".
-test fgreenb with "test fix/ne/u/e/drop rope/w/s/u/u/n/d/w/n/n/e/s/d".
-
-test fyelf with "test fix/se/u/drop rope/n/e/d/d/w/u/n/w/w/s/e/u/s/s/d".
-test fyelb with "test fix/se/u/drop rope/n/u/w/w/d/e/n/d/d/s/u/e/s/s/w".
-
-test fpurpf with "test fix/ne/u/n/drop rope/s/w/u/u/e/d/s/e/e/n/w/d/n/n/u".
-test fpurpb with "test fix/ne/u/n/drop rope/s/d/e/e/u/w/s/u/u/n/d/w/n/n/e".
-
-test tun with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/nw/d"
-
-chapter map testing
-
-test nloop with "n/n/d/d/d/s/s/s/u/u/u/n".
-test sloop with "s/s/d/d/d/n/n/n/u/u/u/s".
-
-test wloop with "w/w/d/d/d/e/e/e/u/u/u/w".
-test eloop with "e/e/d/d/d/w/w/w/u/u/u/e".
-
-test w2loop with "w/w/n/n/n/e/e/e/s/s/s/w".
-test e2loop with "e/e/n/n/n/w/w/w/s/s/s/e".
-
-test all-loop with "test nloop/test sloop/w/test nloop/test sloop/e/e/test nloop/test sloop/w/test wloop/test eloop/n/test wloop/test eloop/s/s/test wloop/test eloop/s/test w2loop/test e2loop/s/test w2loop/test e2loop/s/test w2loop/test e2loop"
