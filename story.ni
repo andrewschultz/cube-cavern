@@ -1058,7 +1058,7 @@ to say room-desc:
 volume beta testing - not for release
 
 when play begins:
-	say "Thanks for running the debug version! Use [b]BCSOL[r] to see how to solve this game. There are 48 randomly generated possible solutions."
+	say "Thanks for running the debug version! Use [b]BCSOL[r] to see how to solve the beacon part of the game, or [b]HALP[r] to see how to solve the tunnel part. There are 48 randomly generated possible solutions for the beacons, and you can solve the tunnels 12 different ways."
 
 chapter bcsoling
 
@@ -1084,6 +1084,38 @@ carry out bcsoling:
 			next;
 		say "[x]: ray color is [raycolor of x], beacon color is [beaccolor of x].";
 	the rule succeeds;
+
+chapter halping
+
+halping is an action applying to nothing.
+
+understand the command "halp" as something new.
+
+understand "halp" as halping.
+
+carry out halping:
+	say "This is one way to solve the tunnels, starting from the top center:[paragraph break]";
+	say "D ([beaccolor of upper face]). ";
+	if beaccolor of western face colorborders beaccolor of upper face:
+		say "W. ([beaccolor of western face]). ";
+		if beaccolor of northern face colorborders beaccolor of western face:
+			say "N. N. E. S([beaccolor of northern face]). D([beaccolor of bottom face]). E. E. N. W([beaccolor of eastern face]). S([beaccolor of southern face]). U. U. N. ";
+		else:
+			say "S. S. E. N([beaccolor of southern face]). D([beaccolor of bottom face]). E. E. S. W([beaccolor of eastern face]). N([beaccolor of northern face]). U. U. S. ";
+	else:
+		say "E. ([beaccolor of eastern face]). ";
+		if beaccolor of northern face colorborders beaccolor of eastern face:
+			say "N. N. W. S([beaccolor of northern face]). D([beaccolor of bottom face]). W. W. N. E([beaccolor of western face]). S([beaccolor of southern face]). U. U. N. ";
+		else:
+			say "S. S. W. N([beaccolor of southern face]). D([beaccolor of bottom face]). W. W. S. E([beaccolor of western face]). N([beaccolor of northern face]). U. U. S. ";
+	say "Then WAVE.";
+	the rule succeeds;
+
+[to say tundir of (d - a direction):
+	say "[abbrev of d]([beaccolor of random region with indir of d])"
+
+to say abbrev of (d - a direction):
+	say "[if d is north]N[else if d is south]S[else if d is east]E[else if d is west]W[else if d is up]U[else if d is down]D[else]?[end if]"]
 
 chapter fixsoling
 
