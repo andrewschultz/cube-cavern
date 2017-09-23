@@ -1,4 +1,4 @@
-"The Cube in the Sky" by Andrew Schultz
+"The Cube in the Cavern" by Andrew Schultz
 
 the story headline is "A 3-dimensional text adventure. Well, the map is"
 
@@ -100,13 +100,13 @@ to decide which color is the mix of (a - a color) and (b - a color):
 volume when play begins
 
 when play begins:
-	say "Science is solved! Well, except for the scratchwork. Everyone knows how the four elements work together, well, mostly--but there's got to be only so much more to calculate. Eventually, we'll learn why people don't fall through the flat earth, or why it isn't in free fall if there's gravity, but...all that's just numbers, right? We'll work it out one day![paragraph break]";
+	say "Science has been solved! Well, except for the scratchwork. And the stuff the numerologists proved could never be done. Everyone knows how the four elements work together. Okay, mostly. And astrology is more accurate than it's ever been. Except when people don't REALLY follow its advice. Anyway, there's got to be only so much more to calculate. Eventually, we'll learn why people don't fall through the flat earth, or why it isn't in free fall if there's gravity, but...all that's just numbers, right? We'll work it out one day! We just don't have enough of those punch-card processors yet!";
 	wfak-d;
-	say "Then, something weird happens the day after you get your Psychokinetics Ph. D. Everyone knew you would--you're one of the few people mood rings work on, and that shows extraordinary intelligence and sensitivity. And when a mysterious cube appears in the sky, people wonder what it's there for. Perhaps it answers questions nobody's gotten around to asking yet! Perhaps there's even some psychology and philosophy!";
+	say "[line break]As a hotshot double Ph. D. in Psychokinetics and Psychohistory, you weren't surprised you found an important new ancient-looking cave to excavate and explore. You're not just book smart--you're one of the few people mood rings work on, which shows extraordinary intelligence and sensitivity. Why, you eschewed a lucrative career as a psychic for, just, well...knowledge. And when your dowsing instruments detected something odd in a cavern, you were curious indeed! A cube lay beyond a river, and you're lucky you had your assistant to pull you back, because somehow, the center attracted you--even when you were on the bottom! There must have been some powerful life force or something in the center. You fell so hard pulling away, you had to use your entire supply of healing crystals to get back to 100%.";
 	wfak-d;
-	say "Scientists shoot probes at the cube. For some weird reason, nothing falls off the bottom. Truly, it holds great secrets. The government holds a lottery for the first scientist to explore the cube a few days later.";
+	say "[line break]But you planned ahead! In your office full of feng shui, you planned for months. Along with your mood ring, you brought some rope, read up on levitation (for when you need to escape the cube again) and consulted a medium and, of course, several of the top magnet therapists. And you discuss how hollow the area beneath the flat earth might be, but science is no good without data, so down you go.";
 	wfak-d;
-	say "THE WINNER IS YOU! You're equipped with a phlogiston tank, your trusty mood ring (you can't do without it) and a coil of sturdy exploring rope. It's time to explore!";
+	say "[line break]But enough theorizing! You go to face the cube. You probably, like, need to get in harmony and stuff, or balance stuff just right, and you're sure it'll show you its secrets or whatever.";
 	wfak-d;
 	sort init-list in random order;
 	if a random chance of 1 in 2 succeeds: [goodness this looks long and drawn out but the alternative is to get the final solution and then to derive what you need to do, which is fraught with error]
@@ -139,7 +139,9 @@ to wfak-d:
 
 volume the player
 
-the player wears the mood ring. description of mood ring is "Your mood ring is currently [ring-color]."
+the player wears the mood ring. description of mood ring is "The phlogiston in your mood ring is currently colored [ring-color]."
+
+understand "phlogiston" as mood ring.
 
 check taking off the mood ring:
 	say "No, it's an important scientific thingamabob that will help you with your mission." instead;
@@ -399,13 +401,21 @@ before going:
 
 after going:
 	if init-drop-room is location of player and tunnel-looped is true:
-		end the game saying "YOU WIN";
+		say "You see where you planted the rope, originally. Power fluxes through the rope as you connect it in a loop. You watch as the cube breaks apart, and the gold sphere pops out and rolls around. You begin to fall, but remembering your levitation lessons, you slow the acceleration...";
+		wfak-d;
+		say "[line break]The gold sphere cracks open. You see visions...of not five, not six, but OVER ONE HUNDRED ELEMENTS. Of light having speed, of mathematical theorems that prove you can't know anything. You see a vision of circular worlds that pull people to their centers, just like the cube, but THERE IS NOTHING SPECIAL IN THERE. There are visions of machines that not just levitate, but fly to the stars, which you thought was proven illegal.";
+		wfak-d;
+		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a  hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
+		wfak-d;
+		say "[line break]But you never talk about what you really saw. You mention you had a vision of the cosmos, and so forth, and you wish you could interpret it, because you suspect you saw what you wanted to see about loving other people being the most important thing, and how the journey is its own reward. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' And you think back to the cube.";
+		end the game saying "YOU, UM, WIN";
 		the rule succeeds;
 	continue the action;
 
 carry out going when location of player is very center:
 	check-rope-tunnel beaccolor of map region of room noun of very center;
 	if continue-tunnel is false, the rule succeeds;
+	now last-rope-region is map region of room noun of very center;
 	continue the action;
 
 volume upper face
@@ -1238,8 +1248,8 @@ test cross with "test fix/ne/drop rope/w/w/u/u/u".
 test cross2 with "test fix/ne/drop rope/w/w/d".
 
 [WE = red green NS = purple yellow UD = orange blue]
-test fbluef with "test fix/ne/drop rope/u/n/w/w/s/e/u/s/s/d/n/e".
-test fblueb with "test fix/ne/drop rope/u/e/s/s/w/n/u/w/w/d/e/n".
+test fbluef with "test fix/ne/drop rope/u/n/w/w/s/e/u/s/s/d/n/e/d/d/w".
+test fblueb with "test fix/ne/drop rope/u/e/s/s/w/n/u/w/w/d/e/n/d/d/s".
 
 test forangef with "test fix/ne/u/u/drop rope/d/s/e/e/n/w/d/n/n/u/s/w".
 test forangeb with "test fix/ne/u/u/drop rope/d/w/n/n/e/s/d/e/e/u/w/s".
