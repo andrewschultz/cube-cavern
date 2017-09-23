@@ -173,13 +173,11 @@ every turn when ring-color is not black:
 		say "The phlogiston in your mood ring changes back from [ring-color] to black.";
 		now ring-color is black;
 
-the player carries the coil of wire rope. "It's rope you will need to pull the cube, or whatever's in it, down to the surfae. You can DROP to tie it at a certain place, then TIE it."
+the player carries the coil of wire rope. "It's rope you will need to pull the cube, or whatever's in it, down to the surface. You can DROP to tie it at a certain place, then TIE it."
 
 after printing the name of wire rope when taking inventory:
 	if rope-drop is true, say " (anchored at [init-drop-room])";
 	continue the action;
-
-rope-locations is a list of rooms that varies. rope-locations is {}.
 
 rope-drop is a truth state that varies.
 
@@ -197,7 +195,7 @@ check dropping wire rope:
 	if rope-drop is true, say "You already dropped the rope to start." instead;
 	now last-rope-region is mrlp;
 	now init-drop-room is location of player;
-	say "You drop the rope and anchor it.";
+	say "You drop the rope and anchor it. (NOTE: if you want to undo things later, you can RESET to before you dropped the rope).";
 	now last-top-room is location of player;
 	now rope-drop is true;
 	the rule succeeds;
@@ -1087,6 +1085,23 @@ understand "xyzzy" as xyzzying.
 
 carry out xyzzying:
 	say "You hone in on your training for three-dimensional reasoning from several different directions. The result is a slight headache. But it's a MOTIVATING headache!";
+	the rule succeeds;
+
+chapter reseting
+
+reseting is an action out of world.
+
+understand the command "reset" as something new.
+
+understand "reset" as reseting.
+
+carry out reseting:
+	if rope-drop is false, say "You can't reset before dropping the rope." instead;
+	if tunnel-looped is true, say "No, you're so close to the end!" instead;
+	say "Resetting to where you dropped the rope..." instead;
+	now rope-drop is false;
+	now rope-colors is {};
+	move player to init-drop-room;
 	the rule succeeds;
 
 volume parsing
