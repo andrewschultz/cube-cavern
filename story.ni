@@ -1,4 +1,4 @@
-"The Rube on the Cube" by Andrew Schultz
+"The Cube in the Sky" by Andrew Schultz
 
 the story headline is "A 3-dimensional text adventure. Well, the map is"
 
@@ -96,7 +96,14 @@ to decide which color is the mix of (a - a color) and (b - a color):
 volume when play begins
 
 when play begins:
-	say "It's 2020, and despite all the technological progress--jetpacks, air cars, laser cannons, and so forth--even a time machine prototype--you always felt there was something more. Something out in space. So you joined up with the space program, and you were sent on a mission to an oddly cubic asteroid. The psycho-sensors attached to your ship indicate it may be an even greater well of knowledge and new isotopes than previously thought. Nothing seems to be on the surface, but maybe you can dig into the center...";
+	say "Science is solved! Well, except for the scratchwork. Everyone knows how the four elements work together, well, mostly--but there's got to be only so much more to calculate. Eventually, we'll learn why people don't fall through the flat earth, or why it isn't in free fall if there's gravity, but...all that's just numbers, right? We'll work it out one day![paragraph break]";
+	wfak-d;
+	say "Then, something weird happens the day after you get your Psychokinetics Ph. D. Everyone knew you would--you're one of the few people mood rings work on, and that shows extraordinary intelligence and sensitivity. And when a mysterious cube appears in the sky, people wonder what it's there for. Perhaps it answers questions nobody's gotten around to asking yet! Perhaps there's even some psychology and philosophy!";
+	wfak-d;
+	say "Scientists shoot probes at the cube. For some weird reason, nothing falls off the bottom. Truly, it holds great secrets. The government holds a lottery for the first scientist to explore the cube a few days later.";
+	wfak-d;
+	say "THE WINNER IS YOU! You're equipped with a phlogiston tank, your trusty mood ring (you can't do without it) and a coil of sturdy exploring rope. It's time to explore!";
+	wfak-d;
 	sort init-list in random order;
 	if a random chance of 1 in 2 succeeds: [goodness this looks long and drawn out but the alternative is to get the final solution and then to derive what you need to do, which is fraught with error]
 		now rightcolor of northupwest is entry 1 of init-list;
@@ -120,7 +127,6 @@ when play begins:
 		now beaccolor of eastern face is mix of rightcolor of northupeast and rightcolor of southdowneast;
 		now beaccolor of northern face is mix of rightcolor of northdownwest and rightcolor of northupeast;
 		now beaccolor of southern face is mix of rightcolor of southdowneast and rightcolor of southupwest;
-	wfak-d;
 
 init-list is a list of colors variable. init-list is { white, red, yellow, blue }.
 
@@ -158,16 +164,18 @@ last-top-room is a room that varies.
 
 does the player mean dropping the wire rope when location of player is facecenter and mrlp is aligned: it is very likely.
 
+init-drop-room is a room that varies.
+
 check dropping wire rope:
 	if location of player is not facecenter, say "There's no good place to drop it." instead;
 	if beacon is in location of player, say "You don't need to tie the rope to the beacon. It might be too fragile to respond to stress." instead;
 	if rope-drop is true, say "You already dropped the rope to start." instead;
 	now last-rope-region is mrlp;
-	if rope-drop is false:
-		say "You drop the rope and anchor it.";
-		now last-top-room is location of player;
-		now rope-drop is true;
-		the rule succeeds;
+	now init-drop-room is location of player;
+	say "You drop the rope and anchor it.";
+	now last-top-room is location of player;
+	now rope-drop is true;
+	the rule succeeds;
 
 check dropping:
 	say "Whatever you drop could get lost forever. Best hang on." instead;
@@ -333,6 +341,8 @@ before going:
 		say "You're not at the center, so you wouldn't really be going [indir of mrlp][if number of ever-aligned regions is 0], and you haven't found a way, yet, anyway[end if]." instead;
 	if location of player is facecenter:
 		if noun is indir of mrlp:
+			if tunnel-looped is true:
+				say "No, you want to connect the rope all the way through." instead;
 			if beacon is visible:
 				say "You may want to go that way to get to the center of the cube, but you can't, now." instead;
 			continue the action;
@@ -368,7 +378,9 @@ before going:
 		say "You twist over the side of the cube.[line break]";
 
 after going:
-	d "[mrlp] vs [prev-reg].";
+	if init-drop-room is location of player and tunnel-looped is true:
+		end the game saying "YOU WIN";
+		the rule succeeds;
 	continue the action;
 
 carry out going when location of player is very center:
@@ -755,12 +767,15 @@ to check-rope-tunnel (c - a color):
 		endgame-check;
 		d "[rope-colors].";
 
+tunnel-looped is a truth state that varies.
+
 to endgame-check:
 	if number of entries in rope-colors is 6:
 		repeat with Q running from 1 to 5:
 			unless entry Q in rope-colors colorborders entry (Q + 1) in rope-colors:
 				continue the action;
-		end the game saying "YOU WIN!";
+		now tunnel-looped is true;
+		say "Your rope shimmers in your hand. Surely there's just one more step--to go back to where you entered the first tunnel and connect the rope."
 
 
 before going in very center:
