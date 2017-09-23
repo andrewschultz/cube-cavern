@@ -27,6 +27,51 @@ understand the command "push" as something new.
 understand the command "pull" as something new.
 understand the command "read" as something new.
 understand the command "sit" as something new.
+[enter/exit??]
+understand the command "sorry" as something new.
+understand the command "search" as something new.
+understand the command "set" as something new.
+understand the command "burn" as something new.
+[listen??]
+understand the command "buy" as something new.
+[switch beacon??]
+understand the command "turn" as something new.
+understand the command "cut" as something new.
+understand the command "no" as something new.
+understand the command "yes" as something new.
+understand the command "y" as something new.
+[climb beacon??]
+Understand the command "scale" as something new.
+Understand the command "purchase" as something new.
+Understand the command "slice" as something new.
+Understand the command "prune" as something new.
+Understand the command "chop" as something new.
+Understand the command "cut" as something new.
+Understand the command "swallow" as something new.
+Understand the command "sip" as something new.
+Understand the command "drink" as something new.
+Understand the command "squash" as something new.
+Understand the command "squeeze" as something new.
+
+Understand the command "carry" as something new.
+Understand the command "hold" as something new.
+Understand the command "throw" as something new.
+Understand the command "shed" as something new.
+Understand the command "remove" as something new.
+Understand the command "stand" as something new.
+Understand the command "close" as something new.
+Understand the command "open" as something new.
+Understand the command "eat" as something new.
+Understand the command "answer" as something new.
+Understand the command "say" as something new.
+Understand the command "shout" as something new.
+Understand the command "speak" as something new.
+Understand the command "tell" as something new.
+Understand the command "ask" as something new.
+
+understand the command "unlock" as something new.
+understand the command "attack" as something new.
+understand the commands "break", "smash", "hit", "fight", "torture", "wreck", "crack", and "destroy" as something new.
 
 volume region and room definitions
 
@@ -173,7 +218,7 @@ every turn when ring-color is not black:
 		say "The phlogiston in your mood ring changes back from [ring-color] to black.";
 		now ring-color is black;
 
-the player carries the coil of wire rope. "It's rope you will need to pull the cube, or whatever's in it, down to the surface. You can DROP to tie it at a certain place, then TIE it."
+the player carries the coil of wire rope. "It's rope you will need to pull the cube, or whatever's in it, down to the surface. You can DROP to tie it at a certain place to go exploring."
 
 after printing the name of wire rope when taking inventory:
 	if rope-drop is true, say " (anchored at [init-drop-room])";
@@ -1045,7 +1090,7 @@ understand "verb" as verbing.
 understand "verbs" as verbing.
 
 carry out verbing:
-	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to TOUCH things or SUMMON the four elements: [list of elements]. THINK will summarize where you've been and what you've done.";
+	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to TOUCH things or SUMMON the four elements: [list of elements]. THINK will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. RESET will send you back before when you pitched the rope[end if].";
 	if debug-state is true:
 		say "[paragraph break]You can also use BCSOL to see the beacon solutions, or HALP to see the tunnel solution.";
 	the rule succeeds;
