@@ -55,6 +55,10 @@ definition: a region (called x) is aligned:
 	if raycolor of x is beaccolor of x, yes;
 	no;
 
+definition: a region (called R) is explored:
+	if number of visited rooms in R is 0, decide no;
+	decide yes;
+
 last-rope-region is a region that varies.
 
 chapter color definitions
@@ -154,6 +158,10 @@ every turn when ring-color is not black:
 
 the player carries the coil of wire rope. "It's rope you will need to pull the cube, or whatever's in it, down to the surfae. You can DROP to tie it at a certain place, then TIE it."
 
+after printing the name of wire rope when taking inventory:
+	if rope-drop is true, say " (anchored at [init-drop-room])";
+	continue the action;
+
 rope-locations is a list of rooms that varies. rope-locations is {}.
 
 rope-drop is a truth state that varies.
@@ -192,18 +200,18 @@ earth is an element. conc-color of earth is red. blah-txt is "People thought ear
 
 water is an element. conc-color of water is blue. blah-txt is "There was a big fight over whether water should be blue and air, white, or vice versa. A bunch of wars were fought, but during those wars, all the weapons being created totally spurred science! People learned so much. Nowadays people don't joke about if things were reversed unless they want free room and board at the government's (dis)pleasure."
 
-chapter reviewing
+chapter summoning
 
-does the player mean reviewing an element: it is very likely.
+does the player mean summoning an element: it is very likely.
 
-reviewing is an action applying to one visible thing.
+summoning is an action applying to one visible thing.
 
-understand the command "review" as something new.
+understand the command "summon" as something new.
 
-understand "review [any thing]" as reviewing.
+understand "summon [any thing]" as summoning.
 
-carry out reviewing:
-	if noun is not an element, say "You can only review elements. The elements are: [list of elements]." instead;
+carry out summoning:
+	if noun is not an element, say "You can only summon elements. The elements are: [list of elements]." instead;
 	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][end if].";
 	if ever-acc of noun is false:
 		say "[line break]SCIENCE TIME: [blah-txt of noun][line break]";
@@ -371,11 +379,12 @@ before going:
 				say "You can't quite go that way. Maybe you should, but you can't." instead;
 		say "That would be wandering off into nothing." instead;
 	let X be room noun of location of player;
+	let mrx be map region of X;
 	if rope-drop is true:
-		if map region of X is not last-rope-region and mrlp is not last-rope-region and map region of X is not mrlp:
+		if mrx is not last-rope-region and mrlp is not last-rope-region and mrx is not mrlp:
 			say "You need to put your rope down somewhere close, if you can." instead;
-	if mrlp is not map region of X:
-		say "You twist over the side of the cube.[line break]";
+	if mrlp is not mrx:
+		say "You twist over the side of the cube to the [mrx].[line break]";
 
 after going:
 	if init-drop-room is location of player and tunnel-looped is true:
@@ -384,8 +393,7 @@ after going:
 	continue the action;
 
 carry out going when location of player is very center:
-	if rope-drop is true:
-		check-rope-tunnel beaccolor of map region of room noun of very center;
+	check-rope-tunnel beaccolor of map region of room noun of very center;
 	if continue-tunnel is false, the rule succeeds;
 	continue the action;
 
@@ -744,6 +752,7 @@ before going to very center:
 continue-tunnel is a truth state that varies.
 
 to check-rope-tunnel (c - a color):
+	d "Checking rope and tunnel.";
 	now continue-tunnel is true;
 	if rope-drop is false:
 		say "You glide along a weird [c] tunnel...[paragraph break]";
@@ -777,8 +786,7 @@ to endgame-check:
 		now tunnel-looped is true;
 		say "Your rope shimmers in your hand. Surely there's just one more step--to go back to where you entered the first tunnel and connect the rope."
 
-
-before going in very center:
+before going in very center (this is the check for basic directions from very center rule):
 	if noun is inside:
 		say "You're already inside at the center of the asteroid." instead;
 	if noun is outside:
@@ -813,65 +821,65 @@ definition: a room (called r) is beaconed:
 	if map region of r is aligned, no;
 	yes;
 
-book connectors
+book transponders
 
-a conn is a kind of backdrop. a conn has a color called conncolor. a conn has a color called rightcolor. the rightcolor of a conn is usually black. the conncolor of a conn is usually black.
+a cornerthing is a kind of backdrop. a cornerthing has a color called cornercolor. a cornerthing has a color called rightcolor. the rightcolor of a cornerthing is usually black. the cornercolor of a cornerthing is usually black.
 
-Bbordering relates conns to each other. The verb to bborder (he bborders, they bborder, it is bbordered) implies the bbordering relation.
+Bbordering relates cornerthings to each other. The verb to bborder (he bborders, they bborder, it is bbordered) implies the bbordering relation.
 
-the northdownwest conductor is a conn. It is in n00, d02, w20.
+the northdownwest transponder is a cornerthing. It is in n00, d02, w20.
 
-the northdowneast conductor is a conn. It is in n20, d22, e20.
+the northdowneast transponder is a cornerthing. It is in n20, d22, e20.
 
-the northupwest conductor is a conn. It is in n02, u02, w22.
+the northupwest transponder is a cornerthing. It is in n02, u02, w22.
 
-the northupeast conductor is a conn. It is in n22, u22, e22.
+the northupeast transponder is a cornerthing. It is in n22, u22, e22.
 
-the southdownwest conductor is a conn. It is in s00, d00, w00.
+the southdownwest transponder is a cornerthing. It is in s00, d00, w00.
 
-the southdowneast conductor is a conn. It is in s20, d20, e00.
+the southdowneast transponder is a cornerthing. It is in s20, d20, e00.
 
-the southupwest conductor is a conn. It is in s02, u00, w02.
+the southupwest transponder is a cornerthing. It is in s02, u00, w02.
 
-the southupeast conductor is a conn. It is in s22, u20, e02.
+the southupeast transponder is a cornerthing. It is in s22, u20, e02.
 
-the northdownwest conductor bborders the northupwest conductor.
-the northupwest conductor bborders the northupeast conductor.
-the northupeast conductor bborders the northdowneast conductor.
-the northdowneast conductor bborders the northdownwest conductor.
+the northdownwest transponder bborders the northupwest transponder.
+the northupwest transponder bborders the northupeast transponder.
+the northupeast transponder bborders the northdowneast transponder.
+the northdowneast transponder bborders the northdownwest transponder.
 
-the southdownwest conductor bborders the southupwest conductor.
-the southupwest conductor bborders the southupeast conductor.
-the southupeast conductor bborders the southdowneast conductor.
-the southdowneast conductor bborders the southdownwest conductor.
+the southdownwest transponder bborders the southupwest transponder.
+the southupwest transponder bborders the southupeast transponder.
+the southupeast transponder bborders the southdowneast transponder.
+the southdowneast transponder bborders the southdownwest transponder.
 
-the northdownwest conductor bborders the southdownwest conductor.
-the northdowneast conductor bborders the southdowneast conductor.
-the northupwest conductor bborders the southupwest conductor.
-the northupeast conductor bborders the southupeast conductor.
+the northdownwest transponder bborders the southdownwest transponder.
+the northdowneast transponder bborders the southdowneast transponder.
+the northupwest transponder bborders the southupwest transponder.
+the northupeast transponder bborders the southupeast transponder.
 
-does the player mean touching a conn: it is very likely.
+does the player mean touching a cornerthing: it is very likely.
 
-description of a conn is usually "It sticks out from the cube at an angle, away from the pointy edge. It's currently colored [conncolor of the item described]."
+description of a cornerthing is usually "It sticks out from the cube at an angle, away from the pointy edge. It's currently colored [cornercolor of the item described]."
 
 fixed-beacons is a truth state that varies.
 
 [?? reset rope]
-check touching a conn:
+check touching a cornerthing:
 	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
 	if rope-drop is true, say "You're wary of fiddling with the transponders now you're dragging the rope around." instead;
 	let ia be number of aligned regions;
-	if ring-color is black and conncolor of noun is black, say "It feels like something should happen, but it doesn't." instead;
+	if ring-color is black and cornercolor of noun is black, say "It feels like something should happen, but it doesn't." instead;
 	repeat through table of beacon zaps:
-		if con2 entry is noun and conncolor of con1 entry is not black, say "You step back as a strong electric pulse emits from the [mydir entry]. Maybe you can't change this conductor right now." instead;
+		if con2 entry is noun and cornercolor of con1 entry is not black, say "You step back as a strong electric pulse emits from the [mydir entry]. Maybe you can't change this transponder right now." instead;
 	let oldcolor be raycolor of mrlp;
 	if ring-color is black:
 		say "The transponder winks back to black.";
-	else if conncolor of noun is black:
+	else if cornercolor of noun is black:
 		say "A flash of light infuses the transponder. It shortly changes to [ring-color].";
 	else:
-		say "The transponder changes from [conncolor of noun] to [ring-color].";
-	now conncolor of noun is ring-color;
+		say "The transponder changes from [cornercolor of noun] to [ring-color].";
+	now cornercolor of noun is ring-color;
 	let newcolor be raycolor of mrlp;
 	if newcolor is oldcolor, the rule succeeds;
 	let na be number of aligned regions;
@@ -887,7 +895,7 @@ check touching a conn:
 	move tunnel backdrop to all tunneled rooms;
 	move beacon backdrop to all beaconed rooms;
 	if debug-state is true:
-		say "[number of aligned regions] regions ([list of aligned regions]) now aligned.";
+		say "(DEBUG) [number of aligned regions] regions ([list of aligned regions]) now aligned.";
 	the rule succeeds;
 
 to decide which direction is centerdir of (r - a room):
@@ -933,14 +941,14 @@ to decide which color is raycolor of (re - a region):
 to decide which color is raycolor of (r - a room):
 	let cr be map region of r;
 	choose row with myreg of cr in table of region beacons;
-	if conncolor of b1 entry is not black or conncolor of b2 entry is not black:
-		if conncolor of b3 entry is not black or conncolor of b4 entry is not black:
+	if cornercolor of b1 entry is not black or cornercolor of b2 entry is not black:
+		if cornercolor of b3 entry is not black or cornercolor of b4 entry is not black:
 			say "BUG THIS SHOULD NOT HAPPEN";
 			decide on brown;
-	if conncolor of b1 entry is not black and conncolor of b2 entry is not black:
-		decide on mix of conncolor of b1 entry and conncolor of b2 entry;
-	if conncolor of b3 entry is not black and conncolor of b4 entry is not black:
-		decide on mix of conncolor of b3 entry and conncolor of b4 entry;
+	if cornercolor of b1 entry is not black and cornercolor of b2 entry is not black:
+		decide on mix of cornercolor of b1 entry and cornercolor of b2 entry;
+	if cornercolor of b3 entry is not black and cornercolor of b4 entry is not black:
+		decide on mix of cornercolor of b3 entry and cornercolor of b4 entry;
 	decide on black;
 
 book glowcolir
@@ -1003,7 +1011,18 @@ understand "verb" as verbing.
 understand "verbs" as verbing.
 
 carry out verbing:
-	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to TOUCH things or REVIEW the four elements: [list of elements]. WAVE to your ship to complete the game.";
+	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to TOUCH things or SUMMON the four elements: [list of elements]. THINK will summarize where you've been and what you've done.";
+	if debug-state is true:
+		say "[paragraph break]You can also use BCSOL to see the beacon solutions, or HALP to see the tunnel solution.";
+	the rule succeeds;
+
+chapter thinking
+
+understand the command "think" as something new.
+
+understand "think" as thinking.
+
+carry out thinking:
 	the rule succeeds;
 
 chapter waving hands
@@ -1031,14 +1050,23 @@ volume parsing
 
 book after parsing a command
 
+after reading a command:
+	let XX be indexed text;
+	let XX be the player's command in lower case;
+	change the text of the player's command to XX;
+	if the player's command matches the regular expression "^(air|water|fire|earth)":
+		let XX be the player's command;
+[		replace the regular expression "^(say|think|shout|speak|yell) " in XX with "";]
+		change the text of the player's command to "summon [XX]";
+
 book parser errors
 
 Rule for printing a parser error when the latest parser error is the i beg your pardon error:
-	say "You stare around. Wow. It's pretty crazy, on the cube, here.";
+	say "You ponder the philosophical implications of the Law of Averages.";
 
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error:
-	if the player's command includes "review":
-		say "It looks like you tried to review something. The only things to review are [list of elements]." instead;
+	if the player's command includes "summon":
+		say "It looks like you tried to summon something. The only things to review are [list of elements]." instead;
 	say "You tried to access something not currently in the world. Maybe that's a result of a typo, or it's minor scenery I forgot to implement and should've, or a bad synonym. But it's not critical to the game.";
 
 Rule for printing a parser error when the latest parser error is the only understood as far as error:
@@ -1064,11 +1092,20 @@ a room has a direction called descdir. descdir is usually inside.
 
 to say room-desc:
 	if location of player is corner:
-		say "You are at the [descdir] corner of the [mrlp]. There's a conductor here--your mood ring is slightly attracted to it. You can go [list of goable directions] along this face, or [list of warpable directions] somewhere new";
+		say "You are at the [descdir] corner of the [mrlp]. There's a transponder here--your mood ring is slightly attracted to it. You can go [list of goable directions] along this face, or you can go off this face: [cornerwarp]";
 	else if location of player is facecenter:
 		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else]There's a beacon here, colored [beaccolor of mrlp][end if]";
 	else if location of player is edge:
 		say "You are at the center of the [descdir] edge of the [mrlp]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
+
+to say cornerwarp:
+	let rooms-found be 0;
+	repeat with Q running through simple directions:
+		let Z be room Q of location of player;
+		if the room Q of location of player is not nowhere:
+			if rooms-found is 0, say " or ";
+			say "[Q] to the [map region of room Q of location of player]";
+			increment rooms-found;
 
 volume beta testing - not for release
 
@@ -1083,16 +1120,16 @@ understand the command "bcsol" as something new.
 
 understand "bcsol" as bcsoling.
 
-definition: a conn (called q) is unneeded:
+definition: a cornerthing (called q) is unneeded:
 	if rightcolor of q is black, yes;
 	no;
 
 carry out bcsoling:
-	say "TRANSMITTER COLORS:[line break]";
-	repeat with x running through conns:
+	say "TRANSPONDER COLORS:[line break]";
+	repeat with x running through cornerthings:
 		if rightcolor of x is not black:
-			say "[x]: is [conncolor of x], should be [rightcolor of x].";
-	say "UNUSED: [list of unneeded conns].";
+			say "[x]: is [cornercolor of x], should be [rightcolor of x].";
+	say "UNUSED: [list of unneeded cornerthings].";
 	say "BEACON COLORS:[line break]";
 	repeat with x running through regions:
 		if x is mtr:
@@ -1123,7 +1160,7 @@ carry out halping:
 			say "N. N. W. S([beaccolor of northern face]). D([beaccolor of bottom face]). W. W. N. E([beaccolor of western face]). S([beaccolor of southern face]). U. U. N. ";
 		else:
 			say "S. S. W. N([beaccolor of southern face]). D([beaccolor of bottom face]). W. W. S. E([beaccolor of western face]). N([beaccolor of northern face]). U. U. S. ";
-	say "Then WAVE.";
+	say "Then DROP ROPE again to win.";
 	the rule succeeds;
 
 [to say tundir of (d - a direction):
@@ -1179,7 +1216,7 @@ book tests
 
 chapter walkthrough
 
-test fix with "fixsol/n/w/review earth/touch/e/e/s/s/review fire/touch/e/d/d/n/n/review water/touch/d/s/s/w/w/review air/touch/bcsol"
+test fix with "fixsol/n/w/review earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/d/s/s/w/w/summon air/touch/bcsol"
 
 test cross with "test fix/ne/drop rope/w/w/u/u/u".
 test cross2 with "test fix/ne/drop rope/w/w/d".
@@ -1203,7 +1240,7 @@ test fyelb with "test fix/se/u/drop rope/n/u/w/w/d/e/n/d/d/s/u/e/s/s/w".
 test fpurpf with "test fix/ne/u/n/drop rope/s/w/u/u/e/d/s/e/e/n/w/d/n/n/u".
 test fpurpb with "test fix/ne/u/n/drop rope/s/d/e/e/u/w/s/u/u/n/d/w/n/n/e".
 
-test tun with "fixsol/n/w/review earth/touch/e/e/s/s/review fire/touch/nw/d"
+test tun with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/nw/d"
 
 chapter map testing
 
