@@ -2,7 +2,7 @@
 
 the story headline is "A 3-dimensional text adventure. Well, the map is"
 
-the story description is "A speedy 3-d Deed-y"
+the story description is "A Speedy 3-d Deed-y"
 
 volume includes
 
@@ -100,11 +100,11 @@ to decide which color is the mix of (a - a color) and (b - a color):
 volume when play begins
 
 when play begins:
-	say "Science has been solved! Well, except for the scratchwork. And the stuff the numerologists proved could never be done. Everyone knows how the four elements work together. Okay, mostly. And astrology is more accurate than it's ever been. Except when people don't REALLY follow its advice. Anyway, there's got to be only so much more to calculate. Eventually, we'll learn why people don't fall through the flat earth, or why it isn't in free fall if there's gravity, but...all that's just numbers, right? We'll work it out one day! We just don't have enough of those punch-card processors yet!";
+	say "Science has been solved! Well, except for the scratchwork. And the stuff the numerologists proved could never be figured for sure. Everyone knows how the four elements work together. Okay, mostly. And astrology is more accurate than it's ever been. Except when people don't REALLY follow its advice. Anyway, there's got to be only so much more to calculate. Eventually, we'll learn why people don't fall through the flat earth, or why it isn't in free fall if there's gravity, but...all that's just numbers, right? We'll work it out one day! We just don't have enough of those punch-card processors yet!";
 	wfak-d;
-	say "[line break]As a hotshot double Ph. D. in Psychokinetics and Psychohistory, you weren't surprised you found an important new ancient-looking cave to excavate and explore. You're not just book smart--you're one of the few people mood rings work on, which shows extraordinary intelligence and sensitivity. Why, you eschewed a lucrative career as a psychic for, just, well...knowledge. And when your dowsing instruments detected something odd in a cavern, you were curious indeed! A cube lay beyond a river, and you're lucky you had your assistant to pull you back, because somehow, the center attracted you--even when you were on the bottom! There must have been some powerful life force or something in the center. You fell so hard pulling away, you had to use your entire supply of healing crystals to get back to 100%.";
+	say "[line break]As a hotshot double Ph. D. in Psychokinetics and Psychohistory, you weren't surprised you found an important new ancient-looking cave to excavate and explore. You're not just book smart--mood rings work even better on you than on most people, which shows extraordinary intelligence and sensitivity. Why, you eschewed a lucrative career as a psychic for, just, well...knowledge. And when your dowsing instruments detected something odd in a cavern, you were curious indeed! A cube lay beyond a river, and you're lucky you had your assistant to pull you back, because somehow, the center attracted you--even when you were on the bottom! There must have been some powerful life force or something in the center. You fell so hard pulling away, you had to use your entire supply of healing crystals to get back to 100%.";
 	wfak-d;
-	say "[line break]But you planned ahead! In your office full of feng shui, you planned for months. Along with your mood ring, you brought some rope, read up on levitation (for when you need to escape the cube again) and consulted a medium and, of course, several of the top magnet therapists. And you discuss how hollow the area beneath the flat earth might be, but science is no good without data, so down you go.";
+	say "[line break]But you planned ahead! The ideas flew across, around and through the feng shui in your office. Along with your mood ring, you brought some rope, read up on levitation (for when you need to escape the cube again) and consulted a medium and, of course, several of the top magnet therapists. And you discuss how hollow the area beneath the flat earth might be, but science is no good without data, so down you go.";
 	wfak-d;
 	say "[line break]But enough theorizing! You go to face the cube. You probably, like, need to get in harmony and stuff, or balance stuff just right, and you're sure it'll show you its secrets or whatever.";
 	wfak-d;
@@ -139,7 +139,13 @@ to wfak-d:
 
 volume the player
 
-the player wears the mood ring. description of mood ring is "The phlogiston in your mood ring is currently colored [ring-color]."
+the player wears the mood ring. description of mood ring is "The phlogiston in your mood ring is currently colored [ring-color-report]. You can SUMMON any of the four elements([list of elements]) to change the ring[if ring-color is not black], or if you wait, the ring can go back to black."
+
+to say ring-color-report:
+	if ring-color is white:
+		say "[if ring-moves < 3]gray[else]white[end if]";
+	else:
+		say "[ring-color][if ring-moves < 3 and ring-color is not black], but it's getting a bit dark[end if]"
 
 understand "phlogiston" as mood ring.
 
@@ -153,9 +159,9 @@ ring-moves is a number that varies.
 every turn when ring-color is not black:
 	decrement ring-moves;
 	if ring-moves is 2:
-		say "The mood ring is half faded back to black, now.";
+		say "The phlogiston in your mood ring is half faded back to black, now.";
 	else if ring-moves is 0:
-		say "Your mood ring changes back from [ring-color] to black.";
+		say "The phlogiston in your mood ring changes back from [ring-color] to black.";
 		now ring-color is black;
 
 the player carries the coil of wire rope. "It's rope you will need to pull the cube, or whatever's in it, down to the surfae. You can DROP to tie it at a certain place, then TIE it."
@@ -214,7 +220,7 @@ understand "summon [any thing]" as summoning.
 
 carry out summoning:
 	if noun is not an element, say "You can only summon elements. The elements are: [list of elements]." instead;
-	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][end if].";
+	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][one of]. NOTE: in the future, you can SUMMON a color, or even leave off SUMMON altogether[or][stopping][end if].";
 	if ever-acc of noun is false:
 		say "[line break]SCIENCE TIME: [blah-txt of noun][line break]";
 		now ever-acc of noun is true;
@@ -407,7 +413,7 @@ after going:
 		wfak-d;
 		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a  hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
 		wfak-d;
-		say "[line break]But you never talk about what you really saw. You mention you had a vision of the cosmos, and so forth, and you wish you could interpret it, because you suspect you saw what you wanted to see about loving other people being the most important thing, and how the journey is its own reward. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' And you think back to the cube.";
+		say "[line break]But you never talk about what you really saw. You mention you had a vision of the cosmos, and so forth, and you wish you could interpret it, because you suspect you saw what you wanted to see about loving other people being the most important thing, and how the journey is its own reward. You find yourself saying 'There's just ... STUFF WE DON'T UNDERSTAND OUT THERE' with a conviction and mystery few can hope for. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' And you think back to the cube. You convince a few to take up writing. Even the wildest fantasies can spur rigorous scientific thought. There's a place for combining the humanities and the sciences.";
 		end the game saying "YOU, UM, WIN";
 		the rule succeeds;
 	continue the action;
@@ -819,10 +825,10 @@ before going in very center (this is the check for basic directions from very ce
 
 book beacons
 
-the beacon is a backdrop. it is in u11, d11, w11, e11, s11, n11.
+the beacon is a backdrop. it is in u11, d11, w11, e11, s11, n11. description of beacon is "It sticks out of the ground about a foot. It's colored [beaccolor of mrlp]."
 
 check taking the beacon:
-	say "The beacon seems stuck in the ground." instead;
+	say "The beacon seems stuck in the ground. It's probably more useful there, anyway." instead;
 
 table of colormatches
 c1	c2	c3
@@ -1037,23 +1043,30 @@ carry out verbing:
 		say "[paragraph break]You can also use BCSOL to see the beacon solutions, or HALP to see the tunnel solution.";
 	the rule succeeds;
 
+chapter jumping
+
+carry out jumping:
+	if location of player is very center:
+		say "It's tricky, here, and it's unnecesssary, too." instead;
+	say "You try out the gravity on this side of the cube. Whee!" instead;
+
 chapter thinking
 
-understand the command "think" as something new.
-
-understand "think" as thinking.
+definition: a cornerthing (called c) is activated:
+	if cornercolor of c is black, no;
+	yes;
 
 carry out thinking:
+	let explore-total be 0;
+	if western face is explored or eastern face is explored, increment explore-total;
+	if northern face is explored or southern face is explored, increment explore-total;
+	if upper face is explored or bottom face is explored, increment explore-total;
+	if explore-total < 3, say "You have a feeling you'll need to explore the other faces of the cube to figure what's going on, here." instead;
+	if number of visited corner rooms is 0, say "You haven't visited the corner of any face." instead;
+	if number of activated cornerthings is 0, say "Maybe you should activate one of the transponders in the corners of the faces." instead;
+	if number of activated cornerthings < 4, say "Maybe you should activate more of the transponders in the corners of the faces." instead;
+	say "These hints need to be filled out, but, later." instead;
 	the rule succeeds;
-
-chapter waving hands
-
-the codex is a thing.
-
-instead of waving hands:
-	say "You wave to the hoverboard floating in the air. They take you back for evaluation.";
-	if player has codex, say "You win!" instead;
-	say "You lose!";
 
 chapter xyzzying
 
@@ -1064,7 +1077,7 @@ understand the command "xyzzy" as something new.
 understand "xyzzy" as xyzzying.
 
 carry out xyzzying:
-	say "You hone in on your training for three-dimensional reasoning from several different directions. The result is a slight headache.";
+	say "You hone in on your training for three-dimensional reasoning from several different directions. The result is a slight headache. But it's a MOTIVATING headache!";
 	the rule succeeds;
 
 volume parsing
@@ -1075,7 +1088,7 @@ after reading a command:
 	let XX be indexed text;
 	let XX be the player's command in lower case;
 	change the text of the player's command to XX;
-	if the player's command matches the regular expression "^(air|water|fire|earth)":
+	if the player's command matches the regular expression "^(air|water|fire|earth|red|white|blue|yellow)$":
 		let XX be the player's command;
 [		replace the regular expression "^(say|think|shout|speak|yell) " in XX with "";]
 		change the text of the player's command to "summon [XX]";
