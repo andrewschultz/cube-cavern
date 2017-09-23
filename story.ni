@@ -161,7 +161,8 @@ does the player mean dropping the wire rope when location of player is facecente
 check dropping wire rope:
 	if location of player is not facecenter, say "There's no good place to drop it." instead;
 	if beacon is in location of player, say "You don't need to tie the rope to the beacon. It might be too fragile to respond to stress." instead;
-	if rope-drop is true, say "You already dropped the rope to start.";
+	if rope-drop is true, say "You already dropped the rope to start." instead;
+	now last-rope-region is mrlp;
 	if rope-drop is false:
 		say "You drop the rope and anchor it.";
 		now last-top-room is location of player;
@@ -322,6 +323,8 @@ book wrong way rejects
 to say can-want:
 	say "[if number of ever-aligned regions > 0]can[else]want to[end if]"
 
+prev-reg is a region that varies.
+
 before going:
 	if mrlp is mtr, continue the action;
 	if noun is inside:
@@ -337,7 +340,6 @@ before going:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
 		say "You can only go [list of ubercromulent directions], or any non-opposite pair of those four directions, on the [mrlp][if location of player is facecenter]. You also [can-want] go inside here in the center[end if]." instead;
-	let X be room noun of location of player;
 	if noun is not simple:
 		repeat through table of dirmerge:
 			if d3 entry is noun:
@@ -351,11 +353,23 @@ before going:
 				if R4 is nothing, next;
 				if R4 is R2:
 					if mrlp is not map region of R2:
-						say "[if noun is complex]It feels weird shimmying over at a diagonal angle, but there you are[else]Fwoop. You flip over to the [map region of x][end if].";
+						say "[if noun is complex]It feels weird shimmying over at a diagonal angle, but there you are[else]Fwoop. You flip over to the [map region of R2][end if].";
+					if rope-drop is true and map region of R2 is not last-rope-region and mrlp is not last-rope-region and map region of R2 is not mrlp:
+						say " need to put your rope down somewhere close, if you can." instead;
 					move player to R2;
 					the rule succeeds;
 				say "You can't quite go that way. Maybe you should, but you can't." instead;
 		say "That would be wandering off into nothing." instead;
+	let X be room noun of location of player;
+	if rope-drop is true:
+		if map region of X is not last-rope-region and mrlp is not last-rope-region and map region of X is not mrlp:
+			say "You need to put your rope down somewhere close, if you can." instead;
+	if mrlp is not map region of X:
+		say "You twist over the side of the cube.[line break]";
+
+after going:
+	d "[mrlp] vs [prev-reg].";
+	continue the action;
 
 carry out going when location of player is very center:
 	if rope-drop is true:
@@ -827,8 +841,10 @@ description of a conn is usually "It sticks out from the cube at an angle, away 
 
 fixed-beacons is a truth state that varies.
 
+[?? reset rope]
 check touching a conn:
 	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
+	if rope-drop is true, say "You're wary of fiddling with the transponders now you're dragging the rope around." instead;
 	let ia be number of aligned regions;
 	if ring-color is black and conncolor of noun is black, say "It feels like something should happen, but it doesn't." instead;
 	repeat through table of beacon zaps:
@@ -1117,6 +1133,9 @@ book tests
 chapter walkthrough
 
 test fix with "fixsol/n/w/review earth/touch/e/e/s/s/review fire/touch/e/d/d/n/n/review water/touch/d/s/s/w/w/review air/touch/bcsol"
+
+test cross with "test fix/ne/drop rope/w/w/u/u/u".
+test cross2 with "test fix/ne/drop rope/w/w/d".
 
 [WE = red green NS = purple yellow UD = orange blue]
 test fbluef with "test fix/ne/drop rope/u/n/w/w/s/e/u/s/s/d/n/e".
