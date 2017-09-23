@@ -220,6 +220,17 @@ carry out summoning:
 	now ring-moves is 5;
 	the rule succeeds.
 
+chapter summoning
+
+colsummoning is an action applying to one color.
+
+understand "summon [color]" as colsummoning.
+
+carry out colsummoning:
+	repeat with X running through elements:
+		if conc-color of X is the color understood, try summoning X instead;
+	say "Uh-oh, we can't summon that color. We should be able to, but we can't.";
+	the rule succeeds;
 
 volume direction definitions
 
@@ -1066,7 +1077,7 @@ Rule for printing a parser error when the latest parser error is the i beg your 
 
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error:
 	if the player's command includes "summon":
-		say "It looks like you tried to summon something. The only things to review are [list of elements]." instead;
+		say "It looks like you tried to summon something. The only things to summon are [list of elements], though you can also refer to them by their colors." instead;
 	say "You tried to access something not currently in the world. Maybe that's a result of a typo, or it's minor scenery I forgot to implement and should've, or a bad synonym. But it's not critical to the game.";
 
 Rule for printing a parser error when the latest parser error is the only understood as far as error:
@@ -1110,7 +1121,12 @@ to say cornerwarp:
 volume beta testing - not for release
 
 when play begins:
-	say "Thanks for running the debug version! Use [b]BCSOL[r] to see how to solve the beacon part of the game, or [b]HALP[r] to see how to solve the tunnel part. There are 48 randomly generated possible solutions for the beacons, and you can solve the tunnels 12 different ways."
+	say "Thanks for running the debug version! Use [b]BCSOL[r] to see how to solve the beacon part of the game, or [b]HALP[r] to see how to solve the tunnel part. There are 48 randomly generated possible solutions for the beacons, and you can solve the tunnels 12 different ways.";
+	if debug-state is false:
+		say "[paragraph break]Note: I like to make sure beta testers have a transcript working. It's a big help to me. Even if you are lost and you feel it might not help, it does. So, after you press a key, you'll be asked to save your transcript to a file.";
+		wfak-d;
+		try switching the story transcript on;
+		say "Transcripts can be sent to blurglecruncheon@gmail.com. Any punctuation before the comment is okay, e.g. *TYPO or ;typo or :typo. I can pick up pretty much any punctuation.";
 
 chapter bcsoling
 
@@ -1216,7 +1232,7 @@ book tests
 
 chapter walkthrough
 
-test fix with "fixsol/n/w/review earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/d/s/s/w/w/summon air/touch/bcsol"
+test fix with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/d/s/s/w/w/summon air/touch/bcsol"
 
 test cross with "test fix/ne/drop rope/w/w/u/u/u".
 test cross2 with "test fix/ne/drop rope/w/w/d".
