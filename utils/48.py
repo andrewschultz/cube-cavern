@@ -2,6 +2,8 @@ import itertools
 
 first_only = False
 
+go_near = False
+
 count = 0
 
 oppo = { 'u':'d', 'd':'u', 'n':'s', 's':'n', 'e':'w', 'w':'e' }
@@ -36,6 +38,27 @@ def x(a, b):
         return 'orange'
     return 'NaC'
 
+def center_face_switch(x, y, z, w):
+    if y == z:
+        return
+    if w is True:
+        x.append("gonear " + y + "11")
+        return
+    neutdir = 'n'
+    if y is 'n' or z is 'n':
+        neutdir = 'u'
+    if oppo[y] == z:
+        x.append(neutdir)
+        x.append(neutdir)
+        x.append(z)
+        x.append(z)
+        x.append(z)
+        x.append(oppo[neutdir])
+        return
+    x.append(z)
+    x.append(z)
+    x.append(oppo[y])
+
 def printCmds(tf, j):
     codenum = 0
     for r in range(0, 4):
@@ -52,7 +75,16 @@ def printCmds(tf, j):
     cmds.append('se' if tf else 'sw')
     cmds.append('summon ' + colors[j[1]])
     cmds.append('touch')
-    cmds.append('gonear d11')
+    if go_near:
+        cmds.append('gonear d11')
+    else:
+        cmds.append('nw' if tf else 'ne')
+        cmds.append('n')
+        cmds.append('n')
+        cmds.append('d')
+        cmds.append('d')
+        cmds.append('d')
+        cmds.append('s')
     cmds.append('ne' if tf else 'nw')
     cmds.append('summon ' + colors[j[2]])
     cmds.append('touch')
@@ -60,6 +92,8 @@ def printCmds(tf, j):
     cmds.append('sw' if tf else 'se')
     cmds.append('summon ' + colors[j[3]])
     cmds.append('touch')
+    if not go_near:
+        cmds.append('ne' if tf else 'nw')
     loccol = {}
     locrev = {}
     loccol['u'] = x(colors[j[0]], colors[j[1]])
@@ -75,10 +109,11 @@ def printCmds(tf, j):
         locrev[loccol[k]] = k
     to_center = True
     drop_yet = False
+    curface = 'd'
     for me in ['red', 'orange', 'yellow', 'green', 'blue', 'purple']:
         # print(me, 'to', locrev[me], 'face')
         if to_center:
-            cmds.append("gonear " + locrev[me] + "11")
+            center_face_switch(cmds, curface, locrev[me], go_near)
             if not drop_yet:
                 cmds.append("drop rope")
                 drop_yet = True
@@ -86,9 +121,10 @@ def printCmds(tf, j):
         else:
             cmds.append(locrev[me])
         to_center = not to_center
-    cmds.append("gonear " + locrev['red'] + "11")
+        curface = locrev[me]
+    center_face_switch(cmds, curface, locrev['red'], go_near)
     cmds.append("tie rope")
-    cmd_string = "test c" + str(count) + " with \"" + ("/".join(cmds)) + "\".";
+    cmd_string = "test c" + str(count) + ('' if go_near else 'a') + " with \"" + ("/".join(cmds)) + "\".";
     print(cmd_string)
     # exit()
 
