@@ -160,9 +160,12 @@ when play begins:
 	wfak-d;
 	say "[line break]But you planned ahead! The ideas flew across, around and through the feng shui in your office. Along with your mood ring, you brought some rope, read up on levitation (for when you need to escape the cube again) and consulted a medium and, of course, several of the top magnet therapists. And you discuss how hollow the area beneath the flat earth might be, but science is no good without data, so down you go.";
 	wfak-d;
-	say "[line break]But enough theorizing! You go to face the cube. You probably, like, need to get in harmony and stuff, or balance stuff just right, and you're sure it'll show you its secrets or whatever.";
+	say "[line break]But enough theorizing! You return to the cavern with the cube. An adventure lies ahead! You probably, like, need to get in harmony and stuff, or balance stuff just right, and you're sure it'll show you its secrets or whatever.";
 	wfak-d;
 	sort init-list in random order;
+	proc-init-list;
+
+to proc-init-list:
 	if a random chance of 1 in 2 succeeds: [goodness this looks long and drawn out but the alternative is to get the final solution and then to derive what you need to do, which is fraught with error]
 		now rightcolor of northupwest is entry 1 of init-list;
 		now rightcolor of southupeast is entry 2 of init-list;
@@ -193,7 +196,9 @@ to wfak-d:
 
 volume the player
 
-the player wears the mood ring. description of mood ring is "The phlogiston in your mood ring is currently colored [ring-color-report]. You can SUMMON any of the four elements([list of elements]) to change the ring[if ring-color is not black], or if you wait, the ring can go back to black."
+the player wears the mood ring. description of mood ring is "The phlogiston in your mood ring is currently colored [ring-color-report]. You can SUMMON any of the four elements ([list of elements]) to change the ring[if ring-color is not black], or if you wait, the ring can go back to black[end if]."
+
+description of the player is "People say you look the part of gung-ho theoretician with a flair for  ."
 
 to say ring-color-report:
 	if ring-color is white:
@@ -218,7 +223,7 @@ every turn when ring-color is not black:
 		say "The phlogiston in your mood ring changes back from [ring-color] to black.";
 		now ring-color is black;
 
-the player carries the coil of wire rope. "It's rope you will need to pull the cube, or whatever's in it, down to the surface. You can DROP to tie it at a certain place to go exploring."
+the player carries the coil of wire rope. description of wire rope is "It's rope you will need to pull the cube, or whatever's in it, down to the surface. You can DROP to tie it at a certain place to go exploring."
 
 after printing the name of wire rope when taking inventory:
 	if rope-drop is true, say " (anchored at [init-drop-room])";
@@ -882,6 +887,9 @@ the beacon is a backdrop. it is in u11, d11, w11, e11, s11, n11. description of 
 check taking the beacon:
 	say "The beacon seems stuck in the ground. It's probably more useful there, anyway." instead;
 
+check tying rope to beacon:
+	say "The beacon looks a little fragile. Tying the rope to it might break it. Maybe there is something else to do." instead;
+
 table of colormatches
 c1	c2	c3
 red	yellow	orange
@@ -939,7 +947,11 @@ the northupeast transponder bborders the southupeast transponder.
 
 does the player mean touching a cornerthing: it is very likely.
 
-description of a cornerthing is usually "It sticks out from the cube at an angle, away from the pointy edge. It's currently colored [cornercolor of the item described]."
+description of a cornerthing is usually "It sticks out from the cube at an angle, away from the pointy edge. It's currently colored [cornercolor of the item described][if ever-trans-changed is false]. It seems to draw you to it[end if]."
+
+check taking cornerthing:
+	say "You feel a small pulse as you touch it.";
+	try touching noun instead;
 
 fixed-beacons is a truth state that varies.
 
@@ -948,7 +960,7 @@ check touching a cornerthing:
 	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
 	if rope-drop is true, say "You're wary of fiddling with the transponders now you're dragging the rope around." instead;
 	let ia be number of aligned regions;
-	if ring-color is black and cornercolor of noun is black, say "It feels like something should happen, but it doesn't." instead;
+	if ring-color is black and cornercolor of noun is black, say "You feel a pulse through your ring. It feels like something more should happen, but it doesn't." instead;
 	repeat through table of beacon zaps:
 		if con2 entry is noun and cornercolor of con1 entry is not black, say "You step back as a strong electric pulse emits from the [mydir entry]. Maybe you can't change this transponder right now." instead;
 	let oldcolor be raycolor of mrlp;
@@ -960,6 +972,7 @@ check touching a cornerthing:
 		say "The transponder changes from [cornercolor of noun] to [ring-color].";
 	now cornercolor of noun is ring-color;
 	let newcolor be raycolor of mrlp;
+	now ever-trans-changed is true;
 	if newcolor is oldcolor, the rule succeeds;
 	let na be number of aligned regions;
 	unless oldcolor is beaccolor of mrlp or newcolor is beaccolor of mrlp, say "Nothing much seems to happen. Well, yet." instead;
@@ -976,6 +989,25 @@ check touching a cornerthing:
 	if debug-state is true:
 		say "(DEBUG) [number of aligned regions] regions ([list of aligned regions]) now aligned.";
 	the rule succeeds;
+
+ever-trans-changed is a truth state that varies.
+
+check touching a beacon:
+	say "You feel a small pulse, but nothing significant[if ever-trans-changed is true], unlike when you touched that transponder[end if]." instead;
+
+check touching ring:
+	say "You adjust your mood ring. Nothing happens. For most people, futzing with a ring might release worry, but you are too calm and analytical minded." instead;
+
+before switching on:
+	if noun is beacon or noun is a cornerthing, say "You can't find any switch to flip." instead;
+
+before switching off:
+	if noun is beacon or noun is a cornerthing, say "You can't find any switch to flip." instead;
+
+before burning:
+	if noun is a cornerthing, say "[if ever-trans-changed is true]You can probably change its color the way you did before[else]Maybe there's a more specific way to change it[end if]";
+	if noun is beacon, say "You don't see any way to light it on your own. Besides, it's already sort of lit [beaccolor of mrlp]." instead;
+	say "You have no flammable materials, and that's probably a good thing." instead;
 
 to decide which direction is centerdir of (r - a room):
 	let q be u00;
@@ -1020,8 +1052,8 @@ to decide which color is raycolor of (re - a region):
 to decide which color is raycolor of (r - a room):
 	let cr be map region of r;
 	choose row with myreg of cr in table of region beacons;
-	if cornercolor of b1 entry is not black or cornercolor of b2 entry is not black:
-		if cornercolor of b3 entry is not black or cornercolor of b4 entry is not black:
+	if cornercolor of b1 entry is not black or cornercolor of b3 entry is not black:
+		if cornercolor of b2 entry is not black or cornercolor of b4 entry is not black:
 			say "BUG THIS SHOULD NOT HAPPEN";
 			decide on brown;
 	if cornercolor of b1 entry is not black and cornercolor of b2 entry is not black:
@@ -1063,7 +1095,7 @@ understand "credits" as creditsing.
 
 carry out creditsing:
 	say "Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, so I could write maps that helped me visualize the game maps.";
-	say "[line break](fill in testers here).";
+	say "[line break]Thanks to, in alphabetical order, Brian Rushton, Mike Souza, and Mike Spivey for suffering through the early bug-filled variations of this game.";
 	the rule succeeds;
 
 chapter helping
@@ -1161,6 +1193,11 @@ after reading a command:
 		let XX be the player's command;
 [		replace the regular expression "^(say|think|shout|speak|yell) " in XX with "";]
 		change the text of the player's command to "summon [XX]";
+	if debug-state is true:
+		let x be {black, white, red, yellow, blue};
+		if the player's command matches the regular expression "^[0-4]{8}$":
+		repeat with Q running from 1 to 8:
+			let j be character number Q in the player's command;
 
 book parser errors
 
@@ -1179,6 +1216,9 @@ rule for printing a parser error when the latest parser error is the can't see a
 	say "I (you) can't see anything here like that."
 
 rule for printing a parser error when the latest parser error is the didn't understand error:
+	say "I didn't recognize that verb. For a list of common/useful verbs, type V or VERB or VERBS.";
+
+rule for printing a parser error when the latest parser error is the not a verb I recognize error:
 	say "I didn't recognize that verb. For a list of common/useful verbs, type V or VERB or VERBS.";
 
 volume stock room descriptions
@@ -1205,9 +1245,9 @@ to say cornerwarp:
 	let rooms-found be 0;
 	repeat with Q running through simple directions:
 		let Z be room Q of location of player;
-		if the room Q of location of player is not nowhere:
-			if rooms-found is 0, say " or ";
-			say "[Q] to the [map region of room Q of location of player]";
+		if Z is not nowhere and map region of Z is not mrlp:
+			if rooms-found > 0, say " or ";
+			say "[Q] to the [map region of Z]";
 			increment rooms-found;
 
 volume beta testing - not for release
