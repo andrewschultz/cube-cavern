@@ -191,13 +191,15 @@ to proc-init-list:
 		now beaccolor of northern face is mix of rightcolor of northdownwest and rightcolor of northupeast;
 		now beaccolor of southern face is mix of rightcolor of southdowneast and rightcolor of southupwest;
 
-to decide which number is code-num:
-	let index be 1000;
+to decide which number is code-num of (t - a truth state):
+	let mag be 5;
+	if t is true, now mag is mag * 2;
+	let index be mag * mag * mag;
 	let retval be 0;
 	let idx2 be 0;
 	let my-list be { white, red, yellow, blue };
-	say "[my-list] vs [init-list].";
-	if rightcolor of northupeast is black, now retval is 10000;
+	[say "[my-list] vs [init-list].";]
+	if rightcolor of northupeast is black, now retval is index * mag;
 	let idx be 0;
 	while index > 0:
 		increment idx;
@@ -206,8 +208,8 @@ to decide which number is code-num:
 			increment idx2;
 			if Q is entry idx of init-list:
 				increase retval by index * idx2;
-		now index is index / 10;
-	decide on retval
+		now index is index / mag;
+	decide on retval.
 
 init-list is a list of colors variable. init-list is { white, red, yellow, blue }.
 
@@ -227,7 +229,7 @@ after printing the name of the mood ring while taking inventory:
 	say " (colored [ring-color], being worn)";
 	the rule succeeds;
 
-description of the player is "People say you look the part of gung-ho theoretician with a flair for  ."
+description of the player is "You didn't need to wear anything special for this exploration."
 
 to say ring-color-report:
 	if ring-color is white:
@@ -1116,7 +1118,7 @@ understand the command "about" as something new.
 understand "about" as abouting.
 
 carry out abouting:
-	say "I'd thought about a game on a cube for a while, but I didn't seriously consider and plan it until 2017 when a wordplay game fell through. A cube being an unscientific place to walk on, I figured, what else would fit in? That's when I got in with bad science and silly myths I hope you find fun.[paragraph break]Maps are included to help visualize things a bit easier.[paragraph break]Bugs or suggestions can go to blurglecruncheon@gmail.com.";
+	say "I'd thought about a game on a cube for a while, but I didn't seriously consider and plan it until September 2017, just before the start of IFComp, when a wordplay game fell through.[paragraph break]A cube being an unscientific and ridiculous place to walk on, I figured, what else would fit in? That's when I got in with bad science and silly myths I hope you find fun.[paragraph break]A PDF map is included with the story file to help visualize things a bit easier. There is a general walkthrough strategy as well--there are forty-eight possible different starting configurations.[paragraph break]Bugs or suggestions can go to blurglecruncheon@gmail.com. There's always something to add or fix, it seems, but hopefully not too much.";
 	the rule succeeds;
 
 chapter creditsing
@@ -1131,7 +1133,7 @@ understand "credits" as creditsing.
 
 carry out creditsing:
 	say "Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, so I could write maps that helped me visualize the game maps.";
-	say "[line break]Thanks to, in alphabetical order, Brian Rushton, Mike Souza, and Mike Spivey for suffering through the early bug-filled variations of this game.";
+	say "[line break]Thanks to, in alphabetical order, Brian Rushton, Mike Souza, and Mike Spivey for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch.";
 	the rule succeeds;
 
 chapter helping
@@ -1284,12 +1286,13 @@ to say cornerwarp:
 volume beta testing - not for release
 
 when play begins:
-	say "Thanks for running the debug version! Use [b]BCSOL[r] to see how to solve the beacon part of the game, or [b]HALP[r] to see how to solve the tunnel part. There are 48 randomly generated possible solutions for the beacons, and you can solve the tunnels 12 different ways.";
+	say "Thanks for running the Beta version! Use [b]BCSOL[r] to see how to solve the beacon part of the game, or [b]HALP[r] to see how to solve the tunnel part. There are 48 randomly generated possible solutions for the beacons, and you can solve the tunnels 12 different ways.";
 	if debug-state is false:
-		say "[paragraph break]Note: I like to make sure beta testers have a transcript working. It's a big help to me. Even if you are lost and you feel it might not help, it does. So, after you press a key, you'll be asked to save your transcript to a file.";
+		say "[paragraph break]Note: I like to make sure beta testers have a transcript working. It's a big help to me. Even if you are lost and you feel your wandering might not help, it often does--I may realize a way to make the game a LOT more user friendly and less opaque.[paragraph break]So, after you press a key, you'll be asked to save your transcript to a file.";
 		wfak-d;
 		try switching the story transcript on;
 		say "Transcripts can be sent to blurglecruncheon@gmail.com. Any punctuation before the comment is okay, e.g. *TYPO or ;typo or :typo. I can pick up pretty much any punctuation.";
+	say "[line break]NOTE: I have a way to get rid of this text before release, and I'll check to make sure the testing commands aren't available to the player, so don't worry about that. Also, for my own debugging reference (in case you get stuck), the non-spoiler configuration number is [code-num of false].";
 
 chapter picking
 
@@ -1377,7 +1380,7 @@ carry out bcsoling:
 	say "BEACON COLORS:[line break]";
 	repeat with x running through alignable regions:
 		say "[x]: ray color is [raycolor of x], beacon color is [beaccolor of x].";
-	say "code: [code-num].";
+	say "code: [code-num of true].";
 	the rule succeeds;
 
 chapter halping
@@ -1389,6 +1392,9 @@ understand the command "halp" as something new.
 understand "halp" as halping.
 
 carry out halping:
+	if fixed-beacons is false:
+		say "You need to fix the beacons first (SUMMON element/color, TOUCH transponder). Here's how to.";
+		try bcsoling instead;
 	say "This is one way to solve the tunnels, starting from the top center:[paragraph break]";
 	say "D ([beaccolor of upper face]). ";
 	if beaccolor of western face colorborders beaccolor of upper face:
