@@ -104,6 +104,11 @@ test e2loop with "e/e/n/n/n/w/w/w/s/s/s/e".
 
 test all-loop with "test nloop/test sloop/w/test nloop/test sloop/e/e/test nloop/test sloop/w/test wloop/test eloop/n/test wloop/test eloop/s/s/test wloop/test eloop/s/test w2loop/test e2loop/s/test w2loop/test e2loop/s/test w2loop/test e2loop"
 
+chapter all 48
+
+test c1 with "pick 11234/nw/summon white/touch/se/se/summon red/touch/gonear d11/ne/summon yellow/touch/sw/sw/summon blue/touch/gonear u11/drop rope/d/e/gonear n11/s/d/gonear w11/e/s/gonear u11/tie rope".
+test c2 with "pick 1234/ne/summon white/touch/sw/sw/summon red/touch/gonear d11/nw/summon yellow/touch/se/se/summon blue/touch/gonear u11/drop rope/d/w/gonear n11/s/d/gonear e11/w/s/gonear u11/tie rope".
+
 Cube Game Testing ends here.
 
 ---- DOCUMENTATION ----

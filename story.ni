@@ -493,9 +493,11 @@ before going:
 	if mrlp is not mrx:
 		say "You twist over the side of the cube to the [mrx].[line break]";
 
-after going:
-	if init-drop-room is location of player and tunnel-looped is true:
-		say "You see where you planted the rope, originally. Power fluxes through the rope as you connect it in a loop. You watch as the cube breaks apart, and the gold sphere pops out and rolls around. You begin to fall, but remembering your levitation lessons, you slow the acceleration...";
+does the player mean tying rope to rope when tunnel-looped is true: it is very likely.
+
+before tying rope to rope:
+	if tunnel-looped is true:
+		say "Power fluxes through the rope as you connect it in a loop. You watch as the cube breaks apart, and the gold sphere pops out and rolls around. You begin to fall, but remembering your levitation lessons, you slow the acceleration...";
 		wfak-d;
 		say "[line break]The gold sphere cracks open. You see visions...of not five, not six, but OVER ONE HUNDRED ELEMENTS. Of light having speed, of mathematical theorems that prove you can't know anything. You see a vision of circular worlds that pull people to their centers, just like the cube, but THERE IS NOTHING SPECIAL IN THERE. There are visions of machines that not just levitate, but fly to the stars, which you thought was proven illegal.";
 		wfak-d;
@@ -504,6 +506,10 @@ after going:
 		say "[line break]But you never talk about what you really saw. You mention you had a vision of the cosmos, and so forth, and you wish you could interpret it, because you suspect you saw what you wanted to see about loving other people being the most important thing, and how the journey is its own reward. You find yourself saying 'There's just ... STUFF WE DON'T UNDERSTAND OUT THERE' with a conviction and mystery few can hope for. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' And you think back to the cube. You convince a few to take up writing. Even the wildest fantasies can spur rigorous scientific thought. There's a place for combining the humanities and the sciences.";
 		end the game saying "YOU, UM, WIN";
 		the rule succeeds;
+
+after going:
+	if init-drop-room is location of player and tunnel-looped is true:
+		say "You see where you planted the rope, originally. You can probably TIE the end you're holding to the other end, then ...";
 	continue the action;
 
 carry out going when location of player is very center:
@@ -1466,6 +1472,18 @@ understand "u00" as u00. understand "u02" as u02. understand "u20" as u20. under
 
 [d00 = SW d20 = SE]
 understand "d00" as d00. understand "d02" as d02. understand "d20" as d20. understand "d22" as d22.
+
+chapter rcing
+
+rcing is an action out of world.
+
+understand the command "rc" as something new.
+
+understand "rc" as rcing.
+
+carry out rcing:
+	say "[rope-colors].";
+	the rule succeeds;
 
 chapter fcing
 

@@ -1,5 +1,7 @@
 import itertools
 
+first_only = False
+
 count = 0
 
 oppo = { 'u':'d', 'd':'u', 'n':'s', 's':'n', 'e':'w', 'w':'e' }
@@ -72,16 +74,20 @@ def printCmds(tf, j):
     for k in loccol.keys():
         locrev[loccol[k]] = k
     to_center = True
+    drop_yet = False
     for me in ['red', 'orange', 'yellow', 'green', 'blue', 'purple']:
         # print(me, 'to', locrev[me], 'face')
         if to_center:
             cmds.append("gonear " + locrev[me] + "11")
+            if not drop_yet:
+                cmds.append("drop rope")
+                drop_yet = True
             cmds.append(oppo[locrev[me]])
         else:
             cmds.append(locrev[me])
         to_center = not to_center
     cmds.append("gonear " + locrev['red'] + "11")
-    cmds.append("l")
+    cmds.append("tie rope")
     cmd_string = "test c" + str(count) + " with \"" + ("/".join(cmds)) + "\".";
     print(cmd_string)
     # exit()
@@ -97,4 +103,5 @@ for j in q:
     printCmds(True, j)
     count = count + 1
     printCmds(False, j)
-    exit()
+    if first_only:
+        exit()
