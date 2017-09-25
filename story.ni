@@ -178,9 +178,9 @@ to proc-init-list:
 		now beaccolor of northern face is mix of rightcolor of northupwest and rightcolor of northdowneast;
 		now beaccolor of southern face is mix of rightcolor of southupeast and rightcolor of southdownwest;
 	else:
-		now rightcolor of northdownwest is entry 1 of init-list;
+		now rightcolor of northupeast is entry 1 of init-list;
 		now rightcolor of southdowneast is entry 2 of init-list;
-		now rightcolor of northupeast is entry 3 of init-list;
+		now rightcolor of northdownwest is entry 3 of init-list;
 		now rightcolor of southupwest is entry 4 of init-list;
 		now beaccolor of bottom face is mix of rightcolor of northdownwest and rightcolor of southdowneast;
 		now beaccolor of upper face is mix of rightcolor of northupeast and rightcolor of southupwest;
@@ -188,6 +188,24 @@ to proc-init-list:
 		now beaccolor of eastern face is mix of rightcolor of northupeast and rightcolor of southdowneast;
 		now beaccolor of northern face is mix of rightcolor of northdownwest and rightcolor of northupeast;
 		now beaccolor of southern face is mix of rightcolor of southdowneast and rightcolor of southupwest;
+
+to decide which number is code-num:
+	let index be 1000;
+	let retval be 0;
+	let idx2 be 0;
+	let my-list be { white, red, yellow, blue };
+	say "[my-list] vs [init-list].";
+	if rightcolor of northupeast is black, now retval is 10000;
+	let idx be 0;
+	while index > 0:
+		increment idx;
+		now idx2 is 0;
+		repeat with Q running through my-list:
+			increment idx2;
+			if Q is entry idx of init-list:
+				increase retval by index * idx2;
+		now index is index / 10;
+	decide on retval
 
 init-list is a list of colors variable. init-list is { white, red, yellow, blue }.
 
@@ -914,21 +932,21 @@ a cornerthing is a kind of backdrop. a cornerthing has a color called cornercolo
 
 Bbordering relates cornerthings to each other. The verb to bborder (he bborders, they bborder, it is bbordered) implies the bbordering relation.
 
-the northdownwest transponder is a cornerthing. It is in n00, d02, w20.
-
-the northdowneast transponder is a cornerthing. It is in n20, d22, e20.
-
 the northupwest transponder is a cornerthing. It is in n02, u02, w22.
 
 the northupeast transponder is a cornerthing. It is in n22, u22, e22.
 
-the southdownwest transponder is a cornerthing. It is in s00, d00, w00.
-
-the southdowneast transponder is a cornerthing. It is in s20, d20, e00.
-
 the southupwest transponder is a cornerthing. It is in s02, u00, w02.
 
 the southupeast transponder is a cornerthing. It is in s22, u20, e02.
+
+the northdownwest transponder is a cornerthing. It is in n00, d02, w20.
+
+the northdowneast transponder is a cornerthing. It is in n20, d22, e20.
+
+the southdownwest transponder is a cornerthing. It is in s00, d00, w00.
+
+the southdowneast transponder is a cornerthing. It is in s20, d20, e00.
 
 the northdownwest transponder bborders the northupwest transponder.
 the northupwest transponder bborders the northupeast transponder.
@@ -969,7 +987,7 @@ check touching a cornerthing:
 	else if cornercolor of noun is black:
 		say "A flash of light infuses the transponder. It shortly changes to [ring-color].";
 	else:
-		say "The transponder changes from [cornercolor of noun] to [ring-color].";
+		say "The transponder [if cornercolor of noun is ring-color]stays[else]changes from [cornercolor of noun] to[end if] [ring-color].";
 	now cornercolor of noun is ring-color;
 	let newcolor be raycolor of mrlp;
 	now ever-trans-changed is true;
@@ -1017,7 +1035,7 @@ to decide which direction is centerdir of (r - a room):
 		if q is facecenter, decide on d;
 		repeat with e running through simple directions:
 			if the room e of q is nowhere, next;
-			if the room e of q is facecenter, decide on e;
+			if the room e of q is facecenter, decide on combodir of d and e;
 	say "**BUG**";
 	decide on inside;
 
@@ -1052,9 +1070,9 @@ to decide which color is raycolor of (re - a region):
 to decide which color is raycolor of (r - a room):
 	let cr be map region of r;
 	choose row with myreg of cr in table of region beacons;
-	if cornercolor of b1 entry is not black or cornercolor of b3 entry is not black:
-		if cornercolor of b2 entry is not black or cornercolor of b4 entry is not black:
-			say "BUG THIS SHOULD NOT HAPPEN";
+	if cornercolor of b1 entry is not black or cornercolor of b2 entry is not black:
+		if cornercolor of b3 entry is not black or cornercolor of b4 entry is not black:
+			say "BUG THIS SHOULD NOT HAPPEN: [b1 entry] [cornercolor of b1 entry] [b2 entry] [cornercolor of b2 entry] [b3 entry] [cornercolor of b3 entry] [b4 entry] [cornercolor of b4 entry].";
 			decide on brown;
 	if cornercolor of b1 entry is not black and cornercolor of b2 entry is not black:
 		decide on mix of cornercolor of b1 entry and cornercolor of b2 entry;
@@ -1193,11 +1211,6 @@ after reading a command:
 		let XX be the player's command;
 [		replace the regular expression "^(say|think|shout|speak|yell) " in XX with "";]
 		change the text of the player's command to "summon [XX]";
-	if debug-state is true:
-		let x be {black, white, red, yellow, blue};
-		if the player's command matches the regular expression "^[0-4]{8}$":
-		repeat with Q running from 1 to 8:
-			let j be character number Q in the player's command;
 
 book parser errors
 
@@ -1218,7 +1231,7 @@ rule for printing a parser error when the latest parser error is the can't see a
 rule for printing a parser error when the latest parser error is the didn't understand error:
 	say "I didn't recognize that verb. For a list of common/useful verbs, type V or VERB or VERBS.";
 
-rule for printing a parser error when the latest parser error is the not a verb I recognize error:
+rule for printing a parser error when the latest parser error is the not a verb I recognise error:
 	say "I didn't recognize that verb. For a list of common/useful verbs, type V or VERB or VERBS.";
 
 volume stock room descriptions
@@ -1260,6 +1273,59 @@ when play begins:
 		try switching the story transcript on;
 		say "Transcripts can be sent to blurglecruncheon@gmail.com. Any punctuation before the comment is okay, e.g. *TYPO or ;typo or :typo. I can pick up pretty much any punctuation.";
 
+chapter picking
+
+picking is an action applying to one number.
+
+understand the command "pick" as something new.
+
+understand "pick [number]" as picking.
+
+carry out picking:
+	let W be {white, red, yellow, blue};
+	let X be true;
+	if number understood < 10000, now X is false;
+	let Y be 0;
+	let Y be the remainder after dividing number understood by 10000;
+	let Z be Y / 1000;
+	now rightcolor of northupwest is entry Z of W;
+	now rightcolor of northupeast is entry Z of W;
+	let Z be Y / 100;
+	let Z be the remainder after dividing Z by 10;
+	now rightcolor of southupwest is entry Z of W;
+	now rightcolor of southupeast is entry Z of W;
+	let Z be Y / 10;
+	let Z be the remainder after dividing Z by 10;
+	now rightcolor of northdownwest is entry Z of W;
+	now rightcolor of northdowneast is entry Z of W;
+	let Z be Y;
+	let Z be the remainder after dividing Z by 10;
+	now rightcolor of southdownwest is entry Z of W;
+	now rightcolor of southdowneast is entry Z of W;
+	if X is true:
+		now rightcolor of northupeast is black;
+		now rightcolor of northdownwest is black;
+		now rightcolor of southupwest is black;
+		now rightcolor of southdowneast is black;
+		now beaccolor of upper face is mix of rightcolor of northupwest and rightcolor of southupeast;
+		now beaccolor of bottom face is mix of rightcolor of northdowneast and rightcolor of southdownwest;
+		now beaccolor of western face is mix of rightcolor of northupwest and rightcolor of southdownwest;
+		now beaccolor of eastern face is mix of rightcolor of northdowneast and rightcolor of southupeast;
+		now beaccolor of northern face is mix of rightcolor of northupwest and rightcolor of northdowneast;
+		now beaccolor of southern face is mix of rightcolor of southupeast and rightcolor of southdownwest;
+	else:
+		now rightcolor of northupwest is black;
+		now rightcolor of northdowneast is black;
+		now rightcolor of southupeast is black;
+		now rightcolor of southdownwest is black;
+		now beaccolor of bottom face is mix of rightcolor of northdownwest and rightcolor of southdowneast;
+		now beaccolor of upper face is mix of rightcolor of northupeast and rightcolor of southupwest;
+		now beaccolor of western face is mix of rightcolor of northdownwest and rightcolor of southupwest;
+		now beaccolor of eastern face is mix of rightcolor of northupeast and rightcolor of southdowneast;
+		now beaccolor of northern face is mix of rightcolor of northdownwest and rightcolor of northupeast;
+		now beaccolor of southern face is mix of rightcolor of southdowneast and rightcolor of southupwest;
+	the rule succeeds;
+
 chapter bcsoling
 
 bcsoling is an action out of world.
@@ -1283,6 +1349,7 @@ carry out bcsoling:
 		if x is mtr:
 			next;
 		say "[x]: ray color is [raycolor of x], beacon color is [beaccolor of x].";
+	say "code: [code-num].";
 	the rule succeeds;
 
 chapter halping
