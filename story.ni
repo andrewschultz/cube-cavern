@@ -216,6 +216,8 @@ volume the player
 
 the player wears the mood ring. description of mood ring is "The phlogiston in your mood ring is currently colored [ring-color-report]. You can SUMMON any of the four elements ([list of elements]) to change the ring[if ring-color is not black], or if you wait, the ring can go back to black[end if]."
 
+after printing the name of the mood ring while taking inventory, say "(colored [ring-color], being worn)";
+
 description of the player is "People say you look the part of gung-ho theoretician with a flair for  ."
 
 to say ring-color-report:
@@ -431,7 +433,7 @@ definition: a direction (called d) is ubercromulent:
 book wrong way rejects
 
 to say can-want:
-	say "[if number of ever-aligned regions > 0]can[else]want to[end if]"
+	say "[if mrlp is aligned]can[else]will want to[end if]"
 
 prev-reg is a region that varies.
 
@@ -451,7 +453,7 @@ before going:
 	if location of player is corner and noun is descdir of location of player:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
-		say "You can only go [list of ubercromulent directions], or any non-opposite pair of those four directions, on the [mrlp][if location of player is facecenter]. You also [can-want] go inside here in the center[end if]." instead;
+		say "You can only go [list of ubercromulent directions], or any non-opposite pair of those four directions, along the [mrlp][if location of player is facecenter and number of ever-aligned regions > 0]. You also [can-want] go inside/[indir of mrlp] here in the center[end if]." instead;
 	if noun is not simple:
 		repeat through table of dirmerge:
 			if d3 entry is noun:
@@ -801,8 +803,6 @@ e20 is east of d22. west of e20 is nothing. d22 is down of e20. up of d22 is not
 
 n20 is north of d22. south of n20 is nothing. d22 is down of n20. up of d22 is nothing.
 
-a blank slate is a thing in n20.
-
 book very center
 
 the very center is a nonfacial room. it is below u11. it is above d11. it is west of e11. it is east of w11. it is north of s11. it is south of n11. printed name is "The Very Center".
@@ -976,8 +976,10 @@ fixed-beacons is a truth state that varies.
 [?? reset rope]
 
 to say froms of (x - a direction):
-	say "You step back as a strong electric pulse emits from ";
-	say "[if x is up]above[else if x is down]below[else]the [x]. Maybe you can't change this transponder right now"
+	say "You step back as a strong electric pulse emits [fromthe of x]. Maybe you can't change this transponder right now"
+
+to say fromthe of (x - a  direction):
+	say "from [if x is up]above[else if x is down]below[else]the [x][end if]"
 
 check touching a cornerthing:
 	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
@@ -1001,9 +1003,9 @@ check touching a cornerthing:
 	if newcolor is oldcolor, the rule succeeds;
 	let na be number of aligned regions;
 	unless oldcolor is beaccolor of mrlp or newcolor is beaccolor of mrlp, say "Nothing much seems to happen. Well, yet." instead;
-	if oldcolor is beaccolor of mrlp, say "You hear a whirring that ends on a low note to the [centerdir of location of player].";
+	if oldcolor is beaccolor of mrlp, say "You hear a whirring that ends on a low note [fromthe of centerdir of location of player].";
 	if newcolor is beaccolor of mrlp:
-		say "You hear a whirring that ends on a high note to the [centerdir of location of player].";
+		say "You hear a whirring that ends on a high note [fromthe of centerdir of location of player].";
 		now mrlp is ever-aligned;
 		if number of aligned regions is 6:
 			say "The cube shakes a bit. It felt like a few tunnels opened at once.";
@@ -1050,16 +1052,16 @@ table of beacon zaps
 con1	con2	mydir
 northdownwest	northupwest	up
 southdownwest	southupwest	up
-northdowneast	northupeast	northeast
-southdowneast	southupeast	southeast
-northupeast	southupeast	upeast
-northupwest	southupwest	upwest
-northdowneast	southdowneast	downeast
-northdownwest	southdownwest	downwest
-northupeast	northupwest	upnorth
-northdowneast	northdownwest	downnorth
-southupeast	southupwest	upsouth
-southupeast	southupwest	downsouth
+northdowneast	northupeast	up
+southdowneast	southupeast	up
+northupeast	southupeast	south
+northupwest	southupwest	south
+northdowneast	southdowneast	south
+northdownwest	southdownwest	south
+northupeast	northupwest	west
+northdowneast	northdownwest	west
+southupeast	southupwest	west
+southupeast	southupwest	west
 
 table of region beacons
 myreg	b1	b2	b3	b4
@@ -1439,10 +1441,15 @@ volume debug tests and such - not for release
 
 book definitions for debug purposes
 
-understand "d00" as d00.
-understand "n00" as n00.
-understand "s00" as s00.
-understand "w00" as w00.
-understand "e00" as e00.
-understand "u00" as u00.
+understand "d11" as d11.
+understand "u11" as u11.
+understand "n11" as n11.
+understand "s11" as s11.
+understand "w11" as w11.
+understand "e11" as e11.
 
+[u00 = SW u20 = SE]
+understand "u00" as u00. understand "u02" as u02. understand "u20" as u20. understand "u22" as u22.
+
+[d00 = SW d20 = SE]
+understand "d00" as d00. understand "d02" as d02. understand "d20" as d20. understand "d22" as d22.
