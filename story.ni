@@ -91,11 +91,13 @@ indir of southern face is north.
 indir of western face is east.
 indir of eastern face is west.
 
-mtr is a region.
-
 a room can be facecenter, edge, corner or nonfacial.
 
 a region can be ever-aligned or never-aligned. a region is usually never-aligned.
+
+a region can be alignable or unalignable. a region is usually alignable.
+
+mtr is an unalignable region.
 
 to decide what region is mrlp: [I'd include this in a header but it complains if you don't use regions]
 	if map region of location of player is nothing, decide on mtr;
@@ -216,7 +218,14 @@ volume the player
 
 the player wears the mood ring. description of mood ring is "The phlogiston in your mood ring is currently colored [ring-color-report]. You can SUMMON any of the four elements ([list of elements]) to change the ring[if ring-color is not black], or if you wait, the ring can go back to black[end if]."
 
-after printing the name of the mood ring while taking inventory, say "(colored [ring-color], being worn)";
+instead of taking inventory:
+	if the number of things enclosed by the player is 0, say "You are empty-handed." instead;
+	say "You are carrying: [line break]";
+	list the contents of the player, with newlines, indented, with extra indentation;
+
+after printing the name of the mood ring while taking inventory:
+	say " (colored [ring-color], being worn)";
+	the rule succeeds;
 
 description of the player is "People say you look the part of gung-ho theoretician with a flair for  ."
 
@@ -810,11 +819,11 @@ the very center is a nonfacial room. it is below u11. it is above d11. it is wes
 the tunnels are scenery in very center. understand "tunnel" as tunnel.
 
 check examining tunnels:
+	if number of aligned regions is 0, say "There should be a way out, but there's not, which is a BUG." instead;
 	if number of aligned regions is 1:
 		say "The tunnel back [outdir of random aligned region] is colored [beaccolor of random aligned region]." instead;
 	say "The tunnels are colored as follows:[line break]";
-	repeat with X running through regions:
-		if x is mtr, next;
+	repeat with X running through alignable regions:
 		if x is aligned, say "[outdir of x]: [beaccolor of x][if beaccolor of x is listed in rope-colors] (with rope through it)[end if].";
 	the rule succeeds
 
@@ -1081,7 +1090,7 @@ to decide which color is raycolor of (r - a room):
 	choose row with myreg of cr in table of region beacons;
 	if cornercolor of b1 entry is not black or cornercolor of b2 entry is not black:
 		if cornercolor of b3 entry is not black or cornercolor of b4 entry is not black:
-			say "BUG THIS SHOULD NOT HAPPEN: [b1 entry] [cornercolor of b1 entry] [b2 entry] [cornercolor of b2 entry] [b3 entry] [cornercolor of b3 entry] [b4 entry] [cornercolor of b4 entry].";
+			say "*BUG* ADJACENT TRANSPONDERS WERE FLIPPED ON: [b1 entry] [cornercolor of b1 entry] [b2 entry] [cornercolor of b2 entry] [b3 entry] [cornercolor of b3 entry] [b4 entry] [cornercolor of b4 entry].";
 			decide on brown;
 	if cornercolor of b1 entry is not black and cornercolor of b2 entry is not black:
 		decide on mix of cornercolor of b1 entry and cornercolor of b2 entry;
@@ -1366,9 +1375,7 @@ carry out bcsoling:
 		if rightcolor of x is black:
 			say "[x]: is [cornercolor of x], should be [rightcolor of x].";
 	say "BEACON COLORS:[line break]";
-	repeat with x running through regions:
-		if x is mtr:
-			next;
+	repeat with x running through alignable regions:
 		say "[x]: ray color is [raycolor of x], beacon color is [beaccolor of x].";
 	say "code: [code-num].";
 	the rule succeeds;
@@ -1435,7 +1442,7 @@ volume debug tests and such - not for release
 
 [uncomment below to unlock weird tests]
 
-[include Cube Game Testing by Andrew Schultz.]
+include Cube Game Testing by Andrew Schultz.
 
 [more standard inform stuff below]
 
@@ -1453,3 +1460,19 @@ understand "u00" as u00. understand "u02" as u02. understand "u20" as u20. under
 
 [d00 = SW d20 = SE]
 understand "d00" as d00. understand "d02" as d02. understand "d20" as d20. understand "d22" as d22.
+
+chapter fcing
+
+fcing is an action applying to one visible thing.
+
+understand the command "fc" as something new.
+
+understand "fc [direction]" as fcing.
+understand "fc [thing]" as fcing.
+
+carry out fcing:
+	if noun is not a direction, say "FC only applies to directions." instead;
+	if noun is not simple, say "Only simple directions work with FC." instead;;
+	move player to the room noun of very center;
+	the rule succeeds.
+

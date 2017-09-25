@@ -1,4 +1,4 @@
-Version 1/170825 of Rube Cube Testing by Andrew Schultz begins here.
+Version 1/170825 of Cube Game Testing by Andrew Schultz begins here.
 
 volume direction trackers
 
@@ -64,7 +64,8 @@ volume test scripts
 
 chapter walkthrough
 
-test fix with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/d/s/s/w/w/summon air/touch/bcsol"
+test fix with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/d/s/s/w/w/summon air/touch/bcsol".
+test fix3 with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/nwin/l/x tunnels".
 
 test cross with "test fix/ne/drop rope/w/w/u/u/u".
 test cross2 with "test fix/ne/drop rope/w/w/d".
@@ -103,6 +104,6 @@ test e2loop with "e/e/n/n/n/w/w/w/s/s/s/e".
 
 test all-loop with "test nloop/test sloop/w/test nloop/test sloop/e/e/test nloop/test sloop/w/test wloop/test eloop/n/test wloop/test eloop/s/s/test wloop/test eloop/s/test w2loop/test e2loop/s/test w2loop/test e2loop/s/test w2loop/test e2loop"
 
-Rube Cube Testing ends here.
+Cube Game Testing ends here.
 
 ---- DOCUMENTATION ----
