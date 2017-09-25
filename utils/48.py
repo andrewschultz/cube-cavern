@@ -59,7 +59,7 @@ def center_face_switch(x, y, z, w):
     x.append(z)
     x.append(oppo[y])
 
-def printCmds(tf, j):
+def printCmds(tf, j, rb_ord):
     codenum = 0
     for r in range(0, 4):
         codenum = codenum * 10
@@ -110,7 +110,12 @@ def printCmds(tf, j):
     to_center = True
     drop_yet = False
     curface = 'd'
-    for me in ['red', 'orange', 'yellow', 'green', 'blue', 'purple']:
+    color_order = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+    col_rot = - (rb_ord % len(color_order))
+    color_order = color_order[col_rot:] + color_order[:col_rot]
+    if rb_ord >= len(color_order):
+        color_order = color_order[::-1]
+    for me in color_order:
         # print(me, 'to', locrev[me], 'face')
         if to_center:
             center_face_switch(cmds, curface, locrev[me], go_near)
@@ -122,7 +127,7 @@ def printCmds(tf, j):
             cmds.append(locrev[me])
         to_center = not to_center
         curface = locrev[me]
-    center_face_switch(cmds, curface, locrev['red'], go_near)
+    center_face_switch(cmds, curface, locrev[color_order[0]], go_near)
     cmds.append("tie rope")
     cmd_string = "test c" + str(count) + ('' if go_near else 'a') + " with \"" + ("/".join(cmds)) + "\".";
     print(cmd_string)
@@ -136,8 +141,8 @@ for j in q:
     print()
     # print("Test for", j)
     count = count + 1
-    printCmds(True, j)
+    printCmds(True, j, 0)
     count = count + 1
-    printCmds(False, j)
+    printCmds(False, j, 0)
     if first_only:
         exit()

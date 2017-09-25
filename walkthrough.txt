@@ -1,4 +1,4 @@
-The solution to The Rube on the Cube is not too bad once you know what to do. The puzzle is randomly generated each time, and there are forty-eight possibilities once you understand what you can put on the transponders.
+The solution to The Cube in the Cavern is not too bad once you know what to do. The puzzle is randomly generated each time, and there are forty-eight possibilities once you understand what you can put on the transponders.
 
 You may notice that REVIEWing changes your mood ring to different colors. White, red, yellow and blue.
 
@@ -8,7 +8,7 @@ You may also notice, by trial and error, that adjacent transponders cannot have 
 
 That should give you an idea. If you can combine colors right, you may be able to match all the transponder colors and combinations with their beacons.
 
-You can probably just pick one color and guess the rest randomly. For instance, if the upper cube is red, then one corner is red, and the other is white. There are four possibilities for this.
+You can probably just pick one color and guess the rest randomly. For instance, if the upper cube is red, then one corner is red, and the other is white. There are four possibilities for this. Then you can figure out the other two.
 
 But you can be more exact, too. Let's try something here.
 
@@ -26,10 +26,12 @@ That means the upnorthwest beacon should remain black. The north face must be ye
 
 That leaves the downsoutheast transponder as red.
 
+There's a more general way to figure things, too, once you know how the game works. Once you know the beacon colors on three non-opposing planes, you know the other three. Orange always opposes blue, purple opposes yellow, and green opposes red. You can notice this through experimentation or by noting that two opposite planes each have two transponders to color, and they must cover all four colors. There are three ways to pair off ring colors: red/yellow and white/blue, red/blue and white/yellow, and red/white and blue/yellow. Then you can note where, say, the red/yellow/blue planes meet, and that must be white.
+
 Now for the second part. You need to DROP ROPE at the start of a tunnel on the surface. You can go from any one.
 
-You can enter at any hole where a beacon was. You need to go through all three perpendicular tunnels. But you need to go through a certain way. You may have noticed the rainbow. You can start with any tunnel, to go in the red-orange-yellow-green-blue-purple order, and you can reverse that order, but you can't go twice into any tunnel. Once you've been through all six, the game will see if you went in a rainbow-ly pattern. I hope this is not too bad. There are twelve different possibilities. Note that you can also NEVER go straight.
+You can enter at any hole where a beacon was. You need to go through all three perpendicular tunnels. But you need to go through a certain way. You may have noticed the rainbow. You can start with any color, as long as you go in the red-orange-yellow-green-blue-purple order or its reverse, but you can't go twice into any tunnel. Once you've been through all six, the game will see if you went in a rainbow-ly pattern. Go back to the start of your journey and TIE ROPE. I hope this is not too bad.
 
-D.D.N.N.U.S.S.E.E.N.W.W.U.U.E.
+Note that you can also NEVER go straight in the tunnels with your rope.
 
-Now you can WAVE to the ship and you will be pulled away to victory.
+An example for the above would be D.D.N.N.U.S.S.E.E.N.W.W.U.U.E.
