@@ -974,13 +974,20 @@ check taking cornerthing:
 fixed-beacons is a truth state that varies.
 
 [?? reset rope]
+
+to say froms of (x - a direction):
+	say "You step back as a strong electric pulse emits from ";
+	say "[if x is up]above[else if x is down]below[else]the [x]. Maybe you can't change this transponder right now"
+
 check touching a cornerthing:
 	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
 	if rope-drop is true, say "You're wary of fiddling with the transponders now you're dragging the rope around." instead;
 	let ia be number of aligned regions;
 	if ring-color is black and cornercolor of noun is black, say "You feel a pulse through your ring. It feels like something more should happen, but it doesn't." instead;
 	repeat through table of beacon zaps:
-		if con2 entry is noun and cornercolor of con1 entry is not black, say "You step back as a strong electric pulse emits from the [mydir entry]. Maybe you can't change this transponder right now." instead;
+		if con2 entry is noun and cornercolor of con1 entry is not black, say "[froms of mydir entry]." instead;
+	repeat through table of beacon zaps:
+		if con1 entry is noun and cornercolor of con2 entry is not black, say "[froms of opposite of mydir entry]." instead;
 	let oldcolor be raycolor of mrlp;
 	if ring-color is black:
 		say "The transponder winks back to black.";
@@ -1041,8 +1048,8 @@ to decide which direction is centerdir of (r - a room):
 
 table of beacon zaps
 con1	con2	mydir
-northdownwest	northupwest	northwest
-southdownwest	southupwest	southwest
+northdownwest	northupwest	up
+southdownwest	southupwest	up
 northdowneast	northupeast	northeast
 southdowneast	southupeast	southeast
 northupeast	southupeast	upeast
@@ -1288,20 +1295,29 @@ carry out picking:
 	let Y be 0;
 	let Y be the remainder after dividing number understood by 10000;
 	let Z be Y / 1000;
+	if Z < 1 or Z > 4, say "ERROR bad 1000s digit need 1-4!" instead;
 	now rightcolor of northupwest is entry Z of W;
 	now rightcolor of northupeast is entry Z of W;
-	let Z be Y / 100;
-	let Z be the remainder after dividing Z by 10;
-	now rightcolor of southupwest is entry Z of W;
-	now rightcolor of southupeast is entry Z of W;
-	let Z be Y / 10;
-	let Z be the remainder after dividing Z by 10;
-	now rightcolor of northdownwest is entry Z of W;
-	now rightcolor of northdowneast is entry Z of W;
-	let Z be Y;
-	let Z be the remainder after dividing Z by 10;
-	now rightcolor of southdownwest is entry Z of W;
-	now rightcolor of southdowneast is entry Z of W;
+	let Z1 be Y / 100;
+	let Z1 be the remainder after dividing Z1 by 10;
+	if Z1 < 1 or Z1 > 4, say "ERROR bad 100s digit need 1-4!" instead;
+	now rightcolor of southupwest is entry Z1 of W;
+	now rightcolor of southupeast is entry Z1 of W;
+	let Z2 be Y / 10;
+	let Z2 be the remainder after dividing Z2 by 10;
+	if Z2 < 1 or Z2 > 4, say "ERROR bad 10s digit need 1-4!" instead;
+	now rightcolor of northdownwest is entry Z2 of W;
+	now rightcolor of northdowneast is entry Z2 of W;
+	let Z3 be Y;
+	let Z3 be the remainder after dividing Z3 by 10;
+	if Z < 1 or Z > 4, say "ERROR bad 1s digit need 1-4!" instead;
+	now rightcolor of southdownwest is entry Z3 of W;
+	now rightcolor of southdowneast is entry Z3 of W;
+	now init-list is {};
+	add entry Z of W to init-list;
+	add entry Z1 of W to init-list;
+	add entry Z2 of W to init-list;
+	add entry Z3 of W to init-list;
 	if X is true:
 		now rightcolor of northupeast is black;
 		now rightcolor of northdownwest is black;
@@ -1343,7 +1359,10 @@ carry out bcsoling:
 	repeat with x running through cornerthings:
 		if rightcolor of x is not black:
 			say "[x]: is [cornercolor of x], should be [rightcolor of x].";
-	say "UNUSED: [list of unneeded cornerthings].";
+	say "(SHOULD BE) UNUSED: [line break]";
+	repeat with x running through cornerthings:
+		if rightcolor of x is black:
+			say "[x]: is [cornercolor of x], should be [rightcolor of x].";
 	say "BEACON COLORS:[line break]";
 	repeat with x running through regions:
 		if x is mtr:
