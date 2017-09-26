@@ -288,7 +288,7 @@ check dropping:
 
 chapter elements
 
-an element is a kind of thing. an element has a color called conc-color. an element has a truth state called ever-acc. an element has text called blah-txt.
+an element is a kind of thing. an element has a color called conc-color. an element can be ever-acc. an element is usually not ever-acc. an element has text called blah-txt.
 
 air is an element. conc-color of air is white. blah-txt is "People argued if air should have a color, but of course it has to. It's just really, really white: ultra-white, maybe."
 
@@ -308,14 +308,20 @@ understand the command "summon" as something new.
 
 understand "summon [any thing]" as summoning.
 
+all-4-acc is a truth state that varies.
+
 carry out summoning:
 	if noun is not an element, say "You can only summon elements. The elements are: [list of elements]." instead;
 	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][one of]. NOTE: in the future, you can SUMMON a color, or even leave off SUMMON altogether[or][stopping][end if].";
-	if ever-acc of noun is false:
+	if noun is ever-acc:
 		say "[line break]SCIENCE TIME: [blah-txt of noun][line break]";
-		now ever-acc of noun is true;
+		now noun is ever-acc;
 	now ring-color is conc-color of noun;
 	now ring-moves is 5;
+	if all-4-acc is false:
+		if all elements are ever-acc:
+			say "[line break]GAME NOTE: you can just type an element or the color you wish to change in the future.";
+			now all-4-acc is true;
 	the rule succeeds.
 
 chapter summoning
@@ -525,6 +531,7 @@ before tying rope to rope:
 		say "You started tying the rope at one of the tunnels." instead;
 
 before tying rope to:
+	if second noun is tunnel, try dropping rope instead;
 	if second noun is beacon, say "The beacon might snap if you pull the rope away." instead;
 	if second noun is ring, say "You couldn't tie the rope around the ring without removing the ring, and you don't want to remove the ring." instead;
 	if second noun is a cornerthing, say "The [noun] might snap if you pull the rope away." instead;
@@ -1517,6 +1524,7 @@ include Cube Game Testing by Andrew Schultz.
 
 test 2of2 with "pick 1234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/n/uw/s/u/n/n/d/tie rope to rope".
 test 2of3 with "pick 11234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/us/drop rope/w/n/e/e/s/tie rope to rope".
+test 4of4 with "pick 11234/sw/blue/touch/ne/ne/yellow/touch/e/ds/ds/d/red/touch/nw/nw/white/touch/n/eu/drop rope/s/w/s/s/e/n/e/n/n/w/tie rope".
 
 book definitions for debug purposes
 
