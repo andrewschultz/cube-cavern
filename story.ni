@@ -10,6 +10,8 @@ include Trivial Niceties by Andrew Schultz.
 
 include Basic Screen Effects by Emily Short. [ watch out! center/central are defined here, so centered/center can cause runtime errrors. This is specific to my game and the mechanics it has.]
 
+release along with an interpreter.
+
 section big picture definitions
 
 use no scoring.
@@ -835,7 +837,11 @@ check examining tunnels:
 		if x is aligned, say "[outdir of x]: [beaccolor of x][if beaccolor of x is listed in rope-colors] (with rope through it)[end if].";
 	the rule succeeds
 
-description of very center is "Here in the very center you can go [list of centexit directions] back to the surface through different colored tunnels. There's some weird gold object [object-doing][one of]. It must be what gave those weird...readings[or][stopping]."
+description of very center is "Here in the very center you can [if number of centexit directions is 1]only go back [only-vc-dir][else]go [list of centexit directions] back to the surface through different colored tunnels[end if].[paragraph break]There's some weird gold object [object-doing][one of]. It must be what gave those weird...readings[or][stopping]."
+
+to say only-vc-dir:
+	let J be a random centexit direction;
+	say "[J] through a [beaccolor of map region of room J of very center] tunnel";
 
 the gold spherical object is scenery in very center. "It seems to be projecting a small rainbow. You know, the colors red, orange, yellow, green, blue, purple[one of]. You remember in your science history books, reading about a heretic sentenced to death for insisting that purple should be broken down into indigo and violet. Needlessly complex. Where DO some people get their ideas from?[or].[stopping]"
 
@@ -862,6 +868,9 @@ definition: a direction (called di) is centexit:
 before going to very center:
 	d "[raycolor of mrlp] [beaccolor of mrlp].";
 	if mrlp is never-aligned:
+		if mrlp is aligned:
+			say "*";
+			continue the action; [this is a sneaky way to skip over a bug where something is aligned AND never-aligned]
 		say "You're at the right place to go in, but you don't have a way through, yet." instead;
 	if mrlp is not aligned:
 		say "You're at the right place to go in, but the way through closed." instead;
@@ -998,6 +1007,16 @@ to say froms of (x - a direction):
 to say fromthe of (x - a  direction):
 	say "from [if x is up]above[else if x is down]below[else]the [x][end if]"
 
+to decide what number is regionbin:
+	let ret be 0;
+	if upper face is aligned, increase ret by 32;
+	if bottom face is aligned, increase ret by 16;
+	if northern face is aligned, increase ret by 8;
+	if southern face is aligned, increase ret by 4;
+	if eastern face is aligned, increase ret by 2;
+	if western face is aligned, increase ret by 1;
+	decide on ret;
+
 check touching a cornerthing:
 	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
 	if rope-drop is true, say "You're wary of fiddling with the transponders now you're dragging the rope around." instead;
@@ -1014,19 +1033,31 @@ check touching a cornerthing:
 		say "A flash of light infuses the transponder. It shortly changes to [ring-color].";
 	else:
 		say "The transponder [if cornercolor of noun is ring-color]stays[else]changes from [cornercolor of noun] to[end if] [ring-color].";
+	let na-then be number of aligned regions;
+	let atot-then be regionbin;
 	now cornercolor of noun is ring-color;
 	let newcolor be raycolor of mrlp;
 	now ever-trans-changed is true;
-	if newcolor is oldcolor, the rule succeeds;
-	let na be number of aligned regions;
-	unless oldcolor is beaccolor of mrlp or newcolor is beaccolor of mrlp, say "Nothing much seems to happen. Well, yet." instead;
-	if oldcolor is beaccolor of mrlp, say "You hear a whirring that ends on a low note [fromthe of centerdir of location of player].";
-	if newcolor is beaccolor of mrlp:
+	let na-now be number of aligned regions;
+	let atot-now be regionbin;
+	[d "[na-then] [atot-then] [na-now] [atot-now] [oldcolor] [newcolor].";]
+	say "[line break]";
+	if oldcolor is beaccolor of mrlp and newcolor is not beaccolor of mrlp:
+		say "You hear a whirring that ends on a low note [fromthe of centerdir of location of player].";
+	else if newcolor is beaccolor of mrlp and oldcolor is not beaccolor of mrlp:
 		say "You hear a whirring that ends on a high note [fromthe of centerdir of location of player].";
 		now mrlp is ever-aligned;
 		if number of aligned regions is 6:
-			say "The cube shakes a bit. It felt like a few tunnels opened at once.";
+			say "[line break]The cube shakes a bit. It felt like a few tunnels opened at once.";
 			now fixed-beacons is true;
+	else if na-now > na-then:
+		say "You hear a distant whirring that ends on a high note, but you can't tell from where.";
+	else if na-now < na-then:
+		say "You hear a distant whirring that ends on a low note, but you can't tell from where.";
+	else if atot-now is not atot-then:
+		say "You hear weird whirrings--from where, you can't say.";
+	else:
+		say "Nothing seems to happen, but then, there are other places to visit.";
 	now all aligned regions are ever-aligned;
 	move tunnel backdrop to all tunneled rooms;
 	move beacon backdrop to all beaconed rooms;
