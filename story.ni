@@ -278,7 +278,7 @@ check dropping wire rope:
 	if rope-drop is true, say "You already dropped the rope to start." instead;
 	now last-rope-region is mrlp;
 	now init-drop-room is location of player;
-	say "You drop the rope and anchor it. (NOTE: if you want to undo things later, you can RESET to before you dropped the rope).";
+	say "You drop the rope and anchor it. (NOTE: if you want to undo things later, you can [b]RESET[r] to before you dropped the rope).";
 	now last-top-room is location of player;
 	now rope-drop is true;
 	the rule succeeds;
@@ -495,10 +495,12 @@ before going:
 	if mrlp is not mrx:
 		say "You twist over the side of the cube to the [mrx].[line break]";
 
-does the player mean tying rope to rope when tunnel-looped is true: it is very likely.
+does the player mean tying rope to rope when tunnel-looped is true or location of player is init-drop-room: it is very likely.
 
 before tying rope to rope:
 	if tunnel-looped is true:
+		if location of player is not init-drop-room:
+			say "Maybe go back to where you originally dropped the rope in the center of the [map region of init-drop-room]." instead;
 		say "Power fluxes through the rope as you connect it in a loop. You watch as the cube breaks apart, and the gold sphere pops out and rolls around. You begin to fall, but remembering your levitation lessons, you slow the acceleration...";
 		wfak-d;
 		say "[line break]The gold sphere cracks open. You see visions...of not five, not six, but OVER ONE HUNDRED ELEMENTS. Of light having speed, of mathematical theorems that prove you can't know anything. You see a vision of circular worlds that pull people to their centers, just like the cube, but THERE IS NOTHING SPECIAL IN THERE. There are visions of machines that not just levitate, but fly to the stars, which you thought was proven illegal.";
@@ -506,8 +508,29 @@ before tying rope to rope:
 		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a  hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
 		wfak-d;
 		say "[line break]But you never talk about what you really saw. You mention you had a vision of the cosmos, and so forth, and you wish you could interpret it, because you suspect you saw what you wanted to see about loving other people being the most important thing, and how the journey is its own reward. You find yourself saying 'There's just ... STUFF WE DON'T UNDERSTAND OUT THERE' with a conviction and mystery few can hope for. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' And you think back to the cube. You convince a few to take up writing. Even the wildest fantasies can spur rigorous scientific thought. There's a place for combining the humanities and the sciences.";
-		end the game saying "YOU, UM, WIN";
+		end the story finally saying "YOU HAVE ACHIEVED KNOWLEDGE";
 		the rule succeeds;
+	if rope-drop is true:
+		if location of player is init-drop-room:
+			if number of entries in rope-colors > 1:
+				say "You tie the rope to itself. [if number of entries in rope-colors < number of aligned regions]Maybe you didn't thread the cube completely, but eh well, no big deal[else]Maybe you could've created a few other tunnels, but the important thing is, you've anchored the whole cube[end if], right?";
+				wfak-d;
+				say "[line break]You throw the rope hard enough that it breaks the cube's gravity. As it hits a cavern wall, you feel the cube pulled...and it starts to crumble...and the gold ball rushes out of the cavern. When you return to the surface, people tell you of the wonderful fireworks as it exploded in the sky. They were sure you did all you could to capture what was in it. But you aren't.";
+				end the story saying "THE KNOWLEDGE REMAINS HIDDEN";
+				the rule succeeds;
+			else:
+				say "You already dropped the rope here. Time to get a move on." instead;
+		if location of player is facecenter or location of player is very center:
+			say "Maybe tie the rope at the start of the tunnel where you first went inside, on the [map region of init-drop-room]." instead;
+		say "You started tying the rope at one of the tunnels." instead;
+
+before tying rope to:
+	if second noun is beacon, say "The beacon might snap if you pull the rope away." instead;
+	if second noun is ring, say "You couldn't tie the rope around the ring without removing the ring, and you don't want to remove the ring." instead;
+	if second noun is a cornerthing, say "The [noun] might snap if you pull the rope away." instead;
+
+before tying something to:
+	if second noun is rope and noun is not rope, try tying noun to second noun instead;
 
 after going:
 	if init-drop-room is location of player and tunnel-looped is true:
@@ -837,7 +860,7 @@ check examining tunnels:
 		if x is aligned, say "[outdir of x]: [beaccolor of x][if beaccolor of x is listed in rope-colors] (with rope through it)[end if].";
 	the rule succeeds
 
-description of very center is "Here in the very center you can [if number of centexit directions is 1]only go back [only-vc-dir][else]go [list of centexit directions] back to the surface through different colored tunnels[end if].[paragraph break]There's some weird gold object [object-doing][one of]. It must be what gave those weird...readings[or][stopping]."
+description of very center is "Here in the very center you can [if number of centexit directions is 1]only go back [only-vc-dir][else]go [list of centexit directions] back to the surface through different colored tunnels[end if].[paragraph break]There's some weird gold object [object-doing][one of]. It must be what gave those readings that attracted you to the cube in the first place[or][stopping]."
 
 to say only-vc-dir:
 	let J be a random centexit direction;
@@ -1197,9 +1220,9 @@ understand "verb" as verbing.
 understand "verbs" as verbing.
 
 carry out verbing:
-	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to TOUCH things or SUMMON the four elements: [list of elements]. THINK will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. RESET will send you back before when you pitched the rope[end if].";
+	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements]. [b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if].";
 	if debug-state is true:
-		say "[paragraph break]You can also use BCSOL to see the beacon solutions, or HALP to see the tunnel solution.";
+		say "[paragraph break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
 
 chapter jumping
@@ -1303,11 +1326,14 @@ to say mrtc:
 
 a room has a direction called descdir. descdir is usually inside.
 
+to say rope-here:
+	say ". [if number of entries in rope-colors is 0]You've staked your wire rope here[else]Here's where you originally staked the wire rope. You can TIE it to itself to secure the cube[end if]"
+
 to say room-desc:
 	if location of player is corner:
 		say "You are at the [descdir] corner of the [mrlp]. There's a transponder here--your mood ring is slightly attracted to it. You can go [list of goable directions] along this face, or you can go off this face: [cornerwarp]";
 	else if location of player is facecenter:
-		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else]There's a beacon here, colored [beaccolor of mrlp][end if]";
+		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else]There's a beacon here, colored [beaccolor of mrlp][end if][if init-drop-room is location of player][rope-here]";
 	else if location of player is edge:
 		say "You are at the center of the [descdir] edge of the [mrlp]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
 
@@ -1488,6 +1514,9 @@ volume debug tests and such - not for release
 include Cube Game Testing by Andrew Schultz.
 
 [more standard inform stuff below]
+
+test 2of2 with "pick 1234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/n/uw/s/u/n/n/d/tie rope to rope".
+test 2of3 with "pick 11234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/us/drop rope/w/n/e/e/s/tie rope to rope".
 
 book definitions for debug purposes
 
