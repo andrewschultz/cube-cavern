@@ -16,6 +16,10 @@ section big picture definitions
 
 use no scoring.
 
+section debug variables that need to be defined
+
+go-test is a truth state that varies.
+
 section debug to start - not for release
 
 when play begins:
@@ -488,6 +492,8 @@ before going:
 				if R4 is nothing, next;
 				if R4 is R2:
 					if mrlp is not map region of R2:
+						if go-test is true:
+							say "TESTING NOTE: you would've moved to [r2] in [map region of R2]." instead;
 						say "[if noun is complex]It feels weird shimmying over at a diagonal angle, but there you are[else]Fwoop. You flip over to the [map region of R2][end if].";
 					if rope-drop is true and map region of R2 is not last-rope-region and mrlp is not last-rope-region and map region of R2 is not mrlp:
 						say " need to put your rope down somewhere close, if you can." instead;
@@ -501,6 +507,8 @@ before going:
 		if mrx is not last-rope-region and mrlp is not last-rope-region and mrx is not mrlp:
 			say "You need to put your rope down somewhere close, if you can." instead;
 	if mrlp is not mrx:
+		if go-test is true:
+			say "TESTING NOTE: you would've moved to [X] in [mrx] from [mrlp]." instead;
 		say "You twist over the side of the cube to the [mrx].[line break]";
 
 does the player mean tying rope to rope when tunnel-looped is true or location of player is init-drop-room: it is very likely.
@@ -1562,9 +1570,22 @@ volume debug tests and such - not for release
 
 [uncomment below to unlock weird tests]
 
-[include Cube Game Testing by Andrew Schultz.]
+include Cube Game Testing by Andrew Schultz.
 
 [more standard inform stuff below]
+
+chapter temporary tests
+
+test ud with "ne/sw/en/ws/nw/se/wn/es".
+test uds with "gonear u11/test ud/gonear d11/test ud".
+test ns with "ue/dw/uw/de/eu/wd/ed/wu".
+test nss with "gonear n11/test ns/gonear s11/test ns".
+test ew with "un/ds/us/dn/nu/sd/su/dn".
+test ews with "gonear e11/test ew/gonear w11/test ew".
+
+test uofftest with "gotest/gonear u11/nw/test udofftest".
+test dofftest with "gotest/gonear d11/nw/test udofftest".
+test udofftest with "sw/w/nw/n/ne/e/nw/n/ne/e/n/ne/e/s/ne/e/se/s/ne/e/se/s/sw/w/se/s/sw/w/se/s/sw/w/nw/n/sw/n/nw/ne/se/sw/nw/se/ne/nw/sw"
 
 book definitions for debug purposes
 

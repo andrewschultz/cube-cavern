@@ -47,6 +47,19 @@ carry out allwaying:
 		try waysing;
 	the rule succeeds;
 
+chapter gotesting
+
+gotesting is an action out of world.
+
+understand the command "gotest" as something new.
+
+understand "gotest" as gotesting.
+
+carry out gotesting:
+	now go-test is whether or not go-test is false;
+	say "Go-test is now [if go-test is true]on[else]false[end if].";
+	the rule succeeds;
+
 chapter rmnameing
 
 rmnameing is an action out of world.
