@@ -1585,7 +1585,40 @@ test ews with "gonear e11/test ew/gonear w11/test ew".
 
 test uofftest with "gotest/gonear u11/nw/test udofftest".
 test dofftest with "gotest/gonear d11/nw/test udofftest".
-test udofftest with "sw/w/nw/n/ne/e/nw/n/ne/e/n/ne/e/s/ne/e/se/s/ne/e/se/s/sw/w/se/s/sw/w/se/s/sw/w/nw/n/sw/n/nw/ne/se/sw/nw/se/ne/nw/sw"
+test udofftest with "sw/w/nw/n/ne/
+e/nw/n/ne/
+e/nw/n/ne/e/se/
+s/ne/e/se/
+s/ne/e/se/s/sw/
+w/se/s/sw/
+w/se/s/sw/w/nw/
+n/sw/n/nw/
+ne/se/sw/nw/se/ne/nw/sw".
+
+test nofftest with "gotest/gonear n11/uw/test nsofftest".
+test sofftest with "gotest/gonear s11/uw/test nsofftest".
+test nsofftest with "dw/w/uw/u/ue/
+e/uw/u/ue/
+e/uw/u/ue/e/de/
+s/ue/e/de/
+s/ue/e/de/d/dw/
+w/de/d/dw/
+w/de/d/dw/w/uw/
+u/dw/w/uw/
+ue/de/dw/uw/de/ue/uw/dw"
+
+test eofftest with "gotest/gonear e11/us/test ewofftest".
+test wofftest with "gotest/gonear w11/us/test ewofftest".
+test ewofftest with "ds/s/us/u/un/
+n/us/u/un/
+n/us/u/un/n/dn/
+d/un/n/dn/
+d/un/n/dn/d/ds/
+s/dn/d/ds/
+s/dn/d/ds/s/us/
+u/ds/s/us/
+un/dn/ds/us/dn/un/us/ds
+"
 
 book definitions for debug purposes
 
