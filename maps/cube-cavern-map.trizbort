@@ -459,11 +459,11 @@ First release 9/28/2017 for IFComp.
 			<dock index="0" id="60" port="n" />
 			<point index="1" x="-1344" y="-576" />
 		</line>
-		<line id="157" name="" description="" startText="U/NW">
+		<line id="157" name="" description="" startText="U/SE">
 			<dock index="0" id="72" port="n" />
 			<point index="1" x="-1184" y="-640" />
 		</line>
-		<line id="158" name="" description="" startText="U/N">
+		<line id="158" name="" description="" startText="U/E">
 			<dock index="0" id="73" port="n" />
 			<point index="1" x="-1056" y="-640" />
 		</line>
@@ -491,15 +491,15 @@ First release 9/28/2017 for IFComp.
 			<dock index="0" id="28" port="e" />
 			<point index="1" x="-1184" y="96" />
 		</line>
-		<line id="166" name="" description="" startText="S/DE">
+		<line id="166" name="" description="" midText="S/DE">
 			<dock index="0" id="28" port="sw" />
 			<point index="1" x="-1312" y="160" />
 		</line>
-		<line id="167" name="" description="" startText="S/D">
+		<line id="167" name="" description="" midText="S/D">
 			<dock index="0" id="25" port="sw" />
 			<dock index="1" id="25" port="sw" />
 		</line>
-		<line id="168" name="" description="" startText="S/DW">
+		<line id="168" name="" description="" midText="S/DW">
 			<dock index="0" id="22" port="sw" />
 			<dock index="1" id="22" port="sw" />
 		</line>
@@ -515,15 +515,15 @@ First release 9/28/2017 for IFComp.
 			<dock index="0" id="89" port="s" />
 			<point index="1" x="-64" y="-160" />
 		</line>
-		<line id="172" name="" description="" startText="N/E">
+		<line id="172" name="" description="" midText="N/E">
 			<dock index="0" id="92" port="ne" />
 			<dock index="1" id="92" port="ne" />
 		</line>
-		<line id="173" name="" description="" startText="N/UE">
+		<line id="173" name="" description="" midText="N/UE">
 			<dock index="0" id="93" port="ne" />
 			<dock index="1" id="93" port="ne" />
 		</line>
-		<line id="174" name="" description="" startText="N/DE">
+		<line id="174" name="" description="" midText="N/DE">
 			<dock index="0" id="89" port="ne" />
 			<dock index="1" id="89" port="ne" />
 		</line>

@@ -57,7 +57,20 @@ understand "gotest" as gotesting.
 
 carry out gotesting:
 	now go-test is whether or not go-test is false;
-	say "Go-test is now [if go-test is true]on[else]false[end if].";
+	say "Go-test is now [if go-test is true]on[else]off[end if].";
+	the rule succeeds;
+
+chapter gotesting
+
+gotestying is an action out of world.
+
+understand the command "gotesty" as something new.
+
+understand "gotesty" as gotesting.
+
+carry out gotesting:
+	now go-test is true;
+	say "Go-test is now on.";
 	the rule succeeds;
 
 chapter rmnameing
