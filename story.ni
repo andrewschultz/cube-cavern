@@ -350,7 +350,7 @@ carry out summoning:
 	now ring-moves is 5;
 	if all-4-acc is false:
 		if all elements are ever-acc:
-			say "[line break]GAME NOTE: you can just type an element or the color you wish to change in the future.";
+			say "[line break]GAME NOTE: you can just type an element or the color you wish to change in the future, without SUMMON.";
 			now all-4-acc is true;
 	the rule succeeds.
 
@@ -1317,16 +1317,39 @@ definition: a cornerthing (called c) is activated:
 	if cornercolor of c is black, no;
 	yes;
 
-carry out thinking:
+think2ing is an action out of world.
+
+understand the command "think" as something new.
+understand "think" as think2ing.
+
+carry out think2ing:
 	let explore-total be 0;
+	let got-yet be false;
+	if number of ever-acc elements is 0:
+		say "You may wish to tinker with SUMMON on your mood ring.";
+	else:
+		say "Here is a list of [if all-4-acc is true]all the elements[else]the elements you've found so far,[end if] and their colors:";
+		now got-yet is false;
+		repeat with Q running through elements:
+			if got-yet is true, say ", ";
+			now got-yet is true;
+			say "[Q]=[conc-color of Q]";
+		say ".[line break]";
 	if western face is explored or eastern face is explored, increment explore-total;
 	if northern face is explored or southern face is explored, increment explore-total;
 	if upper face is explored or bottom face is explored, increment explore-total;
 	if explore-total < 3, say "You have a feeling you'll need to explore the other faces of the cube to figure what's going on, here." instead;
 	if number of visited corner rooms is 0, say "You haven't visited the corner of any face." instead;
-	if number of activated cornerthings is 0, say "Maybe you should activate one of the transponders in the corners of the faces." instead;
-	if number of activated cornerthings < 4, say "Maybe you should activate more of the transponders in the corners of the faces." instead;
-	say "These hints need to be filled out, but, later." instead;
+	let ACO be number of activated cornerthings;
+	if ACO < 4, say "Maybe you should activate [if ACO is 0]one[else]more[end if] of the transponders in the corners of the faces." instead;
+	if number of ever-aligned regions is 0, say "Maybe you should figure a way into the center of the cube." instead;
+	if number of aligned regions is 0, say "Maybe you should try to re-open a tunnel you closed." instead;
+	if very center is not visited, say "Maybe you should go inside one of the tunnels you made." instead;
+	if rope-drop is false, say "Maybe you should figure when and where to DROP your rope." instead;
+	let ERC be number of entries in rope-colors;
+	if ERC < 6, say "Maybe you should figure a way to thread the rope through the cube[if ERC > 0]some more[end if]." instead;
+	if tunnel-looped is false, say "Maybe you looped the rope wrong and you can/should RESET and try again." instead;
+	say "It looks like the only thing left to do is to tie the rope to itself." instead;
 	the rule succeeds;
 
 chapter xyzzying
