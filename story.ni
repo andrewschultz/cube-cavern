@@ -38,15 +38,12 @@ understand the command "sorry" as something new.
 understand the command "search" as something new.
 understand the command "set" as something new.
 understand the command "burn" as something new.
-[listen??]
 understand the command "buy" as something new.
-[switch beacon??]
 understand the command "turn" as something new.
 understand the command "cut" as something new.
 understand the command "no" as something new.
 understand the command "yes" as something new.
 understand the command "y" as something new.
-[climb beacon??]
 Understand the command "scale" as something new.
 Understand the command "purchase" as something new.
 Understand the command "slice" as something new.
@@ -893,6 +890,12 @@ the very center is a nonfacial room. it is below u11. it is above d11. it is wes
 
 the tunnels are scenery in very center. understand "tunnel" as tunnel.
 
+[?? red tunnel]
+
+instead of entering tunnels:
+	if number of aligned regions is 1, try going outdir of random aligned region instead;
+	say "There are too many ways to go. You need to pick a specific direction."
+
 check examining tunnels:
 	if number of aligned regions is 0, say "There should be a way out, but there's not, which is a BUG." instead;
 	if number of aligned regions is 1:
@@ -1029,6 +1032,8 @@ red	blue	purple
 yellow	blue	green
 
 the tunnel is a backdrop.
+
+instead of entering tunnel, try going inside;
 
 definition: a room (called r) is tunneled:
 	unless r is facecenter, no;
@@ -1175,11 +1180,16 @@ check touching a beacon:
 check touching ring:
 	say "You adjust your mood ring. Nothing happens. For most people, futzing with a ring might release worry, but you are too calm and analytical minded." instead;
 
+instead of listening:
+	say "It's silent. Helps you focus on what you need to do here, I guess."
+
 before switching on:
-	if noun is beacon or noun is a cornerthing, say "You can't find any switch to flip." instead;
+	if noun is beacon or noun is a cornerthing, say "[if ever-trans-changed is true]You already found another way to change things, by SUMMONing and TOUCHing[else]You can't find any switch to flip. Maybe try something else[end if]." instead;
+	if noun is gold, say "You see no switch on the weird gold thing." instead;
+	say "You don't need to use the verb SWITCH to win the game." instead;
 
 before switching off:
-	if noun is beacon or noun is a cornerthing, say "You can't find any switch to flip." instead;
+	try switching on noun instead;
 
 before burning:
 	if noun is a cornerthing, say "[if ever-trans-changed is true]You can probably change its color the way you did before[else]Maybe there's a more specific way to change it[end if]";
@@ -1299,10 +1309,19 @@ understand "verb" as verbing.
 understand "verbs" as verbing.
 
 carry out verbing:
-	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements]. [b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if].";
+	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if].";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
+
+chapter climbing
+
+instead of climbing:
+	if noun is tunnel, say "Just go out in the direction you want to go." instead;
+	if noun is beacon or noun is a cornerthing, say "No, [the noun] would probably snap under your weight." instead;
+	if noun is gold, say "You're way bigger than it." instead;
+	if noun is rope, say "You can climb it to get off the cube once you're done." instead;
+	say "There's no need to climb in this game." instead;
 
 chapter jumping
 
@@ -1326,15 +1345,15 @@ carry out think2ing:
 	let explore-total be 0;
 	let got-yet be false;
 	if number of ever-acc elements is 0:
-		say "You may wish to tinker with SUMMON on your mood ring.";
+		say "You may wish to tinker with SUMMON on your mood ring." instead;
 	else:
-		say "Here is a list of [if all-4-acc is true]all the elements[else]the elements you've found so far,[end if] and their colors:";
+		say "Here is a list of [if all-4-acc is true]all the elements[else]the elements you've summoned,[end if] and their colors:";
 		now got-yet is false;
 		repeat with Q running through elements:
 			if got-yet is true, say ", ";
 			now got-yet is true;
 			say "[Q]=[conc-color of Q]";
-		say ".[line break]";
+		say "[if all-4-acc is true]. You can also type them, or their colors, as commands without SUMMON.[paragraph break]";
 	if western face is explored or eastern face is explored, increment explore-total;
 	if northern face is explored or southern face is explored, increment explore-total;
 	if upper face is explored or bottom face is explored, increment explore-total;
