@@ -62,6 +62,12 @@ carry out rmnameing:
 
 volume test scripts
 
+chapter non-wins
+
+test 2of2 with "pick 1234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/n/uw/s/u/n/n/d/tie rope to rope".
+test 2of3 with "pick 11234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/us/drop rope/w/n/e/e/s/tie rope to rope".
+test 4of4 with "pick 11234/sw/blue/touch/ne/ne/yellow/touch/e/ds/ds/d/red/touch/nw/nw/white/touch/n/eu/drop rope/s/w/s/s/e/n/e/n/n/w/tie rope".
+
 chapter walkthrough
 
 test fix with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/d/s/s/w/w/summon air/touch/bcsol".

@@ -95,6 +95,8 @@ indir of eastern face is west.
 
 a room can be facecenter, edge, corner or nonfacial.
 
+a room can be roped. a room is usually not roped.
+
 a region can be ever-aligned or never-aligned. a region is usually never-aligned.
 
 a region can be alignable or unalignable. a region is usually alignable.
@@ -1021,6 +1023,8 @@ the northupeast transponder bborders the southupeast transponder.
 
 does the player mean touching a cornerthing: it is very likely.
 
+instead of touching the player: say "You steeple your fingers, which has been proven to give 25% more thoughts, with 25% more quality. Unless, of course, you start to worry how soon those great new thoughts will pop up. Which you do, so it's all void."
+
 description of a cornerthing is usually "It sticks out from the cube at an angle, away from the pointy edge. It's currently colored [cornercolor of the item described][if ever-trans-changed is false]. It seems to draw you to it[end if]."
 
 check taking cornerthing:
@@ -1096,7 +1100,7 @@ check touching a cornerthing:
 		now fourwarned is true;
 		say "[line break]NOTE: if you want to reset what you've done with the transponders, [b]CLEAR[r] will do so.";
 	if debug-state is true:
-		say "(DEBUG) [number of aligned regions] regions ([list of aligned regions]) now aligned.";
+		say "[line break](DEBUG) [number of aligned regions] regions ([list of aligned regions]) now aligned.";
 	the rule succeeds;
 
 definition: a cornerthing is nonblack:
@@ -1241,7 +1245,7 @@ understand "verbs" as verbing.
 carry out verbing:
 	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements]. [b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if].";
 	if debug-state is true:
-		say "[paragraph break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
+		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
 
 chapter jumping
@@ -1303,8 +1307,10 @@ chapter clearing
 clearing is an action out of world.
 
 understand the command "clear" as something new.
+understand the command "clean" as something new.
 
 understand "clear" as clearing.
+understand "clean" as clearing.
 
 carry out clearing:
 	if rope-drop is true, say "You don't need to clear the transponders with the rope down. Doing so would muck up the tunnels." instead;
@@ -1556,13 +1562,9 @@ volume debug tests and such - not for release
 
 [uncomment below to unlock weird tests]
 
-include Cube Game Testing by Andrew Schultz.
+[include Cube Game Testing by Andrew Schultz.]
 
 [more standard inform stuff below]
-
-test 2of2 with "pick 1234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/n/uw/s/u/n/n/d/tie rope to rope".
-test 2of3 with "pick 11234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/us/drop rope/w/n/e/e/s/tie rope to rope".
-test 4of4 with "pick 11234/sw/blue/touch/ne/ne/yellow/touch/e/ds/ds/d/red/touch/nw/nw/white/touch/n/eu/drop rope/s/w/s/s/e/n/e/n/n/w/tie rope".
 
 book definitions for debug purposes
 
