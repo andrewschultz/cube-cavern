@@ -125,6 +125,11 @@ definition: a region (called R) is explored:
 
 last-rope-region is a region that varies.
 
+to decide what region is revregion of (c - a color):
+	repeat with Q running through regions:
+		if beaccolor of Q is c, decide on Q;
+	decide on mtr;
+
 chapter color definitions
 
 color is a kind of value. the colors are black, red, yellow, blue, white, purple, orange, green, brown.
@@ -262,6 +267,8 @@ every turn when ring-color is not black:
 		say "The phlogiston in your mood ring changes back from [ring-color] to black.";
 		now ring-color is black;
 
+chapter rope stuff
+
 the player carries the coil of wire rope. description of wire rope is "It's rope you will need to pull the cube, or whatever's in it, down to the surface. You can DROP to tie it at a certain place to go exploring."
 
 after printing the name of wire rope when taking inventory:
@@ -292,6 +299,23 @@ check dropping wire rope:
 check dropping:
 	say "Whatever you drop could get lost forever. Best hang on." instead;
 
+table of ropetracing
+l1	l2	l3	l4
+u11	e11	u21	e12
+u11	w11	u01	w12
+u11	n11	u12	n12
+u11	s11	u10	s12
+e11	s11	e01	s21
+s11	w11	s01	w01
+w11	n11	w21	n01
+n11	e11	n21	e21
+d11	e11	d21	e10
+d11	w11	d01	w10
+d11	n11	d12	n10
+d11	s11	d10	s10
+
+volume elements
+
 chapter elements
 
 an element is a kind of thing. an element has a color called conc-color. an element can be ever-acc. an element is usually not ever-acc. an element has text called blah-txt.
@@ -319,7 +343,7 @@ all-4-acc is a truth state that varies.
 carry out summoning:
 	if noun is not an element, say "You can only summon elements. The elements are: [list of elements]." instead;
 	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][one of]. NOTE: in the future, you can SUMMON a color, or even leave off SUMMON altogether[or][stopping][end if].";
-	if noun is ever-acc:
+	if noun is not ever-acc:
 		say "[line break]SCIENCE TIME: [blah-txt of noun][line break]";
 		now noun is ever-acc;
 	now ring-color is conc-color of noun;
@@ -558,6 +582,7 @@ carry out going when location of player is very center:
 	check-rope-tunnel beaccolor of map region of room noun of very center;
 	if continue-tunnel is false, the rule succeeds;
 	now last-rope-region is map region of room noun of very center;
+	now last-top-room is room noun of very center;
 	continue the action;
 
 volume upper face
@@ -917,6 +942,23 @@ before going to very center:
 	check-rope-tunnel beaccolor of mrlp;
 	if continue-tunnel is false, the rule succeeds;
 
+to rope-adjust (ts - a truth state):
+	let NE be number of entries in rope-colors;
+	let R1 be random facecenter room in revregion of entry NE in rope-colors;
+	let R2 be random facecenter room in revregion of entry (NE - 1) in rope-colors;
+	d "ROPE: [ne] [rope-colors]";
+	d "ROPE: start [unless ts is true]de-[end if]roping [ne] [r1] [entry (ne - 1) in rope-colors] and [ne - 1] [r2] [entry ne in rope-colors].";
+	repeat through table of ropetracing:
+		if (r1 is l1 entry and r2 is l2 entry) or (r1 is l2 entry and r2 is l1 entry):
+			if ts is true:
+				now l3 entry is roped;
+				now l4 entry is roped;
+			else:
+				now l3 entry is not roped;
+				now l4 entry is not roped;
+			d "ROPE: [l3 entry] and [l4 entry] [unless ts is true]de-[end if]roped.";
+			continue the action;
+
 continue-tunnel is a truth state that varies.
 
 to check-rope-tunnel (c - a color):
@@ -931,8 +973,11 @@ to check-rope-tunnel (c - a color):
 		add c to rope-colors;
 		continue the action;
 	if c is entry Q in rope-colors:
-		remove entry Q from rope-colors;
 		say "You pull back the segment of rope you dropped in the [c] tunnel.";
+		remove entry Q from rope-colors;
+		let NE be number of entries in rope-colors;
+		if NE is 2 or NE is 4:
+			rope-adjust false;
 		d "[rope-colors].";
 	else:
 		if c is listed in rope-colors:
@@ -941,6 +986,9 @@ to check-rope-tunnel (c - a color):
 			continue the action;
 		say "You pull your rope through the [c] tunnel...[paragraph break]";
 		add c to rope-colors;
+		let NE be number of entries in rope-colors;
+		if NE is 3 or NE is 5:
+			rope-adjust true;
 		endgame-check;
 		d "[rope-colors].";
 
@@ -1074,7 +1122,7 @@ check touching a cornerthing:
 	if ring-color is black:
 		say "The transponder winks back to black.";
 	else if cornercolor of noun is black:
-		say "A flash of light infuses the transponder. It shortly changes to [ring-color].";
+		say "A flash of light infuses the transponder. It shortly changes from black to [ring-color].";
 	else:
 		say "The transponder [if cornercolor of noun is ring-color]stays[else]changes from [cornercolor of noun] to[end if] [ring-color].";
 	let na-then be number of aligned regions;
@@ -1308,6 +1356,7 @@ carry out reseting:
 	now rope-drop is false;
 	now rope-colors is {};
 	move player to init-drop-room;
+	now all rooms are not roped;
 	the rule succeeds;
 
 chapter clearing
@@ -1380,7 +1429,7 @@ the description of a room is usually "[room-desc].".
 the printed name of a room is usually "[mrtc], [if the item described is facecenter]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
 
 to say mrtc:
-	let Q be "[mrlp]";
+	let Q be "[map region of the item described]";
 	say "[Q in title case]"
 
 a room has a direction called descdir. descdir is usually inside.
@@ -1394,7 +1443,7 @@ to say room-desc:
 	else if location of player is facecenter:
 		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else]There's a beacon here, colored [beaccolor of mrlp][end if][if init-drop-room is location of player][rope-here]";
 	else if location of player is edge:
-		say "You are at the center of the [descdir] edge of the [mrlp]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
+		say "You are at the center of the [descdir] edge of the [mrlp][if location of player is roped]. You've previously strung your wire rope through here[end if]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
 
 to say cornerwarp:
 	let rooms-found be 0;
@@ -1425,6 +1474,7 @@ understand the command "pick" as something new.
 understand "pick [number]" as picking.
 
 carry out picking:
+	say "Picking number [the number understood]...";
 	let W be {white, red, yellow, blue};
 	let X be true;
 	if number understood < 10000, now X is false;
@@ -1476,6 +1526,7 @@ carry out picking:
 		now beaccolor of eastern face is mix of rightcolor of northupeast and rightcolor of southdowneast;
 		now beaccolor of northern face is mix of rightcolor of northdownwest and rightcolor of northupeast;
 		now beaccolor of southern face is mix of rightcolor of southdowneast and rightcolor of southupwest;
+	say "Successful.";
 	the rule succeeds;
 
 chapter bcsoling
@@ -1570,55 +1621,11 @@ volume debug tests and such - not for release
 
 [uncomment below to unlock weird tests]
 
-include Cube Game Testing by Andrew Schultz.
+[include Cube Game Testing by Andrew Schultz.]
 
 [more standard inform stuff below]
 
 chapter temporary tests
-
-test ud with "ne/sw/en/ws/nw/se/wn/es".
-test uds with "gonear u11/test ud/gonear d11/test ud".
-test ns with "ue/dw/uw/de/eu/wd/ed/wu".
-test nss with "gonear n11/test ns/gonear s11/test ns".
-test ew with "un/ds/us/dn/nu/sd/su/dn".
-test ews with "gonear e11/test ew/gonear w11/test ew".
-
-test uofftest with "gotesty/gonear u11/nw/test udofftest".
-test dofftest with "gotesty/gonear d11/nw/test udofftest".
-test udofftest with "sw/w/nw/n/ne/
-e/nw/n/ne/
-e/nw/n/ne/e/se/
-s/ne/e/se/
-s/ne/e/se/s/sw/
-w/se/s/sw/
-w/se/s/sw/w/nw/
-n/sw/n/nw/
-ne/se/sw/nw/se/ne/nw/sw".
-
-test nofftest with "gotesty/gonear n11/uw/test nsofftest".
-test sofftest with "gotesty/gonear s11/uw/test nsofftest".
-test nsofftest with "dw/w/uw/u/ue/
-e/uw/u/ue/
-e/uw/u/ue/e/de/
-s/ue/e/de/
-s/ue/e/de/d/dw/
-w/de/d/dw/
-w/de/d/dw/w/uw/
-u/dw/w/uw/
-ue/de/dw/uw/de/ue/uw/dw"
-
-test eofftest with "gotesty/gonear e11/us/test ewofftest".
-test wofftest with "gotesty/gonear w11/us/test ewofftest".
-test ewofftest with "ds/s/us/u/un/
-n/us/u/un/
-n/us/u/un/n/dn/
-d/un/n/dn/
-d/un/n/dn/d/ds/
-s/dn/d/ds/
-s/dn/d/ds/s/us/
-u/ds/s/us/
-un/dn/ds/us/dn/un/us/ds
-"
 
 book definitions for debug purposes
 

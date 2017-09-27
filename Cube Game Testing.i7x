@@ -86,6 +86,21 @@ carry out rmnameing:
 		say "[X]: [list of rooms in X].";
 	the rule succeeds;
 
+chapter thimking
+
+thimking is an action out of world.
+
+understand the command "thimk" as something new.
+
+understand "thimk" as thimking.
+
+carry out thimking:
+	now think-every-turn is whether or not think-every-turn is false;
+	the rule succeeds;
+
+every turn when think-every-turn is true:
+	try think2ing instead;
+
 volume test scripts
 
 chapter non-wins
@@ -211,6 +226,54 @@ test c47 with "pick 14321/nw/summon blue/touch/se/se/summon yellow/touch/gonear 
 test c48 with "pick 4321/ne/summon blue/touch/sw/sw/summon yellow/touch/gonear d11/nw/summon red/touch/se/se/summon white/touch/gonear d11/drop rope/u/w/gonear s11/n/u/gonear e11/w/n/gonear d11/tie rope".
 
 test c1a with "pick 11234/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/u/u/s/drop rope/d/e/n/n/w/s/d/w/w/u/e/s/u/u/n/tie rope".
+
+chapter direction testing
+
+test ud with "ne/sw/en/ws/nw/se/wn/es".
+test uds with "gonear u11/test ud/gonear d11/test ud".
+test ns with "ue/dw/uw/de/eu/wd/ed/wu".
+test nss with "gonear n11/test ns/gonear s11/test ns".
+test ew with "un/ds/us/dn/nu/sd/su/dn".
+test ews with "gonear e11/test ew/gonear w11/test ew".
+
+test uofftest with "gotesty/gonear u11/nw/test udofftest".
+test dofftest with "gotesty/gonear d11/nw/test udofftest".
+test udofftest with "sw/w/nw/n/ne/
+e/nw/n/ne/
+e/nw/n/ne/e/se/
+s/ne/e/se/
+s/ne/e/se/s/sw/
+w/se/s/sw/
+w/se/s/sw/w/nw/
+n/sw/n/nw/
+ne/se/sw/nw/se/ne/nw/sw".
+
+test nofftest with "gotesty/gonear n11/uw/test nsofftest".
+test sofftest with "gotesty/gonear s11/uw/test nsofftest".
+test nsofftest with "dw/w/uw/u/ue/
+e/uw/u/ue/
+e/uw/u/ue/e/de/
+s/ue/e/de/
+s/ue/e/de/d/dw/
+w/de/d/dw/
+w/de/d/dw/w/uw/
+u/dw/w/uw/
+ue/de/dw/uw/de/ue/uw/dw"
+
+test eofftest with "gotesty/gonear e11/us/test ewofftest".
+test wofftest with "gotesty/gonear w11/us/test ewofftest".
+test ewofftest with "ds/s/us/u/un/
+n/us/u/un/
+n/us/u/un/n/dn/
+d/un/n/dn/
+d/un/n/dn/d/ds/
+s/dn/d/ds/
+s/dn/d/ds/s/us/
+u/ds/s/us/
+un/dn/ds/us/dn/un/us/ds
+"
+
+test viewstrung with "pick 11234/sw/blue/touch/ne/ne/yellow/touch/e/ds/ds/d/red/touch/nw/nw/white/touch/n/eu/drop rope/s/w/s/s/e/n/e/w/s/n/e/s/s/w/w".
 
 Cube Game Testing ends here.
 
