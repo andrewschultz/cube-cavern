@@ -1047,6 +1047,8 @@ to decide what number is regionbin:
 	if western face is aligned, increase ret by 1;
 	decide on ret;
 
+fourwarned is a truth state that varies.
+
 check touching a cornerthing:
 	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
 	if rope-drop is true, say "You're wary of fiddling with the transponders now you're dragging the rope around." instead;
@@ -1089,11 +1091,21 @@ check touching a cornerthing:
 	else:
 		say "Nothing seems to happen, but then, there are other places to visit.";
 	now all aligned regions are ever-aligned;
-	move tunnel backdrop to all tunneled rooms;
-	move beacon backdrop to all beaconed rooms;
+	tun-beac-reset;
+	if fourwarned is false and number of nonblack cornerthings is 4 and number of aligned regions < 6:
+		now fourwarned is true;
+		say "[line break]NOTE: if you want to reset what you've done with the transponders, [b]CLEAR[r] will do so.";
 	if debug-state is true:
 		say "(DEBUG) [number of aligned regions] regions ([list of aligned regions]) now aligned.";
 	the rule succeeds;
+
+definition: a cornerthing is nonblack:
+	if cornercolor is black, decide no;
+	decide yes;
+
+to tun-beac-reset:
+	move tunnel backdrop to all tunneled rooms;
+	move beacon backdrop to all beaconed rooms;
 
 ever-trans-changed is a truth state that varies.
 
@@ -1284,6 +1296,32 @@ carry out reseting:
 	now rope-drop is false;
 	now rope-colors is {};
 	move player to init-drop-room;
+	the rule succeeds;
+
+chapter clearing
+
+clearing is an action out of world.
+
+understand the command "clear" as something new.
+
+understand "clear" as clearing.
+
+carry out clearing:
+	if rope-drop is true, say "You don't need to clear the transponders with the rope down. Doing so would muck up the tunnels." instead;
+	if number of nonblack cornerthings is 0, say "There are no transponders to reset." instead;
+	if number of aligned regions is 6:
+		say "Fourth wall note: this is probably a bad idea. Do so anyway?";
+		unless the player consents:
+			say "Ok.";
+			continue the action;
+	if number of visible cornerthings is 1:
+		let RVC be random visible cornerthing;
+		if cornercolor of RVC is not black, say "The transponder nearby winks out to black.";
+	repeat with Q running through cornerthings:
+		now cornercolor of Q is black;
+	if tunnel is visible:
+		say "The open tunnel nearby closes.";
+	tun-beac-reset;
 	the rule succeeds;
 
 volume parsing
