@@ -170,11 +170,11 @@ volume when play begins
 when play begins:
 	say "Science has been solved! Well, except for the scratchwork. And the stuff the numerologists proved could never be figured for sure. Everyone knows how the four elements work together. Okay, mostly. And astrology is more accurate than it's ever been. Except when people don't REALLY follow its advice. Anyway, there's got to be only so much more to calculate. Eventually, we'll learn why people don't fall through the flat earth, or why it isn't in free fall if there's gravity, but...all that's just numbers, right? We'll work it out one day! We just don't have enough of those punch-card processors yet!";
 	wfak-d;
-	say "[line break]As a hotshot double Ph. D. in Psychokinetics and Psychohistory, you weren't surprised you found an important new ancient-looking cave to excavate and explore. You're not just book smart--mood rings work even better on you than on most people, which shows extraordinary intelligence and sensitivity. Why, you eschewed a lucrative career as a psychic for, just, well...knowledge. And when your dowsing instruments detected something odd in a cavern, you were curious indeed! A cube lay beyond a river, and you're lucky you had your assistant to pull you back, because somehow, the center attracted you--even when you were on the bottom! There must have been some powerful life force or something in the center. You fell so hard pulling away, you had to use your entire supply of healing crystals to get back to 100%.";
+	say "[line break]As a hotshot double Ph. D. in Psychokinetics and Psychohistory, you weren't surprised you found an important new ancient-looking cave to excavate and explore. You're not just book smart--mood rings work even better on you than on most people, which shows extraordinary intelligence and sensitivity. Why, you eschewed a lucrative career as a psychic for, just, well...knowledge. And when your dowsing instruments detected something odd in a cavern, you were curious indeed! A cube lay beyond a river, and you're lucky you had your assistant to pull you back, because somehow, you felt pulled towards the center! Your assistant tied you down so you could explore briefly, and YOU WERE ABLE TO WALK UPSIDE-DOWN. What sort of crazy science was this? Any fool familiar with the Law of Gravity would know there must have been some powerful life force or something in the center. You fell so hard when you were pulled away, you had to use your entire supply of healing crystals to get back to 100%.";
 	wfak-d;
-	say "[line break]But you planned ahead! The ideas flew across, around and through the feng shui in your office. Along with your mood ring, you brought some rope, read up on levitation (for when you need to escape the cube again) and consulted a medium and, of course, several of the top magnet therapists. And you discuss how hollow the area beneath the flat earth might be, but science is no good without data, so down you go.";
+	say "[line break]But you planned ahead! The ideas flew across, around and through the feng shui in your office. Along with your mood ring, you brought some rope, read up on levitation (for when you need to escape the cube again) and consulted a medium and, of course, several of the top magnet therapists. And you discussed how hollow the area beneath the flat earth might be.";
 	wfak-d;
-	say "[line break]But enough theorizing! You return to the cavern with the cube. An adventure lies ahead! You probably, like, need to get in harmony and stuff, or balance stuff just right, and you're sure it'll show you its secrets or whatever.";
+	say "[line break]Science without data is nothing, though! You knew you had to return to the cavern that held the cube. Carefully, you mapped the cube out. Perhaps the cube has hidden some great universal message that goes beyond mere language. Perhaps it holds keys to the universe you had only imagined.";
 	wfak-d;
 	sort init-list in random order;
 	proc-init-list;
@@ -935,7 +935,7 @@ check examining tunnels:
 		if x is aligned, say "[outdir of x]: [beaccolor of x][if beaccolor of x is listed in rope-colors] (with rope through it)[end if].";
 	the rule succeeds
 
-description of very center is "Here in the very center you can [if number of centexit directions is 1]only go back [only-vc-dir][else]go [list of centexit directions] back to the surface through different colored tunnels[end if].[paragraph break]There's some weird gold object [object-doing][one of]. It must be what gave those readings that attracted you to the cube in the first place[or][stopping]."
+description of very center is "Here in the very center you can [if number of centexit directions is 1]only go back [only-vc-dir][else]go [list of centexit directions] back to the surface through different colored tunnels[end if].[paragraph break][one of]There's some weird gold object[or]That weird gold object is still[stopping] [object-doing][one of]. It must be what gave those readings that attracted you to the cube in the first place[or][stopping]."
 
 to say only-vc-dir:
 	let J be a random centexit direction;
@@ -1283,6 +1283,14 @@ book glowcolir
 
 volume changed verbs
 
+chapter attacking
+
+instead of attacking:
+	if noun is gold, say "You're here to see what the gold thing is, not destroy it." instead;
+	if noun is beacon, say "It doesn't appear to have military potential. Best lay off it." instead;
+	if noun is a cornerthing, say "No. If it had offensive capability, it might already have used it on you." instead;
+	say "The only thing a scientist like you should be attacking is abstract problems." instead;
+
 chapter waiting
 
 before waiting:
@@ -1326,7 +1334,7 @@ check reading:
 [line break]  |/
 [line break]W-*-E
 [line break] /|
-[line break]D S[variable letter spacing]" instead;
+[line break]D S[variable letter spacing][paragraph break]" instead;
 
 volume out of world verbs
 
@@ -1556,9 +1564,10 @@ to say rope-here:
 
 to say room-desc:
 	if location of player is corner:
-		say "You are at the [descdir] corner of the [mrlp]. There's a transponder here--your mood ring is slightly attracted to it. You can go [list of goable directions] along this face, or you can go off this face: [cornerwarp]";
+		let rvc be random visible cornerthing;
+		say "You are at the [descdir] corner of the [mrlp]. You can go [list of goable directions] along this face, or you can go off this face: [cornerwarp][paragraph break]There's a transponder here[if cornercolor of rvc is not black], lit [cornercolor of rvc][else], and it's dark[end if]. Your mood ring is slightly attracted to it";
 	else if location of player is facecenter:
-		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else]There's a beacon here, colored [beaccolor of mrlp][end if][if init-drop-room is location of player][rope-here]";
+		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else][paragraph break]There's a beacon here, colored [beaccolor of mrlp][end if][if init-drop-room is location of player][rope-here]";
 	else if location of player is edge:
 		say "You are at the center of the [descdir] edge of the [mrlp][if location of player is roped]. You've previously strung your wire rope through here[end if]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
 
