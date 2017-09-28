@@ -8,6 +8,8 @@ volume includes
 
 include Trivial Niceties by Andrew Schultz.
 
+include Drink Your Ovaltine by Andrew Schultz.
+
 include Basic Screen Effects by Emily Short. [ watch out! center/central are defined here, so centered/center can cause runtime errrors. This is specific to my game and the mechanics it has.]
 
 release along with an interpreter.
@@ -499,7 +501,7 @@ before going:
 	if location of player is corner and noun is descdir of location of player:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
-		say "You can only go [list of ubercromulent directions], or any non-opposite pair of those four directions, along the [mrlp][if location of player is facecenter and number of ever-aligned regions > 0]. You also [can-want] go inside/[indir of mrlp] here in the center[end if]." instead;
+		say "You can only go [list of ubercromulent directions], or any combination (see DIRS for details), along the [mrlp][if location of player is facecenter and number of ever-aligned regions > 0]. You also [can-want] go inside/[indir of mrlp] here in the center[end if]." instead;
 	if noun is not simple:
 		repeat through table of dirmerge:
 			if d3 entry is noun:
@@ -540,7 +542,9 @@ before tying rope to rope:
 			say "Maybe go back to where you originally dropped the rope in the center of the [map region of init-drop-room]." instead;
 		say "Power fluxes through the rope as you connect it in a loop. You watch as the cube breaks apart, and the gold sphere pops out and rolls around. You begin to fall, but remembering your levitation lessons, you slow the acceleration...";
 		wfak-d;
-		say "[line break]The gold sphere cracks open. You see visions...of not five, not six, but OVER ONE HUNDRED ELEMENTS. Of light having speed, of mathematical theorems that prove you can't know anything. You see a vision of circular worlds that pull people to their centers, just like the cube, but THERE IS NOTHING SPECIAL IN THERE. There are visions of machines that not just levitate, but fly to the stars, which you thought was proven illegal.";
+		say "[line break]The gold sphere cracks open. You see visions...of not five, not six, but OVER ONE HUNDRED ELEMENTS. Of light having speed, of mathematical theorems that prove you can't know anything. You see a vision of circular worlds that pull people to their centers, just like the cube, but THERE IS NOTHING SPECIAL IN THERE. There are visions of machines that not just levitate, but fly to the stars, which you thought was proven impossible.";
+		wfak-d;
+		say "There's also a vision of a few letters: [drink-your-ovaltine]. Hmm.";
 		wfak-d;
 		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a  hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
 		wfak-d;
@@ -581,6 +585,18 @@ carry out going when location of player is very center:
 	now last-rope-region is map region of room noun of very center;
 	now last-top-room is room noun of very center;
 	continue the action;
+
+chapter dirsing
+
+dirsing is an action out of world.
+
+understand the command "dirs" as something new.
+
+understand "dirs" as dirsing.
+
+carry out dirsing:
+	say "The directions you can move on the [mrlp] are: [plane-dirs].";
+	the rule succeeds;
 
 volume upper face
 
@@ -1308,8 +1324,11 @@ understand "v" as verbing.
 understand "verb" as verbing.
 understand "verbs" as verbing.
 
+to say plane-dirs:
+	say "[if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] or, reversed, [if mrlp is upper face or mrlp is bottom face]WN/EN/WS/ES[else if mrlp is southern face or mrlp is northern face]EU/WU/ED/WD[else if mrlp is eastern face or mrlp is western face]NU/SU/ND/SD[end if]"
+
 carry out verbing:
-	say "You can move in directions U D N S E W or any sensible combination of the two, e.g. WE doesn't work. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On this plane, you can move [if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] (You can reverse the directions, and it won't matter).[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if].";
+	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if].";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
@@ -1663,7 +1682,7 @@ volume debug tests and such - not for release
 
 [uncomment below to unlock weird tests]
 
-[include Cube Game Testing by Andrew Schultz.]
+include Cube Game Testing by Andrew Schultz.
 
 [more standard inform stuff below]
 

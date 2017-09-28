@@ -94,6 +94,8 @@ understand the command "thimk" as something new.
 
 understand "thimk" as thimking.
 
+think-every-turn is a truth state that varies.
+
 carry out thimking:
 	now think-every-turn is whether or not think-every-turn is false;
 	the rule succeeds;
