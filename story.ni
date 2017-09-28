@@ -645,7 +645,7 @@ understand the command "dirs" as something new.
 understand "dirs" as dirsing.
 
 carry out dirsing:
-	say "The directions you can move on the [mrlp] are: [plane-dirs].";
+	say "The directions you can move on the [mrlp] are: [face-dirs].";
 	the rule succeeds;
 
 volume upper face
@@ -1393,11 +1393,11 @@ understand "go to" and "gt" as gotohing.
 gotohing is an action out of world.
 
 carry out gotohing:
-	now gotohintyet is false;
-		say "You can go to any of the 54 outer locations with three or fewer keystrokes.[paragraph break]The six center squares: U or UC, E or EC, etc.[line break]The twenty-four edge squares: UN, UW, UE, US, etc. (note NU, WU, EU, SU will send you to different planes).[line break]The twenty-four corner squares: USW, USE, UNW, UNE, etc. You should be able to switch the second and third directions at will.[paragraph break][b]NOTE[r]: unfortunately, but you have to use GT before, as otherwise the room abbreviation might get confused with a direction to go." instead;
+	now gotohintyet is true;
+		say "You can go to any of the 54 outer locations with three or fewer keystrokes.[paragraph break]The six center squares: U or UC, E or EC, etc.[line break]The twenty-four edge squares: UN, UW, UE, US, etc. (note NU, WU, EU, SU will send you to different faces).[line break]The twenty-four corner squares: USW, USE, UNW, UNE, etc. You should be able to switch the second and third directions at will.[paragraph break][b]NOTE[r]: unfortunately, but you have to use GT before, as otherwise the room abbreviation might get confused with a direction to go." instead;
 
 carry out gotoing:
-	now gotohintyet is false;
+	now gotohintyet is true;
 	repeat through table of gotos:
 		if "[topic understood]" exactly matches the text "[s1 entry]" or there is an s2 entry and "[topic understood]" exactly matches the text "[s2 entry]":
 			if jumpy entry is location of player:
@@ -1518,11 +1518,11 @@ understand "v" as verbing.
 understand "verb" as verbing.
 understand "verbs" as verbing.
 
-to say plane-dirs:
+to say face-dirs:
 	say "[if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] or, reversed, [if mrlp is upper face or mrlp is bottom face]WN/EN/WS/ES[else if mrlp is southern face or mrlp is northern face]EU/WU/ED/WD[else if mrlp is eastern face or mrlp is western face]NU/SU/ND/SD[end if]"
 
 carry out verbing:
-	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
+	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [face-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
@@ -1699,7 +1699,7 @@ to say room-desc:
 	else if location of player is facecenter:
 		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else][paragraph break]There's a beacon here, colored [beaccolor of mrlp][end if][if init-drop-room is location of player][rope-here]";
 	else if location of player is edge:
-		say "You are at the center of the [descdir] edge of the [mrlp][if location of player is roped]. You've previously strung your wire rope through here[end if]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new plane[else]each to a different plane[end if]"
+		say "You are at the center of the [descdir] edge of the [mrlp][if location of player is roped]. You've previously strung your wire rope through here[end if]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new face[else]each to a different face[end if]"
 
 to say cornerwarp:
 	let rooms-found be 0;
