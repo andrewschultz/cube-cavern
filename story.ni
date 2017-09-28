@@ -167,7 +167,16 @@ to decide which color is the mix of (a - a color) and (b - a color):
 
 volume when play begins
 
+to say rhsl:
+	if number of nonblack cornerthings < 4 or number of aligned regions is 0:
+		say "[number of nonblack cornerthings]/4";
+	else if tunnel-looped is false:
+		say "[number of entries in rope-colors]/6";
+	else:
+		say "TIE THE ROPE"
+
 when play begins:
+	now right hand status line is "[rhsl]";
 	say "Before we begin, there is a text map or two which does not play well with screen readers. Are you using a screen reader?";
 	if the player no-consents:
 		say "Note: this game may be extra tricky if you are vision-impaired, but I hope you are still able to enjoy it.[paragraph break]";
@@ -1087,6 +1096,8 @@ a cornerthing is a kind of backdrop. a cornerthing has a color called cornercolo
 
 Bbordering relates cornerthings to each other. The verb to bborder (he bborders, they bborder, it is bbordered) implies the bbordering relation.
 
+chapter each one
+
 the northupwest transponder is a cornerthing. It is in n02, u02, w22.
 
 the northupeast transponder is a cornerthing. It is in n22, u22, e22.
@@ -1103,20 +1114,27 @@ the southdownwest transponder is a cornerthing. It is in s00, d00, w00.
 
 the southdowneast transponder is a cornerthing. It is in s20, d20, e00.
 
+chapter bordering
+
+[u-d in n]
 the northdownwest transponder bborders the northupwest transponder.
 the northupwest transponder bborders the northupeast transponder.
 the northupeast transponder bborders the northdowneast transponder.
 the northdowneast transponder bborders the northdownwest transponder.
 
+[u-d in s]
 the southdownwest transponder bborders the southupwest transponder.
 the southupwest transponder bborders the southupeast transponder.
 the southupeast transponder bborders the southdowneast transponder.
 the southdowneast transponder bborders the southdownwest transponder.
 
+[n-s]
 the northdownwest transponder bborders the southdownwest transponder.
 the northdowneast transponder bborders the southdowneast transponder.
 the northupwest transponder bborders the southupwest transponder.
 the northupeast transponder bborders the southupeast transponder.
+
+chapter doing with cornerthings
 
 does the player mean touching a cornerthing: it is very likely.
 
@@ -1200,8 +1218,8 @@ check touching a cornerthing:
 		say "[line break](DEBUG) [number of aligned regions] regions ([list of aligned regions]) now aligned.";
 	the rule succeeds;
 
-definition: a cornerthing is nonblack:
-	if cornercolor is black, decide no;
+definition: a cornerthing (called q) is nonblack:
+	if cornercolor of q is black, decide no;
 	decide yes;
 
 to tun-beac-reset:
