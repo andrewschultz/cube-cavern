@@ -1336,6 +1336,83 @@ check reading:
 [line break] /|
 [line break]D S[variable letter spacing][paragraph break]" instead;
 
+volume gotoing
+
+gotoing is an action applying to one topic.
+
+understand the commands "go to" and "gt" as something new.
+understand "go to [text]" and "gt [text]" as gotoing.
+
+rule for supplying a missing noun when gotoing:
+	say "You can go to any of the 54 outer locations with three or fewer keystrokes.[paragraph break]The six center squares: U or UC, E or EC, etc.[line break]The twenty-four edge squares: UN, UW, UE, US, etc. (note NU, WU, EU, SU will send you to different planes).[line break]The twenty-four corner squares: USW, USE, UNW, UNE, etc. You should be able to switch the second and third directions at will.[paragraph break]NOTE: sorry, but you have to use GT before, as otherwise the room abbreviation might get confused with a direction to go.";
+	reject the player's command;
+
+carry out gotoing:
+	repeat through table of gotos:
+		if topic understood matches shorts entry:
+			if jumpy entry is location of player:
+				say "You're already there!" instead;
+			move player to jumpy entry;
+			the rule succeeds;
+	say "Sorry, there's no shortcut like that. Type just GT or GO TO to see the abbreviations." instead;
+
+table of gotos
+shorts (topic)	jumpy
+"unw/uwn"	u02
+"un"	u12
+"une/uen"	u22
+"uw"	u01
+"u/uc"	u11
+"ue"	u21
+"usw/uws"	u00
+"us"	u10
+"use/ues"	u20 [end u]
+"dnw/dwn"	d02
+"dn"	d12
+"dne/den"	d22
+"dw"	d01
+"d/dc"	d11
+"de"	d21
+"dsw/dws"	d00
+"ds"	d10
+"dse/des"	d20 [end d]
+"nuw/nwu"	n02
+"nu"	n12
+"nue/neu"	n22
+"nw"	n01
+"n/nc"	n11
+"ne"	n21
+"ndw/nwd"	n00
+"nd"	n10
+"nde/ned"	n20 [end n]
+"suw/swu"	s02
+"su"	s12
+"sue/seu"	s22
+"sw"	s01
+"s/sc"	s11
+"se"	s21
+"sdw/swd"	s00
+"sd"	s10
+"sde/sed"	s20 [end s]
+"end/edn"	e20
+"en"	e21
+"enu/eun"	e22
+"ed"	e10
+"e/ec"	e11
+"eu"	e12
+"esd/eds"	e00
+"es"	e01
+"esu/eus"	e02 [end e]
+"wnd/wdn"	w20
+"wn"	w21
+"wnu/wun"	w22
+"wd"	w10
+"w/wc"	w11
+"wu"	w12
+"wsd/wds"	w00
+"ws"	w01
+"wsu/wus"	w02 [end w]
+
 volume out of world verbs
 
 chapter abouting
@@ -1392,7 +1469,7 @@ to say plane-dirs:
 	say "[if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] or, reversed, [if mrlp is upper face or mrlp is bottom face]WN/EN/WS/ES[else if mrlp is southern face or mrlp is northern face]EU/WU/ED/WD[else if mrlp is eastern face or mrlp is western face]NU/SU/ND/SD[end if]"
 
 carry out verbing:
-	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if].";
+	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
@@ -1757,6 +1834,14 @@ gonear e11/u/s/d/d/n/n/u/u/s/
 gonear w11/u/s/d/d/n/n/u/u/s/
 gonear s11/u/e/d/d/w/w/u/u/e/
 gonear n11/u/e/d/d/w/w/u/u/e/"
+
+test goto with "gt unw/gt uwn/gt un/gt une/gt uen/gt uw/gt u/gt uc/gt ue/gt usw/gt uws/gt us/gt use/gt ues/
+gt dnw/gt dwn/gt dn/gt dne/gt den/gt dw/gt d/gt dc/gt de/gt dsw/gt dws/gt ds/gt dse/gt des/
+gt suw/gt swu/gt su/gt seu/gt sue/gt sw/gt s/gt sc/gt se/gt swd/gt sdw/gt sd/gt sed/gt sde/
+gt nuw/gt nwu/gt nu/gt neu/gt nue/gt nw/gt n/gt nc/gt ne/gt nwd/gt ndw/gt nd/gt ned/gt nde/
+gt wun/gt wnu/gt wu/gt wus/gt wsu/gt wn/gt w/gt wc/gt ws/gt wdn/gt wnd/gt wd/gt wsd/gt wds/
+gt eun/gt enu/gt eu/gt eus/gt esu/gt en/gt e/gt ec/gt es/gt edn/gt end/gt ed/gt esd/gt eds
+"
 
 chapter temporary tests
 

@@ -125,22 +125,22 @@ First release 9/28/2017 for IFComp.
 			<dock index="1" id="26" port="sw" />
 		</line>
 		<room id="43" name="w00" subtitle="" x="-1632" y="-32" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="44" name="w10" subtitle="" x="-1504" y="-160" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="44" name="w01" subtitle="" x="-1504" y="-160" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<line id="45" name="" description="">
 			<dock index="0" id="43" port="ne" />
 			<dock index="1" id="44" port="sw" />
 		</line>
-		<room id="46" name="w01" subtitle="" x="-1632" y="-160" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="46" name="w10" subtitle="" x="-1632" y="-160" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<line id="47" name="" description="">
 			<dock index="0" id="43" port="n" />
 			<dock index="1" id="46" port="s" />
 		</line>
-		<room id="48" name="w02" subtitle="" x="-1632" y="-288" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="48" name="w20" subtitle="" x="-1632" y="-288" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<line id="49" name="" description="">
 			<dock index="0" id="46" port="n" />
 			<dock index="1" id="48" port="s" />
 		</line>
-		<room id="50" name="w20" subtitle="" x="-1376" y="-288" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="50" name="w02" subtitle="" x="-1376" y="-288" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<line id="51" name="" description="">
 			<dock index="0" id="44" port="ne" />
 			<dock index="1" id="50" port="sw" />
@@ -154,7 +154,7 @@ First release 9/28/2017 for IFComp.
 			<dock index="0" id="46" port="ne" />
 			<dock index="1" id="52" port="sw" />
 		</line>
-		<room id="58" name="w21" subtitle="" x="-1376" y="-416" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="58" name="w12" subtitle="" x="-1376" y="-416" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<line id="59" name="" description="">
 			<dock index="0" id="50" port="n" />
 			<dock index="1" id="58" port="s" />
@@ -209,13 +209,13 @@ First release 9/28/2017 for IFComp.
 			<dock index="1" id="69" port="e" />
 		</line>
 		<room id="85" name="e00" subtitle="" x="-352" y="0" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="86" name="e10" subtitle="" x="-224" y="-128" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="87" name="e01" subtitle="" x="-352" y="-128" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="88" name="e02" subtitle="" x="-352" y="-256" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="89" name="e20" subtitle="" x="-96" y="-256" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="86" name="e01" subtitle="" x="-224" y="-128" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="87" name="e10" subtitle="" x="-352" y="-128" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="88" name="e20" subtitle="" x="-352" y="-256" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="89" name="e02" subtitle="" x="-96" y="-256" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="90" name="e11" subtitle="" x="-224" y="-256" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="91" name="e12" subtitle="" x="-224" y="-384" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="92" name="e21" subtitle="" x="-96" y="-384" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="91" name="e21" subtitle="" x="-224" y="-384" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="92" name="e12" subtitle="" x="-96" y="-384" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="93" name="e22" subtitle="" x="-96" y="-512" w="64" h="64" region="eastern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<line id="94" name="" description="">
 			<dock index="0" id="85" port="ne" />
@@ -338,11 +338,11 @@ First release 9/28/2017 for IFComp.
 			<dock index="0" id="84" port="w" />
 			<point index="1" x="-800" y="96" />
 		</line>
-		<line id="130" name="" description="" startText="w01">
+		<line id="130" name="" description="" startText="w10">
 			<dock index="0" id="106" port="w" />
 			<point index="1" x="-800" y="-32" />
 		</line>
-		<line id="131" name="" description="" startText="w02">
+		<line id="131" name="" description="" startText="w20">
 			<dock index="0" id="109" port="w" />
 			<point index="1" x="-800" y="-160" />
 		</line>
@@ -382,7 +382,7 @@ First release 9/28/2017 for IFComp.
 			<dock index="0" id="87" port="sw" />
 			<dock index="1" id="108" port="e" />
 		</line>
-		<room id="54" name="w12" subtitle="" x="-1504" y="-416" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="54" name="w21" subtitle="" x="-1504" y="-416" w="64" h="64" region="western face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<line id="55" name="" description="">
 			<dock index="0" id="48" port="ne" />
 			<dock index="1" id="54" port="sw" />
@@ -475,15 +475,15 @@ First release 9/28/2017 for IFComp.
 			<dock index="0" id="74" port="e" />
 			<point index="1" x="-864" y="-576" />
 		</line>
-		<line id="162" name="" description="" startText="e20">
+		<line id="162" name="" description="" startText="e02">
 			<dock index="0" id="67" port="e" />
 			<point index="1" x="-864" y="-320" />
 		</line>
-		<line id="163" name="" description="" startText="e20">
+		<line id="163" name="" description="" startText="e02">
 			<dock index="0" id="29" port="e" />
 			<point index="1" x="-928" y="-160" />
 		</line>
-		<line id="164" name="" description="" startText="e10">
+		<line id="164" name="" description="" startText="e01">
 			<dock index="0" id="30" port="e" />
 			<point index="1" x="-1056" y="-32" />
 		</line>
@@ -543,11 +543,11 @@ First release 9/28/2017 for IFComp.
 			<dock index="0" id="4" port="w" />
 			<point index="1" x="-480" y="-576" />
 		</line>
-		<line id="179" name="" description="" startText="w12">
+		<line id="179" name="" description="" startText="w21">
 			<dock index="0" id="2" port="w" />
 			<point index="1" x="-608" y="-448" />
 		</line>
-		<line id="180" name="" description="" startText="w02">
+		<line id="180" name="" description="" startText="w20">
 			<dock index="0" id="1" port="w" />
 			<point index="1" x="-736" y="-320" />
 		</line>
@@ -564,7 +564,7 @@ First release 9/28/2017 for IFComp.
 			<dock index="0" id="71" port="n" />
 			<dock index="1" id="74" port="s" />
 		</line>
-		<line id="161" name="" description="" startText="e21">
+		<line id="161" name="" description="" startText="e12">
 			<dock index="0" id="71" port="e" />
 			<point index="1" x="-864" y="-448" />
 		</line>

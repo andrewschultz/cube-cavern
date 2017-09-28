@@ -19,23 +19,23 @@ d12	D face, N
 d22	D face, NE
 
 w00	W face, DS
-w10	W face, D
-w20	W face, DN
-w01	W face, N
+w10	W face, S
+w20	W face, US
+w01	W face, D
 w11	W face, Center
-w21	W face, S
-w02	W face, US
+w21	W face, U
+w02	W face, DN
 w12	W face, U
 w22	W face, UN
 
 e00	E face, DS
-e10	E face, D
-e20	E face, DN
-e01	E face, N
+e10	E face, S
+e20	E face, US
+e01	E face, D
 e11	E face, Center
-e21	E face, S
-e02	E face, US
-e12	E face, U
+e21	E face, U
+e02	E face, DN
+e12	E face, N
 e22	E face, UN
 
 n00	N face, DW
