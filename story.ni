@@ -232,6 +232,20 @@ volume the player
 
 the player wears the mood ring. description of mood ring is "The phlogiston in your mood ring is currently colored [ring-color-report]. You can SUMMON any of the four elements ([list of elements]) to change the ring[if ring-color is not black], or if you wait, the ring can go back to black[end if]."
 
+the player carries the map. description of map is "You scribbled this map before getting on the cube, just so you would be able to regain your bearings on the place where you walked upside down. You can READ it."
+
+check dropping the map:
+	say "You're pretty sure you've visualized it all, but no need to get cocky. Better hold on to it." instead;
+
+mapreading is an action out of world.
+
+understand the command "map" as something new.
+
+understand "map" as mapreading.
+
+carry out mapreading:
+	try reading the map instead;
+
 instead of taking inventory:
 	if the number of things enclosed by the player is 0, say "You are empty-handed." instead;
 	say "You are carrying: [line break]";
@@ -1269,8 +1283,50 @@ book glowcolir
 
 volume changed verbs
 
+chapter waiting
+
 before waiting:
 	say "You pause, as more voluminous ether wafts by." instead;
+
+chapter reading
+
+understand the command "read" as something new.
+understand "read [thing]" as reading.
+
+reading is an action applying to one thing.
+
+does the player mean reading the map: it is very likely.
+
+read-warn is a truth state that varies.
+
+check reading:
+	if noun is not map and read-warn is false:
+		now read-warn is true;
+		say "NOTE: READing counts as examining, except for the map.";
+		try examining the noun instead;
+	say "[fixed letter spacing][line break]         TO N                TO U
+[line break]         | | |              / / /
+[line break]        -u-u-u-T          -n-n-n-+
+[line break]  TO N|/ | | | O          / / /  |/T
+[line break]      w -u-u-u-         -n-n-n-+ e O
+[line break]    |/|/ | | | E        / / /  |/|/
+[line break]    w w -u-u-u-       -n-n-n-+ e e U
+[line break]  |/|/|/ | | |        / / /  |/|/|/
+[line break]  w w w  | | |       | | |   e e e
+[line break] /|/|/|  / / /       | | |  /|/|/|
+[line break]T w w  -s-s-s-      -d-d-d-- e e
+[line break]O/|/|  / / /     TO  | | |  /|/|
+[line break]  w  -s-s-s- TO   W -d-d-d-- e
+[line break]D/|  / / /    E      | | |  /| TO S
+[line break]   -s-s-s-          -d-d-d--
+[line break]   / / /             | | |
+[line break]   to D              to S
+[line break]
+[line break]  N U
+[line break]  |/
+[line break]W-*-E
+[line break] /|
+[line break]D S[variable letter spacing]" instead;
 
 volume out of world verbs
 
@@ -1685,6 +1741,13 @@ volume debug tests and such - not for release
 include Cube Game Testing by Andrew Schultz.
 
 [more standard inform stuff below]
+
+test patrol with "nw/e/e/s/s/w/w/n/n/
+gonear d11/nw/e/e/s/s/w/w/n/n/
+gonear e11/u/s/d/d/n/n/u/u/s/
+gonear w11/u/s/d/d/n/n/u/u/s/
+gonear s11/u/e/d/d/w/w/u/u/e/
+gonear n11/u/e/d/d/w/w/u/u/e/"
 
 chapter temporary tests
 
