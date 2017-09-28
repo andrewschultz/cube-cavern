@@ -1298,6 +1298,8 @@ before waiting:
 
 chapter reading
 
+screen-read is a truth state that varies.
+
 understand the command "read" as something new.
 understand "read [thing]" as reading.
 
@@ -1312,7 +1314,8 @@ check reading:
 		now read-warn is true;
 		say "NOTE: READing counts as examining, except for the map.";
 		try examining the noun instead;
-	say "[fixed letter spacing][line break]         TO N                TO U
+	if screen-read is true, say "The text map plays havoc with screen readers, so I disabled it. Sorry." instead;
+	say "(You can see a graphical version with the game assembly)[paragraph break][fixed letter spacing][line break]         TO N                TO U
 [line break]         | | |              / / /
 [line break]        -u-u-u-T          -n-n-n-+
 [line break]  TO N|/ | | | O          / / /  |/T
@@ -1469,7 +1472,7 @@ to say plane-dirs:
 	say "[if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] or, reversed, [if mrlp is upper face or mrlp is bottom face]WN/EN/WS/ES[else if mrlp is southern face or mrlp is northern face]EU/WU/ED/WD[else if mrlp is eastern face or mrlp is western face]NU/SU/ND/SD[end if]"
 
 carry out verbing:
-	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).";
+	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face). READ MAP gives a textual representation of the PDF map included with the game.";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
@@ -1642,7 +1645,7 @@ to say rope-here:
 to say room-desc:
 	if location of player is corner:
 		let rvc be random visible cornerthing;
-		say "You are at the [descdir] corner of the [mrlp]. You can go [list of goable directions] along this face, or you can go off this face: [cornerwarp][paragraph break]There's a transponder here[if cornercolor of rvc is not black], lit [cornercolor of rvc][else], and it's dark[end if]. Your mood ring is slightly attracted to it";
+		say "You are at the [descdir] corner of the [mrlp]. You can go [list of goable directions] along this face, or you can go off this face: [cornerwarp].[paragraph break]There's a transponder here[if cornercolor of rvc is not black], lit [cornercolor of rvc][else], and it's dark[end if]. Your mood ring is slightly attracted to it";
 	else if location of player is facecenter:
 		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else][paragraph break]There's a beacon here, colored [beaccolor of mrlp][end if][if init-drop-room is location of player][rope-here]";
 	else if location of player is edge:
