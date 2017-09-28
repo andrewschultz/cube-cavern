@@ -179,7 +179,7 @@ when play begins:
 	now right hand status line is "[rhsl]";
 	say "Before we begin, there is a text map or two which does not play well with screen readers. Are you using a screen reader?";
 	if the player no-consents:
-		say "Note: this game may be extra tricky if you are vision-impaired, but I hope you are still able to enjoy it.[paragraph break]";
+		say "[b]NOTE[r]: this game may be extra tricky if you are vision-impaired, but I hope you are still able to enjoy it.[paragraph break]";
 		now screenread is true;
 	say "Screen reading support is now [on-off of screenread]. You can toggle it with SCREEN.[paragraph break]Also, when the cursor appears without the > prompt, as below, push any key to continue.";
 	wfak-d;
@@ -319,7 +319,7 @@ check dropping wire rope:
 	if rope-drop is true, say "You already dropped the rope to start." instead;
 	now last-rope-region is mrlp;
 	now init-drop-room is location of player;
-	say "You drop the rope and anchor it. (NOTE: if you want to undo things later, you can [b]RESET[r] to before you dropped the rope).";
+	say "You drop the rope and anchor it. ([b]NOTE[r]: if you want to undo things later, you can [b]RESET[r] to before you dropped the rope).";
 	now last-top-room is location of player;
 	now rope-drop is true;
 	the rule succeeds;
@@ -370,7 +370,7 @@ all-4-acc is a truth state that varies.
 
 carry out summoning:
 	if noun is not an element, say "You can only summon elements. The elements are: [list of elements]." instead;
-	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][one of]. NOTE: in the future, you can SUMMON a color, or even leave off SUMMON altogether[or][stopping][end if].";
+	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][one of]. [b]NOTE[r]: in the future, you can SUMMON a color, or even leave off SUMMON altogether[or][stopping][end if].";
 	if noun is not ever-acc:
 		say "[line break]SCIENCE TIME: [blah-txt of noun][line break]";
 		now noun is ever-acc;
@@ -515,6 +515,8 @@ to say can-want:
 prev-reg is a region that varies.
 
 before going:
+	now last-room is location of player;
+	d "[last-room].";
 	if mrlp is mtr, continue the action;
 	if noun is inside:
 		if location of player is facecenter:
@@ -563,9 +565,28 @@ before going:
 			say "TESTING NOTE: you would've moved to [X] in [mrx] from [mrlp]." instead;
 		say "You twist over the side of the cube to the [mrx].[line break]";
 
+gotohintyet is a truth state that varies.
+
+last-room is a room that varies.
+
+after looking:
+	d "[last-room].";
+	if gotohintyet is false:
+		if mrlp is not upper face:
+			say "[b]NOTE[r]: if the geography is intimidating, you can use the GT/GO TO command to return somewhere you have been, or even go somewhere you guess might be relevant. For instance, the start is [b]u or uc[r] would return you to the upper face center, and [revgoto of last-room] would return you to where you were ([last-room]), while [revgoto of location of player] would send you where you are now. [b]goto dsw[r] or [b]goto dws[r] would each send you the same corner of the cube bottom--you can use GOTO on where you haven't been, yet.";
+			now gotohintyet is true;
+	continue the action;
+
+to say revgoto of (rm - a room):
+	repeat through table of gotos:
+		if rm is jumpy entry:
+			say "goto [b][s1 entry][if there is an s2 entry] or [s2 entry][end if][r]";
+			continue the action;
+
 does the player mean tying rope to rope when tunnel-looped is true or location of player is init-drop-room: it is very likely.
 
 before tying rope to rope:
+	let TS be whether or not number of visited rooms > 0;
 	if tunnel-looped is true:
 		if location of player is not init-drop-room:
 			say "Maybe go back to where you originally dropped the rope in the center of the [map region of init-drop-room]." instead;
@@ -573,11 +594,11 @@ before tying rope to rope:
 		wfak-d;
 		say "[line break]The gold sphere cracks open. You see visions...of not five, not six, but OVER ONE HUNDRED ELEMENTS. Of light having speed, of mathematical theorems that prove you can't know anything. You see a vision of circular worlds that pull people to their centers, just like the cube, but THERE IS NOTHING SPECIAL IN THERE. There are visions of machines that not just levitate, but fly to the stars, which you thought was proven impossible.";
 		wfak-d;
-		say "There's also a vision of a few letters: [drink-your-ovaltine]. Hmm.";
+		say "[if TS is true]A voice hums through your mind that you solved the cube but did not explore ALL, so part of a vision is hidden from you[else]There's also a vision of a few letters: [drink-your-ovaltine]. Hmm[end if].";
 		wfak-d;
 		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a  hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
 		wfak-d;
-		say "[line break]But you never talk about what you really saw. You mention you had a vision of the cosmos, and so forth, and you wish you could interpret it, because you suspect you saw what you wanted to see about loving other people being the most important thing, and how the journey is its own reward. You find yourself saying 'There's just ... STUFF WE DON'T UNDERSTAND OUT THERE' with a conviction and mystery few can hope for. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' And you think back to the cube. You convince a few to take up writing. Even the wildest fantasies can spur rigorous scientific thought. There's a place for combining the humanities and the sciences.";
+		say "[line break]But you never talk about what you really saw[if TS is true], even when your calculations show there must be three similar cubes in caverns elsewhere[end if]. You mention you had a cosmic vision, and so forth, and you wish you could interpret it, but all you remember are the parts about loving other people being important and how the journey is its own reward, and how that's true with lots of technology, or little. You find yourself saying 'There's just ... STUFF WE DON'T UNDERSTAND OUT THERE' with a conviction and mystery few can hope for. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' You convince a few kids to take up writing. Even the wildest fantasies can spur rigorous scientific thought. There's a place for combining the humanities and the sciences.";
 		end the story finally saying "YOU HAVE ACHIEVED KNOWLEDGE";
 		the rule succeeds;
 	if rope-drop is true:
@@ -1367,76 +1388,83 @@ gotoing is an action applying to one topic.
 
 understand the commands "go to" and "gt" as something new.
 understand "go to [text]" and "gt [text]" as gotoing.
+understand "go to" and "gt" as gotohing.
 
-rule for supplying a missing noun when gotoing:
-	say "You can go to any of the 54 outer locations with three or fewer keystrokes.[paragraph break]The six center squares: U or UC, E or EC, etc.[line break]The twenty-four edge squares: UN, UW, UE, US, etc. (note NU, WU, EU, SU will send you to different planes).[line break]The twenty-four corner squares: USW, USE, UNW, UNE, etc. You should be able to switch the second and third directions at will.[paragraph break]NOTE: sorry, but you have to use GT before, as otherwise the room abbreviation might get confused with a direction to go.";
-	reject the player's command;
+gotohing is an action out of world.
+
+carry out gotohing:
+	now gotohintyet is false;
+		say "You can go to any of the 54 outer locations with three or fewer keystrokes.[paragraph break]The six center squares: U or UC, E or EC, etc.[line break]The twenty-four edge squares: UN, UW, UE, US, etc. (note NU, WU, EU, SU will send you to different planes).[line break]The twenty-four corner squares: USW, USE, UNW, UNE, etc. You should be able to switch the second and third directions at will.[paragraph break][b]NOTE[r]: unfortunately, but you have to use GT before, as otherwise the room abbreviation might get confused with a direction to go." instead;
 
 carry out gotoing:
+	now gotohintyet is false;
 	repeat through table of gotos:
-		if topic understood matches shorts entry:
+		if "[topic understood]" exactly matches the text "[s1 entry]" or there is an s2 entry and "[topic understood]" exactly matches the text "[s2 entry]":
 			if jumpy entry is location of player:
 				say "You're already there!" instead;
+			if ring-moves > 1:
+				say "You make sure to keep your ring's [ring-color]ness charged as you go...[paragraph break]";
+				now ring-moves is 4;
 			move player to jumpy entry;
 			the rule succeeds;
 	say "Sorry, there's no shortcut like that. Type just GT or GO TO to see the abbreviations." instead;
 
 table of gotos
-shorts (topic)	jumpy
-"unw/uwn"	u02
-"un"	u12
-"une/uen"	u22
-"uw"	u01
-"u/uc"	u11
-"ue"	u21
-"usw/uws"	u00
-"us"	u10
-"use/ues"	u20 [end u]
-"dnw/dwn"	d02
-"dn"	d12
-"dne/den"	d22
-"dw"	d01
-"d/dc"	d11
-"de"	d21
-"dsw/dws"	d00
-"ds"	d10
-"dse/des"	d20 [end d]
-"nuw/nwu"	n02
-"nu"	n12
-"nue/neu"	n22
-"nw"	n01
-"n/nc"	n11
-"ne"	n21
-"ndw/nwd"	n00
-"nd"	n10
-"nde/ned"	n20 [end n]
-"suw/swu"	s02
-"su"	s12
-"sue/seu"	s22
-"sw"	s01
-"s/sc"	s11
-"se"	s21
-"sdw/swd"	s00
-"sd"	s10
-"sde/sed"	s20 [end s]
-"end/edn"	e20
-"en"	e21
-"enu/eun"	e22
-"ed"	e10
-"e/ec"	e11
-"eu"	e12
-"esd/eds"	e00
-"es"	e01
-"esu/eus"	e02 [end e]
-"wnd/wdn"	w20
-"wn"	w21
-"wnu/wun"	w22
-"wd"	w10
-"w/wc"	w11
-"wu"	w12
-"wsd/wds"	w00
-"ws"	w01
-"wsu/wus"	w02 [end w]
+s1 (text)	s2 (text)	jumpy
+"unw"	"uwn"	u02
+"un"	--	u12
+"une"	"uen"	u22
+"uw"	--	u01
+"u"	"uc"	u11
+"ue"	--	u21
+"usw"	"uws"	u00
+"us"	--	u10
+"use"	"ues"	u20 [end u]
+"dnw"	"dwn"	d02
+"dn"	--	d12
+"dne"	"den"	d22
+"dw"	--	d01
+"d"	"dc"	d11
+"de"	--	d21
+"dsw"	"dws"	d00
+"ds"	--	d10
+"dse"	"des"	d20 [end d]
+"nuw"	"nwu"	n02
+"nu"	--	n12
+"nue"	"neu"	n22
+"nw"	--	n01
+"n"	"nc"	n11
+"ne"	--	n21
+"ndw"	"nwd"	n00
+"nd"	--	n10
+"nde"	"ned"	n20 [end n]
+"suw"	"swu"	s02
+"su"	--	s12
+"sue"	"seu"	s22
+"sw"	--	s01
+"s"	"sc"	s11
+"se"	--	s21
+"sdw"	"swd"	s00
+"sd"	--	s10
+"sde"	"sed"	s20 [end s]
+"end"	"edn"	e20
+"en"	--	e21
+"enu"	"eun"	e22
+"ed"	--	e10
+"e"	"ec"	e11
+"eu"	--	e12
+"esd"	"eds"	e00
+"es"	--	e01
+"esu"	"eus"	e02 [end e]
+"wnd"	"wdn"	w20
+"wn"	--	w21
+"wnu"	"wun"	w22
+"wd"	--	w10
+"w"	"wc"	w11
+"wu"	--	w12
+"wsd"	"wds"	w00
+"ws"	--	w01
+"wsu"	"wus"	w02 [end w]
 
 volume out of world verbs
 
@@ -1463,7 +1491,7 @@ understand "credit" as creditsing.
 understand "credits" as creditsing.
 
 carry out creditsing:
-	say "Thanks to, in alphabetical order, Brian Rushton, Marnix, Mike Souza, and Mike Spivey for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch.";
+	say "Thanks to, in alphabetical order, Brian Rushton, Mike Souza, Mike Spivey, and Marnix van den Bos for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch.";
 	say "[line break]Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, which has helped me organize and visualize other games in addition to this. http://www.trizbort.com has this app, though it's Windows only.";
 	the rule succeeds;
 
@@ -1494,7 +1522,7 @@ to say plane-dirs:
 	say "[if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] or, reversed, [if mrlp is upper face or mrlp is bottom face]WN/EN/WS/ES[else if mrlp is southern face or mrlp is northern face]EU/WU/ED/WD[else if mrlp is eastern face or mrlp is western face]NU/SU/ND/SD[end if]"
 
 carry out verbing:
-	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
+	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
