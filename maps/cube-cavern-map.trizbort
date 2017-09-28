@@ -180,7 +180,7 @@ First release 9/28/2017 for IFComp.
 			<dock index="1" id="67" port="w" />
 		</line>
 		<room id="69" name="U face, W" subtitle="" x="-1216" y="-480" w="64" h="64" region="northern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
-		<room id="70" name="U face, C" subtitle="" x="-1088" y="-480" w="64" h="64" region="northern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
+		<room id="70" name="U face, C" subtitle="" x="-1088" y="-480" w="64" h="64" region="northern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" isStartRoom="yes" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="72" name="U face, NW" subtitle="" x="-1216" y="-608" w="64" h="64" region="northern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="73" name="U face, N" subtitle="" x="-1088" y="-608" w="64" h="64" region="northern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
 		<room id="74" name="U face, NE" subtitle="" x="-960" y="-608" w="64" h="64" region="northern face" handDrawn="yes" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="no" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSmallText="" ZOrder="0" />
@@ -623,14 +623,14 @@ First release 9/28/2017 for IFComp.
 			<endRoom>Red</endRoom>
 		</colors>
 		<regions>
+			<bottom____face Name="bottom face" TextColor="Black">#C0C0C0</bottom____face>
 			<CENTER Name="CENTER" TextColor="Black">#C08040</CENTER>
-			<down Name="bottom face" TextColor="Black">#C0C0C0</down>
-			<east Name="eastern face" TextColor="Black">#909090</east>
+			<eastern____face Name="eastern face" TextColor="Black">#909090</eastern____face>
 			<NoRegion Name="NoRegion" TextColor="Black">White</NoRegion>
-			<north Name="northern face" TextColor="Black">#e0e0e0</north>
-			<south Name="southern face" TextColor="Black">#e0e0e0</south>
-			<up Name="upper face" TextColor="MidnightBlue">#C0C0C0</up>
-			<west Name="western face" TextColor="Black">#909090</west>
+			<northern____face Name="northern face" TextColor="Black">#E0E0E0</northern____face>
+			<southern____face Name="southern face" TextColor="Black">#E0E0E0</southern____face>
+			<upper____face Name="upper face" TextColor="MidnightBlue">#C0C0C0</upper____face>
+			<western____face Name="western face" TextColor="Black">#909090</western____face>
 		</regions>
 		<fonts>
 			<room size="12">Arial</room>
