@@ -516,7 +516,6 @@ prev-reg is a region that varies.
 
 before going:
 	now last-room is location of player;
-	d "[last-room].";
 	if mrlp is mtr, continue the action;
 	if noun is inside:
 		if location of player is facecenter:
@@ -570,11 +569,18 @@ gotohintyet is a truth state that varies.
 last-room is a room that varies.
 
 after looking:
-	d "[last-room].";
 	if gotohintyet is false:
 		if mrlp is not upper face:
 			say "[b]NOTE[r]: if the geography is intimidating, you can use the GT/GO TO command to return somewhere you have been, or even go somewhere you guess might be relevant. For instance, the start is [b]u or uc[r] would return you to the upper face center, and [revgoto of last-room] would return you to where you were ([last-room]), while [revgoto of location of player] would send you where you are now. [b]goto dsw[r] or [b]goto dws[r] would each send you the same corner of the cube bottom--you can use GOTO on where you haven't been, yet.";
 			now gotohintyet is true;
+	continue the action;
+
+the cherry picking rule is listed before the check new arrival rule in the carry out looking rulebook.
+
+carry out looking (this is the cherry picking rule):
+	if location of player is unvisited and location of player is edge:
+		if number of visited edge rooms is 4:
+			say "You find a single dried cherry on the ground. You pick it up and eat it. It's delicious, no pits even, and it's proof this cube or what's in it must support very interesting life indeed.";
 	continue the action;
 
 to say revgoto of (rm - a room):
@@ -1349,7 +1355,7 @@ instead of attacking:
 chapter waiting
 
 before waiting:
-	say "You pause, as more voluminous ether wafts by." instead;
+	say "[one of]Numbers pass through your head, until an uninteresting one snaps you back into action.[or]You imagine the reception you'll get when you get back to the surface. They will be surprised, whenever you do![in random order]" instead;
 
 chapter reading
 
@@ -1669,7 +1675,7 @@ after reading a command:
 book parser errors
 
 Rule for printing a parser error when the latest parser error is the i beg your pardon error:
-	say "You ponder the philosophical implications of the Law of Averages.";
+	say "You ponder the philosophical implications of the Law of Averages as more voluminous ether rushes by.";
 
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error:
 	if the player's command includes "summon":
@@ -1950,4 +1956,3 @@ carry out fcing:
 	if noun is not simple, say "Only simple directions work with FC." instead;;
 	move player to the room noun of very center;
 	the rule succeeds.
-
