@@ -616,6 +616,7 @@ before tying rope to rope:
 		say "You started tying the rope at one of the tunnels." instead;
 
 before tying rope to:
+	if second noun is gold spherical object, say "There's no good surface on the weird gold object, and it sort of magnetically repels you anyway." instead;
 	if second noun is tunnel, try dropping rope instead;
 	if second noun is beacon, say "The beacon might snap if you pull the rope away." instead;
 	if second noun is ring, say "You couldn't tie the rope around the ring without removing the ring, and you don't want to remove the ring." instead;
@@ -954,7 +955,9 @@ book very center
 
 the very center is a nonfacial room. it is below u11. it is above d11. it is west of e11. it is east of w11. it is north of s11. it is south of n11. printed name is "The Very Center".
 
-the tunnels are scenery in very center. understand "tunnel" as tunnel.
+the tunnels are scenery in very center. understand "tunnel" as tunnels when player is in very center.
+
+understand "blue/red/orange/yellow/violet/green tunnel/tunnels" as tunnels
 
 [?? red tunnel]
 
@@ -969,7 +972,7 @@ check examining tunnels:
 	say "The tunnels are colored as follows:[line break]";
 	repeat with X running through alignable regions:
 		if x is aligned, say "[outdir of x]: [beaccolor of x][if beaccolor of x is listed in rope-colors] (with rope through it)[end if].";
-	the rule succeeds
+	the rule succeeds;
 
 description of very center is "Here in the very center you can [if number of centexit directions is 1]only go back [only-vc-dir][else]go [list of centexit directions] back to the surface through different colored tunnels[end if].[paragraph break][one of]There's some weird gold object[or]That weird gold object is still[stopping] [object-doing][one of]. It must be what gave those readings that attracted you to the cube in the first place[or][stopping]."
 
@@ -1083,7 +1086,14 @@ before going in very center (this is the check for basic directions from very ce
 
 book beacons
 
-the beacon is a backdrop. it is in u11, d11, w11, e11, s11, n11. description of beacon is "It sticks out of the ground about a foot. It's colored [beaccolor of mrlp]."
+the beacon is a backdrop. it is in u11, d11, w11, e11, s11, n11. description of beacon is "It sticks out of the ground about a couple feet. It's colored [beaccolor of mrlp]."
+
+understand "purple beacon" and "purple" as beacon when beaccolor of mrlp is purple.
+understand "orange beacon" and "orange" as beacon when beaccolor of mrlp is orange.
+understand "yellow beacon" and "yellow" as beacon when beaccolor of mrlp is yellow.
+understand "red beacon" and "red" as beacon when beaccolor of mrlp is red.
+understand "green beacon" and "green" as beacon when beaccolor of mrlp is green.
+understand "blue beacon" and "blue" as beacon when beaccolor of mrlp is blue.
 
 check taking the beacon:
 	say "The beacon seems stuck in the ground. It's probably more useful there, anyway." instead;
@@ -1397,6 +1407,7 @@ carry out gotohing:
 		say "You can go to any of the 54 outer locations with three or fewer keystrokes.[paragraph break]The six center squares: U or UC, E or EC, etc.[line break]The twenty-four edge squares: UN, UW, UE, US, etc. (note NU, WU, EU, SU will send you to different faces).[line break]The twenty-four corner squares: USW, USE, UNW, UNE, etc. You should be able to switch the second and third directions at will.[paragraph break][b]NOTE[r]: unfortunately, but you have to use GT before, as otherwise the room abbreviation might get confused with a direction to go." instead;
 
 carry out gotoing:
+	if location of player is very center, say "You need to surface before using GOTO." instead;
 	now gotohintyet is true;
 	repeat through table of gotos:
 		if "[topic understood]" exactly matches the text "[s1 entry]" or there is an s2 entry and "[topic understood]" exactly matches the text "[s2 entry]":
@@ -1669,7 +1680,7 @@ Rule for printing a parser error when the latest parser error is the only unders
 	say "The first word was okay, and you don't need any extra ones."
 
 rule for printing a parser error when the latest parser error is the can't see any such thing error:
-	say "I (you) can't see anything here like that."
+	say "There's nothing visible here like that."
 
 rule for printing a parser error when the latest parser error is the didn't understand error:
 	say "I didn't recognize that verb. For a list of common/useful verbs, type V or VERB or VERBS.";
