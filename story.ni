@@ -168,6 +168,12 @@ to decide which color is the mix of (a - a color) and (b - a color):
 volume when play begins
 
 when play begins:
+	say "Before we begin, there is a text map or two which does not play well with screen readers. Are you using a screen reader?";
+	if the player no-consents:
+		say "Note: this game may be extra tricky if you are vision-impaired, but I hope you are still able to enjoy it.[paragraph break]";
+		now screenread is true;
+	say "Screen reading support is now [on-off of screenread]. You can toggle it with SCREEN.[paragraph break]Also, when the cursor appears without the > prompt, as below, push any key to continue.";
+	wfak-d;
 	say "Science has been solved! Well, except for the scratchwork. And the stuff the numerologists proved could never be figured for sure. Everyone knows how the four elements work together. Okay, mostly. And astrology is more accurate than it's ever been. Except when people don't REALLY follow its advice. Anyway, there's got to be only so much more to calculate. Eventually, we'll learn why people don't fall through the flat earth, or why it isn't in free fall if there's gravity, but...all that's just numbers, right? We'll work it out one day! We just don't have enough of those punch-card processors yet!";
 	wfak-d;
 	say "[line break]As a hotshot double Ph. D. in Psychokinetics and Psychohistory, you weren't surprised you found an important new ancient-looking cave to excavate and explore. You're not just book smart--mood rings work even better on you than on most people, which shows extraordinary intelligence and sensitivity. Why, you eschewed a lucrative career as a psychic for, just, well...knowledge. And when your dowsing instruments detected something odd in a cavern, you were curious indeed! A cube lay beyond a river, and you're lucky you had your assistant to pull you back, because somehow, you felt pulled towards the center! Your assistant tied you down so you could explore briefly, and YOU WERE ABLE TO WALK UPSIDE-DOWN. What sort of crazy science was this? Any fool familiar with the Law of Gravity would know there must have been some powerful life force or something in the center. You fell so hard when you were pulled away, you had to use your entire supply of healing crystals to get back to 100%.";
@@ -1298,8 +1304,6 @@ before waiting:
 
 chapter reading
 
-screen-read is a truth state that varies.
-
 understand the command "read" as something new.
 understand "read [thing]" as reading.
 
@@ -1314,7 +1318,7 @@ check reading:
 		now read-warn is true;
 		say "NOTE: READing counts as examining, except for the map.";
 		try examining the noun instead;
-	if screen-read is true, say "The text map plays havoc with screen readers, so I disabled it. Sorry." instead;
+	if screenread is true, say "The text map plays havoc with screen readers, so I disabled it. Sorry." instead;
 	say "(You can see a graphical version with the game assembly)[paragraph break][fixed letter spacing][line break]         TO N                TO U
 [line break]         | | |              / / /
 [line break]        -u-u-u-T          -n-n-n-+
@@ -1441,8 +1445,8 @@ understand "credit" as creditsing.
 understand "credits" as creditsing.
 
 carry out creditsing:
-	say "Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, so I could write maps that helped me visualize the game maps.";
-	say "[line break]Thanks to, in alphabetical order, Brian Rushton, Mike Souza, and Mike Spivey for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch.";
+	say "Thanks to, in alphabetical order, Brian Rushton, Marnix, Mike Souza, and Mike Spivey for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch.";
+	say "[line break]Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, which has helped me organize and visualize other games in addition to this. http://www.trizbort.com has this app, though it's Windows only.";
 	the rule succeeds;
 
 chapter helping
@@ -1472,7 +1476,7 @@ to say plane-dirs:
 	say "[if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] or, reversed, [if mrlp is upper face or mrlp is bottom face]WN/EN/WS/ES[else if mrlp is southern face or mrlp is northern face]EU/WU/ED/WD[else if mrlp is eastern face or mrlp is western face]NU/SU/ND/SD[end if]"
 
 carry out verbing:
-	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face). READ MAP gives a textual representation of the PDF map included with the game.";
+	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [plane-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
