@@ -152,17 +152,7 @@ carry out cheapwining:
 		now C is a random visible cornerthing;
 		try colsummoning rightcolor of C;
 		d "touching [c].";
-		try touching C;
-	let RR be revregion of red;
-	consider the every turn rules;
-	move player to random facecenter room in mrlp;
-	d "Moving from [mrlp] to [RR], red tunnel exit.";
-	centmove mrlp and RR;
-	try dropping rope;
-	d "Moving inside in red tunnel.";
-	d "[indir of mrlp].";
-	rand-perp;
-	try going indir of RR;
+		try touching C; [below is the cheap cheater way]
 [	move player to very center;
 	try going outdir of revregion of red;
 	move player to very center;
@@ -178,6 +168,16 @@ carry out cheapwining:
 	move player to a random facecenter room in R;
 	try tying wire rope to wire rope;
 	the rule succeeds;]
+	let RR be revregion of red;
+	consider the every turn rules;
+	move player to random facecenter room in mrlp;
+	d "Moving from [mrlp] to [RR], red tunnel exit.";
+	centmove mrlp and RR;
+	try dropping rope;
+	d "Moving inside in red tunnel.";
+	d "[indir of mrlp].";
+	rand-perp;
+	try going indir of RR;
 	d "Moving outside in orange tunnel.";
 	try going outdir of revregion of orange;
 	now RR is revregion of yellow;
@@ -344,7 +344,18 @@ test c46 with "pick 4312/ne/summon blue/touch/sw/sw/summon yellow/touch/gonear d
 test c47 with "pick 14321/nw/summon blue/touch/se/se/summon yellow/touch/gonear d11/ne/summon red/touch/sw/sw/summon white/touch/gonear d11/drop rope/u/e/gonear s11/n/u/gonear w11/e/n/gonear d11/tie rope".
 test c48 with "pick 4321/ne/summon blue/touch/sw/sw/summon yellow/touch/gonear d11/nw/summon red/touch/se/se/summon white/touch/gonear d11/drop rope/u/w/gonear s11/n/u/gonear e11/w/n/gonear d11/tie rope".
 
-test c1a with "pick 11234/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/u/u/s/drop rope/d/e/n/n/w/s/d/w/w/u/e/s/u/u/n/tie rope".
+test c1-0a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/u/u/s/drop rope/d/e/n/n/w/s/d/w/w/u/e/s/u/u/n/tie rope".
+test c1-1a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/s/s/u/drop rope/n/u/e/e/d/w/n/d/d/s/u/w/s/s/e/tie rope".
+test c1-2a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/w/w/u/drop rope/e/s/u/u/n/d/e/n/n/w/s/d/w/w/u/tie rope".
+test c1-3a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/drop rope/u/w/s/s/e/n/u/e/e/d/w/n/d/d/s/tie rope".
+test c1-4a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/drop rope/s/d/w/w/u/e/s/u/u/n/d/e/n/n/w/tie rope".
+test c1-5a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/e/e/u/drop rope/w/n/d/d/s/u/w/s/s/e/n/u/e/e/d/tie rope".
+test c1-6a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/s/s/u/drop rope/n/w/d/d/e/u/n/e/e/s/w/u/s/s/d/tie rope".
+test c1-7a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/w/w/u/drop rope/e/d/n/n/u/s/e/u/u/w/d/s/w/w/n/tie rope".
+test c1-8a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/drop rope/u/n/e/e/s/w/u/s/s/d/n/w/d/d/e/tie rope".
+test c1-9a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/drop rope/s/e/u/u/w/d/s/w/w/n/e/d/n/n/u/tie rope".
+test c1-10a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/e/e/u/drop rope/w/u/s/s/d/n/w/d/d/e/u/n/e/e/s/tie rope".
+test c1-11a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/u/u/s/drop rope/d/s/w/w/n/e/d/n/n/u/s/e/u/u/w/tie rope".
 
 chapter direction testing
 
