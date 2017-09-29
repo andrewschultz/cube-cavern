@@ -64,8 +64,6 @@ Understand the command "throw" as something new.
 Understand the command "shed" as something new.
 Understand the command "remove" as something new.
 Understand the command "stand" as something new.
-Understand the command "close" as something new.
-Understand the command "open" as something new.
 Understand the command "eat" as something new.
 Understand the command "answer" as something new.
 Understand the command "say" as something new.
@@ -167,15 +165,27 @@ to decide which color is the mix of (a - a color) and (b - a color):
 		if b is c2 entry and a is c3 entry, decide on c3 entry;
 	decide on brown;
 
-volume when play begins
+section status line stuff
+
+you-won is a truth state that varies.
+
+you-lost is a truth state that varies.
+
+to re-status: (- DrawStatusLine(); -);
 
 to say rhsl:
-	if number of nonblack cornerthings < 4 or number of aligned regions is 0:
+	if you-won is true:
+		say "KNOWLEDGE";
+	else if you-lost is true:
+		say "OH NOES";
+	else if number of nonblack cornerthings < 4 or number of aligned regions is 0:
 		say "[number of nonblack cornerthings]/4";
 	else if tunnel-looped is false:
 		say "[number of entries in rope-colors]/6";
 	else:
 		say "TIE THE ROPE"
+
+volume when play begins
 
 when play begins:
 	now right hand status line is "[rhsl]";
@@ -620,6 +630,8 @@ check tying rope to rope:
 		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
 		wfak-d;
 		say "[line break]But you never talk about what you really saw[if TS is true], even when your calculations show there must be three similar cubes in caverns elsewhere[end if]. You mention you had a cosmic vision, and so forth, and you wish you could interpret it, but all you remember are the parts about loving other people being important and how the journey is its own reward, and how that's true with lots of technology, or little. You find yourself saying 'There's just ... STUFF WE DON'T UNDERSTAND OUT THERE' with a conviction and mystery few can hope for. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' You convince a few kids to take up writing. Even the wildest fantasies can spur rigorous scientific thought. There's a place for combining the humanities and the sciences.";
+		now you-won is true;
+		re-status;
 		end the story finally saying "YOU HAVE ACHIEVED KNOWLEDGE";
 		the rule succeeds;
 	if rope-drop is true:
@@ -628,6 +640,8 @@ check tying rope to rope:
 				say "You tie the rope to itself. [if number of entries in rope-colors < number of aligned regions]Maybe you didn't thread the cube completely, but eh well, no big deal[else]Maybe you could've created a few other tunnels, but the important thing is, you've anchored the whole cube[end if], right?";
 				wfak-d;
 				say "[line break]You throw the rope hard enough that it breaks the cube's gravity. As it hits a cavern wall, you feel the cube pulled...and it starts to crumble...and the gold ball rushes out of the cavern. When you return to the surface, people tell you of the wonderful fireworks as it exploded in the sky. They were sure you did all you could to capture what was in it. But you aren't.";
+				now you-lost is true;
+				re-status;
 				end the story saying "THE KNOWLEDGE REMAINS HIDDEN";
 				the rule succeeds;
 			else:
@@ -1366,6 +1380,21 @@ instead of attacking:
 	if noun is beacon, say "It doesn't appear to have military potential. Best lay off it." instead;
 	if noun is a cornerthing, say "No. If it had offensive capability, it might already have used it on you." instead;
 	say "The only thing a scientist like you should be attacking is abstract problems." instead;
+
+chapter opening
+
+check opening:
+	if noun is tunnel or noun is tunnels, say "You already have a tunnel open. You're pretty sure you did so remotely, too." instead;
+	if noun is beacon or noun is a cornerthing, say "It's too narrow to contain anything on the inside." instead;
+	say "You don't need to open anything directly in this game." instead;
+
+chapter closing
+
+check closing:
+	if noun is tunnel, say "It looks like you opened the tunnel without being nearby, so you'd need to close it remotely. Not that you need to." instead;
+	if noun is tunnels, say "That would be dangerous, and it won't help you." instead;
+	if noun is beacon or noun is a cornerthing, say "It's already closed." instead;
+	say "You don't need to close anything in this game. Well, not directly." instead;
 
 chapter waiting
 
