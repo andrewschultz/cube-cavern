@@ -60,6 +60,19 @@ carry out gotesting:
 	say "Go-test is now [if go-test is true]on[else]off[end if].";
 	the rule succeeds;
 
+chapter aving
+
+aving is an action out of world.
+
+understand the command "av" as something new.
+
+understand "av" as aving.
+
+carry out aving:
+	say "Turning all rooms to visited.";
+	now all rooms are visited;
+	the rule succeeds;
+
 chapter gotesting
 
 gotestying is an action out of world.
@@ -102,6 +115,110 @@ carry out thimking:
 
 every turn when think-every-turn is true:
 	try think2ing instead;
+
+chapter cheapwining
+
+cheapwining is an action out of world.
+
+understand the command "cheapwin" as something new.
+
+understand "cheapwin" as cheapwining.
+
+to centmove (r1 - a region) and (r2 - a region):
+	if r1 is r2, continue the action;
+	if indir of r1 is outdir of r2:
+		let Q be a random perpendicular direction;
+		try going Q;
+		try going Q;
+		try going outdir of r2;
+		try going outdir of r2;
+		try going outdir of r2;
+		try going opposite of Q;
+	else:
+		try going outdir of r2;
+		try going outdir of r2;
+		try going indir of r1;
+
+carry out cheapwining:
+	let C be a random cornerthing;
+	repeat through table of cheapwins:
+		if rightcolor of myt entry is black, next;
+		if a random chance of 1 in 3 succeeds:
+			move player to l1 entry, without printing a room description;
+		else if a random chance of 1 in 2 succeeds:
+			move player to l2 entry, without printing a room description;
+		else:
+			move player to l3 entry, without printing a room description;
+		now C is a random visible cornerthing;
+		try colsummoning rightcolor of C;
+		d "touching [c].";
+		try touching C;
+	let RR be revregion of red;
+	consider the every turn rules;
+	move player to random facecenter room in mrlp;
+	d "Moving from [mrlp] to [RR], red tunnel exit.";
+	centmove mrlp and RR;
+	try dropping rope;
+	d "Moving inside in red tunnel.";
+	d "[indir of mrlp].";
+	rand-perp;
+	try going indir of RR;
+[	move player to very center;
+	try going outdir of revregion of red;
+	move player to very center;
+	try going outdir of revregion of orange;
+	move player to very center;
+	try going outdir of revregion of yellow;
+	move player to very center;
+	try going outdir of revregion of green;
+	move player to very center;
+	try going outdir of revregion of blue;
+	move player to very center;
+	try going outdir of revregion of purple;
+	move player to a random facecenter room in R;
+	try tying wire rope to wire rope;
+	the rule succeeds;]
+	d "Moving outside in orange tunnel.";
+	try going outdir of revregion of orange;
+	now RR is revregion of yellow;
+	move player to a random facecenter room in RR;
+	d "Moving inside in yellow tunnel.";
+	try going indir of RR;
+	d "Moving outside in green tunnel.";
+	try going outdir of revregion of green;
+	now RR is revregion of blue;
+	move player to a random facecenter room in RR;
+	d "Moving inside in blue tunnel.";
+	try going indir of RR;
+	d "Moving outside in purple tunnel.";
+	try going outdir of revregion of purple;
+	now RR is revregion of red;
+	move player to a random facecenter room in RR;
+	try tying wire rope to wire rope;
+	the rule succeeds;
+
+to rand-perp:
+	let Q be a random perpendicular direction;
+	d "Going [q] then [opposite of q].";
+	try going Q;
+	try going opposite of Q;
+
+definition: a direction (called d) is perpendicular:
+	unless d is simple, no;
+	if d is outdir of mrlp, no;
+	if d is indir of mrlp, no;
+	yes;
+
+table of cheapwins
+myt	l1	l2	l3
+northupwest	n02	u02	w22
+northupeast	n22	u22	e22
+southupwest	s02	u00	w02
+southupeast	s22	u20	e02
+northdownwest	n00	d02	w20
+northdowneast	n20	d22	e20
+southdownwest	s00	d00	w00
+southdowneast	s20	d20	e00
 
 volume test scripts
 
