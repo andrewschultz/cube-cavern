@@ -538,7 +538,6 @@ prev-reg is a region that varies.
 the main go check rule is listed before the can't go that way rule in the check going rules.
 
 check going (this is the main go check rule):
-	d "...";
 	now last-room is location of player;
 	if mrlp is mtr, continue the action;
 	if noun is inside:
@@ -649,6 +648,7 @@ check tying rope to rope:
 		if location of player is facecenter or location of player is very center:
 			say "Maybe tie the rope at the start of the tunnel where you first went inside, on the [map region of init-drop-room]." instead;
 		say "You started tying the rope at one of the tunnels." instead;
+	say "This doesn't seem like a good place to make a loop." instead;
 
 check tying rope to:
 	if second noun is gold spherical object, say "There's no good surface on the weird gold object, and it sort of magnetically repels you anyway." instead;
@@ -1654,7 +1654,7 @@ understand the command "xyzzy" as something new.
 understand "xyzzy" as xyzzying.
 
 carry out xyzzying:
-	say "You hone in on your training for three-dimensional reasoning from several different directions. The result is a slight headache. But it's a MOTIVATING headache!";
+	say "You hone in on your three-dimensional reasoning, visualization and general calculations. You even solve a trivial set of three equations with three unknowns. The result is a slight headache. But it's a MOTIVATING headache!";
 	the rule succeeds;
 
 chapter reseting

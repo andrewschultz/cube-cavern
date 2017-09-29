@@ -120,9 +120,11 @@ chapter cheapwining
 
 cheapwining is an action out of world.
 
+understand the command "cheatwin" as something new.
 understand the command "cheapwin" as something new.
 
 understand "cheapwin" as cheapwining.
+understand "cheatwin" as cheapwining.
 
 to centmove (r1 - a region) and (r2 - a region):
 	if r1 is r2, continue the action;
@@ -224,14 +226,14 @@ volume test scripts
 
 chapter non-wins
 
-test 2of2 with "pick 1234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/n/uw/s/u/n/n/d/tie rope to rope".
+test 2of2 with "pick 11234/ne/white/touch/sw/sw/red/touch/w/nd/nd/yellow/touch/n/ue/drop rope/s/u/n/n/d/tie rope to rope".
 test 2of3 with "pick 11234/nw/white/touch/se/se/red/touch/e/nd/nd/yellow/touch/us/drop rope/w/n/e/e/s/tie rope to rope".
 test 4of4 with "pick 11234/sw/blue/touch/ne/ne/yellow/touch/e/ds/ds/d/red/touch/nw/nw/white/touch/n/eu/drop rope/s/w/s/s/e/n/e/n/n/w/tie rope".
 
 chapter walkthrough
 
 test fix with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/d/s/s/w/w/summon air/touch/bcsol".
-test fix3 with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/nwin/l/x tunnels".
+test fix3 with "fixsol/n/w/summon earth/touch/e/e/s/s/summon fire/touch/e/d/d/n/n/summon water/touch/nw/in/l/x tunnels".
 
 test cross with "test fix/ne/drop rope/w/w/u/u/u".
 test cross2 with "test fix/ne/drop rope/w/w/d".
@@ -359,11 +361,11 @@ test c1-11a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/
 
 chapter direction testing
 
-test ud with "ne/sw/en/ws/nw/se/wn/es".
+test ud with "ne/sw/ws/en/nw/se/es/wn".
 test uds with "gonear u11/test ud/gonear d11/test ud".
-test ns with "ue/dw/uw/de/eu/wd/ed/wu".
+test ns with "ue/dw/wd/eu/uw/de/ed/wu".
 test nss with "gonear n11/test ns/gonear s11/test ns".
-test ew with "un/ds/us/dn/nu/sd/su/dn".
+test ew with "un/ds/sd/nu/us/dn/nd/su".
 test ews with "gonear e11/test ew/gonear w11/test ew".
 
 test uofftest with "gotesty/gonear u11/nw/test udofftest".
@@ -375,7 +377,7 @@ s/ne/e/se/
 s/ne/e/se/s/sw/
 w/se/s/sw/
 w/se/s/sw/w/nw/
-n/sw/n/nw/
+n/sw/w/nw/
 ne/se/sw/nw/se/ne/nw/sw".
 
 test nofftest with "gotesty/gonear n11/uw/test nsofftest".
