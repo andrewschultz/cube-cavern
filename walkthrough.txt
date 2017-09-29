@@ -1,6 +1,6 @@
 The solution to The Cube in the Cavern is not too bad once you know what to do. The puzzle is randomly generated each time, and there are forty-eight possibilities once you understand what you can put on the transponders.
 
-You may notice that REVIEWing changes your mood ring to different colors. White, red, yellow and blue.
+You may notice that SUMMONing changes your mood ring to different colors. White, red, yellow and blue.
 
 Also you may notice that the beacon colors in the center are red, yellow, blue, orange, green and purple.
 

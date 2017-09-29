@@ -1238,7 +1238,7 @@ check touching a cornerthing:
 	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
 	if rope-drop is true, say "You're wary of fiddling with the transponders now you're dragging the rope around." instead;
 	let ia be number of aligned regions;
-	if ring-color is black and cornercolor of noun is black, say "You feel a pulse through your ring. It feels like something more should happen, but it doesn't." instead;
+	if ring-color is black and cornercolor of noun is black, say "You see the darkness in your ring swirl. It feels like something more should happen, but it doesn't." instead;
 	repeat through table of beacon zaps:
 		if con2 entry is noun and cornercolor of con1 entry is not black, say "[froms of mydir entry]." instead;
 	repeat through table of beacon zaps:
@@ -1252,29 +1252,29 @@ check touching a cornerthing:
 		say "The transponder [if cornercolor of noun is ring-color]stays[else]changes from [cornercolor of noun] to[end if] [ring-color].";
 	let na-then be number of aligned regions;
 	let atot-then be regionbin;
+	let nochange be whether or not cornercolor of noun is ring-color;
 	now cornercolor of noun is ring-color;
 	let newcolor be raycolor of mrlp;
 	now ever-trans-changed is true;
 	let na-now be number of aligned regions;
 	let atot-now be regionbin;
-	[d "[na-then] [atot-then] [na-now] [atot-now] [oldcolor] [newcolor].";]
-	say "[line break]";
+	d "[oldcolor]/[newcolor] vs [beaccolor of mrlp].";
 	if oldcolor is beaccolor of mrlp and newcolor is not beaccolor of mrlp:
-		say "You hear a whirring that ends on a low note [fromthe of centerdir of location of player].";
+		say "[line break]You hear a whirring that ends on a low note [fromthe of centerdir of location of player].";
 	else if newcolor is beaccolor of mrlp and oldcolor is not beaccolor of mrlp:
-		say "You hear a whirring that ends on a high note [fromthe of centerdir of location of player].";
+		say "[line break]You hear a whirring that ends on a high note [fromthe of centerdir of location of player].";
 		now mrlp is ever-aligned;
 		if number of aligned regions is 6:
 			say "[line break]The cube shakes a bit. It felt like a few tunnels opened at once.";
 			now fixed-beacons is true;
 	else if na-now > na-then:
-		say "You hear a distant whirring that ends on a high note, but you can't tell from where.";
+		say "[line break]You hear a distant whirring that ends on a high note, but you can't tell from where.";
 	else if na-now < na-then:
-		say "You hear a distant whirring that ends on a low note, but you can't tell from where.";
+		say "[line break]You hear a distant whirring that ends on a low note, but you can't tell from where.";
 	else if atot-now is not atot-then:
-		say "You hear weird whirrings--from where, you can't say.";
-	else:
-		say "Nothing seems to happen, but then, there are other places to visit.";
+		say "[line break]You hear weird whirrings--from where, you can't say.";
+	else if nochange is false:
+		say "[line break]Nothing else seems to happen, but then, there are other places to visit.";
 	now all aligned regions are ever-aligned;
 	tun-beac-reset;
 	if fourwarned is false and number of nonblack cornerthings is 4 and number of aligned regions < 6:
