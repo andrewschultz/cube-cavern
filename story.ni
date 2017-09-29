@@ -149,6 +149,8 @@ rainbowlinking relates one color to one color. The verb to rainbowlink (he rainb
 
 red rainbowlinks orange. orange rainbowlinks yellow. yellow rainbowlinks green. green rainbowlinks blue. blue rainbowlinks purple. purple rainbowlinks red.
 
+a color can be elemental. a color is usually not elemental. white, red, yellow, and blue are elemental.
+
 to decide whether (c1 - a color) colorborders (c2 - a color):
 	if c1 rainbowlinks c2 or c2 rainbowlinks c1, decide yes;
 	decide no;
@@ -358,17 +360,38 @@ water is an element. conc-color of water is blue. blah-txt is "There was a big f
 
 chapter summoning
 
+understand the command "summon" as something new.
+
+colsummoning is an action applying to one color.
+
+understand "summon [color]" as colsummoning.
+
+carry out colsummoning:
+	repeat with X running through elements:
+		if conc-color of X is the color understood, try summoning X instead;
+	if the color understood is black:
+		if ring-color is black, say "Your mood ring already is black." instead;
+		now ring-color is black;
+		now ring-moves is 0;
+		say "You wait a bit for the mood ring to cool down and return to black." instead;
+	say "Uh-oh, we can't summon that color. We can only summon the four elemental colors.";
+	the rule succeeds;
+
+chapter summoning
+
 does the player mean summoning an element: it is very likely.
 
 summoning is an action applying to one visible thing.
-
-understand the command "summon" as something new.
 
 understand "summon [any thing]" as summoning.
 
 all-4-acc is a truth state that varies.
 
 carry out summoning:
+	if player is in very center, say "Nothing happens. The weird gold sphere may be mucking with things, here." instead;
+	if noun is beacon and beaccolor of mrlp is elemental:
+		say "It makes sense to summon the same color element as the beacon nearby, so you do.[paragraph break]";
+		try colsummoning beaccolor of mrlp instead;
 	if noun is not an element, say "You can only summon elements. The elements are: [list of elements]." instead;
 	say "You reflect on the [noun] for a bit. Your mood ring [if ring-color is conc-color of noun]glows a bit brighter but does not change color[else]changes to [conc-color of noun][one of]. [b]NOTE[r]: in the future, you can SUMMON a color, or even leave off SUMMON altogether[or][stopping][end if].";
 	if noun is not ever-acc:
@@ -381,18 +404,6 @@ carry out summoning:
 			say "[line break]GAME NOTE: you can just type an element or the color you wish to change in the future, without SUMMON.";
 			now all-4-acc is true;
 	the rule succeeds.
-
-chapter summoning
-
-colsummoning is an action applying to one color.
-
-understand "summon [color]" as colsummoning.
-
-carry out colsummoning:
-	repeat with X running through elements:
-		if conc-color of X is the color understood, try summoning X instead;
-	say "Uh-oh, we can't summon that color. We should be able to, but we can't.";
-	the rule succeeds;
 
 volume direction definitions
 
@@ -514,7 +525,10 @@ to say can-want:
 
 prev-reg is a region that varies.
 
-before going:
+the main go check rule is listed before the can't go that way rule in the check going rules.
+
+check going (this is the main go check rule):
+	d "...";
 	now last-room is location of player;
 	if mrlp is mtr, continue the action;
 	if noun is inside:
@@ -563,6 +577,7 @@ before going:
 		if go-test is true:
 			say "TESTING NOTE: you would've moved to [X] in [mrx] from [mrlp]." instead;
 		say "You twist over the side of the cube to the [mrx].[line break]";
+	continue the action;
 
 gotohintyet is a truth state that varies.
 
@@ -591,8 +606,8 @@ to say revgoto of (rm - a room):
 
 does the player mean tying rope to rope when tunnel-looped is true or location of player is init-drop-room: it is very likely.
 
-before tying rope to rope:
-	let TS be whether or not number of visited rooms > 0;
+check tying rope to rope:
+	let TS be whether or not number of unvisited rooms > 0;
 	if tunnel-looped is true:
 		if location of player is not init-drop-room:
 			say "Maybe go back to where you originally dropped the rope in the center of the [map region of init-drop-room]." instead;
@@ -600,9 +615,9 @@ before tying rope to rope:
 		wfak-d;
 		say "[line break]The gold sphere cracks open. You see visions...of not five, not six, but OVER ONE HUNDRED ELEMENTS. Of light having speed, of mathematical theorems that prove you can't know anything. You see a vision of circular worlds that pull people to their centers, just like the cube, but THERE IS NOTHING SPECIAL IN THERE. There are visions of machines that not just levitate, but fly to the stars, which you thought was proven impossible.";
 		wfak-d;
-		say "[if TS is true]A voice hums through your mind that you solved the cube but did not explore ALL, so part of a vision is hidden from you[else]There's also a vision of a few letters: [drink-your-ovaltine]. Hmm[end if].";
+		say "[if TS is true]A voice hums through your mind that you solved the cube but did not explore ALL, so part of a vision is hidden from you[else][line break]There's also a vision of a few letters: [drink-your-ovaltine]. Hmm[end if].";
 		wfak-d;
-		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a  hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
+		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
 		wfak-d;
 		say "[line break]But you never talk about what you really saw[if TS is true], even when your calculations show there must be three similar cubes in caverns elsewhere[end if]. You mention you had a cosmic vision, and so forth, and you wish you could interpret it, but all you remember are the parts about loving other people being important and how the journey is its own reward, and how that's true with lots of technology, or little. You find yourself saying 'There's just ... STUFF WE DON'T UNDERSTAND OUT THERE' with a conviction and mystery few can hope for. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' You convince a few kids to take up writing. Even the wildest fantasies can spur rigorous scientific thought. There's a place for combining the humanities and the sciences.";
 		end the story finally saying "YOU HAVE ACHIEVED KNOWLEDGE";
@@ -621,14 +636,14 @@ before tying rope to rope:
 			say "Maybe tie the rope at the start of the tunnel where you first went inside, on the [map region of init-drop-room]." instead;
 		say "You started tying the rope at one of the tunnels." instead;
 
-before tying rope to:
+check tying rope to:
 	if second noun is gold spherical object, say "There's no good surface on the weird gold object, and it sort of magnetically repels you anyway." instead;
 	if second noun is tunnel, try dropping rope instead;
 	if second noun is beacon, say "The beacon might snap if you pull the rope away." instead;
 	if second noun is ring, say "You couldn't tie the rope around the ring without removing the ring, and you don't want to remove the ring." instead;
 	if second noun is a cornerthing, say "The [noun] might snap if you pull the rope away." instead;
 
-before tying something to:
+check tying something to:
 	if second noun is rope and noun is not rope, try tying noun to second noun instead;
 
 after going:
@@ -1008,7 +1023,7 @@ definition: a direction (called di) is centexit:
 	if the room di of very center is tunneled, yes;
 	no;
 
-before going to very center:
+check going to very center:
 	d "[raycolor of mrlp] [beaccolor of mrlp].";
 	if mrlp is never-aligned:
 		if mrlp is aligned:
@@ -1080,7 +1095,7 @@ to endgame-check:
 		now tunnel-looped is true;
 		say "Your rope shimmers in your hand. Surely there's just one more step--to go back to where you entered the first tunnel and connect the rope."
 
-before going in very center (this is the check for basic directions from very center rule):
+check going in very center (this is the check for basic directions from very center rule):
 	if noun is inside:
 		say "You're already inside at the center of the asteroid." instead;
 	if noun is outside:
@@ -1094,12 +1109,12 @@ book beacons
 
 the beacon is a backdrop. it is in u11, d11, w11, e11, s11, n11. description of beacon is "It sticks out of the ground about a couple feet. It's colored [beaccolor of mrlp]."
 
-understand "purple beacon" and "purple" as beacon when beaccolor of mrlp is purple.
-understand "orange beacon" and "orange" as beacon when beaccolor of mrlp is orange.
-understand "yellow beacon" and "yellow" as beacon when beaccolor of mrlp is yellow.
-understand "red beacon" and "red" as beacon when beaccolor of mrlp is red.
-understand "green beacon" and "green" as beacon when beaccolor of mrlp is green.
-understand "blue beacon" and "blue" as beacon when beaccolor of mrlp is blue.
+understand "purple beacon" and "purple" as beacon when beaccolor of mrlp is purple and location of player is facecenter.
+understand "orange beacon" and "orange" as beacon when beaccolor of mrlp is orange and location of player is facecenter.
+understand "yellow beacon" and "yellow" as beacon when beaccolor of mrlp is yellow and location of player is facecenter.
+understand "red beacon" and "red" as beacon when beaccolor of mrlp is red and location of player is facecenter.
+understand "green beacon" and "green" as beacon when beaccolor of mrlp is green and location of player is facecenter.
+understand "blue beacon" and "blue" as beacon when beaccolor of mrlp is blue and location of player is facecenter.
 
 check taking the beacon:
 	say "The beacon seems stuck in the ground. It's probably more useful there, anyway." instead;
