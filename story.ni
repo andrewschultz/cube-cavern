@@ -1119,6 +1119,23 @@ check going in very center (this is the check for basic directions from very cen
 	if noun is not centexit:
 		say "Maybe you can make a path like that later, but there is none, now." instead;
 
+book cube backdrop
+
+the cube is a backdrop. the cube is everywhere. description of cube is "[if player is in very center]It's as shiny on the inside as the outside[else if location of player is facecenter]From here, you can only really see the face you're on, which is impressively shiny[else if location of player is edge]You can see two faces from where you're standing[else if location of player is corner]You can see three faces--half the cube--from here[end if]."
+
+instead of doing something with the cube:
+	if current action is examining, continue the action;
+	if current action is entering and location of player is facecenter, try going indir of mrlp;
+	say "You can't do much with the cube except walk on[if number of aligned regions > 1] or around[end if] it."
+
+understand "face" as cube.
+understand "upper/u face" as cube when mrlp is upper face.
+understand "bottom/d face" as cube when mrlp is bottom face.
+understand "western/west/w face" as cube when mrlp is western face.
+understand "eastern/east/e face" as cube when mrlp is eastern face.
+understand "southern/south/s face" as cube when mrlp is southern face.
+understand "northern/north/n face" as cube when mrlp is northern face.
+
 book beacons
 
 the beacon is a backdrop. it is in u11, d11, w11, e11, s11, n11. description of beacon is "It sticks out of the ground about a couple feet. It's colored [beaccolor of mrlp]."
@@ -1214,8 +1231,6 @@ check taking cornerthing:
 
 fixed-beacons is a truth state that varies.
 
-[?? reset rope]
-
 to say froms of (x - a direction):
 	say "You step back as a strong electric pulse emits [fromthe of x]. Maybe you can't change this transponder right now"
 
@@ -1299,6 +1314,9 @@ check touching a beacon:
 
 check touching ring:
 	say "You adjust your mood ring. Nothing happens. For most people, futzing with a ring might release worry, but you are too calm and analytical minded." instead;
+
+check touching cube:
+	say "It is metallic and shiny and smooth." instead;
 
 instead of listening:
 	say "It's silent. Helps you focus on what you need to do here, I guess."
