@@ -118,13 +118,21 @@ every turn when think-every-turn is true:
 
 chapter cheapwining
 
+cheapwin0ing is an action out of world.
+
 cheapwining is an action out of world.
+
+carry out cheapwin0ing:
+	try cheapwining 0 instead;
 
 understand the command "cheatwin" as something new.
 understand the command "cheapwin" as something new.
 
-understand "cheapwin" as cheapwining.
-understand "cheatwin" as cheapwining.
+understand "cheapwin" as cheapwin0ng.
+understand "cheatwin" as cheapwin0ng.
+
+understand "cheapwin [number]" as cheapwining.
+understand "cheatwin [number]" as cheapwining.
 
 to centmove (r1 - a region) and (r2 - a region):
 	if r1 is r2, continue the action;
@@ -142,6 +150,7 @@ to centmove (r1 - a region) and (r2 - a region):
 		try going indir of r1;
 
 carry out cheapwining:
+	let Y be whether or not the remainder after dividing number understood by 2 is 1;
 	let C be a random cornerthing;
 	repeat through table of cheapwins:
 		if rightcolor of myt entry is black, next;
@@ -154,22 +163,23 @@ carry out cheapwining:
 		now C is a random visible cornerthing;
 		try colsummoning rightcolor of C;
 		d "touching [c].";
-		try touching C; [below is the cheap cheater way]
-[	move player to very center;
-	try going outdir of revregion of red;
-	move player to very center;
-	try going outdir of revregion of orange;
-	move player to very center;
-	try going outdir of revregion of yellow;
-	move player to very center;
-	try going outdir of revregion of green;
-	move player to very center;
-	try going outdir of revregion of blue;
-	move player to very center;
-	try going outdir of revregion of purple;
-	move player to a random facecenter room in R;
-	try tying wire rope to wire rope;
-	the rule succeeds;]
+		try touching C;
+	if Y is 1: [this is the cheap cheater way not using moves]
+		move player to very center;
+		try going outdir of revregion of red;
+		move player to very center;
+		try going outdir of revregion of orange;
+		move player to very center;
+		try going outdir of revregion of yellow;
+		move player to very center;
+		try going outdir of revregion of green;
+		move player to very center;
+		try going outdir of revregion of blue;
+		move player to very center;
+		try going outdir of revregion of purple;
+		move player to a random facecenter room in R;
+		try tying wire rope to wire rope;
+		the rule succeeds;
 	let RR be revregion of red;
 	consider the every turn rules;
 	move player to random facecenter room in mrlp;
