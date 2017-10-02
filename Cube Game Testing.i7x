@@ -150,21 +150,31 @@ to centmove (r1 - a region) and (r2 - a region):
 		try going indir of r1;
 
 carry out cheapwining:
-	let Y be whether or not the remainder after dividing number understood by 2 is 1;
+	if number understood > 7 or number understood < 0:
+		say "You need a number from 0 to 7. 1-3 fixes which cheapwin room to examine, with 0 random. 0/4 decides whether you have a long or short walkthrough." instead;
+	let Y be the remainder after dividing the number understood by 4;
+	let Z be the number understood / 4;
 	let C be a random cornerthing;
 	repeat through table of cheapwins:
 		if rightcolor of myt entry is black, next;
-		if a random chance of 1 in 3 succeeds:
+		if Y is 0:
+			if a random chance of 1 in 3 succeeds:
+				move player to l1 entry, without printing a room description;
+			else if a random chance of 1 in 2 succeeds:
+				move player to l2 entry, without printing a room description;
+			else:
+				move player to l3 entry, without printing a room description;
+		else if Y is 1:
 			move player to l1 entry, without printing a room description;
-		else if a random chance of 1 in 2 succeeds:
+		else if Y is 2:
 			move player to l2 entry, without printing a room description;
-		else:
+		else if Y is 1:
 			move player to l3 entry, without printing a room description;
 		now C is a random visible cornerthing;
 		try colsummoning rightcolor of C;
 		d "touching [c].";
 		try touching C;
-	if Y is 1: [this is the cheap cheater way not using moves]
+	if Z is 1: [this is the cheap cheater way not using moves]
 		move player to very center;
 		try going outdir of revregion of red;
 		move player to very center;
