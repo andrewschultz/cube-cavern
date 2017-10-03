@@ -1,6 +1,6 @@
 "The Cube in the Cavern" by Andrew Schultz
 
-the story headline is "A 3-dimensional text adventure. Well, the map is"
+the story headline is "A 3-dimensional text adventure (well, the map is)"
 
 the story description is "A Speedy 3-d Deed-y"
 
@@ -189,7 +189,7 @@ volume when play begins
 
 when play begins:
 	now right hand status line is "[rhsl]";
-	say "Before we begin, there is a text map or two which does not play well with screen readers. Are you using a screen reader?";
+	say "Before we begin, there is a text map or two which does not play well with screen readers or some HTML browsers. Are you using a screen reader?";
 	if the player no-consents:
 		say "[b]NOTE[r]: this game may be extra tricky if you are vision-impaired, but I hope you are still able to enjoy it.[paragraph break]";
 		now screenread is true;
@@ -1126,6 +1126,7 @@ the cube is a backdrop. the cube is everywhere. description of cube is "[if play
 instead of doing something with the cube:
 	if current action is examining, continue the action;
 	if current action is entering and location of player is facecenter, try going indir of mrlp;
+	if current action is pushing or current action is pulling, say "You immediately have a nightmarish vision of one-third of the cube rotating a full ninety degrees. Then another third, at a right angle to it, rotating. And again. And, bizarrely, someone actually having fun figuring how to get the cube back as it was. An unsettling vision!" instead;
 	say "You can't do much with the cube except walk on[if number of aligned regions > 1] or around[end if] it."
 
 understand "face" as cube.
@@ -1430,12 +1431,17 @@ does the player mean reading the map: it is very likely.
 
 read-warn is a truth state that varies.
 
+html-warn is a truth state that varies.
+
 check reading:
 	if noun is not map and read-warn is false:
 		now read-warn is true;
 		say "NOTE: READing counts as examining, except for the map.";
 		try examining the noun instead;
 	if screenread is true, say "The text map plays havoc with screen readers, so I disabled it. Sorry." instead;
+	if html-warn is false:
+		say "NOTE: If you are running this in a web browser, the map on the left hopefully suffices to show how the faces link together.[paragraph break]";
+		now html-warn is true;
 	say "(You can see a graphical version with the game assembly)[paragraph break][fixed letter spacing][line break]         TO N                TO U
 [line break]         | | |              / / /
 [line break]        -u-u-u-T          -n-n-n-+
