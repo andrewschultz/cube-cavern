@@ -1259,6 +1259,7 @@ check touching a cornerthing:
 		if con2 entry is noun and cornercolor of con1 entry is not black, say "[froms of mydir entry]." instead;
 	repeat through table of beacon zaps:
 		if con1 entry is noun and cornercolor of con2 entry is not black, say "[froms of opposite of mydir entry]." instead;
+	now ray-bug is false;
 	let oldcolor be raycolor of mrlp;
 	if ring-color is black:
 		say "The transponder winks back to black.";
@@ -1298,6 +1299,9 @@ check touching a cornerthing:
 		say "[line break]NOTE: if you want to reset what you've done with the transponders, [b]CLEAR[r] will do so.";
 	if debug-state is true:
 		say "[line break](DEBUG) [number of aligned regions] regions ([list of aligned regions]) now aligned.";
+	if ray-bug is true:
+		say "[line break]You hear a fizzling noise. Something has happened that really, really shouldn't. It won't affect your ability to win the game, but you might want to undo things.";
+		now ray-bug is false;
 	the rule succeeds;
 
 definition: a cornerthing (called q) is nonblack:
@@ -1360,7 +1364,7 @@ northdownwest	southdownwest	south
 northupeast	northupwest	west
 northdowneast	northdownwest	west
 southupeast	southupwest	west
-southupeast	southupwest	west
+southdowneast	southdownwest	west
 
 table of region beacons
 myreg	b1	b2	b3	b4
@@ -1375,12 +1379,15 @@ to decide which color is raycolor of (re - a region):
 	let r2 be a random facecenter room in re;
 	decide on raycolor of r2;
 
+ray-bug is a truth state that varies.
+
 to decide which color is raycolor of (r - a room):
 	let cr be map region of r;
 	choose row with myreg of cr in table of region beacons;
 	if cornercolor of b1 entry is not black or cornercolor of b2 entry is not black:
 		if cornercolor of b3 entry is not black or cornercolor of b4 entry is not black:
-			say "*BUG* ADJACENT TRANSPONDERS WERE FLIPPED ON: [b1 entry] [cornercolor of b1 entry] [b2 entry] [cornercolor of b2 entry] [b3 entry] [cornercolor of b3 entry] [b4 entry] [cornercolor of b4 entry].";
+			d "*BUG* ADJACENT TRANSPONDERS WERE FLIPPED ON: [b1 entry] [cornercolor of b1 entry] [b2 entry] [cornercolor of b2 entry] [b3 entry] [cornercolor of b3 entry] [b4 entry] [cornercolor of b4 entry].";
+			now ray-bug is true;
 			decide on brown;
 	if cornercolor of b1 entry is not black and cornercolor of b2 entry is not black:
 		decide on mix of cornercolor of b1 entry and cornercolor of b2 entry;

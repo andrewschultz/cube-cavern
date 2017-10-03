@@ -120,7 +120,7 @@ chapter cheapwining
 
 cheapwin0ing is an action out of world.
 
-cheapwining is an action out of world.
+cheapwining is an action applying to one number.
 
 carry out cheapwin0ing:
 	try cheapwining 0 instead;
@@ -128,8 +128,8 @@ carry out cheapwin0ing:
 understand the command "cheatwin" as something new.
 understand the command "cheapwin" as something new.
 
-understand "cheapwin" as cheapwin0ng.
-understand "cheatwin" as cheapwin0ng.
+understand "cheapwin" as cheapwin0ing.
+understand "cheatwin" as cheapwin0ing.
 
 understand "cheapwin [number]" as cheapwining.
 understand "cheatwin [number]" as cheapwining.
@@ -177,6 +177,7 @@ carry out cheapwining:
 	if Z is 1: [this is the cheap cheater way not using moves]
 		move player to very center;
 		try going outdir of revregion of red;
+		let R be revregion of red;
 		move player to very center;
 		try going outdir of revregion of orange;
 		move player to very center;
@@ -241,6 +242,53 @@ northdownwest	n00	d02	w20
 northdowneast	n20	d22	e20
 southdownwest	s00	d00	w00
 southdowneast	s20	d20	e00
+
+chapter bordtesting
+
+bordtesting is an action out of world.
+
+understand the command "bordtest" as something new.
+
+understand "bordtest" as bordtesting.
+
+carry out bordtesting:
+	btest 1 and 2;
+	btest 1 and 3;
+	btest 1 and 5;
+	btest 2 and 4;
+	btest 3 and 4;
+	btest 3 and 7;
+	btest 4 and 8;
+	btest 5 and 7;
+	try blacking;
+	the rule succeeds;
+
+to btest (x - a number) and (y - a number):
+	try blacking;
+	say "[b]SHOULD WORK[r]:[line break]";
+	choose row x in table of cheapwins;
+	move player to l1 entry, without printing a room description;
+	try summoning fire;
+	try touching myt entry;
+	say "[b]SHOULDN'T WORK [x] [y][r]:[line break]";
+	choose row y in table of cheapwins;
+	move player to l1 entry, without printing a room description;
+	try summoning fire;
+	try touching myt entry;
+
+chapter blacking
+
+blacking is an action out of world.
+
+understand the command "black" as something new.
+
+understand "black" as blacking.
+
+carry out blacking:
+	repeat with Q running through cornerthings:
+		now cornercolor of Q is black;
+	say "All transponders reset to black.";
+	the rule succeeds;
 
 volume test scripts
 
