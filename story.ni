@@ -189,7 +189,7 @@ volume when play begins
 
 when play begins:
 	now right hand status line is "[rhsl]";
-	say "Before we begin, there is a text map or two which does not play well with screen readers or some HTML browsers. Are you using a screen reader?";
+	say "Before we begin, there is a text map or two which does not play well with screen readers or some HTML browsers. If you are using a browser, the image on the left will be superior to the in-game text map.[paragraph break]Are you using a screen reader?";
 	if the player no-consents:
 		say "[b]NOTE[r]: this game may be extra tricky if you are vision-impaired, but I hope you are still able to enjoy it.[paragraph break]";
 		now screenread is true;
@@ -603,8 +603,17 @@ the cherry picking rule is listed before the check new arrival rule in the carry
 
 carry out looking (this is the cherry picking rule):
 	if location of player is unvisited and location of player is edge:
-		if number of visited edge rooms is 4:
+		let Q be number of visited edge rooms + number of visited corner rooms;
+		if Q is 3:
 			say "You find a single dried cherry on the ground. You pick it up and eat it. It's delicious, no pits even, and it's proof this cube or what's in it must support very interesting life indeed.";
+		else if Q is 6:
+			say "You find two small pointy solids on the ground. Each has five faces: a square base, with equilateral triangles off two opposite edges and a trapezoid off the other two. You futz with them until you make a pyramid, then pitch them. They sink into the cube's surface. You feel infinitesimally smarter.";
+		else if Q is 9:
+			say "Looking [indir of mrlp], you see a circle with a chunk out of it, in a maze of much smaller dots. What odd benighted ritual could this signify?";
+		else if Q is 12:
+			say "Away from the cube, you watch tetrominoes in, err, freefall on the side of the cavern. They lock into place when they hit a pile of already fallen shapes, and when a whole line is made, one vanishes. You stare until the pile reaches the top. When you turn away and look back, it's gone, but you still try to develop mental strategies for dealing with the mirror-image l-shaped and zigzag pieces, and you're sure YOU could have kept going a bit longer, if just given the chance. Distracting!";
+		else if Q is 15:
+			say "You notice a pack of cards on the ground. It shuffles itself into eight rows then begins sorting cards so that they are chained in order and by opposite color--9, 8, 7, 6 (the number of dots makes the values clear). Smaller cards begin to vanish. Just as you think you've figured all the rules, the 'game' is over. For no reason, the number 11982 flares into your mind and sticks there and makes you feel helpless and silly and stupid for a moment.";
 	continue the action;
 
 to say revgoto of (rm - a room):
@@ -1583,7 +1592,7 @@ understand "credit" as creditsing.
 understand "credits" as creditsing.
 
 carry out creditsing:
-	say "Thanks to, in alphabetical order, Brian Rushton, Mike Souza, Mike Spivey, and Marnix van den Bos for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch.";
+	say "Thanks to, in alphabetical order, Brian Rushton, Mike Souza, Mike Spivey, and Marnix van den Bos for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch. Thanks also to an as-yet-anonymous fellow competitor for finding a bug in the comp version of the game.";
 	say "[line break]Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, which has helped me organize and visualize other games in addition to this. http://www.trizbort.com has this app, though it's Windows only.";
 	the rule succeeds;
 
