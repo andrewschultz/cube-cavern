@@ -14,6 +14,8 @@ include Basic Screen Effects by Emily Short. [ watch out! center/central are def
 
 release along with an interpreter.
 
+release along with cover art.
+
 section big picture definitions
 
 use no scoring.
@@ -1572,6 +1574,7 @@ understand "credits" as creditsing.
 carry out creditsing:
 	say "Thanks to, in alphabetical order, Brian Rushton, Mike Souza, Mike Spivey, and Marnix van den Bos for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch. Thanks also to an as-yet-anonymous fellow competitor for finding a bug in the comp version of the game.";
 	say "[line break]Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, which has helped me organize and visualize other games in addition to this. http://www.trizbort.com has this app, though it's Windows only.";
+	say "[line break]Cover art font is Neuropol X Font by Raymond Larabie at typodermicfonts.com via 1001fonts.com.";
 	the rule succeeds;
 
 chapter helping

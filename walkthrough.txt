@@ -37,3 +37,5 @@ Note that you can also NEVER go straight in the tunnels with your rope.
 An example for the above would be D.D.N.N.U.S.S.E.E.N.W.W.U.U.E.
 
 You get a small set of clues if you cover all 54 squares. This is not really very hard to do. From the up-center you can go N.N.D.D.D.S.S.S.U.U.U.N to cover 12 squares on the up, down, north and south planes. Shifting west or east covers 12 more. To cover the east/west faces from your starting point on top of the cube, you just replace N/S with E/W.
+
+The message varies, but that doesn't depend on the original configuration.
