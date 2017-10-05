@@ -603,7 +603,7 @@ the cherry picking rule is listed before the check new arrival rule in the carry
 
 carry out looking (this is the cherry picking rule):
 	if location of player is unvisited and location of player is edge:
-		let Q be number of visited edge rooms + number of visited corner rooms;
+		let Q be number of visited edge rooms + number of visited corner rooms; [Q has a max of 45]
 		if Q is 3:
 			say "You find a single dried cherry on the ground. You pick it up and eat it. It's delicious, no pits even, and it's proof this cube or what's in it must support very interesting life indeed.";
 		else if Q is 6:
@@ -1187,8 +1187,6 @@ book transponders
 
 a cornerthing is a kind of backdrop. a cornerthing has a color called cornercolor. a cornerthing has a color called rightcolor. the rightcolor of a cornerthing is usually black. the cornercolor of a cornerthing is usually black.
 
-Bbordering relates cornerthings to each other. The verb to bborder (he bborders, they bborder, it is bbordered) implies the bbordering relation.
-
 chapter each one
 
 the northupwest transponder is a cornerthing. It is in n02, u02, w22.
@@ -1206,26 +1204,6 @@ the northdowneast transponder is a cornerthing. It is in n20, d22, e20.
 the southdownwest transponder is a cornerthing. It is in s00, d00, w00.
 
 the southdowneast transponder is a cornerthing. It is in s20, d20, e00.
-
-chapter bordering
-
-[u-d in n]
-the northdownwest transponder bborders the northupwest transponder.
-the northupwest transponder bborders the northupeast transponder.
-the northupeast transponder bborders the northdowneast transponder.
-the northdowneast transponder bborders the northdownwest transponder.
-
-[u-d in s]
-the southdownwest transponder bborders the southupwest transponder.
-the southupwest transponder bborders the southupeast transponder.
-the southupeast transponder bborders the southdowneast transponder.
-the southdowneast transponder bborders the southdownwest transponder.
-
-[n-s]
-the northdownwest transponder bborders the southdownwest transponder.
-the northdowneast transponder bborders the southdowneast transponder.
-the northupwest transponder bborders the southupwest transponder.
-the northupeast transponder bborders the southupeast transponder.
 
 chapter doing with cornerthings
 
