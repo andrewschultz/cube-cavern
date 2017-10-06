@@ -370,7 +370,7 @@ earth is an element. conc-color of earth is red. blah-txt is "People thought ear
 
 water is an element. conc-color of water is blue. blah-txt is "There was a big fight over whether water should be blue and air, white, or vice versa. A bunch of wars were fought, but during those wars, all the weapons being created totally spurred science! People learned so much. Nowadays people don't joke about if things were reversed unless they want free room and board at the government's (dis)pleasure."
 
-chapter summoning
+chapter summoning colors
 
 understand the command "summon" as something new.
 
@@ -389,7 +389,7 @@ carry out colsummoning:
 	say "Uh-oh, we can't summon that color. We can only summon the four elemental colors.";
 	the rule succeeds;
 
-chapter summoning
+chapter summoning elements
 
 does the player mean summoning an element: it is very likely.
 
@@ -1572,21 +1572,12 @@ understand "credit" as creditsing.
 understand "credits" as creditsing.
 
 carry out creditsing:
-	say "Thanks to, in alphabetical order, Brian Rushton, Mike Souza, Mike Spivey, and Marnix van den Bos for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch. Thanks also to an as-yet-anonymous fellow competitor for finding a bug in the comp version of the game.";
-	say "[line break]Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, which has helped me organize and visualize other games in addition to this. http://www.trizbort.com has this app, though it's Windows only.";
+	say "Thanks to, in alphabetical order, Brian Rushton, Mike Souza, Mike Spivey, and Marnix van den Bos for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch. Thanks also to an fellow competitor who wished to remain anonymous, for finding a bug in the comp version of the game. It's really cool that even though IFComp is a competition, people are ... cooperative.";
+	say "[line break]Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, which has helped me organize and visualize other games in addition to this. http://www.trizbort.com has this app, though it's Windows only unless you're really good with emulators.";
 	say "[line break]Cover art font is Neuropol X Font by Raymond Larabie at typodermicfonts.com via 1001fonts.com.";
 	the rule succeeds;
 
 chapter helping
-
-helping is an action out of world.
-
-understand the command "help" as something new.
-
-understand "help" as helping.
-
-carry out helping:
-	the rule succeeds;
 
 chapter verbing
 
@@ -1604,7 +1595,7 @@ to say face-dirs:
 	say "[if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] or, reversed, [if mrlp is upper face or mrlp is bottom face]WN/EN/WS/ES[else if mrlp is southern face or mrlp is northern face]EU/WU/ED/WD[else if mrlp is eastern face or mrlp is western face]NU/SU/ND/SD[end if]"
 
 carry out verbing:
-	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [face-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
+	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [face-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] or [b]HELP[r] or [b]HINT[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	the rule succeeds;
@@ -1625,6 +1616,20 @@ carry out jumping:
 		say "It's tricky, here, and it's unnecesssary, too." instead;
 	say "You try out the gravity on this side of the cube. Whee!" instead;
 
+chapter walkthroughing
+
+walkthroughing is an action out of world.
+
+understand the command "walkthrough" as something new.
+understand the command "walkthru" as something new.
+
+understand "walkthrough" as walkthroughing.
+understand "walkthru" as walkthroughing.
+
+carry out walkthroughing:
+	say "How to get through the game depends on some random initial configurations, so I can't overtly give one. A walkthrough should be in the package with the game.";
+	the rule succeeds;
+
 chapter thinking
 
 definition: a cornerthing (called c) is activated:
@@ -1634,7 +1639,9 @@ definition: a cornerthing (called c) is activated:
 think2ing is an action out of world.
 
 understand the command "think" as something new.
-understand "think" as think2ing.
+understand the command "help" as something new.
+understand the command "hint" as something new.
+understand "think" and "help" and "hint" as think2ing.
 
 carry out think2ing:
 	let explore-total be 0;
