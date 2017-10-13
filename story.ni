@@ -687,11 +687,13 @@ chapter dirsing
 
 dirsing is an action out of world.
 
+understand the command "dir" as something new.
 understand the command "dirs" as something new.
 
-understand "dirs" as dirsing.
+understand "dir" and "dirs" as dirsing.
 
 carry out dirsing:
+	if mrlp is mtr, say "[if number of centexit directions is 0]You can't go anywhere, which is a BUG. Sorry. Try undoing your last actions[else]You can go [list of centexit directions] from here[end if]." instead;
 	say "The directions you can move on the [mrlp] are: [face-dirs].";
 	the rule succeeds;
 
@@ -1020,7 +1022,7 @@ check examining tunnels:
 		if x is aligned, say "[outdir of x]: [beaccolor of x][if beaccolor of x is listed in rope-colors] (with rope through it)[end if].";
 	the rule succeeds;
 
-description of very center is "Here in the very center you can [if number of centexit directions is 1]only go back [only-vc-dir][else]go [list of centexit directions] back to the surface through different colored tunnels[end if].[paragraph break][one of]There's some weird gold object[or]That weird gold object is still[stopping] [object-doing][one of]. It must be what gave those readings that attracted you to the cube in the first place[or][stopping]."
+description of very center is "Here in the very center you can [if number of centexit directions is 1]only go back [only-vc-dir][else if number of centexit directions is 0]not go anywhere(a BUG, please let me know how, and hope you can UNDO)[else]go [list of centexit directions] back to the surface through different colored tunnels[end if].[paragraph break][one of]There's some weird gold object[or]That weird gold object is still[stopping] [object-doing][one of]. It must be what gave those readings that attracted you to the cube in the first place[or][stopping]."
 
 to say only-vc-dir:
 	let J be a random centexit direction;
