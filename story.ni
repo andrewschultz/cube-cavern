@@ -1748,8 +1748,7 @@ carry out clearing:
 	if number of visible cornerthings is 1:
 		let RVC be random visible cornerthing;
 		if cornercolor of RVC is not black, say "The transponder nearby winks out to black.";
-	repeat with Q running through cornerthings:
-		now cornercolor of Q is black;
+	black-beacons;
 	if player is in very center:
 		say "(Moving you back to where you started, because being trapped in the center would be uncool)[paragraph break]";
 		move player to u11;
@@ -1760,6 +1759,10 @@ carry out clearing:
 		say "The open tunnel nearby closes.";
 	tun-beac-reset;
 	the rule succeeds;
+
+to black-beacons:
+	repeat with Q running through cornerthings:
+		now cornercolor of Q is black;
 
 volume parsing
 

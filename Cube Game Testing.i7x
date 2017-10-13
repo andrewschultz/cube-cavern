@@ -327,6 +327,32 @@ carry out t4ing:
 	say "Mirror imaged the beacons along the [noun]/[opposite of noun] axis, so you have 4 tunnels." instead;
 	the rule succeeds.
 
+chapter g2ing
+
+g2ing is an action applying to one visible thing.
+
+understand the command "g2" as something new.
+
+understand "g2 [direction]" as g2ing.
+
+does the player mean g2ing outdir of mrlp: it is very likely.
+
+carry out g2ing:
+	if mrlp is mtr, say "You need to be on a face for this to work." instead;
+	if noun is not simple, say "You need a simple direction: U D N E S W." instead;
+	repeat through table of region beacons:
+		if indir of myreg entry is opposite of noun:
+			black-beacons;
+			now cornercolor of b1 entry is rightcolor of b1 entry;
+			now cornercolor of b2 entry is rightcolor of b2 entry;
+			now cornercolor of b3 entry is rightcolor of b3 entry;
+			now cornercolor of b4 entry is rightcolor of b4 entry;
+			say "[myreg entry] now aligned.";
+			tun-beac-reset;
+			the rule succeeds;
+	say "Couldn't find any beacons to set. Sorry.";
+	the rule succeeds.
+
 chapter extra testing verbs
 
 report verbing:
