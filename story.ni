@@ -1598,7 +1598,7 @@ carry out verbing:
 	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [face-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] or [b]HELP[r] or [b]HINT[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
-	the rule succeeds;
+	continue the action;
 
 chapter climbing
 
@@ -1726,6 +1726,12 @@ carry out clearing:
 		if cornercolor of RVC is not black, say "The transponder nearby winks out to black.";
 	repeat with Q running through cornerthings:
 		now cornercolor of Q is black;
+	if player is in very center:
+		say "(Moving you back to where you started, because being trapped in the center would be uncool)[paragraph break]";
+		move player to u11;
+		if ring-color is not black:
+			now ring-color is black;
+			say "Your ring resets to black.";
 	if tunnel is visible:
 		say "The open tunnel nearby closes.";
 	tun-beac-reset;
