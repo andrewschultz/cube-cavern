@@ -8,9 +8,11 @@ You may also notice, by trial and error, that adjacent transponders cannot have 
 
 That should give you an idea. If you can combine colors right, you may be able to match all the transponder colors and combinations with their beacons.
 
-You can probably just pick one color and guess the rest randomly. For instance, if the upper cube is red, then one corner is red, and the other is white. There are four possibilities for this. Then you can figure out the other two.
+Now there are two ways to do things.
 
-But you can be more exact, too. Let's try something here.
+You can probably just pick one color and guess the rest randomly. For instance, if the upper cube is red, then one corner is red, and the one opposite it is white. But there are four possibilities for where to place them. Then you can figure out the other two.
+
+But you can be much more exact. Let's try something here.
 
 Note the initial color. N.D.D gets you to another beacon. W.W.S gets you to another. Note the three colors will all intersect with the color of the northupwest beacon.
 
@@ -20,13 +22,13 @@ The northdowneast transponder will then be blue, since red + blue = purple, and 
 
 That leaves the southdowneast transponder as white.
 
-But if they are, for instance, yellow, green and blue, then there's no common color to these except white.
+But if they are, for instance, yellow, green and blue, then there's no common color to these. Yellow = white + yellow, green = yellow + blue, blue = blue + white. (Note yellow/red/blue would have the common color white.)
 
 That means the upnorthwest beacon should remain black. The north face must be yellow and blue, and the upper is yellow and white. That means the upnortheast transponder is yellow. The northdownwest is blue, and the upwestsouth is white.
 
 That leaves the downsoutheast transponder as red.
 
-There's a more general way to figure things, too, once you know how the game works. Once you know the beacon colors on three non-opposing planes, you know the other three. Orange always opposes blue, purple opposes yellow, and green opposes red. You can notice this through experimentation or by noting that two opposite planes each have two transponders to color, and they must cover all four colors. There are three ways to pair off ring colors: red/yellow and white/blue, red/blue and white/yellow, and red/white and blue/yellow. Then you can note where, say, the red/yellow/blue planes meet, and that must be white.
+There's a way to figure things out by exploring, too, once you know how the game works. Once you know the beacon colors on three non-opposing planes, you know the other three. Orange always opposes blue, purple opposes yellow, and green opposes red. You can notice this through experimentation or by noting that two opposite planes each have two transponders to color, and they must cover all four colors. There are three ways to pair off ring colors: red/yellow and white/blue, red/blue and white/yellow, and red/white and blue/yellow. Then you can note where, say, the red/yellow/blue planes meet, and that must be white. The red/yellow/blue transponders must be kitty corner from white, on the planes with beacons colored red, yellow and blue, respectively.
 
 Now for the second part. You need to DROP ROPE at the start of a tunnel on the surface. You can go from any one.
 

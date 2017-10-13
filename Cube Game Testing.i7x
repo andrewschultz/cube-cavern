@@ -305,6 +305,35 @@ carry out qaing:
 	tun-beac-reset;
 	the rule succeeds;
 
+chapter t4ing
+
+t4ing is an action applying to one visible thing.
+
+understand the command "t4" as something new.
+
+understand "t4 [direction]" as t4ing.
+
+does the player mean t4ing up: it is very likely.
+
+carry out t4ing:
+	if noun is not a direction, say "You need to apply a direction." instead;
+	if noun is not simple, say "You need to apply a simple direction: U D N E S W." instead;
+	repeat through table of beacon zaps:
+		if mydir entry is noun or mydir entry is opposite of noun:
+			now cornercolor of con1 entry is rightcolor of con2 entry;
+			now cornercolor of con2 entry is rightcolor of con1 entry;
+	tun-beac-reset;
+	now all aligned regions are ever-aligned;
+	say "Mirror imaged the beacons along the [noun]/[opposite of noun] axis, so you have 4 tunnels." instead;
+	the rule succeeds.
+
+chapter extra testing verbs
+
+report verbing:
+	say "Here are testing specific commands.";
+	say "QA = quick advance. Colors all the beacons correctly.";
+	say "T4 = Make 4 tunnels. You can specify a direction. It and its opposite will not be open.";
+
 volume test scripts
 
 chapter non-wins

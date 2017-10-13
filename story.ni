@@ -1275,6 +1275,8 @@ check touching a cornerthing:
 		if number of aligned regions is 6:
 			say "[line break]The cube shakes a bit. It felt like a few tunnels opened at once.";
 			now fixed-beacons is true;
+		else if number of aligned regions is 4:
+			say "[line break]You feel very close to your goal yet very far away at the same time. Weird.";
 	else if na-now > na-then:
 		say "[line break]You hear a distant whirring that ends on a high note, but you can't tell from where.";
 	else if na-now < na-then:
