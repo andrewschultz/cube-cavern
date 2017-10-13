@@ -290,6 +290,21 @@ carry out blacking:
 	say "All transponders reset to black.";
 	the rule succeeds;
 
+chapter qaing
+
+qaing is an action applying to nothing.
+
+understand the command "qa" as something new.
+
+understand "qa" as qaing.
+
+carry out qaing:
+	if number of aligned regions is 6, say "This command won't do any good, now." instead;
+	repeat with t running through cornerthings:
+		now cornercolor of t is rightcolor of t;
+	tun-beac-reset;
+	the rule succeeds;
+
 volume test scripts
 
 chapter non-wins
