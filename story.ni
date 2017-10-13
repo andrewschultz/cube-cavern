@@ -417,6 +417,23 @@ carry out summoning:
 			now all-4-acc is true;
 	the rule succeeds.
 
+chapter cing
+
+cing is an action applying to one color.
+
+understand the command "c" as something new.
+
+understand "c [color]" as cing.
+
+carry out cing:
+	if location of player is not corner, say "C only works near a transponder to touch." instead;
+	now ring-color is color understood;
+	try touching a random visible cornerthing;
+	now c-known is true;
+	the rule succeeds;
+
+c-known is a truth state that varies.
+
 volume direction definitions
 
 upwest is a direction. opposite of upwest is downeast.
@@ -1295,6 +1312,9 @@ check touching a cornerthing:
 	if ray-bug is true:
 		say "[line break]You hear a fizzling noise. Something has happened that really, really shouldn't. It won't affect your ability to win the game, but you might want to undo things.";
 		now ray-bug is false;
+	if all-4-acc is true and c-known is false:
+		say "[line break]NOTE: C (color) around a beacon is now shorthand to change that beacon's color.";
+		now c-known is true;
 	the rule succeeds;
 
 definition: a cornerthing (called q) is nonblack:
@@ -1388,7 +1408,7 @@ to decide which color is raycolor of (r - a room):
 		decide on mix of cornercolor of b3 entry and cornercolor of b4 entry;
 	decide on black;
 
-book glowcolir
+chapter shortcut verb
 
 volume changed verbs
 
@@ -1599,7 +1619,7 @@ to say face-dirs:
 	say "[if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] or, reversed, [if mrlp is upper face or mrlp is bottom face]WN/EN/WS/ES[else if mrlp is southern face or mrlp is northern face]EU/WU/ED/WD[else if mrlp is eastern face or mrlp is western face]NU/SU/ND/SD[end if]"
 
 carry out verbing:
-	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [face-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if].[paragraph break][b]THINK[r] or [b]HELP[r] or [b]HINT[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
+	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [face-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if][if c-known is true].[paragraph break][b]C (color)[r] changes the ring color and touches a beacon[end if].[paragraph break][b]THINK[r] or [b]HELP[r] or [b]HINT[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
 	continue the action;
