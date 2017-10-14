@@ -1832,6 +1832,10 @@ to say cornerwarp:
 			say "[Q] to the [map region of Z]";
 			increment rooms-found;
 
+volume silly mistakes
+
+understand "ud" and "du" and "ns" and "sn" and "ew" and "we" as a mistake ("Those are opposite directions, so you can't go diagonally that way.")
+
 volume beta testing - not for release
 
 when play begins:

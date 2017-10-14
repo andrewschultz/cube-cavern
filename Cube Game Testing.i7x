@@ -10,8 +10,6 @@ understand the command "ways" as something new.
 
 understand "ways" as waysing.
 
-Bordering relates rooms to each other. The verb to border (he borders, they border, it is bordered) implies the bordering relation.
-
 carry out waysing:
 	repeat with d1 running through simple directions:
 		repeat with d2 running through simple directions:
@@ -81,7 +79,7 @@ understand the command "gotesty" as something new.
 
 understand "gotesty" as gotesting.
 
-carry out gotesting:
+carry out gotestying:
 	now go-test is true;
 	say "Go-test is now on.";
 	the rule succeeds;
@@ -384,6 +382,36 @@ carry out g3ing:
 	tun-beac-reset;
 	the rule succeeds.
 
+chapter wraping
+
+wraping is an action applying to one visible thing.
+
+understand the command "wrap" as something new.
+
+understand "wrap [direction]" as wraping.
+
+carry out wraping:
+	if noun is not simple, say "You need a simple noun." instead;
+	if the room noun of location of player is nowhere, say "You can't go that way to start the warp." instead;
+	if player is in very center, say "You need to be on a face." instead;
+	let startloc be location of player;
+	let od be opposite of noun;
+	let startreg be mrlp;
+	let id be indir of location of player;
+	while room noun of location of player is not nowhere, try going noun;
+	try going id;
+	try going id;
+	try going id;
+	try going od;
+	try going od;
+	try going od;
+	try going opposite of id;
+	try going opposite of id;
+	try going opposite of id;
+	while room noun of location of player is not nowhere, try going noun;
+	while location of player is startloc and room noun of location of player is not nowhere, try going noun;
+	the rule succeeds;
+
 chapter extra testing verbs
 
 report verbing:
@@ -392,6 +420,9 @@ report verbing:
 	say "T4 = Make 4 tunnels. You can specify a direction. It and its opposite will not be open.";
 	say "G2 (direction) = get 2 right. The direction is the face they'll be right on. The default is the one you're on.";
 	say "G3 (direction) = get 3 right. The direction is diagonal and will be the two faces they'll be right on. There is no default.";
+	say "WAYS = shows the ways between your location and the next room.";
+	say "ALLWAY = all the ways between rooms.";
+	say "WARP (direction) = warp around the cube starting a certain direction.";
 
 volume test scripts
 
