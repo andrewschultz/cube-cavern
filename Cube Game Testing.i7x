@@ -353,12 +353,45 @@ carry out g2ing:
 	say "Couldn't find any beacons to set. Sorry.";
 	the rule succeeds.
 
+chapter g3ing
+
+g3ing is an action applying to one visible thing.
+
+understand the command "g3" as something new.
+
+understand "g3 [direction]" as g3ing.
+
+carry out g3ing:
+	if mrlp is mtr, say "You need to be on a face for this to work." instead;
+	if noun is not complex, say "You need a complex direction: (UDNESW) x (UDNESW), minus equivalent and opposite combinations." instead;
+	black-beacons;
+	let first-dir be up;
+	let second-dir be up;
+	repeat through table of dirmerge:
+		if noun is d3 entry:
+			now first-dir is d1 entry;
+			now second-dir is d2 entry;
+	let matches be 2;
+	repeat through table of region beacons:
+		let Q be outdir of myreg entry;
+		if Q is first-dir or Q is second-dir:
+			now cornercolor of b1 entry is rightcolor of b1 entry;
+			now cornercolor of b2 entry is rightcolor of b2 entry;
+			now cornercolor of b3 entry is rightcolor of b3 entry;
+			now cornercolor of b4 entry is rightcolor of b4 entry;
+	if matches < 2, say "Uh oh, was only able to match [matches]. This is a bug." instead;
+	say "Both [first-dir] and [second-dir] faces are merged.";
+	tun-beac-reset;
+	the rule succeeds.
+
 chapter extra testing verbs
 
 report verbing:
 	say "Here are testing specific commands.";
 	say "QA = quick advance. Colors all the beacons correctly.";
 	say "T4 = Make 4 tunnels. You can specify a direction. It and its opposite will not be open.";
+	say "G2 (direction) = get 2 right. The direction is the face they'll be right on. The default is the one you're on.";
+	say "G3 (direction) = get 3 right. The direction is diagonal and will be the two faces they'll be right on. There is no default.";
 
 volume test scripts
 
