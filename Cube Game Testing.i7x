@@ -37,9 +37,6 @@ understand the command "allway" as something new.
 understand "allway" as allwaying.
 
 carry out allwaying:
-	repeat with Q running through rooms:
-		repeat with Q2 running through all rooms:
-			now Q does not border Q2;
 	repeat with X running through rooms:
 		move player to X;
 		try waysing;

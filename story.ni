@@ -624,16 +624,29 @@ carry out looking (this is the cherry picking rule):
 	if location of player is unvisited and location of player is edge:
 		let Q be number of visited edge rooms + number of visited corner rooms; [Q has a max of 45]
 		if Q is 3:
-			say "You find a single dried cherry on the ground. You pick it up and eat it. It's delicious, no pits even, and it's proof this cube or what's in it must support very interesting life indeed.";
+			say "You find a single dried cherry on the ground. You pick it up and eat it. It's delicious, no pits even, and it's proof this cube or what's in it must support very interesting life indeed."; [cherry picking, ha ha ha]
 		else if Q is 6:
-			say "You find two small pointy solids on the ground. Each has five faces: a square base, with equilateral triangles off two opposite edges and a trapezoid off the other two. You futz with them until you make a pyramid, then pitch them. They sink into the cube's surface. You feel infinitesimally smarter.";
+			say "You find two small pointy solids on the ground. Each has five faces: a square base, with equilateral triangles off two opposite edges and a trapezoid off the other two. You futz with them until you make a pyramid, then pitch them. They sink into the cube's surface. You feel infinitesimally smarter."; [the two-half-pyramids trip/track]
 		else if Q is 9:
-			say "Looking [indir of mrlp], you see a circle with a chunk out of it, in a maze of much smaller dots. What odd benighted ritual could this signify?";
+			say "Looking [indir of mrlp], you see a circle with a chunk out of it, in a maze of much smaller dots. What odd benighted ritual could this signify?"; [pac-man]
 		else if Q is 12:
-			say "Away from the cube, you watch tetrominoes in, err, freefall on the side of the cavern. They lock into place when they hit a pile of already fallen shapes, and when a whole line is made, one vanishes. You stare until the pile reaches the top. When you turn away and look back, it's gone, but you still try to develop mental strategies for dealing with the mirror-image l-shaped and zigzag pieces, and you're sure YOU could have kept going a bit longer, if just given the chance. Distracting!";
+			say "Away from the cube, you watch tetrominoes in, err, freefall on the side of the cavern. They lock into place when they hit a pile of already fallen shapes, and when a whole line is made, one vanishes. You stare until the pile reaches the top. When you turn away and look back, it's gone, but you still try to develop mental strategies for dealing with the mirror-image l-shaped and zigzag pieces, and you're sure YOU could have kept going a bit longer, if just given the chance. Distracting!"; [tetris]
 		else if Q is 15:
-			say "You notice a pack of cards on the ground. It shuffles itself into eight rows then begins sorting cards so that they are chained in order and by opposite color--9, 8, 7, 6 (the number of dots makes the values clear). Smaller cards begin to vanish. Just as you think you've figured all the rules, the 'game' is over. For no reason, the number 11982 flares into your mind and sticks there and makes you feel helpless and silly and stupid for a moment.";
+			say "You notice a pack of cards on the ground. It shuffles itself into eight rows then begins sorting cards so that they are chained in order and by opposite color--9, 8, 7, 6 (the number of dots makes the values clear). Smaller cards begin to vanish. Just as you think you've figured all the rules, the 'game' is over. For no reason, the number 11982 flares into your mind and sticks there and makes you feel helpless and silly and stupid for a moment."; [freecell and the only solvable game]
+		else if Q is 18:
+			say "Your head swims as the [mrlp] seems to divide up into nine squares of six colors total. The [mrlp] rapidly swings [random rubiks direction] a quarter-turn. Then it starts swinging other directions until the [mrlp] is all one color and, apparently, so are the other faces. How would someone know how to fix this so quickly? What could be the benefit? You blink, and the cube is as desolate and metallic as before."; [rubik's cube]
+		else if Q is 21:
+			say "The cube suddenly feels very cold, and you think you hear rhyming spoken lyrics. They're profane and sometimes over the line, but overall they're catchy and make some very good points. You feel as if it's OK to be mad with your problems every once in a while."; [Ice Cube]
+		else if Q is 24:
+			say "Four cubes are drawn here: a very small one and three others: nine, ten and twelve times its size, respectively. Hmm."; [Hardy/Ramanujan number 1729]
+		else if Q is 45:
+			say "You plot out a way to traverse a dodecahedron and icosahedron efficiently, in case one of those appears in another cavern, some day. You spare a minute to pat yourself on the back."; [end ing]
 	continue the action;
+
+definition: a direction (called d) is rubiks:
+	if d is not simple, no;
+	if d is indir of mrlp or d is outdir of mrlp, no;
+	yes;
 
 to say revgoto of (rm - a room):
 	repeat through table of gotos:
@@ -656,7 +669,9 @@ check tying rope to rope:
 		wfak-d;
 		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
 		wfak-d;
-		say "[line break]But you never talk about what you really saw[if TS is true], even when your calculations show there must be three similar cubes in caverns elsewhere[end if]. You mention you had a cosmic vision, and so forth, and you wish you could interpret it, but all you remember are the parts about loving other people being important and how the journey is its own reward, and how that's true with lots of technology, or little. You find yourself saying 'There's just ... STUFF WE DON'T UNDERSTAND OUT THERE' with a conviction and mystery few can hope for. You write some motivational books that convince people they're happy, more or less. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if...' You convince a few kids to take up writing. Even the wildest fantasies can spur rigorous scientific thought. There's a place for combining the humanities and the sciences.";
+		say "[line break]But you never talk about what you really saw[if TS is true], even when your calculations show there must be three similar cubes in caverns elsewhere[end if]. You mention you had a cosmic vision, and so forth, and you wish you could interpret it, but all you remember are the parts about loving other people being important and how the journey is its own reward, and how that's true with lots of technology, or little. You find yourself saying 'There's just ... STUFF WE DON'T UNDERSTAND OUT THERE' with a conviction and mystery few can hope for. Many people in high governmental positions clap you on the back in public and say 'This... this... THIS is a person who has integrated the scientific with the emotional! An example to all!'";
+		wfak-d;
+		say "[line break]You write some bestselling motivational books that convince people they can be happy, more or less, if they just follow some simple steps, and if they don't, that's their fault. But every so often some pesky kid comes up to you and asks 'What if there weren't four elements? What if... why, what if you'd run the rope through differently?' Youthful imagination! You convince a few such kids to take up writing instead. Even the wildest, wrongest fantasies can spur rigorous scientific thought.";
 		now you-won is true;
 		re-status;
 		end the story finally saying "YOU HAVE ACHIEVED KNOWLEDGE";
@@ -1597,6 +1612,7 @@ understand "credits" as creditsing.
 
 carry out creditsing:
 	say "Thanks to, in alphabetical order, Brian Rushton, Mike Souza, Mike Spivey, and Marnix van den Bos for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch. Thanks also to an fellow competitor who wished to remain anonymous, for finding a bug in the comp version of the game. It's really cool that even though IFComp is a competition, people are ... cooperative.";
+	say "[line break]Thanks to Brian Stovall for reporting a bug in-comp that spurred me to check off on a few other features and special cases.";
 	say "[line break]Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, which has helped me organize and visualize other games in addition to this. http://www.trizbort.com has this app, though it's Windows only unless you're really good with emulators.";
 	say "[line break]Cover art font is Neuropol X Font by Raymond Larabie at typodermicfonts.com via 1001fonts.com.";
 	the rule succeeds;
