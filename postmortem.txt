@@ -1,0 +1,40 @@
+I'm happy with it. I always am, regardless of where something places. I wanted to do something I hadn't seen before, and I think I did. My testers helped me a lot on a short schedule in many different ways, and in-comp hints from a judge and a co-competitor helped, too.
+
+I'd meant to write a game on a cube for a while. I think Ed Blair suggested the idea at a Chicago IF meetup, back when we had six regular attendees, because a cube has six faces. But it never went anywhere. It seemed too good to die, but all the same, a slapdash effort would either be too contrived, too complex, or both.
+
+But then my original idea for a comp game officially fell through September 1st. Then my backup didn't feel right for IFComp. Maybe it'll be another Spring Thing back garden entry.
+
+I still wanted to write something, though! Fortunately I had notes of things to try. And I saw the cube game.
+
+Originally it was called The Rube on the Cube. It was going to be a joke, a fool's errand, and I guess the game wound up that way anyway. But it was a bit too silly.
+
+It took a while to get going, though. I wanted to have something resembling a story before moving on, when really, if I'd coded the cube and the locations, I would've had something to test and poke at, and I probably could've gotten rid of certain bugs a lot earlier in the testing cycle. Or freed up time to test other things. The thing is, I had tests to run, but they weren't generalized enough. For instance, I had hard-coded tests to run around the x-, y- and z-axes. But later I discovered this could be done with one command, e.g. LOOP NORTH could tell you how to do things.
+
+So I had put some pressure on my testers. They found a lot of good stuff, which in turn spurred a few features, which created a few tricky bugs. Some slipped through to the release. I had two people who have written some mathy stuff I enjoyed They may've pushed this game unknowingly, and then they tested things, too. Mathbrush wrote Ether and Spike wrote A Beauty Cold and Austere, and these both convinced me there had to be some sort of abstract 3-d puzzle out there. I think I discussed the possibility of making a regular tetrahedron with Mathbrush--with points at 1,1,1 3,9,3 9,3,3 3,3,9--but this never made its way anywhere. Still, I had a sort of tetrahedron that appeared in this game--the four beacons form one. Ideas do get recycled and refined and pop up when you least expected. And for the other testers, I said, "OK, play devil's advocate and try to break things with just traveling around even if you don't know how to solve things." Their input prompted many of the sort of bug fixes that are very hard for a programmer to do on their own. I also got a lot of tips for user friendliness. I've said this before, but another week would've helped more! That's on me, though.
+
+Three out of my four testers were fellow competitors with games I enjoyed, and it's great the competition is not cutthroat. The other? They left me a PM on the forum I overlooked for a whole day. I'm glad I didn't.
+
+The one other cool thing about testers is, if you have someone overseas, they can get stuff done while you're sleeping, which is very cool. This happened here.
+
+My testers gave me enough to work with and fix, and they verified enough, that I was able to spend the last day writing tests for all 48 possible game configurations, to make sure they worked and you could open up the very center. I felt cool being able to check off on this. I did miss something--it was a unit test I should've done. And if you look at the original source, you'll see something very, very suspicious in the table of beaconzaps.
+
+southupeast	southupwest	west
+southupeast	southupwest	west
+
+I cut and pasted and failed to edit here, so--if you had one of the southdowneast and southdownwest beacons, it wouldn't negate the other, and worse, there was debug text flowing all over the place if you managed to do things, due to an every move check. So...ouch. Again, I had more than enough time for it but assumed it was the sort of thing I couldn't possibly botch. One tester found a bug related to this, and I should've taken the time to write a test for all possible conflicting pairs. But I did not, until October 2nd or 3rd or so. It took about 15 minutes when I sat down to it. I convinced myself I would only use it once, but at the same time...I took the time to convince myself, several times. And I think this shows up fears we all have about testing. If it's complex, it's scary. If it's simple, we'll have wasted time testing if nothing shows up, and we'll feel dumb if something slipped through. But--I wasted a lot of time in those last two weeks on other less rewarding activities that went nowhere. I should have invested some of that time in myself.
+
+This was hard to find--my testers turned up one fault, and the reason I didn't find this is because people probably don't go down to the bottom face of the cube to start, too often.
+
+I also made a lot more modifications to the test module than I expected, and that felt good. I was poking around, and I could've done this in September, but it kept my mind off worrying what people thought of the game.
+
+Another raft of bugs popped up over a command I implemented in the last day or two: CLEAR/CLEAN. You could do so from the center of the cube, trapping yourself. While people probably won't try this, it's still possible, and learning of it helped me tidy up some other code.
+
+As for the game itself? I didn't mean for it to be TOO hard. But I did want to establish some traps. The big one was that if you are not careful, you can get in a position where you're close, but all four beacons are in the wrong place. For instance, if you have a top face of red, north of yellow, east of blue, then the white goes in the UNE. But if you start with the white in the USE, red in the UNW, blue in the DNE and yellow in the DSW, you have flipped the yellow and purple faces. I liked this natural false trail and was willing to accept that some smart people might be fooled by it, and hopefully they would see--oh, okay, this is what I did! If you make a puzzle with pitfalls, you can expect backlash. I don't think I originally hinted well enough that you were close, and I think the player deserved that. Again, this is the sort of tweaking you should do, but it's tough to do on a short schedule.
+
+I also think I didn't add enough clues about how to riff on the rainbow colors to get all four message pieces. Again, short schedlues leave stuff like this out, which is unfortunate. I don't even think I really nailed down the story chunks at the beginning or end, either. I have a tendency not to deal with that until the bugs have been fixed, when really I should do so at first and tell my testers "OK, let me know what doesn't make sense."
+
+So the story may also be thin, but I've always been interested in/amused by alternate sciences, or even how smart people have gotten things wrong over time. And the four elements are a particularly big example of wrong stuff we believed. So I kept researching stuff we didn't understand or have misunderstood throughout history. Or, well, true scientific stuff I disbelieved as a kid.
+
+In-comp, I added some abstract anti-scientific silliness if you visit more edge squares. I slowly remembered stuff I had questions about, or stuff I really believed had to be right or just didn't understand. It seemed in the spirit of comp updates. A few extra cheap laughs should always work. I didn't have as many bugs to fix, and I wasn't as worried about them as in past years.
+
+I try to throw in cheap jokes with actual abstract learning and reasoning, and I think CiC did this well enough. So I'm happy to have done it, and I'm happy IFComp is the motivation it is, to push projects like this across.
