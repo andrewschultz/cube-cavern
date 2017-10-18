@@ -638,7 +638,7 @@ carry out looking (this is the cherry picking rule):
 		else if Q is 21:
 			say "The cube suddenly feels very cold, and you think you hear rhyming spoken lyrics. They're profane and sometimes over the line, but overall they're catchy and make some very good points. You feel as if it's OK to be mad with your problems every once in a while."; [Ice Cube]
 		else if Q is 24:
-			say "Four cubes are drawn here: a very small one and three others: nine, ten and twelve times its size, respectively. Hmm."; [Hardy/Ramanujan number 1729]
+			say "Four cubes are drawn here: a very small one and three others: nine, ten and twelve times its size, respectively. Hmm. You do some quick calculations and realize the significance. Then you wonder if any cube is the sum of two other cubes, before remembering that sort of impractical stuff distracts people from more socially relevant astrology."; [Hardy/Ramanujan number 1729, Fermat's Theorem n=3]
 		else if Q is 45:
 			say "You plot out a way to traverse a dodecahedron and icosahedron efficiently, in case one of those appears in another cavern, some day. You spare a minute to pat yourself on the back."; [end ing]
 	continue the action;

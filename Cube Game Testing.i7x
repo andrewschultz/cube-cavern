@@ -106,6 +106,7 @@ think-every-turn is a truth state that varies.
 
 carry out thimking:
 	now think-every-turn is whether or not think-every-turn is false;
+	say "Now think-every-turn is [on-off of think-every-turn].";
 	the rule succeeds;
 
 every turn when think-every-turn is true:
@@ -395,7 +396,9 @@ carry out wraping:
 	let od be opposite of noun;
 	let startreg be mrlp;
 	let id be indir of location of player;
-	while room noun of location of player is not nowhere, try going noun;
+	while room noun of location of player is not nowhere:
+		increment times-forward;
+		try going noun;
 	try going id;
 	try going id;
 	try going id;
@@ -406,7 +409,10 @@ carry out wraping:
 	try going opposite of id;
 	try going opposite of id;
 	while room noun of location of player is not nowhere, try going noun;
-	while location of player is startloc and room noun of location of player is not nowhere, try going noun;
+	while times-forward < 3:
+		increment times-forward;
+		try going noun;
+	if startloc is not location of player, say "Wound up in [location of player], should've wound up back at [startloc].";
 	the rule succeeds;
 
 chapter extra testing verbs
@@ -420,6 +426,11 @@ report verbing:
 	say "WAYS = shows the ways between your location and the next room.";
 	say "ALLWAY = all the ways between rooms.";
 	say "WARP (direction) = warp around the cube starting a certain direction.";
+	say "GOTEST toggles the gotest variable. GOTESTY forces it to true.";
+	say "THIMK = toggle think-every-turn.";
+	say "RMNAME = show room names by region.";
+	say "BLACK = reset transponders to black. Superseded by CLEAR/CLEAN.";
+	say "BORDTEST is a unit test to check adjacent beacons conflict properly.";
 
 volume test scripts
 
