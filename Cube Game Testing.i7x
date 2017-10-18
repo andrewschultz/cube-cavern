@@ -248,28 +248,32 @@ understand the command "bordtest" as something new.
 understand "bordtest" as bordtesting.
 
 carry out bordtesting:
-	btest 1 and 2;
-	btest 1 and 3;
-	btest 1 and 5;
-	btest 2 and 4;
-	btest 3 and 4;
-	btest 3 and 7;
-	btest 4 and 8;
-	btest 5 and 7;
+	repeat with V1 running from 1 to 8:
+		repeat with V2 running from (V1 + 1) to 8:
+			btest V1 and V2;
 	try blacking;
+	say "Quick summary: twelve failures should be seen, only at:[line break]--1,2 1,3 1,5 2,4[line break]--2,6 3,4 3,7 4,8[line break]--5,6 5,7 6,8 7,8.";
 	the rule succeeds;
+
+to decide whether adj of (n1 - a number) and (n2 - a number):
+	let Q be n1;
+	let Z be n2 - n1;
+	if Z < 0, now Z is 0 - Z;
+	if Z is 4, decide yes;
+	if Z is 2 and remainder after dividing Q by 4 < 3, decide yes;
+	if Z is 1 and remainder after dividing Q by 2 is 1, decide yes;
+	decide no;
 
 to btest (x - a number) and (y - a number):
 	try blacking;
-	say "[b]SHOULD WORK[r]:[line break]";
+	say "[b]**** [x], [y] SECOND TOUCH SHOULD [if adj of x and y]NOT[end if] BE CHANGEABLE****[r]:[line break]";
 	choose row x in table of cheapwins;
 	move player to l1 entry, without printing a room description;
-	try summoning fire;
+	try silently summoning fire;
 	try touching myt entry;
-	say "[b]SHOULDN'T WORK [x] [y][r]:[line break]";
 	choose row y in table of cheapwins;
 	move player to l1 entry, without printing a room description;
-	try summoning fire;
+	try silently summoning fire;
 	try touching myt entry;
 
 chapter blacking
@@ -396,6 +400,7 @@ carry out wraping:
 	let od be opposite of noun;
 	let startreg be mrlp;
 	let id be indir of location of player;
+	let times-forward be 0;
 	while room noun of location of player is not nowhere:
 		increment times-forward;
 		try going noun;
