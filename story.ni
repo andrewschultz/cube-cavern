@@ -622,7 +622,7 @@ the cherry picking rule is listed before the check new arrival rule in the carry
 
 carry out looking (this is the cherry picking rule):
 	if location of player is unvisited and location of player is edge:
-		let Q be number of visited edge rooms + number of visited corner rooms; [Q has a max of 45]
+		let Q be number of visited edge rooms + number of visited corner rooms; [Q has a max of 48]
 		if Q is 3:
 			say "You find a single dried cherry on the ground. You pick it up and eat it. It's delicious, no pits even, and it's proof this cube or what's in it must support very interesting life indeed."; [cherry picking, ha ha ha]
 		else if Q is 6:
@@ -639,7 +639,15 @@ carry out looking (this is the cherry picking rule):
 			say "The cube suddenly feels very cold, and you think you hear rhyming spoken lyrics. They're profane and sometimes over the line, but overall they're catchy and make some very good points. You feel as if it's OK to be mad with your problems every once in a while."; [Ice Cube]
 		else if Q is 24:
 			say "Four cubes are drawn here: a very small one and three others: nine, ten and twelve times its size, respectively. Hmm. You do some quick calculations and realize the significance. Then you wonder if any cube is the sum of two other cubes, before remembering that sort of impractical stuff distracts people from more socially relevant astrology."; [Hardy/Ramanujan number 1729, Fermat's Theorem n=3]
-		else if Q is 45:
+		else if Q is 27:
+			say "You notice a perfectly trisected angle drawn into the cube. You absentmindedly rub it out. It doesn't seem like that big of a deal."; [it's impossible to trisect an arbitrary angle]
+		else if Q is 30:
+			say "Out of nowhere, you wonder when mathematicians will ever figure out the quintic formula. It probably just requires a cool trick, like the cubic formula did, and nobody's been clever enough, yet. Still, it's lower priority than good honest practical astrology."; [Galois proved there was no quintic formula]
+		else if Q is 33:
+			say "You feel glad you're not on a tetrahedron or octahedron. Those would be too pointy at the corners!";
+		else if Q is 36:
+			say "You refresh yourself on the implications of the important philosophical argument about how the sum of reciprocals of whole numbers converges, but it takes so long, it only sort of counts."; [harmonic series value = ln x + euler's constant]
+		else if Q is 48:
 			say "You plot out a way to traverse a dodecahedron and icosahedron efficiently, in case one of those appears in another cavern, some day. You spare a minute to pat yourself on the back."; [end ing]
 	continue the action;
 
