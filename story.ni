@@ -629,7 +629,7 @@ carry out looking (this is the cherry picking rule):
 	if location of player is unvisited and location of player is edge:
 		if the remainder after dividing thoughtfulness by 3 is 0:
 			choose row thoughtfulness / 3 in table of goofy observations;
-			if there is an init-obs entry, say "[init-obs entry]";
+			if there is an init-obs entry, say "[init-obs entry][line break]";
 
 table of goofy observations
 init-obs	end-obs
@@ -1871,6 +1871,28 @@ to say cornerwarp:
 volume silly mistakes
 
 understand "ud" and "du" and "ns" and "sn" and "ew" and "we" as a mistake ("Those are opposite directions, so you can't go diagonally that way.")
+
+volume tables
+
+book endgame tweaks
+
+Table of Final Question Options (continued)
+final question wording	only if victorious	topic	final response rule	final response activity
+"see (EXP)LANATIONS for your random thoughts"	true	"exp/explanations"	exp-all rule	--
+
+this is the exp-all rule:
+	let count be 0;
+	repeat through table of goofy observations:
+		say "([count * 3]) '[init-obs entry]': [bold type][end-obs entry][roman type][paragraph break]";
+		increment count;
+		if count > thoughtfulness / 3:
+			say "NOTE: this is as far as you got with the wandering observations. You get a new one for every three non-center squares you explore. See more anyway?";
+			unless the player consents:
+				say "OK. You can type EXP again if you change your mind.";
+				the rule succeeds;
+			now count is 0;
+		if the remainder after dividing count by 4 is 0 and count is not 12, wfak-d;
+	the rule succeeds;
 
 volume beta testing - not for release
 
