@@ -343,21 +343,6 @@ check dropping wire rope:
 check dropping:
 	say "Whatever you drop could get lost forever. Best hang on." instead;
 
-table of ropetracing
-l1	l2	l3	l4
-u11	e11	u21	e12
-u11	w11	u01	w12
-u11	n11	u12	n12
-u11	s11	u10	s12
-e11	s11	e01	s21
-s11	w11	s01	w01
-w11	n11	w21	n01
-n11	e11	n21	e21
-d11	e11	d21	e10
-d11	w11	d01	w10
-d11	n11	d12	n10
-d11	s11	d10	s10
-
 volume elements
 
 chapter elements
@@ -498,21 +483,6 @@ to decide which direction is uncombo of (da - a  direction) and (db - a directio
 		if db is not complex and d3 entry is da and d2 entry is db, decide on d1 entry;
 	decide on nothing;
 
-table of dirmerge
-d1	d2	d3
-west	up	upwest
-east	up	upeast
-west	down	downwest
-east	down	downeast
-north	up	upnorth
-south	up	upsouth
-north	down	downnorth
-south	down	downsouth
-east	north	northeast
-east	south	southeast
-west	north	northwest
-west	south	southwest
-
 book definitions
 
 definition: a direction (called d) is warpable:
@@ -630,21 +600,6 @@ carry out looking (this is the cherry picking rule):
 		if the remainder after dividing thoughtfulness by 3 is 0:
 			choose row thoughtfulness / 3 in table of goofy observations;
 			if there is an init-obs entry, say "[init-obs entry][line break]";
-
-table of goofy observations
-init-obs	end-obs
-"You find a single dried cherry on the ground. You pick it up and eat it. It's delicious, no pits even, and it's proof this cube or what's in it must support very interesting life indeed."	"The dried cherry means cherry picking, or ignoring data that doesn't help you."
-"You find two small pointy solids on the ground. Each has five faces: a square base, with equilateral triangles off two opposite edges and a trapezoid off the other two. You futz with them until you make a pyramid, then pitch them. They sink into the cube's surface. You feel infinitesimally smarter."	"The two piece pyramid puzzle is a sort of intelligence test."
-"Looking [indir of mrlp], you see a circle with a chunk out of it, zooming around a maze of much smaller dots it gobbles up. What odd benighted ritual could this signify?"	"The circle with the chunk that gobbles dots is Pac-Man."
-"Away from the cube, you watch tetrominoes in, err, freefall on the side of the cavern. They lock into place when they hit a pile of already fallen shapes, and when a whole line is made, one vanishes. You stare until the pile reaches the top. When you turn away and look back, it's gone, but you still try to develop mental strategies for dealing with the mirror-image l-shaped and zigzag pieces, and you're sure YOU could have kept going a bit longer, if just given the chance. Distracting!"	"The falling blocks are Tetris."
-"You notice a pack of cards on the ground. It shuffles itself into eight rows then begins sorting cards so that they are chained in order and by opposite color--9, 8, 7, 6 (the number of dots makes the values clear). Smaller cards begin to vanish. Just as you think you've figured all the rules, the 'game' is over. For no reason, the number 11982 flares into your mind and sticks there and makes you feel helpless and silly and stupid for a moment."	"The card game is FreeCell, and 11982 is the only unsolvable game in Windows's predetermined random set."
-"Your head swims as the [mrlp] seems to divide up into nine squares of six colors total. The [mrlp] rapidly swings [random rubiks direction] a quarter-turn. Then it starts swinging other directions until the [mrlp] is all one color and, apparently, so are the other faces. How would someone know how to fix this so quickly? What could be the benefit? You blink, and the cube is as desolate and metallic as before."	"The upheaval in the cube is a Rubik's Cube."
-"The cube suddenly feels very cold, and you think you hear rhyming spoken lyrics. They're profane and sometimes over the line, but overall they're catchy and make some very good points. You feel as if it's OK to be mad with your problems every once in a while, or even to mellow out later in life but still care about social issues."	"This is a reference to rapper/actor Ice Cube."
-"Four cubes are drawn here: a very small one and three others: nine, ten and twelve times its size, respectively. Hmm. You do some quick calculations and realize the significance. Then you wonder if any cube is the sum of two other cubes, before remembering that sort of impractical stuff distracts people from more socially relevant astrology."	"There is a story about Hardy claiming 1729 was an uninteresting number and Ramanujan saying no, it's the lowest sum of 2 cubes 2 different ways. Also, x^3+y^3=z^3 is Fermat's Theorem for n=3."
-"You notice a perfectly trisected angle drawn into the cube. You absentmindedly rub it out. It doesn't seem like that big of a deal."	"It's been proven impossible to trisect an arbitrary angle."
-"Out of nowhere, you wonder when mathematicians will ever figure out the quintic formula. It probably just requires a cool trick, like the cubic formula did, and nobody's been clever enough, yet. Still, it's lower priority than good honest practical astrology."	"Galois proved there was no quintic formula."
-"You feel glad you're not on a tetrahedron or octahedron. Those would be too pointy at the corners! And you might slip around a dodecahedron or icosahedron too much."	"There are five regular solids (similar faces, same number of faces joined at each vertex). A cube is the most recognizable."
-"You refresh yourself on the implications of the important philosophical argument about how the sum of reciprocals of whole numbers converges, but it takes so long, it only sort of counts."	"The harmonic series (1+1/2+1/3+...+1/x) is approximately the natural logarithm of x + Euler's constant."
 
 chapter exping
 
@@ -1218,12 +1173,6 @@ check taking the beacon:
 check tying rope to beacon:
 	say "The beacon looks a little fragile. Tying the rope to it might break it. Maybe there is something else to do." instead;
 
-table of colormatches
-c1	c2	c3
-red	yellow	orange
-red	blue	purple
-yellow	blue	green
-
 the tunnel is a backdrop.
 
 instead of entering tunnel, try going inside;
@@ -1398,30 +1347,6 @@ to decide which direction is centerdir of (r - a room):
 	say "**BUG**";
 	decide on inside;
 
-table of beacon zaps
-con1	con2	mydir
-northdownwest	northupwest	up
-southdownwest	southupwest	up
-northdowneast	northupeast	up
-southdowneast	southupeast	up
-northupeast	southupeast	south
-northupwest	southupwest	south
-northdowneast	southdowneast	south
-northdownwest	southdownwest	south
-northupeast	northupwest	west
-northdowneast	northdownwest	west
-southupeast	southupwest	west
-southdowneast	southdownwest	west
-
-table of region beacons
-myreg	b1	b2	b3	b4
-upper face	northupwest	southupeast	northupeast	southupwest
-bottom face	northdownwest	southdowneast	northdowneast	southdownwest
-western face	northdownwest	southupwest	northupwest	southdownwest
-eastern face	northdowneast	southupeast	northupeast	southdowneast
-southern face	southdownwest	southupeast	southupwest	southdowneast
-northern face	northdownwest	northupeast	northupwest	northdowneast
-
 to decide which color is raycolor of (re - a region):
 	let r2 be a random facecenter room in re;
 	decide on raycolor of r2;
@@ -1547,63 +1472,6 @@ carry out gotoing:
 			move player to jumpy entry;
 			the rule succeeds;
 	say "Sorry, there's no shortcut like that. Type just GT or GO TO to see the abbreviations." instead;
-
-table of gotos
-s1 (text)	s2 (text)	jumpy
-"unw"	"uwn"	u02
-"un"	--	u12
-"une"	"uen"	u22
-"uw"	--	u01
-"u"	"uc"	u11
-"ue"	--	u21
-"usw"	"uws"	u00
-"us"	--	u10
-"use"	"ues"	u20 [end u]
-"dnw"	"dwn"	d02
-"dn"	--	d12
-"dne"	"den"	d22
-"dw"	--	d01
-"d"	"dc"	d11
-"de"	--	d21
-"dsw"	"dws"	d00
-"ds"	--	d10
-"dse"	"des"	d20 [end d]
-"nuw"	"nwu"	n02
-"nu"	--	n12
-"nue"	"neu"	n22
-"nw"	--	n01
-"n"	"nc"	n11
-"ne"	--	n21
-"ndw"	"nwd"	n00
-"nd"	--	n10
-"nde"	"ned"	n20 [end n]
-"suw"	"swu"	s02
-"su"	--	s12
-"sue"	"seu"	s22
-"sw"	--	s01
-"s"	"sc"	s11
-"se"	--	s21
-"sdw"	"swd"	s00
-"sd"	--	s10
-"sde"	"sed"	s20 [end s]
-"end"	"edn"	e20
-"en"	--	e21
-"enu"	"eun"	e22
-"ed"	--	e10
-"e"	"ec"	e11
-"eu"	--	e12
-"esd"	"eds"	e00
-"es"	--	e01
-"esu"	"eus"	e02 [end e]
-"wnd"	"wdn"	w20
-"wn"	--	w21
-"wnu"	"wun"	w22
-"wd"	--	w10
-"w"	"wc"	w11
-"wu"	--	w12
-"wsd"	"wds"	w00
-"ws"	--	w01
-"wsu"	"wus"	w02 [end w]
 
 volume out of world verbs
 
@@ -1873,6 +1741,140 @@ volume silly mistakes
 understand "ud" and "du" and "ns" and "sn" and "ew" and "we" as a mistake ("Those are opposite directions, so you can't go diagonally that way.")
 
 volume tables
+
+table of colormatches [trivial color combinations]
+c1	c2	c3
+red	yellow	orange
+red	blue	purple
+yellow	blue	green
+
+table of ropetracing [this says how the rope links between adjacent center squares]
+l1	l2	l3	l4
+u11	e11	u21	e12
+u11	w11	u01	w12
+u11	n11	u12	n12
+u11	s11	u10	s12
+e11	s11	e01	s21
+s11	w11	s01	w01
+w11	n11	w21	n01
+n11	e11	n21	e21
+d11	e11	d21	e10
+d11	w11	d01	w10
+d11	n11	d12	n10
+d11	s11	d10	s10
+
+table of dirmerge [this merges two simple directions, as you'd expect, but there's no Inform operation]
+d1	d2	d3
+west	up	upwest
+east	up	upeast
+west	down	downwest
+east	down	downeast
+north	up	upnorth
+south	up	upsouth
+north	down	downnorth
+south	down	downsouth
+east	north	northeast
+east	south	southeast
+west	north	northwest
+west	south	southwest
+
+table of beacon zaps [we could use a bordering relationship to say which beacons cancel each other out, but I also wanted to clue directions of the adjacent beacon pairs]
+con1	con2	mydir
+northdownwest	northupwest	up
+southdownwest	southupwest	up
+northdowneast	northupeast	up
+southdowneast	southupeast	up
+northupeast	southupeast	south
+northupwest	southupwest	south
+northdowneast	southdowneast	south
+northdownwest	southdownwest	south
+northupeast	northupwest	west
+northdowneast	northdownwest	west
+southupeast	southupwest	west
+southdowneast	southdownwest	west
+
+table of region beacons [which beacons can be seen in which region? Perhaps we don't need a table, but it's easier this way]
+myreg	b1	b2	b3	b4
+upper face	northupwest	southupeast	northupeast	southupwest
+bottom face	northdownwest	southdowneast	northdowneast	southdownwest
+western face	northdownwest	southupwest	northupwest	southdownwest
+eastern face	northdowneast	southupeast	northupeast	southdowneast
+southern face	southdownwest	southupeast	southupwest	southdowneast
+northern face	northdownwest	northupeast	northupwest	northdowneast
+
+table of goofy observations [to give in game observations and explanations at the end]
+init-obs	end-obs
+"You find a single dried cherry on the ground. You pick it up and eat it. It's delicious, no pits even, and it's proof this cube or what's in it must support very interesting life indeed."	"The dried cherry means cherry picking, or ignoring data that doesn't help you."
+"You find two small pointy solids on the ground. Each has five faces: a square base, with equilateral triangles off two opposite edges and a trapezoid off the other two. You futz with them until you make a pyramid, then pitch them. They sink into the cube's surface. You feel infinitesimally smarter."	"The two piece pyramid puzzle is a sort of intelligence test."
+"Looking [indir of mrlp], you see a circle with a chunk out of it, zooming around a maze of much smaller dots it gobbles up. What odd benighted ritual could this signify?"	"The circle with the chunk that gobbles dots is Pac-Man."
+"Away from the cube, you watch tetrominoes in, err, freefall on the side of the cavern. They lock into place when they hit a pile of already fallen shapes, and when a whole line is made, one vanishes. You stare until the pile reaches the top. When you turn away and look back, it's gone, but you still try to develop mental strategies for dealing with the mirror-image l-shaped and zigzag pieces, and you're sure YOU could have kept going a bit longer, if just given the chance. Distracting!"	"The falling blocks are Tetris."
+"You notice a pack of cards on the ground. It shuffles itself into eight rows then begins sorting cards so that they are chained in order and by opposite color--9, 8, 7, 6 (the number of dots makes the values clear). Smaller cards begin to vanish. Just as you think you've figured all the rules, the 'game' is over. For no reason, the number 11982 flares into your mind and sticks there and makes you feel helpless and silly and stupid for a moment."	"The card game is FreeCell, and 11982 is the only unsolvable game in Windows's predetermined random set."
+"Your head swims as the [mrlp] seems to divide up into nine squares of six colors total. The [mrlp] rapidly swings [random rubiks direction] a quarter-turn. Then it starts swinging other directions until the [mrlp] is all one color and, apparently, so are the other faces. How would someone know how to fix this so quickly? What could be the benefit? You blink, and the cube is as desolate and metallic as before."	"The upheaval in the cube is a Rubik's Cube."
+"The cube suddenly feels very cold, and you think you hear rhyming spoken lyrics. They're profane and sometimes over the line, but overall they're catchy and make some very good points. You feel as if it's OK to be mad with your problems every once in a while, or even to mellow out later in life but still care about social issues."	"This is a reference to rapper/actor Ice Cube."
+"Four cubes are drawn here: a very small one and three others: nine, ten and twelve times its size, respectively. Hmm. You do some quick calculations and realize the significance. Then you wonder if any cube is the sum of two other cubes, before remembering that sort of impractical stuff distracts people from more socially relevant astrology."	"There is a story about Hardy claiming 1729 was an uninteresting number and Ramanujan saying no, it's the lowest sum of 2 cubes 2 different ways. Also, x^3+y^3=z^3 is Fermat's Theorem for n=3."
+"You notice a perfectly trisected angle drawn into the cube. You absentmindedly rub it out. It doesn't seem like that big of a deal."	"It's been proven impossible to trisect an arbitrary angle."
+"Out of nowhere, you wonder when mathematicians will ever figure out the quintic formula. It probably just requires a cool trick, like the cubic formula did, and nobody's been clever enough, yet. Still, it's lower priority than good honest practical astrology."	"Galois proved there was no quintic formula."
+"You feel glad you're not on a tetrahedron or octahedron. Those would be too pointy at the corners! And you might slip around a dodecahedron or icosahedron too much."	"There are five regular solids (similar faces, same number of faces joined at each vertex). A cube is the most recognizable."
+"You refresh yourself on the implications of the important philosophical argument about how the sum of reciprocals of whole numbers converges, but it takes so long, it only sort of counts."	"The harmonic series (1+1/2+1/3+...+1/x) is approximately the natural logarithm of x + Euler's constant."
+
+table of gotos [this maps an abbreviation to a room. The room's shorthand is face + direction from center]
+s1 (text)	s2 (text)	jumpy
+"unw"	"uwn"	u02
+"un"	--	u12
+"une"	"uen"	u22
+"uw"	--	u01
+"u"	"uc"	u11
+"ue"	--	u21
+"usw"	"uws"	u00
+"us"	--	u10
+"use"	"ues"	u20 [end u]
+"dnw"	"dwn"	d02
+"dn"	--	d12
+"dne"	"den"	d22
+"dw"	--	d01
+"d"	"dc"	d11
+"de"	--	d21
+"dsw"	"dws"	d00
+"ds"	--	d10
+"dse"	"des"	d20 [end d]
+"nuw"	"nwu"	n02
+"nu"	--	n12
+"nue"	"neu"	n22
+"nw"	--	n01
+"n"	"nc"	n11
+"ne"	--	n21
+"ndw"	"nwd"	n00
+"nd"	--	n10
+"nde"	"ned"	n20 [end n]
+"suw"	"swu"	s02
+"su"	--	s12
+"sue"	"seu"	s22
+"sw"	--	s01
+"s"	"sc"	s11
+"se"	--	s21
+"sdw"	"swd"	s00
+"sd"	--	s10
+"sde"	"sed"	s20 [end s]
+"end"	"edn"	e20
+"en"	--	e21
+"enu"	"eun"	e22
+"ed"	--	e10
+"e"	"ec"	e11
+"eu"	--	e12
+"esd"	"eds"	e00
+"es"	--	e01
+"esu"	"eus"	e02 [end e]
+"wnd"	"wdn"	w20
+"wn"	--	w21
+"wnu"	"wun"	w22
+"wd"	--	w10
+"w"	"wc"	w11
+"wu"	--	w12
+"wsd"	"wds"	w00
+"ws"	--	w01
+"wsu"	"wus"	w02 [end w]
+
+volume endgame stuff
 
 book endgame tweaks
 
