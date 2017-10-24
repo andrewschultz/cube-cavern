@@ -41,3 +41,7 @@ An example for the above would be D.D.N.N.U.S.S.E.E.N.W.W.U.U.E.
 You get a small set of clues if you cover all 54 squares. This is not really very hard to do. From the up-center you can go N.N.D.D.D.S.S.S.U.U.U.N to cover 12 squares on the up, down, north and south planes. Shifting west or east covers 12 more. To cover the east/west faces from your starting point on top of the cube, you just replace N/S with E/W.
 
 The message varies, but that doesn't depend on the original configuration.
+
+There is also one other way to clue what to do to get different messages. You need to weave your way through each square on the surface once without touching another twice, or using diagonals.
+
+S W N N E E S S is a start. You can then cover each cube with an S-motion--well, all but one. The second-last should be, for instance, N N E E S W S E--another curve. The reason for this is that if you just use a basic S everywhere, you go from one corner to another non-adjacent. This creates a graph of 4 vertices all with 3 edges. But this can't be connected.
