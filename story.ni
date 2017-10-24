@@ -678,6 +678,12 @@ check tying something to:
 	if second noun is rope and noun is not rope, try tying noun to second noun instead;
 
 after going:
+	if path-violated is false:
+		if location of player is visited or location of player is very center, now path-violated is true;
+		if noun is not simple, now path-violated is true;
+		if path-violated is true, say "Oops. You [if noun is not simple]moved diagonally[else]moved onto a square you'd been to[end if].";
+
+after going:
 	if init-drop-room is location of player and tunnel-looped is true:
 		say "You see where you planted the rope, originally. You can probably TIE the end you're holding to the other end, then ...";
 	continue the action;
@@ -1469,6 +1475,9 @@ carry out gotoing:
 			if ring-moves > 1:
 				say "You make sure to keep your ring's [ring-color]ness charged as you go...[paragraph break]";
 				now ring-moves is 4;
+			if path-violated is false:
+				now path-violated is true;
+				if path-tracking is true, say "The 'go to' command disables the visit-each-square-once bonus. UNDO to undo this move.";
 			move player to jumpy entry;
 			the rule succeeds;
 	say "Sorry, there's no shortcut like that. Type just GT or GO TO to see the abbreviations." instead;
@@ -1702,6 +1711,32 @@ rule for printing a parser error when the latest parser error is the didn't unde
 
 rule for printing a parser error when the latest parser error is the not a verb I recognise error:
 	say "I didn't recognize that verb. For a list of common/useful verbs, type V or VERB or VERBS.";
+
+volume path tracking segment
+
+path-violated is a truth state that varies.
+
+path-violated-note is a truth state that varies.
+
+path-in-verbs is a truth state that varies.
+
+path-tracking is a truth state that varies.
+
+chapter pathing
+
+pathing is an action out of world.
+
+understand the command "path" as something new.
+
+understand "path" as pathing.
+
+carry out pathing:
+	now path-in-verbs is true;
+	now path-tracking is whether or not path-tracking is false;
+	say "Path tracking is now [on-off of path-tracking].";
+	if path-violated is true and path-violated-note is false:
+			say "[line break]NOTE: You've already looped around to a location twice, so toggling path notification won't do anything any more.";
+	the rule succeeds;
 
 volume stock room descriptions
 
