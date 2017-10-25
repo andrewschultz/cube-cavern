@@ -1257,15 +1257,28 @@ to decide what number is regionbin:
 
 fourwarned is a truth state that varies.
 
+this is the avoid-zapped rule:
+	let zaps be 0;
+	let lastdir be inside;
+	repeat through table of beacon zaps:
+		if con2 entry is noun and cornercolor of con1 entry is not black:
+			increment zaps;
+			now lastdir is opposite of mydir entry;
+	repeat through table of beacon zaps:
+		if con1 entry is noun and cornercolor of con2 entry is not black:
+			increment zaps;
+			now lastdir is mydir entry;
+	if zaps is 0, the rule succeeds;
+	say "You step back as a strong electric pulse emits [if zaps is 3]from several different directions[else if zaps is 2]from two different directions[else][fromthe of lastdir][end if].";
+	the rule fails;
+
 check touching a cornerthing:
 	if fixed-beacons is true, say "You don't need to fiddle with the transponders any more." instead;
 	if rope-drop is true, say "You're wary of fiddling with the transponders now you're dragging the rope around." instead;
 	let ia be number of aligned regions;
 	if ring-color is black and cornercolor of noun is black, say "You see the darkness in your ring swirl. It feels like something more should happen, but it doesn't." instead;
-	repeat through table of beacon zaps:
-		if con2 entry is noun and cornercolor of con1 entry is not black, say "[froms of opposite of mydir entry]." instead;
-	repeat through table of beacon zaps:
-		if con1 entry is noun and cornercolor of con2 entry is not black, say "[froms of mydir entry]." instead;
+	consider the avoid-zapped rule;
+	if the rule failed, the rule fails;
 	now ray-bug is false;
 	let oldcolor be raycolor of mrlp;
 	if ring-color is black:
@@ -2137,6 +2150,24 @@ gt eun/gt enu/gt eu/gt eus/gt esu/gt en/gt e/gt ec/gt es/gt edn/gt end/gt ed/gt 
 "
 
 test pathy with "path/s/w/n/n/e/e/s/s/e/n/n/d/s/s/d/n/n/n/w/w/u/e/e/u/w/w/w/s/s/d/n/n/d/s/s/d/n/n/e/e/s/w/s/e/s/u/u/w/d/d/w/u/u"
+
+test ns-edge-clash with "nw/red/touch/e/e/yellow/touch/clear/red/touch/w/w/yellow/touch/clear/s/s/red/touch/e/e/yellow/touch/clear/red/touch/w/w/yellow/touch/clear".
+
+test ud-edge-clash with "un/red/touch/s/s/yellow/touch/clear/red/touch/n/n/yellow/touch/clear/d/d/red/touch/s/s/yellow/touch/clear/red/touch/n/n/yellow/touch/clear".
+
+test ew-edge-clash with "uw/red/touch/d/d/yellow/touch/clear/red/touch/u/u/yellow/touch/clear/e/e/red/touch/d/d/yellow/touch/clear/red/touch/u/u/yellow/touch"
+
+test w-ud-edge-clash with "gonear w11/test ud-edge-clash".
+test e-ud-edge-clash with "gonear e11/test ud-edge-clash".
+
+test u-ns-edge-clash with "gonear u11/test ns-edge-clash".
+test d-ns-edge-clash with "gonear d11/test ns-edge-clash".
+
+test n-ew-edge-clash with "gonear n11/test ew-edge-clash".
+test s-ew-edge-clash with "gonear s11/test ew-edge-clash".
+
+test touch-2 with "nw/red/touch/se/se/yellow/touch/n/n/white/touch".
+test touch-3 with "nw/red/touch/se/se/yellow/touch/n/n/e/d/d/white/touch/u/u/u/blue/touch".
 
 chapter temporary tests
 
