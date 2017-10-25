@@ -564,6 +564,9 @@ check going (this is the main go check rule):
 						say "[if noun is complex]It feels weird shimmying over at a diagonal angle, but there you are[else]Fwoop. You flip over to the [map region of R2][end if].";
 					if rope-drop is true and map region of R2 is not last-rope-region and mrlp is not last-rope-region and map region of R2 is not mrlp:
 						say " need to put your rope down somewhere close, if you can." instead;
+					if path-violated is false and path-achieved is false:
+						now path-violated is true;
+						say "A diagonal move ruins your try to visit everywhere without retracing your path. So, if you want, undo.";
 					move player to R2;
 					the rule succeeds;
 				say "You can't quite go that way. Maybe you should, but you can't." instead;
@@ -630,6 +633,9 @@ to say revgoto of (rm - a room):
 
 does the player mean tying rope to rope when tunnel-looped is true or location of player is init-drop-room: it is very likely.
 
+to say maybe-clue:
+	say "[if path-achieved is true]. After your long, precise trek, you have the brilliant idea that a similar cube might reveal different words if you went through the center differently: you could reverse the order (purple first), or you could shift what you started with, or both[else]Hmm[end if]"
+
 check tying rope to rope:
 	let TS be whether or not number of unvisited rooms > 0;
 	if tunnel-looped is true:
@@ -639,7 +645,7 @@ check tying rope to rope:
 		wfak-d;
 		say "[line break]The gold sphere cracks open. You see visions...of not five, not six, but OVER ONE HUNDRED ELEMENTS. Of light having speed, of mathematical theorems that prove you can't know anything. You see a vision of circular worlds that pull people to their centers, just like the cube, but THERE IS NOTHING SPECIAL IN THERE. There are visions of machines that not just levitate, but fly to the stars, which you thought was proven impossible.";
 		wfak-d;
-		say "[if TS is true]A voice hums through your mind that you solved the cube but did not explore ALL, so part of a vision is hidden from you[else][line break]There's also a vision of a few letters: [drink-your-ovaltine]. Hmm[end if].";
+		say "[if TS is true]A voice hums through your mind that you solved the cube but did not explore ALL, so part of a vision is hidden from you[else][line break]There's also a vision of a few letters: [drink-your-ovaltine][maybe-clue].";
 		wfak-d;
 		say "[line break]Well, you know to be skeptical of fake science when you see it. You realize this might be a hallucination. But you also realize you can pull the gold sphere to the surface and sell it to a museum for good money.";
 		wfak-d;
@@ -682,6 +688,10 @@ after going:
 		if location of player is visited or location of player is very center, now path-violated is true;
 		if noun is not simple, now path-violated is true;
 		if path-violated is true, say "Oops. You [if noun is not simple]moved diagonally[else]moved onto a square you'd been to[end if].";
+		if path-violated is false and number of unvisited rooms is 2:
+			now path-achieved is true;
+			if path-tracking is true, say "You have visited all the squares on the cube in order!";
+	continue the action;
 
 after going:
 	if init-drop-room is location of player and tunnel-looped is true:
@@ -1531,7 +1541,7 @@ to say face-dirs:
 	say "[if mrlp is upper face or mrlp is bottom face]NW/NE/SW/SE[else if mrlp is southern face or mrlp is northern face]UE/UW/DE/DW[else if mrlp is eastern face or mrlp is western face]UN/US/DN/DS[end if] or, reversed, [if mrlp is upper face or mrlp is bottom face]WN/EN/WS/ES[else if mrlp is southern face or mrlp is northern face]EU/WU/ED/WD[else if mrlp is eastern face or mrlp is western face]NU/SU/ND/SD[end if]"
 
 carry out verbing:
-	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [face-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if][if c-known is true].[paragraph break][b]C (color)[r] changes the ring color and touches a beacon[end if].[paragraph break][b]THINK[r] or [b]HELP[r] or [b]HINT[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face).[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
+	say "You can move in any of the standard directions, e.g. U/D/N/S/E/W. IN also works if and when you have passage into the center of the asteroid.[paragraph break]On the [mrlp], you can make diagonal movements like [face-dirs].[paragraph break]You may also want to [b]TOUCH[r] things or [b]SUMMON[r] the four elements: [list of elements][if all-4-acc is true]. Or you can just type the element or color you want[end if][if c-known is true].[paragraph break][b]C (color)[r] changes the ring color and touches a beacon[end if].[paragraph break][b]THINK[r] or [b]HELP[r] or [b]HINT[r] will summarize where you've been and what you've done[if rope-drop is true and tunnel-looped is false]. [b]RESET[r] will send you back before when you pitched the rope[end if]. You can also GO TO/GT any location on the cube, in abbreviated form (e.g. UNW goes to the northwest corner of the upper face)[if path-in-verbs is true]. You can type PATH to toggle path tracking, if you are trying to touch every outside square once before moving on[end if].[paragraph break]If visualization is tricky, READ MAP gives a textual representation of the PDF map included with the game.";
 	if thoughtfulness > 3, say "[line break]EXP will also reveal what your most recent wandering thought or random find meant, if you didn't quite get the joke.";
 	if debug-state is true:
 		say "[line break]You can also use [b]BCSOL[r] to see the beacon solutions, or [b]HALP[r] to see the tunnel solution.";
@@ -1716,6 +1726,8 @@ volume path tracking segment
 
 path-violated is a truth state that varies.
 
+path-achieved is a truth state that varies.
+
 path-violated-note is a truth state that varies.
 
 path-in-verbs is a truth state that varies.
@@ -1735,7 +1747,9 @@ carry out pathing:
 	now path-tracking is whether or not path-tracking is false;
 	say "Path tracking is now [on-off of path-tracking].";
 	if path-violated is true and path-violated-note is false:
-			say "[line break]NOTE: You've already looped around to a location twice, so toggling path notification won't do anything any more.";
+		say "[line break]NOTE: You've already looped around to a location twice, so toggling path notification won't do anything any more.";
+	else if path-achieved is true:
+		say "[line break]NOTE: you already ran the path through without revisiting a square, so this option is not very useful.";
 	the rule succeeds;
 
 volume stock room descriptions
@@ -2116,6 +2130,8 @@ gt nuw/gt nwu/gt nu/gt neu/gt nue/gt nw/gt n/gt nc/gt ne/gt nwd/gt ndw/gt nd/gt 
 gt wun/gt wnu/gt wu/gt wus/gt wsu/gt wn/gt w/gt wc/gt ws/gt wdn/gt wnd/gt wd/gt wsd/gt wds/
 gt eun/gt enu/gt eu/gt eus/gt esu/gt en/gt e/gt ec/gt es/gt edn/gt end/gt ed/gt esd/gt eds
 "
+
+test pathy with "path/s/w/n/n/e/e/s/s/e/n/n/d/s/s/d/n/n/n/w/w/u/e/e/u/w/w/w/s/s/d/n/n/d/s/s/d/n/n/e/e/s/w/s/e/s/u/u/w/d/d/w/u/u"
 
 chapter temporary tests
 
