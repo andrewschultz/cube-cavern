@@ -1263,9 +1263,9 @@ check touching a cornerthing:
 	let ia be number of aligned regions;
 	if ring-color is black and cornercolor of noun is black, say "You see the darkness in your ring swirl. It feels like something more should happen, but it doesn't." instead;
 	repeat through table of beacon zaps:
-		if con2 entry is noun and cornercolor of con1 entry is not black, say "[froms of mydir entry]." instead;
+		if con2 entry is noun and cornercolor of con1 entry is not black, say "[froms of opposite of mydir entry]." instead;
 	repeat through table of beacon zaps:
-		if con1 entry is noun and cornercolor of con2 entry is not black, say "[froms of opposite of mydir entry]." instead;
+		if con1 entry is noun and cornercolor of con2 entry is not black, say "[froms of mydir entry]." instead;
 	now ray-bug is false;
 	let oldcolor be raycolor of mrlp;
 	if ring-color is black:
@@ -1670,7 +1670,12 @@ carry out clearing:
 			continue the action;
 	if number of visible cornerthings is 1:
 		let RVC be random visible cornerthing;
-		if cornercolor of RVC is not black, say "The transponder nearby winks out to black.";
+		if cornercolor of RVC is not black, say "The transponder nearby winks out to black.[paragraph break]";
+	let colored-stuff be 0;
+	repeat with J running through cornerthings:
+		if cornercolor of J is not black, increment colored-stuff;
+	if colored-stuff is 0, say "There's nothing to clear." instead;
+	say "(NOTE: [if colored-stuff > 1][colored-stuff in words] beacons[else]beacon[end if] cleared back to black.)[paragraph break]";
 	black-beacons;
 	if player is in very center:
 		say "(Moving you back to where you started, because being trapped in the center would be uncool)[paragraph break]";
@@ -1678,7 +1683,7 @@ carry out clearing:
 		if ring-color is not black:
 			now ring-color is black;
 			say "Your ring resets to black.";
-	if tunnel is visible:
+	else if tunnel is visible:
 		say "The open tunnel nearby closes.";
 	tun-beac-reset;
 	the rule succeeds;
