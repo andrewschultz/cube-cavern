@@ -577,14 +577,14 @@ test c1-0a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n
 test c1-1a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/s/s/u/drop rope/n/u/e/e/d/w/n/d/d/s/u/w/s/s/e/tie rope".
 test c1-2a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/w/w/u/drop rope/e/s/u/u/n/d/e/n/n/w/s/d/w/w/u/tie rope".
 test c1-3a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/drop rope/u/w/s/s/e/n/u/e/e/d/w/n/d/d/s/tie rope".
-test c1-4a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/drop rope/s/d/w/w/u/e/s/u/u/n/d/e/n/n/w/tie rope".
+[test c1-4a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/drop rope/s/d/w/w/u/e/s/u/u/n/d/e/n/n/w/tie rope".
 test c1-5a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/e/e/u/drop rope/w/n/d/d/s/u/w/s/s/e/n/u/e/e/d/tie rope".
 test c1-6a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/s/s/u/drop rope/n/w/d/d/e/u/n/e/e/s/w/u/s/s/d/tie rope".
 test c1-7a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/w/w/u/drop rope/e/d/n/n/u/s/e/u/u/w/d/s/w/w/n/tie rope".
 test c1-8a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/drop rope/u/n/e/e/s/w/u/s/s/d/n/w/d/d/e/tie rope".
 test c1-9a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/drop rope/s/e/u/u/w/d/s/w/w/n/e/d/n/n/u/tie rope".
 test c1-10a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/e/e/u/drop rope/w/u/s/s/d/n/w/d/d/e/u/n/e/e/s/tie rope".
-test c1-11a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/u/u/s/drop rope/d/s/w/w/n/e/d/n/n/u/s/e/u/u/w/tie rope".
+test c1-11a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/u/u/s/drop rope/d/s/w/w/n/e/d/n/n/u/s/e/u/u/w/tie rope".]
 
 chapter direction testing
 

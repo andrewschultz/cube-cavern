@@ -1,0 +1,83 @@
+# reg-wthru-orientation-c1-3a.txt
+> pick 11234
+
+> av
+
+> nw
+
+> summon white
+
+> touch
+
+> se
+
+> se
+
+> summon red
+
+> touch
+
+> nw
+
+> n
+
+> n
+
+> d
+
+> d
+
+> d
+
+> s
+
+> ne
+
+> summon yellow
+
+> touch
+
+> sw
+
+> sw
+
+> summon blue
+
+> touch
+
+> ne
+
+> drop rope
+
+> u
+
+> w
+
+> s
+
+> s
+
+> e
+
+> n
+
+> u
+
+> e
+
+> e
+
+> d
+
+> w
+
+> n
+
+> d
+
+> d
+
+> s
+
+> tie rope
+YOU HAVE ACHIEVED KNOWLEDGE
