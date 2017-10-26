@@ -336,10 +336,21 @@ check dropping wire rope:
 	if rope-drop is true, say "You already dropped the rope to start." instead;
 	now last-rope-region is mrlp;
 	now init-drop-room is location of player;
-	say "You drop the rope and anchor it. ([b]NOTE[r]: if you want to undo things later, you can [b]RESET[r] to before you dropped the rope, which is hopefully easier than walking back your progress).";
+	say "You drop the rope and anchor it. ([b]NOTE[r]: if you want to undo things later, you can [b]RESET[r] to before you dropped the rope, which is hopefully easier than walking back your progress. Or you can [b]TAKE[r] the rope right now if you maybe want to anchor the rope elsewhere).";
 	now last-top-room is location of player;
 	now rope-drop is true;
 	the rule succeeds;
+
+check taking wire rope:
+	if rope-drop is true:
+		if init-drop-room is location of player and number of entries in rope-colors is 0:
+			say "You pick up the rope.";
+			now last-top-room is u00;
+			now rope-drop is false;
+		else:
+			say "You will need to backtrack to [init-drop-room] (or just RESET) to unhitch the rope.";
+		the rule succeeds;
+	say "You may need to drop the rope later, but for now, you have a good hold on it."
 
 check dropping:
 	say "Whatever you drop could get lost forever. Best hang on." instead;
