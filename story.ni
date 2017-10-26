@@ -346,6 +346,7 @@ check taking wire rope:
 		if init-drop-room is location of player and number of entries in rope-colors is 0:
 			say "You pick up the rope.";
 			now last-top-room is u00;
+			now init-drop-room is u00;
 			now rope-drop is false;
 		else:
 			say "You will need to backtrack to [init-drop-room] (or just RESET) to unhitch the rope.";
@@ -1673,7 +1674,8 @@ carry out reseting:
 	now rope-drop is false;
 	now rope-colors is {};
 	move player to init-drop-room;
-	now init-drop-room is u00; [this is the initial value]
+	now init-drop-room is u00; [this is the initial value for each, since u00 is the first room ever. This is hacky code, but otherwise the game displays something that's not there]
+	now last-top-room is u00;
 	now all rooms are not roped;
 	the rule succeeds;
 
@@ -1788,7 +1790,11 @@ volume stock room descriptions
 
 the description of a room is usually "[room-desc].".
 
-the printed name of a room is usually "[mrtc], [if the item described is facecenter]center[else if the item described is edge][descdir of item described] edge[else][descdir of item described] corner[end if]".
+to say descedge of (x - a room):
+	let Q be descdir of X;
+	say "[if Q is up]upper[else if Q is down]lower[else][Q][end if]"
+
+the printed name of a room is usually "[mrtc], [if the item described is facecenter]center[else if the item described is edge][descedge of item described] edge[else][descdir of item described] corner[end if]".
 
 to say mrtc:
 	let Q be "[map region of the item described]";
