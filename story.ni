@@ -29,6 +29,7 @@ go-test is a truth state that varies.
 section debug to start - not for release
 
 when play begins:
+	say "DEBUG NOTE: [init-drop-room].";
 	now debug-state is true;
 
 volume verb simplification arglebargle
@@ -1531,7 +1532,7 @@ understand "credits" as creditsing.
 
 carry out creditsing:
 	say "Thanks to, in alphabetical order, Brian Rushton, Mike Souza, Mike Spivey, and Marnix van den Bos for suffering through the early bug-filled variations of this game and for their support in a bit of a time crunch. Thanks also to an fellow competitor who wished to remain anonymous, for finding a bug in the comp version of the game. It's really cool that even though IFComp is a competition, people are ... cooperative.";
-	say "[line break]Thanks to Brian Stovall for reporting a bug in-comp that spurred me to check off on a few other features and special cases.";
+	say "[line break]Thanks to Brian Stovall and Matt Weiner for reporting bugs in-comp that spurred me to check off on a few other features and special cases.";
 	say "[line break]Thanks to Genstein and Jason Lautzenheiser for creating and developing Trizbort, which has helped me organize and visualize other games in addition to this. http://www.trizbort.com has this app, though it's Windows only unless you're really good with emulators.";
 	say "[line break]Cover art font is Neuropol X Font by Raymond Larabie at typodermicfonts.com via 1001fonts.com.";
 	the rule succeeds;
@@ -1609,7 +1610,7 @@ carry out think2ing:
 	if number of ever-acc elements is 0:
 		say "You may wish to tinker with SUMMON on your mood ring." instead;
 	else:
-		say "Here is a list of [if all-4-acc is true]all the elements[else]the elements you've summoned,[end if] and their colors:";
+		say "Here is a list of [if all-4-acc is true]all the elements[else]the elements you've summoned,[end if] and their colors: ";
 		now got-yet is false;
 		repeat with Q running through elements:
 			if got-yet is true, say ", ";
@@ -1624,9 +1625,10 @@ carry out think2ing:
 	let ACO be number of activated cornerthings;
 	if ACO < 4, say "Maybe you should activate [if ACO is 0]one[else]more[end if] of the transponders in the corners of the faces." instead;
 	if number of ever-aligned regions is 0, say "Maybe you should figure a way into the center of the cube." instead;
-	if number of aligned regions is 0, say "Maybe you should try to re-open a tunnel you closed." instead;
-	if very center is not visited, say "Maybe you should go inside one of the tunnels you made." instead;
-	if rope-drop is false, say "Maybe you should figure when and where to DROP your rope." instead;
+	if number of aligned regions is 0, say "Maybe you could re-open a tunnel you closed." instead;
+	if very center is not visited, say "Maybe it's time to go inside one of the tunnels you made." instead;
+	if rope-drop is false, say "Maybe it's time to figure when and where to DROP your rope." instead;
+	say "You dropped the rope in [init-drop-room].[paragraph break]";
 	let ERC be number of entries in rope-colors;
 	if ERC < 6, say "Maybe you should figure a way to thread the rope through the cube[if ERC > 0]some more[end if]." instead;
 	if tunnel-looped is false, say "Maybe you looped the rope wrong and you can/should RESET and try again." instead;
@@ -1656,10 +1658,11 @@ understand "reset" as reseting.
 carry out reseting:
 	if rope-drop is false, say "You can't reset before dropping the rope." instead;
 	if tunnel-looped is true, say "No, you're so close to the end!" instead;
-	say "Resetting to where you dropped the rope...";
+	say "Resetting to just before you dropped the rope...";
 	now rope-drop is false;
 	now rope-colors is {};
 	move player to init-drop-room;
+	now init-drop-room is u00; [this is the initial value]
 	now all rooms are not roped;
 	the rule succeeds;
 

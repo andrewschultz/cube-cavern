@@ -463,6 +463,18 @@ test forangeb with "test fix/ne/u/u/drop rope/d/w/n/n/e/s/d/e/e/u/w/s/u/u/n".
 test fredf with "test fix/nw/u/drop rope/e/u/s/s/d/n/e/d/d/w/u/n/w/w/s".
 test fredb with "test fix/nw/u/drop rope/e/n/d/d/s/u/e/s/s/w/n/u/w/w/d".
 
+test fred1r with "test fix/nw/u/drop rope/e/reset".
+test fred2r with "test fix/nw/u/drop rope/e/u/reset".
+
+test fred3 with "test fix/nw/u/drop rope/e/u/s/s/d/n/reset".
+test fred4 with "test fix/nw/u/drop rope/e/u/s/s/d/n/e/reset".
+
+test fred5 with "test fix/nw/u/drop rope/e/u/s/s/d/n/e/d/d/w/u/reset".
+test fred6 with "test fix/nw/u/drop rope/e/u/s/s/d/n/e/d/d/w/u/n/reset".
+
+test fredlazy with "test fix/nw/u/drop rope/e/u/w/w/d/tie rope".
+test fredwrong with "test fix/nw/u/drop rope/e/e/u/u/w/d/d/n/n/u/s/s/w/w/n/tie rope".
+
 test fgreenf with "test fix/ne/u/e/drop rope/w/d/n/n/u/s/w/u/u/e/d/s/e/e/n".
 test fgreenb with "test fix/ne/u/e/drop rope/w/s/u/u/n/d/w/n/n/e/s/d/e/e/u".
 
@@ -492,7 +504,7 @@ chapter all 48
 test c1 with "pick 11234/nw/summon white/touch/se/se/summon red/touch/gonear d11/ne/summon yellow/touch/sw/sw/summon blue/touch/gonear u11/drop rope/d/e/gonear n11/s/d/gonear w11/e/s/gonear u11/tie rope".
 test c2 with "pick 1234/ne/summon white/touch/sw/sw/summon red/touch/gonear d11/nw/summon yellow/touch/se/se/summon blue/touch/gonear u11/drop rope/d/w/gonear n11/s/d/gonear e11/w/s/gonear u11/tie rope".
 
-test c3 with "pick 11243/nw/summon white/touch/se/se/summon red/touch/gonear d11/ne/summon blue/touch/sw/sw/summon yellow/touch/gonear u11/drop rope/d/s/gonear w11/e/d/gonear n11/s/e/gonear u11/tie rope".
+[test c3 with "pick 11243/nw/summon white/touch/se/se/summon red/touch/gonear d11/ne/summon blue/touch/sw/sw/summon yellow/touch/gonear u11/drop rope/d/s/gonear w11/e/d/gonear n11/s/e/gonear u11/tie rope".
 test c4 with "pick 1243/ne/summon white/touch/sw/sw/summon red/touch/gonear d11/nw/summon blue/touch/se/se/summon yellow/touch/gonear u11/drop rope/d/s/gonear e11/w/d/gonear n11/s/w/gonear u11/tie rope".
 
 test c5 with "pick 11324/nw/summon white/touch/se/se/summon yellow/touch/gonear d11/ne/summon red/touch/sw/sw/summon blue/touch/gonear n11/drop rope/s/e/gonear u11/d/s/gonear w11/e/d/gonear n11/tie rope".
@@ -559,7 +571,7 @@ test c45 with "pick 14312/nw/summon blue/touch/se/se/summon yellow/touch/gonear 
 test c46 with "pick 4312/ne/summon blue/touch/sw/sw/summon yellow/touch/gonear d11/nw/summon white/touch/se/se/summon red/touch/gonear d11/drop rope/u/s/gonear w11/e/u/gonear n11/s/e/gonear d11/tie rope".
 
 test c47 with "pick 14321/nw/summon blue/touch/se/se/summon yellow/touch/gonear d11/ne/summon red/touch/sw/sw/summon white/touch/gonear d11/drop rope/u/e/gonear s11/n/u/gonear w11/e/n/gonear d11/tie rope".
-test c48 with "pick 4321/ne/summon blue/touch/sw/sw/summon yellow/touch/gonear d11/nw/summon red/touch/se/se/summon white/touch/gonear d11/drop rope/u/w/gonear s11/n/u/gonear e11/w/n/gonear d11/tie rope".
+test c48 with "pick 4321/ne/summon blue/touch/sw/sw/summon yellow/touch/gonear d11/nw/summon red/touch/se/se/summon white/touch/gonear d11/drop rope/u/w/gonear s11/n/u/gonear e11/w/n/gonear d11/tie rope".]
 
 test c1-0a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/n/n/u/u/u/s/drop rope/d/e/n/n/w/s/d/w/w/u/e/s/u/u/n/tie rope".
 test c1-1a with "pick 11234/av/nw/summon white/touch/se/se/summon red/touch/nw/n/n/d/d/d/s/ne/summon yellow/touch/sw/sw/summon blue/touch/ne/s/s/u/drop rope/n/u/e/e/d/w/n/d/d/s/u/w/s/s/e/tie rope".
