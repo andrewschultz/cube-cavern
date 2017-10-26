@@ -335,7 +335,7 @@ check dropping wire rope:
 	if rope-drop is true, say "You already dropped the rope to start." instead;
 	now last-rope-region is mrlp;
 	now init-drop-room is location of player;
-	say "You drop the rope and anchor it. ([b]NOTE[r]: if you want to undo things later, you can [b]RESET[r] to before you dropped the rope).";
+	say "You drop the rope and anchor it. ([b]NOTE[r]: if you want to undo things later, you can [b]RESET[r] to before you dropped the rope, which is hopefully easier than walking back your progress).";
 	now last-top-room is location of player;
 	now rope-drop is true;
 	the rule succeeds;
@@ -659,7 +659,7 @@ check tying rope to rope:
 	if rope-drop is true:
 		if location of player is init-drop-room:
 			if number of entries in rope-colors > 1:
-				say "You tie the rope to itself. [if number of entries in rope-colors < number of aligned regions]Maybe you didn't thread the cube completely, but eh well, no big deal[else]Maybe you could've created a few other tunnels, but the important thing is, you've anchored the whole cube[end if], right?";
+				say "You tie the rope to itself. [if number of entries in rope-colors < number of aligned regions]Maybe you didn't thread the cube completely, but eh well, no big deal[else if number of aligned regions < 6]Maybe you could've created a few other tunnels, but the important thing is, you've anchored the whole cube[else]The rope is pulsing weirdly, but you've figured what to do with it[end if], right?";
 				wfak-d;
 				say "[line break]You throw the rope hard enough that it breaks the cube's gravity. As it hits a cavern wall, you feel the cube pulled...and it starts to crumble...and the gold ball rushes out of the cavern. When you return to the surface, people tell you of the wonderful fireworks as it exploded in the sky. They were sure you did all you could to capture what was in it. But you aren't.";
 				now you-lost is true;
@@ -1656,7 +1656,7 @@ understand "reset" as reseting.
 carry out reseting:
 	if rope-drop is false, say "You can't reset before dropping the rope." instead;
 	if tunnel-looped is true, say "No, you're so close to the end!" instead;
-	say "Resetting to where you dropped the rope..." instead;
+	say "Resetting to where you dropped the rope...";
 	now rope-drop is false;
 	now rope-colors is {};
 	move player to init-drop-room;
@@ -1883,6 +1883,9 @@ init-obs	end-obs
 "Out of nowhere, you wonder when mathematicians will ever figure out the quintic formula. It probably just requires a cool trick, like the cubic formula did, and nobody's been clever enough, yet. Still, it's lower priority than good honest practical astrology."	"Galois proved there was no quintic formula."
 "You feel glad you're not on a tetrahedron or octahedron. Those would be too pointy at the corners! And you might slip around a dodecahedron or icosahedron too much."	"There are five regular solids (similar faces, same number of faces joined at each vertex). A cube is the most recognizable."
 "You refresh yourself on the implications of the important philosophical argument about how the sum of reciprocals of whole numbers converges, but it takes so long, it only sort of counts."	"The harmonic series (1+1/2+1/3+...+1/x) is approximately the natural logarithm of x + Euler's constant."
+"You ponder magnets. Magnets are weird. But their existence is proof it's OK for opposites to attract. Perhaps they are formed by some mirror image lattices of the four elements. You remember some foolish suggestion in advanced science that understanding magnets would open up a whole new bucket of worms."	"Magnets have nothing to do with elements, though the idea of spin is roughly related to symmetry or handedness."
+"You feel sorrow you won't live to see science create the most perfect song. I mean, there's a formula for note frequency, so a formula for good songs must be out there, just way too complicated for now. Of course, you can't do the same for books, since words have context."	"While there's a lot of mathematics that goes into songs, and there are a lot of mathematical principles in how much of an effect to use, aesthetics are still out of reach."
+"You wonder if the cube holds the secrets to a perpetual motion machine. Some negative nancies say it's not possible, but that's not the sort of gung-ho can-do philosophy that built the punch card machines!"
 
 table of gotos [this maps an abbreviation to a room. The room's shorthand is face + direction from center]
 s1 (text)	s2 (text)	jumpy
