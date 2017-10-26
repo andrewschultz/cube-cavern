@@ -1,0 +1,169 @@
+# reg-cc-goto-tests.txt
+> gt unw
+Upper face, northwest corner
+> gt uwn
+Upper face, northwest corner
+> gt un
+Upper face, north edge
+> gt une
+Upper face, northeast corner
+> gt uen
+Upper face, northeast corner
+> gt uw
+Upper face, west edge
+> gt u
+Upper face, center
+> gt u
+Upper face, center
+> gt ue
+Upper face, east edge
+> gt usw
+Upper face, southwest corner
+> gt uws
+Upper face, southwest corner
+> gt us
+Upper face, south edge
+> gt use
+Upper face, southeast corner
+> gt ues
+Upper face, southeast corner
+> gt dnw
+Lower face, northwest corner
+> gt dwn
+Lower face, northwest corner
+> gt dn
+Lower face, north edge
+> gt dne
+Lower face, northeast corner
+> gt den
+Lower face, northeast corner
+> gt dw
+Lower face, west edge
+> gt d
+Lower face, center
+> gt d
+Lower face, center
+> gt de
+Lower face, east edge
+> gt dsw
+Lower face, southwest corner
+> gt dws
+Lower face, southwest corner
+> gt ds
+Lower face, south edge
+> gt dse
+Lower face, southeast corner
+> gt des
+Lower face, southeast corner
+> gt nuw
+Northern face, upwest corner
+> gt nwu
+Northern face, upwest corner
+> gt nu
+Northern face, up edge
+> gt nue
+Northern face, upeast corner
+> gt neu
+Northern face, upeast corner
+> gt nw
+Northern face, west edge
+> gt n
+Northern face, center
+> gt n
+Northern face, center
+> gt ne
+Northern face, east edge
+> gt ndw
+Northern face, downwest corner
+> gt nwd
+Northern face, downwest corner
+> gt nd
+Northern face, down edge
+> gt nde
+Northern face, downeast corner
+> gt ned
+Northern face, downeast corner
+> gt suw
+Southern face, upwest corner
+> gt swu
+Southern face, upwest corner
+> gt su
+Southern face, up edge
+> gt sue
+Southern face, upeast corner
+> gt seu
+Southern face, upeast corner
+> gt sw
+Southern face, west edge
+> gt s
+Southern face, center
+> gt s
+Southern face, center
+> gt se
+Southern face, east edge
+> gt sdw
+Southern face, downwest corner
+> gt swd
+Southern face, downwest corner
+> gt sd
+Southern face, down edge
+> gt sde
+Southern face, downeast corner
+> gt sed
+Southern face, downeast corner
+> gt end
+Eastern face, downnorth corner
+> gt edn
+Eastern face, downnorth corner
+> gt en
+Eastern face, north edge
+> gt enu
+Eastern face, upnorth corner
+> gt eun
+Eastern face, upnorth corner
+> gt ed
+Eastern face, down edge
+> gt e
+Eastern face, center
+> gt e
+Eastern face, center
+> gt eu
+Eastern face, up edge
+> gt esd
+Eastern face, downsouth corner
+> gt eds
+Eastern face, downsouth corner
+> gt es
+Eastern face, south edge
+> gt esu
+Eastern face, upsouth corner
+> gt eus
+Eastern face, upsouth corner
+> gt wnd
+Western face, downnorth corner
+> gt wdn
+Western face, downnorth corner
+> gt wn
+Western face, north edge
+> gt wnu
+Western face, upnorth corner
+> gt wun
+Western face, upnorth corner
+> gt wd
+Western face, down edge
+> gt w
+Western face, center
+> gt w
+Western face, center
+> gt wu
+Western face, up edge
+> gt wsd
+Western face, downsouth corner
+> gt wds
+Western face, downsouth corner
+> gt ws
+Western face, south edge
+> gt wsu
+Western face, upsouth corner
+> gt wus
+Western face, upsouth corner
