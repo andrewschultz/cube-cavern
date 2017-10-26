@@ -1,0 +1,57 @@
+# reg-wthru-orientation-c11.txt
+> pick 11432
+
+> nw
+
+> summon white
+
+> touch
+
+> se
+
+> se
+
+> summon blue
+
+> touch
+
+> gonear d11
+
+> ne
+
+> summon yellow
+
+> touch
+
+> sw
+
+> sw
+
+> summon red
+
+> touch
+
+> gonear w11
+
+> drop rope
+
+> e
+
+> d
+
+> gonear n11
+
+> s
+
+> e
+
+> gonear u11
+
+> d
+
+> s
+
+> gonear w11
+
+> tie rope
+YOU HAVE ACHIEVED KNOWLEDGE
