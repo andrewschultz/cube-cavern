@@ -384,6 +384,19 @@ carry out g3ing:
 	tun-beac-reset;
 	the rule succeeds.
 
+chapter wining
+
+wining is an action applying to nothing.
+
+understand the command "win" as something new.
+
+understand "win" as wining.
+
+carry out wining:
+	now all rooms are visited;
+	end the game in victory;
+	the rule succeeds;
+
 chapter wraping
 
 wraping is an action applying to one visible thing.

@@ -1900,12 +1900,13 @@ init-obs	end-obs
 "The cube suddenly feels very cold, and you think you hear rhyming spoken lyrics. They're profane and sometimes over the line, but overall they're catchy and make some very good points. You feel as if it's OK to be mad with your problems every once in a while, or even to mellow out later in life but still care about social issues."	"This is a reference to rapper/actor Ice Cube."
 "Four cubes are drawn here: a very small one and three others: nine, ten and twelve times its size, respectively. Hmm. You do some quick calculations and realize the significance. Then you wonder if any cube is the sum of two other cubes, before remembering that sort of impractical stuff distracts people from more socially relevant astrology."	"There is a story about Hardy claiming 1729 was an uninteresting number and Ramanujan saying no, it's the lowest sum of 2 cubes 2 different ways. Also, x^3+y^3=z^3 is Fermat's Theorem for n=3."
 "You notice a perfectly trisected angle drawn into the cube. You absentmindedly rub it out. It doesn't seem like that big of a deal."	"It's been proven impossible to trisect an arbitrary angle."
-"Out of nowhere, you wonder when mathematicians will ever figure out the quintic formula. It probably just requires a cool trick, like the cubic formula did, and nobody's been clever enough, yet. Still, it's lower priority than good honest practical astrology."	"Galois proved there was no quintic formula."
+"Out of nowhere, you wonder when mathematicians will ever figure out the quintic formula. It probably just requires a cool trick, like the cubic formula did, and nobody's been clever enough, yet. Still, it's lower priority than good honest practical astrology."	"Galois proved there was no quintic formula. Google Cardano's Method for the cubic formula."
 "You feel glad you're not on a tetrahedron or octahedron. Those would be too pointy at the corners! And you might slip around a dodecahedron or icosahedron too much."	"There are five regular solids (similar faces, same number of faces joined at each vertex). A cube is the most recognizable."
 "You refresh yourself on the implications of the important philosophical argument about how the sum of reciprocals of whole numbers converges, but it takes so long, it only sort of counts."	"The harmonic series (1+1/2+1/3+...+1/x) is approximately the natural logarithm of x + Euler's constant."
 "You ponder magnets. Magnets are weird. But their existence is proof it's OK for opposites to attract. Perhaps they are formed by some mirror image lattices of the four elements. You remember some foolish suggestion in advanced science that understanding magnets would open up a whole new bucket of worms."	"Magnets have nothing to do with elements, though the idea of spin is roughly related to symmetry or handedness."
 "You feel sorrow you won't live to see science create the most perfect song. I mean, there's a formula for note frequency, so a formula for good songs must be out there, just way too complicated for now. Of course, you can't do the same for books, since words have context."	"While there's a lot of mathematics that goes into songs, and there are a lot of mathematical principles in how much of an effect to use, aesthetics are still out of reach."
-"You wonder if the cube holds the secrets to a perpetual motion machine. Some negative nancies say it's not possible, but that's not the sort of gung-ho can-do philosophy that built the punch card machines!"
+"Now that you've been trekking all over for so long, you wonder if the cube holds the secrets to a perpetual motion machine. Some negative nancies say it's not possible, but that's not the sort of gung-ho can-do philosophy that built the punch card machines!"	"The laws of thermodynamics state that all activities lose energy, making a perpetual motion machine impossible."
+"You suddenly wonder if there are basic building blocks to life, just as there are the four elements. Perhaps they would define physical and mental traits...no, humans are too complex to be broken down like mere unthinking matter. Of course there's some magic in there to make you yourself and others theirselves."	"This is a reference to the four basic nucleotides that make up DNA: adenine, guanine, cytosine, thymine."
 
 table of gotos [this maps an abbreviation to a room. The room's shorthand is face + direction from center]
 s1 (text)	s2 (text)	jumpy
@@ -1975,8 +1976,8 @@ final question wording	only if victorious	topic	final response rule	final respon
 this is the exp-all rule:
 	let count be 0;
 	repeat through table of goofy observations:
-		say "([count * 3]) '[init-obs entry]': [bold type][end-obs entry][roman type][paragraph break]";
 		increment count;
+		say "([count]) '[init-obs entry]': [bold type][if there is an end-obs entry][end-obs entry][else]OOPS NEED ENDING OBSERVATION[end if][roman type][paragraph break]";
 		if count > thoughtfulness / 3:
 			say "NOTE: this is as far as you got with the wandering observations. You get a new one for every three non-center squares you explore. See more anyway?";
 			unless the player consents:
