@@ -235,6 +235,14 @@ to proc-init-list:
 		now beaccolor of northern face is mix of rightcolor of northdownwest and rightcolor of northupeast;
 		now beaccolor of southern face is mix of rightcolor of southdowneast and rightcolor of southupwest;
 
+after looking:
+	if beacon is in location of player, set the pronoun it to beacon;
+	if transponder is visible, set the pronoun it to transponder;
+	if tunnel is visible and rope-drop is false:
+		set the pronoun it to tunnel;
+		set the pronoun them to tunnel;
+	continue the action;
+
 to decide which number is code-num of (t - a truth state):
 	let mag be 5;
 	if t is true, now mag is mag * 2;
@@ -541,6 +549,33 @@ prev-reg is a region that varies.
 
 the main go check rule is listed before the can't go that way rule in the check going rules.
 
+to say dir-complaint of (d - a direction):
+	let myin be indir of mrlp;
+	let got-dir be false;
+	repeat through table of dirmerge:
+		if d3 entry is noun:
+			now got-dir is true;
+			if d1 entry is myin or d2 entry is myin:
+				if d1 entry is myin:
+					let R be the room d2 entry of location of player;
+					if R is not nothing and map region of R is not mrlp:
+						say "overdoing it--you can just go [d2 entry]";
+						continue the action;
+				if d2 entry is myin:
+					let R be the room d1 entry of location of player;
+					if R is not nothing and map region of R is not mrlp:
+						say "overdoing it--you can just go [d1 entry]";
+						continue the action;
+				say "running inside the cube";
+				break;
+			if d1 entry is opposite of myin or d2 entry is opposite of myin:
+				say "jumping off the cube at an angle";
+				break;
+	if got-dir is false:
+		say "not quite doable";
+	else:
+		say ". You can only go [list of ubercromulent directions], or any combination (see DIRS for details), along the [mrlp][if location of player is facecenter and number of ever-aligned regions > 0]. You also [can-want] go inside/[indir of mrlp] here in the center[end if]"
+
 check going (this is the main go check rule):
 	now last-room is location of player;
 	if mrlp is mtr, continue the action;
@@ -558,7 +593,9 @@ check going (this is the main go check rule):
 	if location of player is corner and noun is descdir of location of player:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
-		say "You can only go [list of ubercromulent directions], or any combination (see DIRS for details), along the [mrlp][if location of player is facecenter and number of ever-aligned regions > 0]. You also [can-want] go inside/[indir of mrlp] here in the center[end if]." instead;
+		if noun is indir of mrlp, say "This isn't quite the place to go inside. You might try the center instead." instead;
+		if noun is outdir of mrlp, say "No jumping off the cube!" instead;
+		say "That would be [dir-complaint of noun]." instead;
 	if noun is not simple:
 		repeat through table of dirmerge:
 			if d3 entry is noun:
@@ -2154,9 +2191,9 @@ volume debug tests and such - not for release
 
 [uncomment below to unlock weird tests]
 
-include Cube Cavern Test Commands by Andrew Schultz.
+[include Cube Cavern Test Commands by Andrew Schultz.]
 
-include Cube Cavern Test Scripts by Andrew Schultz.
+[include Cube Cavern Test Scripts by Andrew Schultz.]
 
 [more standard inform stuff below]
 

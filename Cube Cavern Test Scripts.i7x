@@ -1,6 +1,6 @@
 Version 1/170825 of Cube Cavern Test Scripts by Andrew Schultz begins here.
 
-volume test scripts
+volume test scripts without regex equivalents
 
 chapter non-wins
 
@@ -204,14 +204,6 @@ gonear w11/u/s/d/d/n/n/u/u/s/
 gonear s11/u/e/d/d/w/w/u/u/e/
 gonear n11/u/e/d/d/w/w/u/u/e/"
 
-test goto with "gt unw/gt uwn/gt un/gt une/gt uen/gt uw/gt u/gt uc/gt ue/gt usw/gt uws/gt us/gt use/gt ues/
-gt dnw/gt dwn/gt dn/gt dne/gt den/gt dw/gt d/gt dc/gt de/gt dsw/gt dws/gt ds/gt dse/gt des/
-gt suw/gt swu/gt su/gt seu/gt sue/gt sw/gt s/gt sc/gt se/gt swd/gt sdw/gt sd/gt sed/gt sde/
-gt nuw/gt nwu/gt nu/gt neu/gt nue/gt nw/gt n/gt nc/gt ne/gt nwd/gt ndw/gt nd/gt ned/gt nde/
-gt wun/gt wnu/gt wu/gt wus/gt wsu/gt wn/gt w/gt wc/gt ws/gt wdn/gt wnd/gt wd/gt wsd/gt wds/
-gt eun/gt enu/gt eu/gt eus/gt esu/gt en/gt e/gt ec/gt es/gt edn/gt end/gt ed/gt esd/gt eds
-"
-
 test pathy with "path/s/w/n/n/e/e/s/s/e/n/n/d/s/s/d/n/n/n/w/w/u/e/e/u/w/w/w/s/s/d/n/n/d/s/s/d/n/n/e/e/s/w/s/e/s/u/u/w/d/d/w/u/u"
 
 test ns-edge-clash with "nw/red/touch/e/e/yellow/touch/clear/red/touch/w/w/yellow/touch/clear/s/s/red/touch/e/e/yellow/touch/clear/red/touch/w/w/yellow/touch/clear".
@@ -231,6 +223,18 @@ test s-ew-edge-clash with "gonear s11/test ew-edge-clash".
 
 test touch-2 with "nw/red/touch/se/se/yellow/touch/n/n/white/touch".
 test touch-3 with "nw/red/touch/se/se/yellow/touch/n/n/e/d/d/white/touch/u/u/u/blue/touch".
+
+volume test scripts with regex equivalents
+
+chapter moving around
+
+test goto with "gt unw/gt uwn/gt un/gt une/gt uen/gt uw/gt u/gt uc/gt ue/gt usw/gt uws/gt us/gt use/gt ues/
+gt dnw/gt dwn/gt dn/gt dne/gt den/gt dw/gt d/gt dc/gt de/gt dsw/gt dws/gt ds/gt dse/gt des/
+gt suw/gt swu/gt su/gt seu/gt sue/gt sw/gt s/gt sc/gt se/gt swd/gt sdw/gt sd/gt sed/gt sde/
+gt nuw/gt nwu/gt nu/gt neu/gt nue/gt nw/gt n/gt nc/gt ne/gt nwd/gt ndw/gt nd/gt ned/gt nde/
+gt wun/gt wnu/gt wu/gt wus/gt wsu/gt wn/gt w/gt wc/gt ws/gt wdn/gt wnd/gt wd/gt wsd/gt wds/
+gt eun/gt enu/gt eu/gt eus/gt esu/gt en/gt e/gt ec/gt es/gt edn/gt end/gt ed/gt esd/gt eds
+"
 
 Cube Cavern Test Scripts ends here.
 
