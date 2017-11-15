@@ -2,6 +2,22 @@ Version 1/170825 of Cube Cavern Test Commands by Andrew Schultz begins here.
 
 volume direction trackers
 
+chapter alldiring
+
+alldiring is an action applying to nothing.
+
+understand the command "alldir" as something new.
+
+understand "alldir" as alldiring.
+
+carry out alldiring:
+	let mr be location of player;
+	repeat with Q running through directions:
+		say "[bold type]====going [Q] from [mr].[roman type]";
+		try going Q;
+		if the player is not in mr, move the player to mr, without printing a room description;
+	the rule succeeds;
+
 chapter waysing
 
 waysing is an action out of world.
@@ -11,6 +27,7 @@ understand the command "ways" as something new.
 understand "ways" as waysing.
 
 carry out waysing:
+	say "Here we are testing all combinations of directions to see which rooms are which direction from other rooms.";
 	repeat with d1 running through simple directions:
 		repeat with d2 running through simple directions:
 			if d2 is d1, next;
