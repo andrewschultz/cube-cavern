@@ -24,7 +24,7 @@ use no scoring.
 
 section debug variables that need to be defined
 
-go-test is a truth state that varies.
+go-test is a truth state that varies. [variable for testing moving in a complex direction]
 
 section debug to start - not for release
 
@@ -172,9 +172,7 @@ to decide which color is the mix of (a - a color) and (b - a color):
 
 section status line stuff
 
-you-won is a truth state that varies.
-
-you-lost is a truth state that varies.
+you-won is a truth state that varies. you-lost is a truth state that varies. [these are used at the end to say if you conclusively won or lost. I could combine them into one, I suppose, but I wanted to allow for a neutral ending.]
 
 to re-status: (- DrawStatusLine(); -);
 
@@ -235,7 +233,7 @@ to proc-init-list:
 		now beaccolor of northern face is mix of rightcolor of northdownwest and rightcolor of northupeast;
 		now beaccolor of southern face is mix of rightcolor of southdowneast and rightcolor of southupwest;
 
-after looking:
+after looking (this is the pronouns after looking rule):
 	if beacon is in location of player, set the pronoun it to beacon;
 	if transponder is visible, set the pronoun it to transponder;
 	if tunnel is visible and rope-drop is false:
@@ -312,7 +310,7 @@ ring-color is a color that varies. ring-color is usually black.
 
 ring-moves is a number that varies.
 
-every turn when ring-color is not black:
+every turn when ring-color is not black (this is the fading ring color rule):
 	decrement ring-moves;
 	if ring-moves is 2:
 		say "The phlogiston in your mood ring is half faded back to black, now.";
@@ -328,7 +326,7 @@ after printing the name of wire rope when taking inventory:
 	if rope-drop is true, say " (anchored at [init-drop-room])";
 	continue the action;
 
-rope-drop is a truth state that varies.
+rope-drop is a truth state that varies. [DROP ROPE toggles this]
 
 rope-colors is a list of colors variable. rope-colors is {}.
 
@@ -405,7 +403,7 @@ summoning is an action applying to one visible thing.
 
 understand "summon [any thing]" as summoning.
 
-all-4-acc is a truth state that varies.
+all-4-acc is a truth state that varies. [this notes whether you can just type ELEMENT instead of SUMMON ELEMENT.]
 
 carry out summoning:
 	if player is in very center, say "Nothing happens. The weird gold sphere may be mucking with things, here." instead;
@@ -440,7 +438,7 @@ carry out cing:
 	now c-known is true;
 	the rule succeeds;
 
-c-known is a truth state that varies.
+c-known is a truth state that varies. [this toggles whether you know C COLOR = SUMMON COLOR.TOUCH BEACON]
 
 volume direction definitions
 
@@ -576,6 +574,23 @@ to say dir-complaint of (d - a direction):
 	else:
 		say ". You can only go [list of ubercromulent directions], or any combination (see DIRS for details), along the [mrlp][if location of player is facecenter and number of ever-aligned regions > 0]. You also [can-want] go inside/[indir of mrlp] here in the center[end if]"
 
+this is the falloff rule:
+	if noun is simple or noun is inside or noun is outside, continue the action;
+	let myin be indir of mrlp;
+	repeat through table of dirmerge:
+		if d3 entry is noun:
+			if d1 entry is myin:
+				let R be the room d2 entry of location of player;
+				if R is not nothing and map region of R is not mrlp:
+					say "Since [d2 entry] winds up leading [d1 entry], you just go [d2 entry] instead.";
+					try going d2 entry instead;
+			if d2 entry is myin:
+				let R be the room d1 entry of location of player;
+				if R is not nothing and map region of R is not mrlp:
+					say "Since [d1 entry] sort of leads [d2 entry], you just go [d1 entry] instead.";
+					try going d1 entry instead;
+	continue the action;
+
 check going (this is the main go check rule):
 	now last-room is location of player;
 	if mrlp is mtr, continue the action;
@@ -593,6 +608,7 @@ check going (this is the main go check rule):
 	if location of player is corner and noun is descdir of location of player:
 		say "You might impale yourself on the corner of the cube. Ouch!" instead;
 	if noun is not cromulent:
+		abide by the falloff rule for noun;
 		if noun is indir of mrlp, say "This isn't quite the place to go inside. You might try the center instead." instead;
 		if noun is outdir of mrlp, say "No jumping off the cube!" instead;
 		say "That would be [dir-complaint of noun]." instead;
@@ -632,14 +648,14 @@ check going (this is the main go check rule):
 		say "You twist over the side of the cube to the [mrx].[line break]";
 	continue the action;
 
-gotohintyet is a truth state that varies.
+gotohintyet is a truth state that varies. [this clues whether the game has told the player about the GT/GO TO hint shortcut]
 
 last-room is a room that varies.
 
-after looking:
+after looking (this is the help with directions on leaving upper face rule):
 	if gotohintyet is false:
 		if mrlp is not upper face:
-			say "[b]NOTE[r]: if the geography is intimidating, you can use the GT/GO TO command to return somewhere you have been, or even go somewhere you guess might be relevant. For instance, the start is [b]u or uc[r] would return you to the upper face center, and [revgoto of last-room] would return you to where you were ([last-room]), while [revgoto of location of player] would send you where you are now. [b]goto dsw[r] or [b]goto dws[r] would each send you the same corner of the cube bottom--you can use GOTO on where you haven't been, yet.";
+			say "[b]NOTE[r]: if the geography is intimidating, you can use the GT/GO TO command to return somewhere you have been, or even go somewhere you guess might be relevant. For instance, the start is [b]u or uc[r] would return you to the upper face center, and [revgoto of last-room] would return you to where you were ([last-room]), while [revgoto of location of player] would send you where you are now. [b]goto dsw[r] or [b]goto dws[r] would each send you the same corner of the cube bottom--you can even use [b]GOTO[r] on where you haven't been, yet.";
 			now gotohintyet is true;
 	continue the action;
 
@@ -684,7 +700,7 @@ to say revgoto of (rm - a room):
 does the player mean tying rope to rope when tunnel-looped is true or location of player is init-drop-room: it is very likely.
 
 to say maybe-clue:
-	say "[if path-achieved is true]. After your long, precise trek, you have the brilliant idea that a similar cube might reveal different words if you went through the center differently: you could reverse the order (purple first), or you could shift what you started with, or both[else]Hmm[end if]"
+	say "[if path-achieved is true]. After your long, precise trek, you have the brilliant idea that a similar cube might reveal different words if you went through the center differently: you could reverse the order (purple first), or you could shift what you started with, or both[else]Hmm. You daydream of walking over the cube again, trying to visit every square without touching, and learning something once you do (you can track this on replay with PATH)[end if]"
 
 check tying rope to rope:
 	let TS be whether or not number of unvisited rooms > 0;
@@ -733,11 +749,11 @@ check tying rope to:
 check tying something to:
 	if second noun is rope and noun is not rope, try tying noun to second noun instead;
 
-after going:
+after going (this is the path violation square tracking rule):
 	if path-violated is false:
 		if location of player is visited or location of player is very center, now path-violated is true;
 		if noun is not simple, now path-violated is true;
-		if path-violated is true, say "Oops. You [if noun is not simple]moved diagonally[else]moved onto a square you'd been to[end if].";
+		if path-violated is true and path-tracking is true, say "You [if noun is not simple]moved diagonally[else]moved onto a square you'd been to[end if]. If you're trying to walk all around the cube for the special bonus, you may need to undo.";
 		if path-violated is false and number of unvisited rooms is 2:
 			now path-achieved is true;
 			if path-tracking is true, say "You have visited all the squares on the cube in order!";
@@ -1151,7 +1167,7 @@ to rope-adjust (ts - a truth state):
 			d "ROPE: [l3 entry] and [l4 entry] [unless ts is true]de-[end if]roped.";
 			continue the action;
 
-continue-tunnel is a truth state that varies.
+continue-tunnel is a truth state that varies. [this checks whether or not you can continue into a tunnel]
 
 to check-rope-tunnel (c - a color):
 	d "Checking rope and tunnel.";
@@ -1184,7 +1200,7 @@ to check-rope-tunnel (c - a color):
 		endgame-check;
 		d "[rope-colors].";
 
-tunnel-looped is a truth state that varies.
+tunnel-looped is a truth state that varies. [have you woven your way through all 6 tunnels?]
 
 to endgame-check:
 	if number of entries in rope-colors is 6:
@@ -1287,7 +1303,7 @@ check taking cornerthing:
 	say "You feel a small pulse as you touch it.";
 	try touching noun instead;
 
-fixed-beacons is a truth state that varies.
+fixed-beacons is a truth state that varies. [this is true once you've got all the beacons right]
 
 to say froms of (x - a direction):
 	say "You step back as a strong electric pulse emits [fromthe of x]. Maybe you can't change this transponder right now"
@@ -1305,7 +1321,7 @@ to decide what number is regionbin:
 	if western face is aligned, increase ret by 1;
 	decide on ret;
 
-fourwarned is a truth state that varies.
+fourwarned is a truth state that varies. [has CLEAR been clued if you have 4 faces right e.g. all colors are 1 away from where they should be & manually resetting is a hassle]
 
 this is the avoid-zapped rule:
 	let zaps be 0;
@@ -1387,7 +1403,7 @@ to tun-beac-reset:
 	move tunnel backdrop to all tunneled rooms;
 	move beacon backdrop to all beaconed rooms;
 
-ever-trans-changed is a truth state that varies.
+ever-trans-changed is a truth state that varies. [have you ever changed a transponder?]
 
 check touching a beacon:
 	say "You feel a small pulse, but nothing significant[if ever-trans-changed is true], unlike when you touched that transponder[end if]." instead;
@@ -1430,7 +1446,7 @@ to decide which color is raycolor of (re - a region):
 	let r2 be a random facecenter room in re;
 	decide on raycolor of r2;
 
-ray-bug is a truth state that varies.
+ray-bug is a truth state that varies. [an emergency truth state in case things go really wrong. For testers only, hopefully.]
 
 to decide which color is raycolor of (r - a room):
 	let cr be map region of r;
@@ -1487,9 +1503,9 @@ reading is an action applying to one thing.
 
 does the player mean reading the map: it is very likely.
 
-read-warn is a truth state that varies.
+read-warn is a truth state that varies. [has the game told the player READ ~ EXAMINE?]
 
-html-warn is a truth state that varies.
+html-warn is a truth state that varies. [has the game told the player about the HTML graphic on the left?]
 
 check reading:
 	if noun is not map and read-warn is false:
@@ -1528,9 +1544,9 @@ volume gotoing
 
 gotoing is an action applying to one topic.
 
-understand the commands "go to" and "gt" as something new.
-understand "go to [text]" and "gt [text]" as gotoing.
-understand "go to" and "gt" as gotohing.
+understand the commands "go to" and "goto" and "gt" as something new.
+understand "go to [text]" and "goto [text]" and "gt [text]" as gotoing.
+understand "go to" and "goto" and "gt" as gotohing.
 
 gotohing is an action out of world.
 
@@ -1795,15 +1811,15 @@ rule for printing a parser error when the latest parser error is the not a verb 
 
 volume path tracking segment
 
-path-violated is a truth state that varies.
+path-violated is a truth state that varies. [this is false until you revisit a location, or visit diagonally.]
 
-path-achieved is a truth state that varies.
+path-achieved is a truth state that varies. [this is false until you visit all 48 in order. Note that if the path is ever violated, this can't happen.]
 
-path-violated-note is a truth state that varies.
+path-violated-note is a truth state that varies. [this tracks whether or not you're notified your path was violated]
 
-path-in-verbs is a truth state that varies.
+path-in-verbs is a truth state that varies. [this tracks whether you saw PATH]
 
-path-tracking is a truth state that varies.
+path-tracking is a truth state that varies. [this tracks whether you are tracking a path where you don't revisit a square]
 
 chapter pathing
 
@@ -1842,12 +1858,17 @@ a room has a direction called descdir. descdir is usually inside.
 to say rope-here:
 	say ". [if number of entries in rope-colors is 0]You've staked your wire rope here[else]Here's where you originally staked the wire rope. You can TIE it to itself to secure the cube[end if]"
 
+to say tunseen:
+	now tunnel-seen is true;
+
+tunnel-seen is a truth state that varies. [this tracks if you've ever seen a tunnel]
+
 to say room-desc:
 	if location of player is corner:
 		let rvc be random visible cornerthing;
 		say "You are at the [descdir] corner of the [mrlp]. You can go [list of goable directions] along this face, or you can go off this face: [cornerwarp].[paragraph break]There's a transponder here[if cornercolor of rvc is not black], lit [cornercolor of rvc][else], and it's dark[end if]. Your mood ring is slightly attracted to it";
 	else if location of player is facecenter:
-		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else][paragraph break]There's a beacon here, colored [beaccolor of mrlp][end if][if init-drop-room is location of player][rope-here]";
+		say "You are at the center of the [mrlp]. You can go pretty much any direction: [list of goable directions]. [if raycolor of mrlp is beaccolor of mrlp][tunseen]A tunnel leads inside ([indir of mrlp]) to the center of the cube[else][paragraph break]There's a beacon here, colored [beaccolor of mrlp][end if][if init-drop-room is location of player][rope-here]";
 	else if location of player is edge:
 		say "You are at the center of the [descdir] edge of the [mrlp][if location of player is roped]. You've previously strung your wire rope through here[end if]. You can go [list of goable directions] along this face, or [list of warpable directions] [if number of warpable directions is 1]to a new face[else]each to a different face[end if]"
 
@@ -2191,7 +2212,7 @@ volume debug tests and such - not for release
 
 [uncomment below to unlock weird tests]
 
-[include Cube Cavern Test Commands by Andrew Schultz.]
+include Cube Cavern Test Commands by Andrew Schultz.
 
 [include Cube Cavern Test Scripts by Andrew Schultz.]
 
