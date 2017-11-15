@@ -454,18 +454,19 @@ chapter extra testing verbs
 
 report verbing:
 	say "Here are testing specific commands.";
-	say "QA = quick advance. Colors all the beacons correctly.";
-	say "T4 = Make 4 tunnels. You can specify a direction. It and its opposite will not be open.";
-	say "G2 (direction) = get 2 right. The direction is the face they'll be right on. The default is the one you're on.";
-	say "G3 (direction) = get 3 right. The direction is diagonal and will be the two faces they'll be right on. There is no default.";
-	say "WAYS = shows the ways between your location and the next room.";
-	say "ALLWAY = all the ways between rooms.";
-	say "WARP (direction) = warp around the cube starting a certain direction.";
-	say "GOTEST toggles the gotest variable. GOTESTY forces it to true.";
-	say "THIMK = toggle think-every-turn.";
-	say "RMNAME = show room names by region.";
-	say "BLACK = reset transponders to black. Superseded by CLEAR/CLEAN.";
-	say "BORDTEST is a unit test to check adjacent beacons conflict properly.";
+	say "[b]QA[r] = quick advance. Colors all the beacons correctly.";
+	say "[b]T4[r] = Make 4 tunnels. You can specify a direction. It and its opposite will not be open.";
+	say "[b]G2[r] (direction) = get 2 right. The direction is the face they'll be right on. The default is the one you're on.";
+	say "[b]G3[r] (direction) = get 3 right. The direction is diagonal and will be the two faces they'll be right on. There is no default.";
+	say "[b]WAYS[r] = shows the ways between your location and the next room.";
+	say "[b]ALLWAY[r] = all the ways between rooms.";
+	say "[b]WARP[r] (direction) = warp around the cube starting a certain direction.";
+	say "[b]GOTEST[r] toggles the gotest variable. [b]GOTESTY[r] forces it to true.";
+	say "[b]THIMK[r] = toggle think-every-turn.";
+	say "[b]RMNAME[r] = show room names by region.";
+	say "[b]BLACK[r] = reset transponders to black. Superseded by [b]CLEAR/CLEAN[r].";
+	say "[b]BORDTEST[r] is a unit test to check adjacent beacons conflict properly.";
+	say "[b]ALLDIR[r] tests going each direction and seeing the message."
 
 Cube Cavern Test Commands ends here.
 
