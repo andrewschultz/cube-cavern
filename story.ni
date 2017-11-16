@@ -753,10 +753,10 @@ after going (this is the path violation square tracking rule):
 	if path-violated is false:
 		if location of player is visited or location of player is very center, now path-violated is true;
 		if noun is not simple, now path-violated is true;
-		if path-violated is true and path-tracking is true, say "You [if noun is not simple]moved diagonally[else]moved onto a square you'd been to[end if]. If you're trying to walk all around the cube for the special bonus, you may need to undo.";
+		if path-tracking is true and path-violated is true, say "PATH TRACKING ALERT: you just [if noun is not simple]moved diagonally[else]moved onto a square you'd been to[end if], so you won't get the hint for covering all squares without repeating or zigzagging.";
 		if path-violated is false and number of unvisited rooms is 2:
 			now path-achieved is true;
-			if path-tracking is true, say "You have visited all the squares on the cube in order!";
+			if path-tracking is true, say "You have visited all the squares on the cube in order! Congratulations! It's not the main puzzle, but an interesting one to figure, nonetheless. If you solve the main game now, you will get a hint about the ending messages.";
 	continue the action;
 
 after going:
